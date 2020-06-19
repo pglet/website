@@ -1,6 +1,6 @@
 module.exports = {
-  title: 'pglet',
-  tagline: 'UI service for DevOps',
+  title: 'UI service for DevOps',
+  tagline: 'Build modern Web Apps quickly in the language you already know.',
   url: 'https://pglet.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
