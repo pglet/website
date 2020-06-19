@@ -7,13 +7,22 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: rgb(33, 175, 144);
-  --ifm-color-primary-darker: rgb(31, 165, 136);
-  --ifm-color-primary-darkest: rgb(26, 136, 112);
-  --ifm-color-primary-light: rgb(70, 203, 174);
-  --ifm-color-primary-lighter: rgb(102, 212, 189);
-  --ifm-color-primary-lightest: rgb(146, 224, 208);
+  --ifm-color-primary: #303960;
+  --ifm-color-primary-dark: #2b3356;
+  --ifm-color-primary-darker: #293052;
+  --ifm-color-primary-darkest: #222843;
+  --ifm-color-primary-light: #353f6a;
+  --ifm-color-primary-lighter: #37426e;
+  --ifm-color-primary-lightest: #3e4a7d;
+
+  --ifm-color-secondary: #80bdab;
+  --ifm-color-secondary-dark: #6bb29d;
+  --ifm-color-secondary-darker: #61ad96;
+  --ifm-color-secondary-darkest: #4c927d;
+  --ifm-color-secondary-light: #95c8b9;
+  --ifm-color-secondary-lighter: #9fcdc0;
+  --ifm-color-secondary-lightest: #bfded4;
+
   --ifm-code-font-size: 95%;
 }
 
@@ -22,4 +31,16 @@
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+}
+
+.hero h1 {
+  color: var(--ifm-color-secondary);
+}
+
+.footer {
+  background: var(--ifm-color-primary-darkest);
+}
+
+.footer a:hover {
+  color: var(--ifm-color-secondary-lightest);
 }

@@ -35,3 +35,23 @@
   height: 200px;
   width: 200px;
 }
+
+.indexCtasGetStartedButton {
+  border: 2px solid var(--ifm-color-secondary);
+  display: inline-block;
+  line-height: 1.2em;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+  border-radius: 8px;
+  border-width: 2px;
+  color: var(--ifm-color-secondary);
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 26px;  
+}
+
+.indexCtasGetStartedButton:hover {
+  color: #fff;
+  border-color: #fff;
+}
