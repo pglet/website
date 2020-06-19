@@ -1,0 +1,9 @@
+image: ubuntu
+
+stack: node 12
+
+build_script:
+- yarn
+- yarn build
+
+test: off
