@@ -22,7 +22,7 @@ module.exports = {
         },
         {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/pglet/pglet',
+          href: 'https://github.com/pglet',
           label: 'GitHub',
           position: 'right',
         },
@@ -76,7 +76,13 @@ module.exports = {
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Appveyor Systems Inc. Built with Docusaurus.`,
-    },
+    }
+    // algolia: {
+    //   apiKey: 'api-key',
+    //   indexName: 'index-name',
+    //   appId: 'app-id', // Optional, if you run the DocSearch crawler on your own
+    //   algoliaOptions: {}, // Optional, if provided by Algolia
+    // }
   },
   presets: [
     [
