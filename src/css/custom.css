@@ -7,27 +7,27 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #303960;
-  --ifm-color-primary-dark: #2b3356;
-  --ifm-color-primary-darker: #293052;
-  --ifm-color-primary-darkest: #222843;
-  --ifm-color-primary-light: #353f6a;
-  --ifm-color-primary-lighter: #37426e;
-  --ifm-color-primary-lightest: #3e4a7d;
+  --ifm-color-primary: #7109de;
+  --ifm-color-primary-dark: #7109de;
+  --ifm-color-primary-darker: #6b09d2;
+  --ifm-color-primary-darkest: #400082;
+  --ifm-color-primary-light: #8b25f6;
+  --ifm-color-primary-lighter: #9231f7;
+  --ifm-color-primary-lightest: #a556f8;
 
-  --ifm-color-secondary: #80bdab;
-  --ifm-color-secondary-dark: #6bb29d;
-  --ifm-color-secondary-darker: #61ad96;
-  --ifm-color-secondary-darkest: #4c927d;
-  --ifm-color-secondary-light: #95c8b9;
-  --ifm-color-secondary-lighter: #9fcdc0;
-  --ifm-color-secondary-lightest: #bfded4;
+  --ifm-color-secondary: #f8dc88;
+  --ifm-color-secondary-dark: #f09dd4;
+  --ifm-color-secondary-darker: #ed89cc;
+  --ifm-color-secondary-darkest: #e550b3;
+  --ifm-color-secondary-light: #fce9f6;
+  --ifm-color-secondary-lighter: #fffdfe;
+  --ifm-color-secondary-lightest: #ffffff;
 
   --ifm-code-font-size: 95%;
 }
 
 .navbar__logo {
-  /*width: 15%;*/
+  width: 42px;
   height: 35px;
 }
 
@@ -40,6 +40,15 @@
 
 .hero h1 {
   color: var(--ifm-color-secondary);
+}
+
+.hero--primary {
+  --ifm-hero-background-color: var(--ifm-color-primary);
+  --ifm-hero-text-color: var(--ifm-font-color-base-inverse);
+}
+
+.hero__subtitle {
+  color: var(--ifm-font-color-base-inverse);
 }
 
 .footer {
