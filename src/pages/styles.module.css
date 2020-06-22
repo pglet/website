@@ -52,6 +52,7 @@
 }
 
 .indexCtasGetStartedButton:hover {
-  color: #fff;
-  border-color: #fff;
+  color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-secondary-lightest);
+  background-color: var(--ifm-color-secondary-lightest);
 }
