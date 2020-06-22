@@ -58,3 +58,16 @@
 .footer a:hover {
   color: var(--ifm-color-secondary-lightest);
 }
+
+/* Dark theme */
+html[data-theme='dark']:root {
+  --ifm-color-primary: #9a62d6;
+}
+
+html[data-theme='dark'] .hero--primary {
+  --ifm-hero-background-color: var( --ifm-color-primary-dark);
+}
+
+html[data-theme='dark'] .hero__subtitle {
+  color: var(--ifm-font-color-base);
+}
