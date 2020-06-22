@@ -26,6 +26,11 @@
   --ifm-code-font-size: 95%;
 }
 
+.navbar__logo {
+  /*width: 15%;*/
+  height: 35px;
+}
+
 .docusaurus-highlight-code-line {
   background-color: rgb(72, 77, 91);
   display: block;
