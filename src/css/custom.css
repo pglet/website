@@ -40,6 +40,7 @@
 
 .hero h1 {
   color: var(--ifm-color-secondary);
+  font-weight: 600;
 }
 
 .hero--primary {
@@ -57,6 +58,10 @@
 
 .footer a:hover {
   color: var(--ifm-color-secondary-lightest);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
 }
 
 /* Dark theme */
