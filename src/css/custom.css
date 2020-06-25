@@ -7,21 +7,21 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #7109de;
-  --ifm-color-primary-dark: #6608c8;
-  --ifm-color-primary-darker: #6008bd;
-  --ifm-color-primary-darkest: #4f069b;
-  --ifm-color-primary-light: #7c0af4;
-  --ifm-color-primary-lighter: #8214f5;
-  --ifm-color-primary-lightest: #9435f7;
+  --ifm-color-primary: #6918c0;
+  --ifm-color-primary-dark: #5e16ad;
+  --ifm-color-primary-darker: #5914a3;
+  --ifm-color-primary-darkest: #491186;
+  --ifm-color-primary-light: #731ad3;
+  --ifm-color-primary-lighter: #791cdd;
+  --ifm-color-primary-lightest: #8933e6;
 
   --ifm-color-secondary: #f8dc88;
-  --ifm-color-secondary-dark: #f09dd4;
-  --ifm-color-secondary-darker: #ed89cc;
-  --ifm-color-secondary-darkest: #e550b3;
-  --ifm-color-secondary-light: #fce9f6;
-  --ifm-color-secondary-lighter: #fffdfe;
-  --ifm-color-secondary-lightest: #ffffff;
+  --ifm-color-secondary-dark: #f6d164;
+  --ifm-color-secondary-darker: #f5cc52;
+  --ifm-color-secondary-darkest: #f2bc1b;
+  --ifm-color-secondary-light: #fae7ac;
+  --ifm-color-secondary-lighter: #fbecbe;
+  --ifm-color-secondary-lightest: #fefcf5;
 
   --ifm-code-font-size: 95%;
 }
