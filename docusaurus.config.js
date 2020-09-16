@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'UI service for DevOps',
+  title: 'Frontend service for DevOps',
   tagline: 'Build modern Web Apps quickly in the language you already know.',
   url: 'https://pglet.io',
   baseUrl: '/',
