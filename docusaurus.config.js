@@ -13,7 +13,7 @@ module.exports = {
         alt: 'pglet Logo',
         src: 'img/logo.svg',
       },
-      links: [
+      items: [
         {
           to: 'docs/',
           activeBasePath: 'docs',
@@ -90,7 +90,6 @@ module.exports = {
       {
         docs: {
           // It is recommended to set document id as docs home page (`docs/` path).
-          homePageId: 'doc1',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/pglet/website/edit/master/',
