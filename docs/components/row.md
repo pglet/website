@@ -4,5 +4,19 @@ sidebar_label: Row
 slug: row
 ---
 
-You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/).
+Represents a **row** in the grid layout. Row can only contain [columns](/docs/components/col).
 
+## Properties
+
+| Property | Description |
+| -------- | --------- |
+| **id**  | Component ID. Auto-generated if not specified explicitly. |
+| **visible**        | `true` - the component is visible; `false` - component is hidden, but still takes up space in the layout. |
+
+## Example
+
+Bash example to add a new row with `header` ID:
+
+```bash
+'add row id="header"' > $page
+```
