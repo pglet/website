@@ -20,7 +20,7 @@ It's fairly easy these days to start writing programs in any language. You start
 
 The things are getting more challenging if you need to add a user interface (UI) to your program. In most cases it's web-based UI as we all want fancy, cross-platform and multi-user software with the potential reach to millions of users on the internet.
 
-Web platform ...Web UI is a completely different beast ... Millions of frameworks...
+Web development is, like GameDev or Fintech, completely different beast. It's about understanding of HTTP protocol with request/response, HTML for doing layout, CSS for styling UI and JavaScript for making the page alive. However, today creating web apps with plan HTML/JS is not "fancy" anymore. You want to use framework such as React, Vue, Angular, Svelte just to name a few. While the purpose of a framework is to make development easier this could be the reason web development is ...
 
 Do you really need a custom design? Different language for client-side?
 

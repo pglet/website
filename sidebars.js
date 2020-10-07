@@ -1,13 +1,38 @@
 module.exports = {
   someSidebar: {
-    'Introduction': ['about', 'getting-started', 'commands', 'doc1', 'doc2', 'doc3'],
-    'Components': [
-      'components/row',
-      'components/col',
-      'components/text',
-      'components/textbox',
-      'components/button'
+    'Pglet': [
+      'introduction',
+      'doc1',
+      'doc2',
+      'doc3'
     ],
-    Features: ['mdx'],
+    'Getting started': [
+      'installation',
+    ],
+    'Commands': [
+      'commands/about',
+      {
+        'Reference': [
+          'commands/add',
+          'commands/set',
+          'commands/get',
+          'commands/clean',
+          'commands/remove',
+          'commands/quit'
+        ]
+      }
+    ],
+    'Components': [
+      'components/about',
+      {
+        'Reference': [
+          'components/row',
+          'components/col',
+          'components/text',
+          'components/textbox',
+          'components/button'
+        ]
+      }
+    ],
   },
 };

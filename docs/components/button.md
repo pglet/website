@@ -10,24 +10,30 @@ Represents a **button** form element. Button generates "click" event.
 
 ## Properties
 
-| Property | Description |
-| -------- | --------- |
-| **id**  | Component ID. Auto-generated if not specified explicitly. |
-| **text**  | Button text. |
-| **visible**        | `true` - the component is visible; `false` - component is hidden, but still takes up space in the layout. |
+### `id`
 
-## Example
+Component ID. Auto-generated if not specified explicitly.
 
-Bash example to add button component to `form` container:
+### `text`
+
+Button text.
+
+### `visible`
+
+`true` - the component is visible; `false` - component is hidden, but still takes up space in the layout.
+
+## Examples
+
+Bash command that adds button component to `form` container:
 
 ```bash
-'add button text="Greet" id=greet to=form' > $page
+'add button text="Greet" id=greet to=form' > $PAGE_PIPE
 ```
 
-Bash example waiting for the button to be clicked:
+Bash command that waits for the button to be clicked:
 
 ```bash
-read eventTarget eventName < "$page.events"
+read eventTarget eventName < "$PAGE_PIPE.events"
 if [[ "$eventTarget" == "greet" && "$eventName" == "click" ]]; then
     echo 'Button clicked!'
 fi
