@@ -4,6 +4,6 @@ title: Introduction
 slug: /
 ---
 
-Pglet provides a simple command-based API to **modify** components tree on a page and **query** their state.
+Pglet provides a simple command-based API to **modify** control tree on a page and **query** their state.
 
-Commands are sent to and the result is read from **command pipe**. Component events are read from **event pipe**.
+Commands are sent to and the result is read from **command pipe**. Control events are read from **event pipe**.

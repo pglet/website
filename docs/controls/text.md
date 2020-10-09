@@ -10,7 +10,7 @@ Represents a text paragraph.
 
 ### `id`
 
-Component ID. Auto-generated if not specified explicitly.
+Control ID. Auto-generated if not specified explicitly.
 
 ### `value`
 
@@ -18,11 +18,11 @@ Text contents. Markdown is supported.
 
 ### `visible`
 
-`true` - the component is visible; `false` - component is hidden, but still takes up space in the layout.
+`true` - the control is visible; `false` - control is hidden, but still takes up space in the layout.
 
 ## Examples
 
-Bash example to add text component with auto-generated ID to `body` container:
+Bash example to add text control with auto-generated ID to `body` container:
 
 ```bash
 'add text value="Hello, world" to="body"' > $PAGE_PIPE

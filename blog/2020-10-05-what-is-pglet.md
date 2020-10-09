@@ -26,7 +26,7 @@ Do you really need a custom design? Different language for client-side?
 
 ## Pglet to the rescue
 
-What if we give developers a set of full-featured UI primitives (components) and the way to arrange/query those components on a page?
+What if we give developers a set of full-featured UI primitives (controls) and the way to arrange/query the state of those controls on a page?
 
 ...Pglet is a canvas, or hub, if you will, where your program and users interact/work together...
 

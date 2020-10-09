@@ -4,25 +4,23 @@ sidebar_label: Clean
 slug: clean
 ---
 
-Adds a new component to a page.
+Removes all children of the control without deleting the control itself.
 
 ```bash
-clean <component-type>
-  [id=<string>]
-  [to=<string>]
-  [at=<int>]
-  property1=value
-  property2=value
-  ...
+clean <control-id>
 ```
+
+## Description
+
+`clean` command removes all children of the control, but leaves control itself intact.
 
 ## Examples
 
 ```bash
-add text to=header value="Welcome back!"
+clean body
 ```
 
-This command adds a new `text` component to a column with id `header`.
+This command removes the contents of `body` column.
 
 ## Parameters
 

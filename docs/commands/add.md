@@ -4,10 +4,10 @@ sidebar_label: Add
 slug: add
 ---
 
-Adds a new component to a page.
+Adds a new control to a page.
 
 ```bash
-add <component-type>
+add <control-type>
   [id=<string>]
   [to=<string>]
   [at=<int>]
@@ -18,7 +18,7 @@ add <component-type>
 
 ## Description
 
-`add` command adds a new component to a page.
+`add` command adds a new control to a page.
 
 ## Examples
 
@@ -26,17 +26,17 @@ add <component-type>
 add text to=header value="Welcome back!"
 ```
 
-This command adds a new `text` component to a column with id `header`.
+This command adds a new `text` control to a column with id `header`.
 
 ## Parameters
 
-### `component-type`
+### `control-type`
 
-The type of the component.
+The type of the control.
 
 ### `id`
 
-Component ID. ID will be auto-generated if not specified. If you need to get generated ID replace `add` command with `addr` which means "add with result", for example in Bash:
+Control ID. ID will be auto-generated if not specified. If you need to get generated ID replace `add` command with `addr` which means "add with result", for example in Bash:
 
 ```bash
 # Add new row and get its ID
@@ -53,8 +53,8 @@ read $colID < $PAGE_PIPE
 
 ### `to`
 
-Parent component ID. If not specified the component is added to the bottom of the page.
+Parent control ID. If not specified the control is added to the bottom of the page.
 
 ### `at`
 
-Insert component at the specified position in the children collection.
+Insert control at the specified position in the children collection.

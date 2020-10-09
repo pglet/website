@@ -4,26 +4,22 @@ sidebar_label: Remove
 slug: remove
 ---
 
-Adds a new component to a page.
+Remove control and its children from a page.
 
 ```bash
-clean <component-type>
-  [id=<string>]
-  [to=<string>]
-  [at=<int>]
-  property1=value
-  property2=value
-  ...
+remove <control-id>
 ```
 
 ## Examples
 
 ```bash
-add text to=header value="Welcome back!"
+remove form
 ```
 
-This command adds a new `text` component to a column with id `header`.
+This command removes control with `form` ID.
 
 ## Parameters
 
-### id
+### control-id
+
+Control ID to remove.

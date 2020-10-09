@@ -4,26 +4,31 @@ sidebar_label: Get
 slug: get
 ---
 
-Adds a new component to a page.
+Get the value of control property.
 
 ```bash
-get <component-type>
-  [id=<string>]
-  [to=<string>]
-  [at=<int>]
-  property1=value
-  property2=value
-  ...
+get <control-id> <property>
 ```
+
+## Description
+
+`get` command returns the value of control property.
 
 ## Examples
 
 ```bash
-add text to=header value="Welcome back!"
+'get form:firstName value' > $PAGE_PIPE
+read $firstName < $PAGE_PIPE
 ```
 
-This command adds a new `text` component to a column with id `header`.
+This command reads `value` property of `textbox` control with `form:firstName` ID.
 
 ## Parameters
 
-### id
+### control-id
+
+Control ID to read property of.
+
+### property
+
+The name of the property to read.

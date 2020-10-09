@@ -22,15 +22,15 @@ module.exports = {
         ]
       }
     ],
-    'Components': [
-      'components/about',
+    'Controls': [
+      'controls/about',
       {
         'Reference': [
-          'components/row',
-          'components/col',
-          'components/text',
-          'components/textbox',
-          'components/button'
+          'controls/row',
+          'controls/col',
+          'controls/text',
+          'controls/textbox',
+          'controls/button'
         ]
       }
     ],

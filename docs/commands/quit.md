@@ -4,20 +4,12 @@ sidebar_label: Quit
 slug: quit
 ---
 
-Adds a new component to a page.
+Disconnects a script or a program from a page.
 
 ```bash
 quit
 ```
 
-## Examples
+## Description
 
-```bash
-add text to=header value="Welcome back!"
-```
-
-This command adds a new `text` component to a column with id `header`.
-
-## Parameters
-
-### id
+`quit` command terminates client connection to a page and closes "control" and "event" pipes.

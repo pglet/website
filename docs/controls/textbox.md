@@ -12,7 +12,7 @@ Represents a textbox element with optional label, hint and validation messages.
 
 ### `id`
 
-Component ID. Auto-generated if not specified explicitly.
+Control ID. Auto-generated if not specified explicitly.
 
 ### `value`
 
@@ -28,11 +28,11 @@ Pop-up hint next to the textbox label.
 
 ### `visible`
 
-`true` - the component is visible; `false` - component is hidden, but still takes up space in the layout.
+`true` - the control is visible; `false` - control is hidden, but still takes up space in the layout.
 
 ## Examples
 
-Bash example to add text component to `form` container:
+Bash example to add text control to `form` container:
 
 ```bash
 'add textbox label="First name" id=firstName to=form' > $PAGE_PIPE

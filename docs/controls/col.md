@@ -4,13 +4,13 @@ sidebar_label: Col
 slug: col
 ---
 
-Represents a **column** to layout content. Column must be nested inside [rows](/docs/components/row).
+Represents a **column** to layout content. Column must be nested inside [rows](/docs/controls/row).
 
 ## Properties
 
 ### `id`
 
-Component ID. Auto-generated if not specified explicitly.
+Control ID. Auto-generated if not specified explicitly.
 
 ### `width`
 
@@ -18,7 +18,7 @@ Column width is the number between `1` and `12`.
 
 ### `visible`
 
-`true` - the component is visible; `false` - component is hidden, but still takes up space in the layout.
+`true` - the control is visible; `false` - control is hidden, but still takes up space in the layout.
 
 ## Examples
 

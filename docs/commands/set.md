@@ -4,10 +4,10 @@ sidebar_label: Set
 slug: set
 ---
 
-Sets component properties.
+Set control properties.
 
 ```bash
-set <component-id>
+set <control-id>
   property1=value
   property2=value
   ...
@@ -19,10 +19,10 @@ set <component-id>
 set greeting value="Welcome back, $USER!"
 ```
 
-This command changes `value` property of text component with `greeting` ID to `Welcome back, $USER!`.
+This command changes `value` property of text control with `greeting` ID to `Welcome back, $USER!`.
 
 ## Parameters
 
-### component-id
+### control-id
 
-Component ID to update properties.
+Control ID to update properties.

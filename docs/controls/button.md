@@ -4,7 +4,7 @@ sidebar_label: Button
 slug: button
 ---
 
-Represents a **button** form element. Button generates "click" event.
+Represents a **button** form element. Button generates `click` event.
 
 [IMAGE]
 
@@ -12,7 +12,7 @@ Represents a **button** form element. Button generates "click" event.
 
 ### `id`
 
-Component ID. Auto-generated if not specified explicitly.
+Control ID. Auto-generated if not specified explicitly.
 
 ### `text`
 
@@ -20,11 +20,11 @@ Button text.
 
 ### `visible`
 
-`true` - the component is visible; `false` - component is hidden, but still takes up space in the layout.
+`true` - the control is visible; `false` - control is hidden, but still takes up space in the layout.
 
 ## Examples
 
-Bash command that adds button component to `form` container:
+Bash command that adds a button to `form` container:
 
 ```bash
 'add button text="Greet" id=greet to=form' > $PAGE_PIPE
