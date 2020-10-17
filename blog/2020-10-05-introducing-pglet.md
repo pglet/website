@@ -45,10 +45,10 @@ Bash-like pseudo-code for a simple app greeting user by the name could look like
 $p = (pglet page connect "myapp")
 
 # display entry form
-'add row' > $p
-'add col id=form to=row' > $p
-'add textbox id=yourName to=form' > $p
-'add button id=submit to=form' > $p
+echo 'add row' > $p
+echo 'add col id=form to=row' > $p
+echo 'add textbox id=yourName to=form' > $p
+echo 'add button id=submit to=form' > $p
 
 # listen for events coming from a page
 while read eventName eventTarget < "$p.events"
@@ -57,12 +57,12 @@ do
   if [[ "$eventTarget" == "submit" && "$eventName" == "click" ]]; then
 
     # read textbox value
-    'get yourName value' > $p
+    echo 'get yourName value' > $p
     read $yourName < $p
 
     # replace forms contents with the greeting
-    'clear form' > $p
-    "add text value='Thank you, $yourName!' to=form" > $p
+    echo 'clear form' > $p
+    echo "add text value='Thank you, $yourName!' to=form" > $p
   fi
 done
 ```
