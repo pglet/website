@@ -1,6 +1,6 @@
 module.exports = {
-  title: 'Frontend service for DevOps',
-  tagline: 'Build modern Web Apps quickly in the language you already know.',
+  title: 'Instant web frontend for internal apps',
+  tagline: 'Easily program rich and secure user interface in any language. No knowledge of HTML, CSS or JavaScript required.',
   url: 'https://pglet.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
