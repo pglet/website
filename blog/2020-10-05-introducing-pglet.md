@@ -1,5 +1,5 @@
 ---
-slug: hello-pglet
+slug: introducing-pglet
 title: Introducing Pglet
 author: Feodor Fitsner
 author_title: AppVeyor founder and developer
@@ -67,23 +67,14 @@ do
 done
 ```
 
-You can build a web app in Bash! No HTML, no templates, no spaghetti code. You shouldn't care about the design of your internal app - you get fully-featured controls with "standard" look-n-feel. What you should care about is the time you need to deliver the required functionality.
+You can build a web app in Bash! No HTML, no templates, no spaghetti code. You don't need to care about the design of your internal app - you get fully-featured controls with "standard" look-n-feel. What you care about is the time you need to deliver the required functionality.
 
-### The Design
+### Highlights
 
-* Standard controls: layout, data, form. No need of CSS - standard skins.
-* Presentation layer is detached from application logic and moved into a separate process.
-* Control UI from code. Imperative, not declarative. No templates (PHP, XML, JSX, ERB, HAML, etc. ), just commands: "add column", "insert text", "get textbox value", "clean panel", "receive events", etc. like SQL, but for UI.
-* Security. Application "calls" presentation layer, not vice versa. Presentation layer doesn't have access and know nothing about internal resources. Break into web app and you get nothing! No connection strings, no keys or certificates, no passwords - nothing! Behind the firewall.
-* Fast and simple API: plain commands over named pipes, no HTTP, no JSON. Bash, PowerShell and any other language.
-* Pages vs Apps.
-
-
-
-* Rich, fast, responsive UI available from anywhere
-* Use any language you know
-* Knowledge of web technologies is not required
-* Fast local development
-* Secure by design
-
-
+* Imperatively program UI with commands.
+* **Standard controls**: layout, data, form. Skins supported.
+* **Fast and simple API** via named pipes - call from Bash, PowerShell and any other language.
+* **Secure by design**. Program makes calls to Pglet to update/query UI. Pglet doesn't have access and know nothing about internal resources located behind the firewall. Pglet keeps no sensitive data such as connection strings, credentials or certificates.
+* Two types of pages can be hosted:
+  * **Shared page**: multiple programs/scripts can connect to the same page and multiple users can view/interact with the same page.
+  * **App**: a new session is created for every connected user; multiple programs/scripts can serve user sessions (load-balancing).
