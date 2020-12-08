@@ -30,7 +30,7 @@ module.exports = {
     },
     prism: {
       theme: require('prism-react-renderer/themes/vsDark'),
-      //additionalLanguages: ['powershell'],
+      additionalLanguages: ['powershell'],
     },    
     footer: {
       style: 'dark',
