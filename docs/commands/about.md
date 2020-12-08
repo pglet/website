@@ -8,7 +8,7 @@ About commands
 
 import Tabs from '@theme/Tabs';
 
-<Tabs defaultValue="python" values={[
+<Tabs groupId="languages" defaultValue="python" values={[
   { label: 'Python', value: 'python', },
   { label: 'Bash', value: 'bash', },
   { label: 'PowerShell', value: 'powershell', },

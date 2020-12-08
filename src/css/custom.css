@@ -16,20 +16,26 @@
   --ifm-color-primary-lightest: #443849;
 
   --ifm-color-secondary: #f0ab7d;
-  --ifm-color-secondary-dark: #d97deb;
-  --ifm-color-secondary-darker: #d46ce8;
-  --ifm-color-secondary-darkest: #c438e0;
-  --ifm-color-secondary-light: #edc3f5;
-  --ifm-color-secondary-lighter: #f2d4f8;
-  --ifm-color-secondary-lightest: #ffffff;
+  --ifm-color-secondary-dark: #ec965c;
+  --ifm-color-secondary-darker: #ea8b4c;
+  --ifm-color-secondary-darkest: #e56c1b;
+  --ifm-color-secondary-light: #f4c09e;
+  --ifm-color-secondary-lighter: #f6cbae;
+  --ifm-color-secondary-lightest: #fbeadf;
 
   --ifm-code-font-size: 95%;
 
-  --ifm-link-color: #5e2a54;
+  --pglet-link-color: #a5547a;
+  --ifm-link-color: var(--pglet-link-color);
+  --ifm-navbar-link-hover-color: var(--pglet-link-color);
 
   /* navbar */
   /* --ifm-navbar-padding-vertical: 0.5rem;
   --ifm-navbar-padding-horizontal: 0.7rem; */
+
+  /* menu */
+  --ifm-menu-color-active: var(--pglet-link-color);
+  --ifm-tabs-color-active: var(--pglet-link-color);
 }
 
 .navbar__logo {
@@ -72,7 +78,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Dark theme */
 html[data-theme='dark']:root {
-  --ifm-color-primary: #9d6ad8;
+  --pglet-link-color: #a5547a;
+  /* menu */
+  --ifm-menu-color-active: var(--ifm-color-secondary-dark);  
 }
 
 html[data-theme='dark'] .hero--primary {

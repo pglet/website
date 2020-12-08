@@ -2,7 +2,7 @@
 slug: introducing-pglet
 title: Introducing Pglet
 author: Feodor Fitsner
-author_title: AppVeyor founder and developer
+author_title: Pglet founder and developer
 author_url: https://github.com/FeodorFitsner
 author_image_url: https://avatars0.githubusercontent.com/u/5041459?s=400&v=4
 tags: [internal apps, pglet, introduction, design]
