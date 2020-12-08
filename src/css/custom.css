@@ -7,27 +7,33 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #4cb3d4;
-  --ifm-color-primary-dark: #35a9ce;
-  --ifm-color-primary-darker: #2fa1c5;
-  --ifm-color-primary-darkest: #2785a3;
-  --ifm-color-primary-light: #63bdda;
-  --ifm-color-primary-lighter: #6fc2dc;
-  --ifm-color-primary-lightest: #92d1e5;
+  --ifm-color-primary: #433747;
+  --ifm-color-primary-dark: #2f2732;
+  --ifm-color-primary-darker: #2c2530;
+  --ifm-color-primary-darkest: #241e27;
+  --ifm-color-primary-light: #392f3e;
+  --ifm-color-primary-lighter: #3c3140;
+  --ifm-color-primary-lightest: #443849;
 
-  --ifm-color-secondary: #dcf6aa;
-  --ifm-color-secondary-dark: #cdf284;
-  --ifm-color-secondary-darker: #c5f072;
-  --ifm-color-secondary-darkest: #aeea39;
-  --ifm-color-secondary-light: #ebfad0;
-  --ifm-color-secondary-lighter: #f3fce2;
+  --ifm-color-secondary: #f0ab7d;
+  --ifm-color-secondary-dark: #d97deb;
+  --ifm-color-secondary-darker: #d46ce8;
+  --ifm-color-secondary-darkest: #c438e0;
+  --ifm-color-secondary-light: #edc3f5;
+  --ifm-color-secondary-lighter: #f2d4f8;
   --ifm-color-secondary-lightest: #ffffff;
 
   --ifm-code-font-size: 95%;
+
+  --ifm-link-color: #5e2a54;
+
+  /* navbar */
+  /* --ifm-navbar-padding-vertical: 0.5rem;
+  --ifm-navbar-padding-horizontal: 0.7rem; */
 }
 
 .navbar__logo {
-  width: 42px;
+  /* width: 42px; */
   height: 35px;
 }
 
@@ -66,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Dark theme */
 html[data-theme='dark']:root {
-  --ifm-color-primary: #4cb3d4;
+  --ifm-color-primary: #9d6ad8;
 }
 
 html[data-theme='dark'] .hero--primary {

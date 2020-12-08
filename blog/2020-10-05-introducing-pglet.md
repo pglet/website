@@ -74,7 +74,7 @@ You can build a web app in Bash! No HTML, no templates, no spaghetti code. You d
 * Imperatively program UI with commands.
 * **Standard controls**: layout, data, form. Skins supported.
 * **Fast and simple API** via named pipes - call from Bash, PowerShell and any other language.
-* **Secure by design**. Program makes calls to Pglet to update/query UI. Pglet doesn't have access and know nothing about internal resources located behind the firewall. Pglet keeps no sensitive data such as connection strings, credentials or certificates.
+* **Secure by design**. Program makes calls to Pglet to update/query UI. Pglet doesn't have access and knows nothing about internal resources located behind the firewall. Pglet keeps no sensitive data such as connection strings, credentials or certificates.
 * Two types of pages can be hosted:
   * **Shared page**: multiple programs/scripts can connect to the same page and multiple users can view/interact with the same page.
   * **App**: a new session is created for every connected user; multiple programs/scripts can serve user sessions (load-balancing).
