@@ -1,25 +1,8 @@
 ---
-id: getting-started
-title: Getting started
-slug: /
+id: quickstart
+title: Quickstart
+slug: /quickstart
 ---
-
-## What is pglet
-
-Pglet is ...
-
-tool for local and web apps
-
-Prototypes and throw-away apps, tools, reports, dashboards, etc.
-
-* Rich, fast, responsive UI available from anywhere
-* Use any language you know
-* Knowledge of web technologies is not required
-* Fast local development
-* Secure by design
-
-
-How is it different from ...?
 
 ## Installation
 

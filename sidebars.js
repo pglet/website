@@ -1,10 +1,10 @@
 module.exports = {
   someSidebar: {
     'Pglet': [
-      'getting-started'
-    ],
-    'Getting started': [
-      'installation',
+      'introduction',
+      'quickstart',
+      'layouts',
+      'inputs',
     ],
     'Commands': [
       'commands/about',

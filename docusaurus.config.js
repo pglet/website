@@ -1,11 +1,15 @@
 module.exports = {
-  title: 'Instant web frontend for internal apps',
+  title: 'Pglet - UI streaming service and toolkit',
   tagline: 'Easily program rich and secure user interface in any language. No knowledge of HTML, CSS or JavaScript required.',
   url: 'https://pglet.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'pglet', // Usually your GitHub org/user name.
   projectName: 'pglet.github.io', // Usually your repo name.
+  customFields: {
+    heroTitle: 'UI streaming service and toolkit',
+    heroSubTitle: 'Add rich UI to your local apps and stream it to web. No knowledge of HTML, CSS or JavaScript required.',
+  },  
   themeConfig: {
     navbar: {
       title: 'pglet',
@@ -33,7 +37,7 @@ module.exports = {
       additionalLanguages: ['powershell'],
     },    
     footer: {
-      style: 'dark',
+      style: 'light',
       links: [
         {
           title: 'Docs',

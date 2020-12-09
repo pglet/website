@@ -25,7 +25,7 @@
 
   --ifm-code-font-size: 95%;
 
-  --pglet-link-color: #99538d;
+  --pglet-link-color: #bd4a63;
   --ifm-link-color: var(--pglet-link-color);
   --ifm-navbar-link-hover-color: var(--pglet-link-color);
 
@@ -36,6 +36,9 @@
   /* menu */
   --ifm-menu-color-active: var(--pglet-link-color);
   --ifm-tabs-color-active: var(--pglet-link-color);
+
+  /* footer */
+
 }
 
 .navbar__logo {
@@ -62,14 +65,6 @@
 
 .hero__subtitle {
   color: var(--ifm-font-color-base-inverse);
-}
-
-.footer {
-  background: var(--ifm-color-primary-darkest);
-}
-
-.footer a:hover {
-  color: var(--ifm-color-secondary-lightest);
 }
 
 h1, h2, h3, h4, h5, h6 {
