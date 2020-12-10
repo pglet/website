@@ -73,9 +73,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Dark theme */
 html[data-theme='dark']:root {
-  --pglet-link-color: #a5547a;
-  /* menu */
-  --ifm-menu-color-active: var(--ifm-color-secondary-dark);  
+  --pglet-link-color: #bd4a63;
 }
 
 html[data-theme='dark'] .hero--primary {

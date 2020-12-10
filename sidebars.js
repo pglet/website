@@ -6,30 +6,28 @@ module.exports = {
       'layouts',
       'inputs',
     ],
-    'Commands': [
-      'commands/about',
-      {
-        'Reference': [
-          'commands/add',
-          'commands/set',
-          'commands/get',
-          'commands/clean',
-          'commands/remove',
-          'commands/quit'
-        ]
-      }
-    ],
-    'Controls': [
-      'controls/about',
-      {
-        'Reference': [
-          'controls/row',
-          'controls/col',
-          'controls/text',
-          'controls/textbox',
-          'controls/button'
-        ]
-      }
+    'Languages': [
+      'reference/languages/python',
+      'reference/languages/bash',
+      'reference/languages/powershell',
+      'reference/languages/javascript',
+    ],    
+    'Reference': [{
+      'Controls': [
+        'reference/controls/overview',
+        'reference/controls/page',
+        'reference/controls/stack',
+        'reference/controls/text',
+        'reference/controls/textbox',
+        'reference/controls/button',
+        'reference/controls/checkbox',
+        'reference/controls/dropdown',
+        'reference/controls/progress'
+      ],
+      'API': [
+        'reference/api/pglet-protocol',
+      ],       
+    }
     ],
   },
 };

@@ -1,7 +1,7 @@
 ---
-title: Text
-sidebar_label: Text
-slug: text
+title: Progress
+sidebar_label: Progress
+slug: progress
 ---
 
 Represents a text paragraph.
