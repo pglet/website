@@ -24,10 +24,17 @@ module.exports = {
         'reference/controls/dropdown',
         'reference/controls/progress'
       ],
-      'API': [
-        'reference/api/pglet-protocol',
-      ],       
-    }
+      'Commands': [
+        'reference/commands/about',
+        'reference/commands/add',
+        'reference/commands/set',
+        'reference/commands/get',
+        'reference/commands/clean',
+        'reference/commands/remove',
+        'reference/commands/quit'        
+      ],
+    },
+    'reference/api/pglet-protocol'
     ],
   },
 };
