@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Pglet - UI streaming service and toolkit',
+  title: 'Pglet - Web UI streaming service and toolkit',
   tagline: 'Easily program rich and secure user interface in any language. No knowledge of HTML, CSS or JavaScript required.',
   url: 'https://pglet.io',
   baseUrl: '/',
@@ -7,7 +7,7 @@ module.exports = {
   organizationName: 'pglet', // Usually your GitHub org/user name.
   projectName: 'pglet.github.io', // Usually your repo name.
   customFields: {
-    heroTitle: 'UI streaming service and toolkit',
+    heroTitle: 'Web UI streaming service and toolkit',
     heroSubTitle: 'Add rich UI to your local apps and stream it to web. No knowledge of HTML, CSS or JavaScript required.',
   },  
   themeConfig: {

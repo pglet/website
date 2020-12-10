@@ -1,5 +1,5 @@
 ---
-title: Get
+title: Get command
 sidebar_label: Get
 slug: get
 ---

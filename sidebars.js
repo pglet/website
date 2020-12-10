@@ -24,17 +24,19 @@ module.exports = {
         'reference/controls/dropdown',
         'reference/controls/progress'
       ],
-      'Commands': [
-        'reference/commands/about',
-        'reference/commands/add',
-        'reference/commands/set',
-        'reference/commands/get',
-        'reference/commands/clean',
-        'reference/commands/remove',
-        'reference/commands/quit'        
-      ],
-    },
-    'reference/api/pglet-protocol'
-    ],
+      'Pglet protocol': [
+        'reference/protocol/overview',
+        {
+          'Commands': [
+            'reference/protocol/commands/add',
+            'reference/protocol/commands/set',
+            'reference/protocol/commands/get',
+            'reference/protocol/commands/clean',
+            'reference/protocol/commands/remove',
+            'reference/protocol/commands/quit'        
+          ],
+        }
+      ]
+    }],
   },
 };
