@@ -82,7 +82,7 @@ Certain commands may not have a response at all. These are fire-and-forget comma
 
 Read event pipe to wait and receive events fired by users interacting with a web page.
 
-Each event is a single line in the format:
+Each event message is a single line in the format:
 
 ```
 <event_target> <event_name> [event_data]

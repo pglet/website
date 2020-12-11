@@ -7,13 +7,13 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #433747;
-  --ifm-color-primary-dark: #2f2732;
-  --ifm-color-primary-darker: #2c2530;
-  --ifm-color-primary-darkest: #241e27;
-  --ifm-color-primary-light: #392f3e;
-  --ifm-color-primary-lighter: #3c3140;
-  --ifm-color-primary-lightest: #443849;
+  --ifm-color-primary: #f07777;
+  --ifm-color-primary-dark: #ec5757;
+  --ifm-color-primary-darker: #eb4646;
+  --ifm-color-primary-darkest: #e21919;
+  --ifm-color-primary-light: #f49797;
+  --ifm-color-primary-lighter: #f5a8a8;
+  --ifm-color-primary-lightest: #fbd8d8;
 
   --ifm-color-secondary: #f0ab7d;
   --ifm-color-secondary-dark: #ec965c;
@@ -25,7 +25,7 @@
 
   --ifm-code-font-size: 95%;
 
-  --pglet-link-color: #bd4a63;
+  --pglet-link-color: #f07777;
   --ifm-link-color: var(--pglet-link-color);
   --ifm-navbar-link-hover-color: var(--pglet-link-color);
 
@@ -59,7 +59,7 @@
 }
 
 .hero--primary {
-  --ifm-hero-background-color: var(--ifm-color-primary);
+  --ifm-hero-background-color: #433747;
   --ifm-hero-text-color: var(--ifm-font-color-base-inverse);
 }
 
@@ -73,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Dark theme */
 html[data-theme='dark']:root {
-  --pglet-link-color: #bd4a63;
+  --pglet-link-color: #f07777;
 }
 
 html[data-theme='dark'] .hero--primary {
