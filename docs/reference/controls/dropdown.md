@@ -13,7 +13,7 @@ A dropdown is a list in which the selected item is always visible while other it
 | Name           | Type    | Default | Description |
 | -------------- | ------- | ------- | ----------- |
 | `value`        | string  |         | Current value of the dropdown. |
-| `label`        | string  |         | The label on top of the dropdown. |
+| `label`        | string  |         | Label to display above the control. |
 | `placeholder`  | string  |         | The short hint displayed in the dropdown before the user selects a value. |
 | `errorMessage` | string  |         | Static error message displayed below the dropdown. |
 

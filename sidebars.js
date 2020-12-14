@@ -22,7 +22,8 @@ module.exports = {
         'reference/controls/button',
         'reference/controls/checkbox',
         'reference/controls/dropdown',
-        'reference/controls/progress'
+        'reference/controls/progress',
+        'reference/controls/spinner'
       ],
       'Pglet protocol': [
         'reference/protocol/overview',

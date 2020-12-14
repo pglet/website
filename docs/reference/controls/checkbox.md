@@ -13,7 +13,7 @@ Checkbox allows to select one or more items from a group, or switch between two 
 | Name      | Type    | Default | Description |
 | --------- | ------- | ------- | ----------- |
 | `value`   | bool    | `false` | Current value of the checkbox. |
-| `label`   | string  |         | Label to display next to the checkbox. |
+| `label`   | string  |         | Label to display above the control. |
 
 ## Events
 

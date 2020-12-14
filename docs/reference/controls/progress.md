@@ -4,26 +4,12 @@ sidebar_label: Progress
 slug: progress
 ---
 
-Represents a text paragraph.
+Progress are used to show the completion status of an operation lasting more than 2 seconds. If the state of progress cannot be determined, use a [Spinner](spinner) instead.
 
 ## Properties
 
-### `id`
-
-Control ID. Auto-generated if not specified explicitly.
-
-### `value`
-
-Text contents. Markdown is supported.
-
-### `visible`
-
-`true` - the control is visible; `false` - control is hidden, but still takes up space in the layout.
-
-## Examples
-
-Bash example to add text control with auto-generated ID to `body` container:
-
-```bash
-'add text value="Hello, world" to="body"' > $PAGE_PIPE
-```
+| Name           | Type    | Default | Description |
+| -------------- | ------- | ------- | ----------- |
+| `value`        | number  |         | Percentage of the operation's completeness, numerically between 0 and 100. If this is not set, the indeterminate progress animation will be shown instead. |
+| `label`        | string  |         | Label to display above the control. |
+| `description`  | string  |         | Text describing or supplementing the operation.  |
