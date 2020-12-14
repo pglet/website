@@ -4,37 +4,20 @@ sidebar_label: Button
 slug: button
 ---
 
-Represents a **button** form element. Button generates `click` event.
+Button allows to trigger an action.
 
 [IMAGE]
 
 ## Properties
 
-### `id`
+| Name           | Type   | Default | Description |
+| -------------- | ------ | ------- | ----------- |
+| `primary`      | bool   | `false` | The button with a theme color background. Usually, there is only one primary button on a form. |
+| `text`         | string |         | The text displayed on a button. |
+| `disabled`     | string |         | The label on top of the textbox. |
 
-Control ID. Auto-generated if not specified explicitly.
+## Events
 
-### `text`
-
-Button text.
-
-### `visible`
-
-`true` - the control is visible; `false` - control is hidden, but still takes up space in the layout.
-
-## Examples
-
-Bash command that adds a button to `form` container:
-
-```bash
-'add button text="Greet" id=greet to=form' > $PAGE_PIPE
-```
-
-Bash command that waits for the button to be clicked:
-
-```bash
-read eventTarget eventName < "$PAGE_PIPE.events"
-if [[ "$eventTarget" == "greet" && "$eventName" == "click" ]]; then
-    echo 'Button clicked!'
-fi
-```
+| Name      | Description |
+| --------- | ----------- |
+| `click`   | Fires when a user clicks the button.  |

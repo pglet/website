@@ -54,4 +54,4 @@ All Pglet controls have the following properties:
 | `width`    | string    |               | Width of the control, for example `100px`, `50%`.    |
 | `height`   | string    |               | Height of the control.    |
 | `padding`  | string    |               | Padding of the control.    |
-| `margin`   | string    |               | Marging of the control.    |
+| `margin`   | string    |               | Margin of the control.    |

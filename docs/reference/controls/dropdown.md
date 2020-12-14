@@ -4,15 +4,21 @@ sidebar_label: Dropdown
 slug: dropdown
 ---
 
-Dropdown is ...
+A dropdown is a list in which the selected item is always visible while other items are visible on demand by clicking a dropdown button. Dropdowns are typically used for forms.
 
 [IMAGE]
 
 ## Properties
 
-| Name      | Type    | Default | Description |
-| --------- | ------- | ------- | ----------- |
-| `value`   | string  |         |  |
-| `label`   | string  |         |  |
-| `placeholder`    | string  |         |   |
-| `errorMessage`    | string  |         |   |
+| Name           | Type    | Default | Description |
+| -------------- | ------- | ------- | ----------- |
+| `value`        | string  |         | Current value of the dropdown. |
+| `label`        | string  |         | The label on top of the dropdown. |
+| `placeholder`  | string  |         | The short hint displayed in the dropdown before the user selects a value. |
+| `errorMessage` | string  |         | Static error message displayed below the dropdown. |
+
+## Events
+
+| Name      | Description |
+| --------- | ----------- |
+| `change`  | Fires when the value of dropdown is changed. |
