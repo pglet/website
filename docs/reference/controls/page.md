@@ -20,3 +20,69 @@ Page control has a reserved `page` control ID. You cannot add Page control, howe
 | `width`           | string    | `100%`          | The width of a page container.            |
 | `padding`           | string    | `10px`          | The padding of a page container.            |
 | `gap`           | string    | `10`          | A gap between page child controls.            |
+
+## Examples
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages" defaultValue="python" values={[
+  { label: 'Python', value: 'python', },
+  { label: 'Bash', value: 'bash', },
+  { label: 'PowerShell', value: 'powershell', },
+  { label: 'JavaScript', value: 'javascript', },
+]}>
+
+<TabItem value="python">
+
+Creating a new page with a random name and connecting to it:
+
+```python
+import pglet
+
+page = pglet.page()
+```
+
+Create a new app with name `app1` and wait for connections. `web=True` makes app UI displaying at [pglet.io](https://app.pglet.io).
+`main` function is an entry point for a new user session. When a new user connects we just greem them with `Hello, world!` message:
+
+```python
+def main(page):
+  page.add(Text(value="Hello, world!"))
+
+pglet.app("app1", web=True, target=main)
+```
+
+To update page title:
+
+```python
+page.update(Page(title="My App!"))
+```
+
+</TabItem>
+
+<TabItem value="bash">
+
+```bash
+# TODO
+```
+
+</TabItem>
+
+<TabItem value="powershell">
+
+```powershell
+# TODO
+```
+
+</TabItem>
+
+<TabItem value="javascript">
+
+```javascript
+// TODO
+```
+
+</TabItem>
+
+</Tabs>

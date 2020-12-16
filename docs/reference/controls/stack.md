@@ -23,3 +23,79 @@ Stacks can be nested inside one another in order to be able to configure the lay
 | `horizontalAlign` | string    |         | Defines how to align stack children horizontally: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly`, `baseline` or `stretch`. |
 | `verticalAlign`   | string    |         | Defines how to align stack children vertically: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly`, `baseline` or `stretch`. |
 | `gap`             | string    |         | A gap between stack child controls. |
+
+## Examples
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages" defaultValue="python" values={[
+  { label: 'Python', value: 'python', },
+  { label: 'Bash', value: 'bash', },
+  { label: 'PowerShell', value: 'powershell', },
+  { label: 'JavaScript', value: 'javascript', },
+]}>
+
+<TabItem value="python">
+
+Adding a new horizontal stack to a page:
+
+```python
+page.add(Stack(horizontal=True))
+```
+
+Adding a stack with buttons in it:
+
+```python
+stack1 = page.add(Stack(horizontal=True, controls=[
+    Button(id="ok", text="OK"),
+    Button(id="cancel", text="Cancel")
+]))
+```
+
+Hiding stack from a previous example:
+
+```python
+stack1.visible = False
+page.update(stack1)
+```
+
+or shorter:
+
+```python
+page.hide(stack1)
+```
+
+Removing all children of a stack:
+
+```python
+page.clean(stack1)
+```
+
+</TabItem>
+
+<TabItem value="bash">
+
+```bash
+# TODO
+```
+
+</TabItem>
+
+<TabItem value="powershell">
+
+```powershell
+# TODO
+```
+
+</TabItem>
+
+<TabItem value="javascript">
+
+```javascript
+// TODO
+```
+
+</TabItem>
+
+</Tabs>
