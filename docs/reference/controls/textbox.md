@@ -18,6 +18,7 @@ Represents a textbox element with optional label, hint and validation messages.
 | `errorMessage` | string |         | Static error message displayed below the textbox. |
 | `description`  | string |         | Description displayed below the textbox to provide additional details about what text to enter. |
 | `multiline`    | bool   | `false` | Whether or not the text field is a multiline text field. |
+| `align`        | string | `left`  | Text alignment within textbox: `left` or `right`. |
 | `password`     | bool   | `false` | Whether the textbox is a masked field for entering password. |
 
 ## Examples

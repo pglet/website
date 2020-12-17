@@ -4,4 +4,4 @@ sidebar_label: Bash
 slug: bash
 ---
 
-Bash ...
+Bash guide.

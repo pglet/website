@@ -4,4 +4,4 @@ sidebar_label: JavaScript
 slug: javascript
 ---
 
-JavaScript...
+JavaScript guide.

@@ -4,4 +4,4 @@ sidebar_label: PowerShell
 slug: powershell
 ---
 
-PowerShell...
+PowerShell guide.
