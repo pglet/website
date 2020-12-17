@@ -221,14 +221,14 @@ TBD
 
 Not yet implemented.
 
+### Control classes
 
-### `Page` class
-
-[Page](/docs/reference/controls/page) controls the appearence of a web page, such as title, width, padding.
-
-```python
-Page(id=None, title=None, vertical_fill=None, horizontal_align=None,
-            vertical_align=None, width=None, padding=None)
-```
-
-See reference section for [Control](/docs/reference/controls#common-properties) and [Page](/docs/reference/controls/page) properties and usage examples.
+* [`Page`](/docs/reference/controls/page)
+* [`Stack`](/docs/reference/controls/stack)
+* [`Text`](/docs/reference/controls/text)
+* [`Textbox`](/docs/reference/controls/textbox)
+* [`Button`](/docs/reference/controls/button)
+* [`Checkbox`](/docs/reference/controls/checkbox)
+* [`Dropdown`](/docs/reference/controls/dropdown)
+* [`Progress`](/docs/reference/controls/progress)
+* [`Spinner`](/docs/reference/controls/spinner)

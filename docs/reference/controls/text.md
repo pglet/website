@@ -4,7 +4,7 @@ sidebar_label: Text
 slug: text
 ---
 
-Text is a component for displaying text.
+Text is a control for displaying text.
 
 ## Properties
 
