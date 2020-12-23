@@ -33,7 +33,7 @@ module.exports = {
       ],
     },
     prism: {
-      theme: require('prism-react-renderer/themes/vsDark'),
+      theme: require('prism-react-renderer/themes/github'),
       additionalLanguages: ['powershell'],
     },    
     footer: {
