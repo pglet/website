@@ -6,10 +6,18 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  padding: 4rem 0 4rem 0;
+  background: url('/img/hero_back_light.svg') right 60px/115% auto no-repeat;
+}
+
+.bkg {
+  width: auto;
+  height: 400px;
+  background: url('/img/hero_pglet_light.svg') center left/100% 400px no-repeat;
+}
+
+.right {
+  padding: 3rem 5rem 0 0;
 }
 
 @media screen and (max-width: 966px) {
@@ -20,8 +28,7 @@
 
 .buttons {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
 }
 
 .features {

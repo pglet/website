@@ -12,7 +12,7 @@ module.exports = {
   },  
   themeConfig: {
     navbar: {
-      title: 'pglet',
+      title: '',
       logo: {
         alt: 'pglet Logo',
         src: 'img/logo.svg',

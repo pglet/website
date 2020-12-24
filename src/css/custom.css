@@ -61,19 +61,15 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
-.hero--primary {
-  --ifm-hero-background-color: #fff;
-  --ifm-hero-text-color: var(--ifm-font-color-base-inverse);
-}
-
-.hero h1 {
+.pglet-hero h1 {
   color: #333;
+  font-size: 42px;
   font-weight: 400;
 }
 
 .hero__subtitle {
   color: #333;
-  font-size: 19px;
+  font-size: 17px;
 }
 
 h1, h2, h3, h4, h5, h6 {
