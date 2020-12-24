@@ -7,8 +7,8 @@ module.exports = {
   organizationName: 'pglet', // Usually your GitHub org/user name.
   projectName: 'pglet.github.io', // Usually your repo name.
   customFields: {
-    heroTitle: 'Web UI streaming service and toolkit',
-    heroSubTitle: 'Add rich UI to your local apps and stream it to web. No knowledge of HTML, CSS or JavaScript required.',
+    heroTitle: 'Web UI framework for backend developers',
+    heroSubTitle: 'Build web apps like a frontend pro in the language you already know. No knowledge of HTML, CSS or JavaScript required.',
   },  
   themeConfig: {
     navbar: {
