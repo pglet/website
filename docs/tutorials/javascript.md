@@ -1,5 +1,5 @@
 ---
-title: JavaScript
+title: JavaScript tutorial
 sidebar_label: JavaScript
 slug: javascript
 ---

@@ -26,33 +26,22 @@ pip install pglet
 <TabItem value="bash">
 
 ```bash
-. ~/pglet.sh
-PGLET_PUBLIC=false pglet_page
-
-#echo "$PGLET_CONNECTION_ID"
-
-function hello() {
-    echo "Hello!"
-}
-
-pglet_send "add text value='Hello, world!'"
-pglet_send "add button id=ok text=OK"
-pglet_dispatch_events "ok click hello"
+curl -O https://pglet.io/pglet.sh
 ```
 </TabItem>
 
 <TabItem value="powershell">
 
 ```powershell
-Install-Module pglet -Force
+Install-Module pglet
 ```
 
 </TabItem>
 
 <TabItem value="javascript">
 
-```javascript
-const pglet = require("pglet");
+```bash
+npm install pglet
 ```
 
 </TabItem>
@@ -74,54 +63,119 @@ const pglet = require("pglet");
 
 <TabItem value="python">
 
-```python
+```python title="hello.py"
 import pglet
 
-pglet.page("myapp")
+p = pglet.page()
+p.add(Text(value="Hello, world!"))
 ```
+
+Run `hello.py` with Python 3 and in a new browser window you'll get:
+
 </TabItem>
 
 <TabItem value="bash">
 
-```bash
-. ~/pglet.sh
-PGLET_PUBLIC=false pglet_page
+```bash title="hello.sh"
+. pglet.sh
 
-#echo "$PGLET_CONNECTION_ID"
-
-function hello() {
-    echo "Hello!"
-}
-
-pglet_send "add text value='Hello, world!'"
-pglet_send "add button id=ok text=OK"
-pglet_dispatch_events "ok click hello"
+pglet_page
+pglet_add "text value='Hello, world!"
 ```
+
+Run `sh hello.sh` and in a new browser window you'll get:
+
 </TabItem>
 
 <TabItem value="powershell">
 
-```powershell
-command2-test arg1 arg2 ...
+```powershell title="hello.ps1"
+Import-Module pglet
+
+Connect-PgletPage
+Invoke-Pglet "add text value='Hello, world!'"
+```
+
+Run `hello.ps1` in a PowerShell session and in a new browser window you'll get:
+
+</TabItem>
+
+<TabItem value="javascript">
+
+```javascript title="hello.js"
+const pglet = require("pglet");
+
+(async () => {
+    let p = await pglet.page();
+    await p.send("add text value='Hello, world!'");
+})();
+```
+
+Run `node hello.js` and in a new browser window you'll get:
+
+</TabItem>
+
+</Tabs>
+
+<div style={{textAlign: 'center'}}><img src="/img/docs/quickstart-hello-world.png" /></div>
+
+Here is a local page served by an instance of Pglet server started in the background on your computer.
+
+## Make it web
+
+Now let's bring that page to a web, so others can see it.
+
+<Tabs groupId="languages" defaultValue="python" values={[
+  { label: 'Python', value: 'python', },
+  { label: 'Bash', value: 'bash', },
+  { label: 'PowerShell', value: 'powershell', },
+  { label: 'JavaScript', value: 'javascript', },
+]}>
+
+<TabItem value="python">
+
+Add `web=True` to `pglet.page` call:
+
+```python {1}
+p = pglet.page(web=True)
+p.add(Text(value="Hello, world!"))
+```
+
+</TabItem>
+
+<TabItem value="bash">
+
+Add `PGLET_WEB=true` before `pglet_page` call:
+
+```bash {1}
+PGLET_WEB=true pglet_page
+pglet_add "text value='Hello, world!"
+```
+
+</TabItem>
+
+<TabItem value="powershell">
+
+Add `-Web` parameter to `Connect-PgletPage` call:
+
+```powershell {1}
+Connect-PgletPage -Web
+Invoke-Pglet "add text value='Hello, world!'"
 ```
 
 </TabItem>
 
 <TabItem value="javascript">
 
-```javascript
-const pglet = require("pglet");
+Add `{ web: true }` option to `pglet.page` call:
+
+```javascript {1}
+  let p = await pglet.page({ web: true });
+  await p.send("add text value='Hello, world!'");
 ```
 
 </TabItem>
 
 </Tabs>
 
-Screenshot:
-
-[TBD]
-
-
-## Make it web
-
-[TBD]
+This time page will be created on [pglet.io](pglet-io) hosted service.

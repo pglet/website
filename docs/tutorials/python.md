@@ -1,5 +1,5 @@
 ---
-title: Python
+title: Python tutorial
 sidebar_label: Python
 slug: python
 ---
@@ -13,7 +13,7 @@ Python 3.7 or higher is required to use Pglet library.
 
 Before installing `pglet` module make sure you have the latest versions of package management utilities:
 
-<Tabs groupId="os" defaultValue="python" values={[
+<Tabs groupId="os" defaultValue="macos" values={[
   { label: 'macOS', value: 'macos', },
   { label: 'Windows', value: 'windows', },
   { label: 'Linux', value: 'linux', },
@@ -47,7 +47,7 @@ python3 -m pip install --upgrade pip setuptools wheel
 
 To install `pglet` module run the following command:
 
-<Tabs groupId="os" defaultValue="python" values={[
+<Tabs groupId="os" defaultValue="macos" values={[
   { label: 'macOS', value: 'macos', },
   { label: 'Windows', value: 'windows', },
   { label: 'Linux', value: 'linux', },

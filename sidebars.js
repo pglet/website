@@ -3,15 +3,16 @@ module.exports = {
     'Getting started': [
       'introduction',
       'quickstart',
-      'layouts',
-      'inputs',
     ],
-    'Languages': [
-      'reference/languages/python',
-      'reference/languages/bash',
-      'reference/languages/powershell',
-      'reference/languages/javascript',
-    ],    
+    'Tutorials': [
+      'tutorials/python',
+      'tutorials/bash',
+      'tutorials/powershell',
+      'tutorials/javascript',
+    ],
+    'Pglet.io': [
+      'pglet-io-beta',
+    ],
     'Reference': [{
       'Controls': [
         'reference/controls/overview',
