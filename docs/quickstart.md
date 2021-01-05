@@ -178,4 +178,4 @@ Add `{ web: true }` option to `pglet.page` call:
 
 </Tabs>
 
-This time page will be created on [pglet.io](pglet-io) hosted service.
+This time page will be created on [pglet.io](pglet-io-beta) hosted service.
