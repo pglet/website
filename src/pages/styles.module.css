@@ -16,6 +16,14 @@
   background: url('/img/hero_pglet_light.svg') center left/100% 400px no-repeat;
 }
 
+html[data-theme='dark'] .heroBanner {
+  background-image: url('/img/hero_back_dark.svg');
+}
+
+html[data-theme='dark'] .bkg {
+  background-image: url('/img/hero_pglet_dark.svg');
+}
+
 .right {
   padding: 3rem 5rem 0 0;
 }

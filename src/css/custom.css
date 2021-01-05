@@ -78,13 +78,18 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Dark theme */
 html[data-theme='dark']:root {
-  --pglet-link-color: #f07777;
+  --pglet-link-color: #bf5efe;
+  --ifm-navbar-background-color: #333;  
 }
 
-html[data-theme='dark'] .hero--primary {
-  --ifm-hero-background-color: var( --ifm-color-primary-dark);
+html[data-theme='dark'] .pglet-hero h1 {
+  color: var(--ifm-font-color-base);
 }
 
 html[data-theme='dark'] .hero__subtitle {
-  color: var(--ifm-font-color-base);
+  color: var(--ifm-color-emphasis-600);
+}
+
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: rgb(50, 52, 64);
 }
