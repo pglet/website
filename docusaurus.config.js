@@ -15,7 +15,8 @@ module.exports = {
       title: '',
       logo: {
         alt: 'pglet Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo_light.svg',
+        srcDark: 'img/logo_dark.svg',
       },
       items: [
         {
@@ -44,7 +45,7 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Style Guide',
+              label: 'Getting started',
               to: 'docs/',
             }
           ],

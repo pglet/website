@@ -79,7 +79,9 @@ h1, h2, h3, h4, h5, h6 {
 /* Dark theme */
 html[data-theme='dark']:root {
   --pglet-link-color: #bf5efe;
-  --ifm-navbar-background-color: #333;  
+  --ifm-background-color: #181A21;
+  --ifm-navbar-background-color: #181A21;
+  --ifm-footer-background-color: #1f2127;
 }
 
 html[data-theme='dark'] .pglet-hero h1 {
