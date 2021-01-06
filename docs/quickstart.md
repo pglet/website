@@ -65,6 +65,7 @@ npm install pglet
 
 ```python title="hello.py"
 import pglet
+from pglet import Text
 
 p = pglet.page()
 p.add(Text(value="Hello, world!"))

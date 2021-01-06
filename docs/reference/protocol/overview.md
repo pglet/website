@@ -4,7 +4,9 @@ sidebar_label: Overview
 slug: /reference/protocol
 ---
 
-One of the goals of Pglet project was comfort updates of "progress" pages from automation scripts written in Bash and PowerShell, so the protocol had to be simple and fast.
+Pglet is a language-agnostic UI server which can be run locally, self-hosted in your local network or used as a hosted [service](https://pglet.io).
+
+One of the design goals of Pglet was comfort progress updates from CI/CD workflows, internal tools and scheduled jobs written in Bash and PowerShell, so the protocol had to be simple and fast.
 
 The protocol is text-based and was partially inspired by [Redis protocol](https://redis.io/topics/protocol).
 

@@ -85,29 +85,111 @@ Pglet allows you creating **shared** and **app** pages.
 
 **Shared page** is like a singleton: many programs can connect and author the same page and all web users connecting to a page see and interact with the same content. Shared pages are useful for developing local tools, web dashboards, progress reports, distributed processes visualization, etc. 
 
-**App page** creates a new session for each connected web user and in your program you define a "handler" method which is invoked for every new session. App pages are used for creating multi-user web apps.
+**App page** creates for each web user a new session with its own content. In your program you define a "handler" method which is invoked for every new session. App pages are used for creating multi-user web apps.
 
-OK, this is the minimal "Hello world" Pglet app working in local mode:
+OK, this is a minimal "Hello world" Pglet page running in a local mode:
 
-```python
+```python title="greeter.py"
 # import pglet main module and Text control
 import pglet
 from pglet import Text
 
-# Create a new page with name "page1" and open connection
-page = pglet.page("page1")
+# Create a new page with a random name and open a connection to it
+p = pglet.page("greeter")
 
 # Add Text control to a page
-page.add(Text(value="Hello, world!"))
+p.add(Text(value="Hello, world!"))
 ```
 
 When you run this app a new browser window should popup with the greeting:
 
-[SCREENSHOT]
+<div style={{textAlign: 'center'}}><img src="/img/docs/quickstart-hello-world.png" /></div>
+
+A python app won't wait for any input and should exit. Now, if you run the same `greeter.py` script for the second time another "Hello, world!" message will be added to the page. This is because the page is stateful. Its contents can be updated at any time by any number of scripts, multiple scripts can connect and update the same page simultanously.
+
+If you need a clean page any time you run your program use connection's `clean()` method:
+
+```python
+p.clean()
+p.add(Text(value="Hello, world!"))
+```
 
 ## Getting user input
 
-Now, let's ask user for a name. 
+Pglet provides a number of controls for building forms: [Textbox](/docs/reference/controls/textbox), [Checkbox](/docs/reference/controls/checkbox), [Dropdown](/docs/reference/controls/dropdown), [Button](/docs/reference/controls/button).
+
+Let's ask a user for a name:
+
+```python title="greeter.py"
+import pglet
+from pglet import Textbox, Button
+
+p = pglet.page("greeter")
+
+p.clean()
+p.add(Textbox(label="Your name", description="Please provide your full name"))
+p.add(Button(text="Say hello", primary=True))
+```
+
+## Handling events
+
+When you click "Say hello" on the form above nothing will happen in our program though `Button` control itself emits "click" event each time it's pressed/clicked. The event is not handled.
+
+There are two ways to handle control events:
+
+* Event loop
+* Control-specific event handlers
+
+### Event loop
+
+Once the form is rendered use connection's `wait_event()` blocking method in a loop to receive all page events triggered by a user:
+
+```python title="greeter.py"
+import pglet
+from pglet import Textbox, Button, Text
+
+p = pglet.page("greeter")
+
+p.clean()
+txt_name = p.add(Textbox(label="Your name", description="Please provide your full name"))
+btn_hello = p.add(Button(text="Say hello", primary=True))
+
+while True:
+    e = p.wait_event()
+    if e.target == btn_hello.id and e.name == 'click':
+        name = p.get_value(txt_name)
+        p.clean()
+        p.add(Text=f'Hello, {name}!')
+        return
+```
+
+Notice how references to the added textbox and button are saved, so we can refer to the controls later.
+
+`wait_event()` returns [Event](#event-class) object and we are interested in `click` the events coming from the button (`e.target` is control ID). Next, we use connection's `get_value()` method to read `value` property of textbox control, clean the page, output greeting and leave the program.
+
+### Event handlers
+
+Event loop approach is simple and straightforward, but can become bulky if there is a lot of events to handle. In Python programs Pglet controls can have event handlers which are just functions. Control Python classes use `on` prefix for naming event handlers. For example, if [Button](/docs/reference/controls/button) control has `click` event then in Python handler's name is `onclick`.
+
+Let's re-write the greeter app to use event handler instead of event loop:
+
+```python title="greeter.py"
+import sys
+import pglet
+from pglet import Textbox, Button, Text
+
+p = pglet.page("greeter")
+p.clean()
+
+def say_hello(e):
+    name = p.get_value(txt_name)
+    p.clean()
+    p.add(Text=f'Hello, {name}!')
+    sys.exit()
+
+txt_name = p.add(Textbox(label="Your name", description="Please provide your full name"))
+p.add(Button(text="Say hello", primary=True, onclick=say_hello))
+```
 
 ## Multi-user apps
 
@@ -122,6 +204,14 @@ def main(page):
 
 pglet.app("app1", web=True, target=main)
 ```
+
+## Naming pages
+
+[TBD]
+
+## Pushing apps and pages to the Web
+
+We don't use a word "deploy", but rather "push"
 
 ## `pglet` module reference
 
@@ -217,9 +307,9 @@ TBD
 
 TBD
 
-#### close()
+### `Event` class
 
-Not yet implemented.
+[TBD]
 
 ### Control classes
 
