@@ -15,13 +15,13 @@
   --ifm-color-primary-lighter: #d492fe;
   --ifm-color-primary-lightest: #e8c6ff;
 
-  --ifm-color-secondary: #f0ab7d;
-  --ifm-color-secondary-dark: #ec965c;
-  --ifm-color-secondary-darker: #ea8b4c;
-  --ifm-color-secondary-darkest: #e56c1b;
-  --ifm-color-secondary-light: #f4c09e;
-  --ifm-color-secondary-lighter: #f6cbae;
-  --ifm-color-secondary-lightest: #fbeadf;
+  --ifm-color-secondary: #ffa0ad;
+  --ifm-color-secondary-dark: #ff7689;
+  --ifm-color-secondary-darker: #ff6277;
+  --ifm-color-secondary-darkest: #ff2442;
+  --ifm-color-secondary-light: #ffcad1;
+  --ifm-color-secondary-lighter: #ffdee3;
+  --ifm-color-secondary-lightest: #ffffff;
 
   --ifm-code-font-size: 95%;
 

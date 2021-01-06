@@ -10,8 +10,9 @@ module.exports = {
       'tutorials/powershell',
       'tutorials/javascript',
     ],
-    'Pglet.io': [
-      'pglet-io-beta',
+    'Pglet service': [
+      'pglet-service/overview',
+      'pglet-service/beta',
     ],
     'Reference': [{
       'Controls': [

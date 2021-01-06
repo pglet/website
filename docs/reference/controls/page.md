@@ -43,7 +43,7 @@ import pglet
 page = pglet.page()
 ```
 
-Create a new app with name `app1` and wait for connections. `web=True` makes app UI displaying at [pglet.io](https://app.pglet.io).
+Create a new app with name `app1` and wait for connections. `web=True` makes app UI displaying at [Pglet service](/docs/pglet-service).
 `main` function is an entry point for a new user session. When a new user connects we just greem them with `Hello, world!` message:
 
 ```python

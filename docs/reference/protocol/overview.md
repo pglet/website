@@ -4,7 +4,7 @@ sidebar_label: Overview
 slug: /reference/protocol
 ---
 
-Pglet is a language-agnostic UI server which can be run locally, self-hosted in your local network or used as a hosted [service](https://pglet.io).
+Pglet is a language-agnostic UI server which can be run locally, self-hosted in your local network or used as a [hosted service](/docs/pglet-service).
 
 One of the design goals of Pglet was comfort progress updates from CI/CD workflows, internal tools and scheduled jobs written in Bash and PowerShell, so the protocol had to be simple and fast.
 

@@ -1,10 +1,10 @@
 ---
-id: pglet-io-beta
 title: Pglet.io service beta limits
-sidebar_label: Beta limits
+sidebar_label: Beta
+slug: beta
 ---
 
-During the beta [pglet.io](https://app.pglet.io) service is working in a public non-authenticated mode with some constraints applied.
+During the beta [Pglet hosted service](/docs/pglet-service) is working in a public non-authenticated mode with some constraints applied.
 Unauthenticated clients tracked by an IP addresses, so there might be situations when many users from the same network quickly exhaust allowed quotas.
 
 ## Pages
