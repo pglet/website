@@ -1,5 +1,5 @@
 # Constants
-PGLET_VER="0.1.10"        # Pglet version required by this script
+PGLET_VER="0.1.12"        # Pglet version required by this script
 
 # Default session variables:
 PGLET_EXE=""             # full path to Pglet executable
@@ -277,7 +277,7 @@ function __pglet_install() {
         tar zxf $tempTar -C $pglet_bin
         rm $tempTar
 
-        echo "OK"
+        #echo "OK"
     fi
 }
 
