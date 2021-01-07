@@ -181,14 +181,14 @@ from pglet import Textbox, Button, Text
 p = pglet.page("greeter")
 p.clean()
 
-def say_hello(e):
+def say_hello_click(e):
     name = p.get_value(txt_name)
     p.clean()
     p.add(Text(value=f'Hello, {name}!'))
     sys.exit()
 
 txt_name = p.add(Textbox(label="Your name", description="Please provide your full name"))
-p.add(Button(text="Say hello", primary=True, onclick=say_hello))
+p.add(Button(text="Say hello", primary=True, onclick=say_hello_click))
 
 # wait until browser window is closed or page reloaded
 p.wait_close()
@@ -196,25 +196,73 @@ p.wait_close()
 
 ## Multi-user apps
 
-Minimalist template for Pglet multi-user app.
+In multi-user Pglet apps every user has a unique session with its own page contents. To start an app page you use `pglet.app()` method which takes a reference to a session handler function. The handler function is called on a separate thread for every new user connected. The program stays blocked on `pglet.app()` while constantly waiting for new user connections.
 
-```python
+Another aspect of multi-user apps you should care about is state management: session-specific variables and control references at minimum.
+
+In the example below we are going to encapsulate user session state and app logic in a class instance. This could be a minimal Pglet multi-user app in Python:
+
+```python title="hello-app.py"
 import pglet
 from pglet import Text
 
-def main(page):
-  page.add(Text(value="Hello, world!"))
+class HelloWorldApp:
+    def __init__(self, p):
+        self.p = p
+        self.main()
+    
+    def main(self):
+        self.p.add(Text(value=f"Hello to session {self.p.conn_id}!"))
 
-pglet.app("app1", web=True, target=main)
+pglet.app(target=HelloWorldApp, web=True)
 ```
 
-## Naming pages
+We pass a reference to a `HelloWorldApp` class constructor as a `target` in `pglet.app` call. Every time a new user visits app URL `HelloWorldApp` constructor is called with connection `p` as a parameter and a new class instance created. In the constructor we save a reference to `p` for further work with session-specific page content and call `main()` method to output initial screen.
 
-[TBD]
+Now, a multi-user version of greeter app could look like the following:
 
-## Pushing apps and pages to the Web
+```python title="greeter-app.py"
+import pglet
+from pglet import Textbox, Button, Text
 
-We don't use a word "deploy", but rather "push"
+class GreeterApp:
+    def __init__(self, p):
+        self.p = p
+        self.main()
+    
+    def main(self):
+        self.txt_name = self.p.add(Textbox(label="Your name", description="Please provide your full name"))
+        self.p.add(Button(text="Say hello", primary=True, onclick=self.say_hello_click))
+
+    def say_hello_click(self, e):
+        name = self.p.get_value(self.txt_name)
+        self.p.clean()
+        self.p.add(Text(value=f'Hello, {name}!'))
+
+pglet.app("greeter-app", target=GreeterApp)
+```
+
+## Getting apps and pages to the Web
+
+Up until this moment you've been running all tutotial samples on your computer with a local Pglet server instance running in the background.
+
+With literarily no changes to the code Pglet allows to make your program accessible from the web. This could be an admin app for managing backend services, or a dashboard with server metrics, or an application prototype you are sharing with your colleagues or clients.
+
+In contrast to a classic deployment you are not packaging your program and it's not going anywhere. It continues to run on the same computer where it was built or cloned while UI is "streamed" to [Pglet service](/docs/pglet-service) and available via `https://app.pglet.io/public/{your-app-name}` URL.
+
+So, to make your greeter app available on the web add `web=True` parameters to either `pglet.page()` or `pglet.app()` call:
+
+```python
+pglet.app("greeter-app", target=GreeterApp, web=True)
+```
+
+As it's going to a public service the page name must be unique. One way is to prepend page name with "account" or "namespace", for example:
+
+```python
+pglet.app("john/greeter-app", target=GreeterApp, web=True)
+```
+
+or just omit page name, so it will be randomly generated. Look at [this article](/docs/pglet-service) to understand how page naming works.
 
 ## `pglet` module reference
 
