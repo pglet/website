@@ -159,8 +159,8 @@ while True:
     if e.target == btn_hello.id and e.name == 'click':
         name = p.get_value(txt_name)
         p.clean()
-        p.add(Text=f'Hello, {name}!')
-        return
+        p.add(Text(value=f'Hello, {name}!'))
+        break
 ```
 
 Notice how references to the added textbox and button are saved, so we can refer to the controls later.
@@ -184,11 +184,14 @@ p.clean()
 def say_hello(e):
     name = p.get_value(txt_name)
     p.clean()
-    p.add(Text=f'Hello, {name}!')
+    p.add(Text(value=f'Hello, {name}!'))
     sys.exit()
 
 txt_name = p.add(Textbox(label="Your name", description="Please provide your full name"))
 p.add(Button(text="Say hello", primary=True, onclick=say_hello))
+
+# wait until browser window is closed or page reloaded
+p.wait_close()
 ```
 
 ## Multi-user apps
