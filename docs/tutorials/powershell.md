@@ -4,9 +4,6 @@ sidebar_label: PowerShell
 slug: powershell
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 ## Installing `pglet` module
 
 Requirements:
