@@ -302,65 +302,153 @@ pglet.app("app1", web=True, target=main)
 
 Represents a connection to a page or session. `Connection` provides methods for adding, modifying, querying and removing controls on a web page.
 
-#### add(*controls, to=None, at=None, fire_and_forget=False)
+#### `add(*controls, to=None, at=None, fire_and_forget=False)`
 
 Add one or more controls to a page.
 
-#### update(*controls, fire_and_forget=False)
+* `controls` is one or more instances of [Control class](#control-classes).
+* `to` is ID of the parent control. If `to` is not specified a control is added to a `page`.
+* `at` allows inserting control into parent's children collection at specific index. If `at` is not specified a control is appended to children collection.
+* `fire_and_forget` ignores the result of operation.
+
+For example, inserting a text control at the top of stack control with `body` ID:
+
+```python
+page.add(Text(value="1st line"), to="body", at=0)
+```
+
+#### `update(*controls, fire_and_forget=False)`
 
 Update one or more controls.
 
-#### set_value(id_or_control, value, fire_and_forget=False)
+* `controls` is one or more instances of [Control class](#control-classes).
+* `fire_and_forget` ignores the result of operation.
 
-TBD
+For example, adding and then updating a text control:
 
-#### get_value(id_or_control)
+```python
+# add Text control
+txt = Text(value="One!")
+page.add(txt)
 
-TBD
+# update control
+txt.value = "Two!"
+page.update(txt)
+```
 
-#### append_value(id_or_control, value, fire_and_forget=False)
+#### `set_value(id_or_control, value, fire_and_forget=False)`
 
-TBD
+Shortcut method to update `value` property of any control.
 
-#### show(*id_or_controls, fire_and_forget=False)
+* `id_or_control` is either control ID or an instances of [Control class](#control-classes).
+* `value` is a new value to set.
+* `fire_and_forget` ignores the result of operation.
 
-TBD
+For example, updating the current value of progress bar with ID `prog1` to 50%:
 
-#### hide(*id_or_controls, fire_and_forget=False)
+```python
+page.set_value('prog1', 50)
+```
 
-TBD
+#### `get_value(id_or_control)`
 
-#### disable(*id_or_controls, fire_and_forget=False)
+Shortcut method to read `value` property of any control.
 
-TBD
+For example, reading the value entered into `first_name` textbox:
 
-#### enable(*id_or_controls, fire_and_forget=False)
+```python
+first_name = page.get_value('first_name')
+```
 
-TBD
+#### `append_value(id_or_control, value, fire_and_forget=False)`
 
-#### clean(*id_or_controls, at=None, fire_and_forget=False)
+Appends a string to `value` property of any control.
 
-TBD
+For example, appending a new line to a multiline textbox with ID `notes`:
 
-#### remove(*id_or_controls, at=None, fire_and_forget=False)
+```python
+page.append("notes", "\nLine2")
+```
 
-TBD
+#### `show(*id_or_controls, fire_and_forget=False)`
 
-#### send(command)
+Shortcut method to set control's `visible` property to `true`.
 
-TBD
+#### `hide(*id_or_controls, fire_and_forget=False)`
 
-#### wait_event()
+Shortcut method to set control's `visible` property to `true`.
 
-TBD
+#### `disable(*id_or_controls, fire_and_forget=False)`
 
-#### wait_close()
+Shortcut method to set control's `disabled` property to `true`. By default, all controls are enabled.
+`disabled` property is recursive meaning you can disable parent control to disable all its children.
 
-TBD
+For example, you may have a stack with two buttons and then while performing some operation you may disable both buttons by disabling a stack:
+
+```python
+footer = Stack(horizontal=True, controls=[
+  Button(text="OK", primary=True),
+  Button(text="Cancel")
+])
+page.add(footer)
+
+# on click to OK
+page.disable(footer) # disable stack and all its buttons
+```
+
+#### `enable(*id_or_controls, fire_and_forget=False)`
+
+Shortcut method to set control's `disabled` property to `false`.
+
+#### `clean(*id_or_controls, at=None, fire_and_forget=False)`
+
+Cleans children collection of a control, but leaves control itself.
+
+For example, to clean the contents of the entire page:
+
+```python
+page.clean()
+```
+
+#### `remove(*id_or_controls, at=None, fire_and_forget=False)`
+
+Removes a control and all its children.
+
+#### `send(command)`
+
+Sends a raw command to Pglet server via [Pglet protocol](/docs/reference/protocol).
+This method is useful when something is not yet implemented in Python library.
+
+For example, to update `errorMessage` property of textbox with ID `number`:
+
+```python
+page.send("set number errorMessage='Some error message'")
+```
+
+#### `wait_event()`
+
+Blocks until an event triggered by a user arrives. The method returns an instance of [Event](#event-class) class.
+
+For example, reading events in a loop until any button clicked:
+
+```python
+while True:
+    e = page.wait_event()
+    if e.name == 'click':
+        break
+```
+
+#### `wait_close()`
+
+Blocks until browser window is closed or page reloaded.
 
 ### `Event` class
 
-[TBD]
+Describes the details of event returned by `wait_event()` method and has the following properties:
+
+* `target` - ID of control triggered event.
+* `name` - event name, for example "click".
+* `data` - additional data attached to the event. Button control has `data` property which supplies additional event data.
 
 ### Control classes
 

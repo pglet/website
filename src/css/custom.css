@@ -24,6 +24,7 @@
   --ifm-color-secondary-lightest: #ffffff;
 
   --ifm-code-font-size: 95%;
+  --ifm-h4-font-size: 1.1rem;
 
   --pglet-link-color: #bf5efe;
   --ifm-link-color: var(--pglet-link-color);
