@@ -30,7 +30,7 @@ python3 -m pip install --upgrade pip setuptools wheel
 <TabItem value="windows">
 
 ```bash
-python -m pip install --upgrade pip setuptools wheel
+pip install --upgrade pip setuptools wheel
 ```
 
 </TabItem>
@@ -64,7 +64,7 @@ python3 -m pip install pglet
 <TabItem value="windows">
 
 ```bash
-python -m pip install pglet
+pip install pglet
 ```
 
 </TabItem>
@@ -105,9 +105,9 @@ When you run this app a new browser window should popup with the greeting:
 
 <div style={{textAlign: 'center'}}><img src="/img/docs/quickstart-hello-world.png" /></div>
 
-A python app won't wait for any input and should exit. Now, if you run the same `greeter.py` script for the second time another "Hello, world!" message will be added to the page. This is because the page is stateful. Its contents can be updated at any time by any number of scripts, multiple scripts can connect and update the same page simultanously.
+A Python app won't wait for any input and should exit. Now, if you run the same `greeter.py` script for the second time another "Hello, world!" message will be added to the page. This is because the page is stateful. Its contents can be updated at any time by any number of scripts, multiple scripts can connect and update the same page simultanously.
 
-If you need a clean page any time you run your program use connection's `clean()` method:
+If you need a clean page on every start of the program use connection's `clean()` method:
 
 ```python
 p.clean()
@@ -133,7 +133,7 @@ p.add(Button(text="Say hello", primary=True))
 
 ## Handling events
 
-When you click "Say hello" on the form above nothing will happen in our program though `Button` control itself emits "click" event each time it's pressed/clicked. The event is not handled.
+When you click "Say hello" button on the form above nothing will happen in our program though `Button` control itself emits "click" event each time it's pressed/clicked. The event is just not handled.
 
 There are two ways to handle control events:
 
@@ -165,7 +165,7 @@ while True:
 
 Notice how references to the added textbox and button are saved, so we can refer to the controls later.
 
-`wait_event()` returns [Event](#event-class) object and we are interested in `click` the events coming from the button (`e.target` is control ID). Next, we use connection's `get_value()` method to read `value` property of textbox control, clean the page, output greeting and leave the program.
+`wait_event()` returns [Event](#event-class) object and we are interested in `click` events coming from the button (`e.target` is control ID). Next, we use connection's `get_value()` method to read `value` property of textbox control, clean the page, output greeting and leave the program.
 
 ### Event handlers
 
@@ -198,9 +198,9 @@ p.wait_close()
 
 In multi-user Pglet apps every user has a unique session with its own page contents. To start an app page you use `pglet.app()` method which takes a reference to a session handler function. The handler function is called on a separate thread for every new user connected. The program stays blocked on `pglet.app()` while constantly waiting for new user connections.
 
-Another aspect of multi-user apps you should care about is state management: session-specific variables and control references at minimum.
+One of the aspects of multi-user apps you should care about is state management: session-specific variables and control references at minimum.
 
-In the example below we are going to encapsulate user session state and app logic in a class instance. This could be a minimal Pglet multi-user app in Python:
+In the example below we are going to use Python class to encapsulate user session state and logic. This could be a minimal Pglet multi-user app in Python:
 
 ```python title="hello-app.py"
 import pglet
@@ -250,7 +250,7 @@ With literarily no changes to the code Pglet allows to make your program accessi
 
 In contrast to a classic deployment you are not packaging your program and it's not going anywhere. It continues to run on the same computer where it was built or cloned while UI is "streamed" to [Pglet service](/docs/pglet-service) and available via `https://app.pglet.io/public/{your-app-name}` URL.
 
-So, to make your greeter app available on the web add `web=True` parameters to either `pglet.page()` or `pglet.app()` call:
+So, to make your greeter app available on the web add `web=True` parameter to either `pglet.page()` or `pglet.app()` call:
 
 ```python
 pglet.app("greeter-app", target=GreeterApp, web=True)
