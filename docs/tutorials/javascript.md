@@ -8,13 +8,12 @@ slug: javascript
 
 Requirements:
 
-* Windows PowerShell 5.1
-* PowerShell Core 7 or above on Windows, Linux or macOS
+* Node 8 or above on Windows, Linux or macOS
 
-To install `pglet` module run the following command in PowerShell session:
+To install `pglet` module run the following command:
 
-```powershell
-Install-Module pglet
+```bash
+npm install pglet
 ```
 
 ## Creating a page
@@ -27,114 +26,129 @@ Pglet allows you creating **shared** and **app** pages.
 
 OK, this is a minimal "Hello world" Pglet page running in a local mode:
 
-```powershell title="hello.ps1"
-Import-Module pglet
-Connect-PgletPage "hello"
-Invoke-Pglet "add text value='Hello, world!'"
+```javascript title="hello.js"
+const pglet = require("pglet");
+
+(async () => {
+    let p = await pglet.page("hello");
+    await p.send("add text value='Hello, world!'");
+})();
 ```
 
-When you run this script a new browser window should popup with the greeting:
+When you run this app a new browser window should popup with the greeting:
 
 <div style={{textAlign: 'center'}}><img src="/img/docs/quickstart-hello-world.png" /></div>
 
-`Connect-PgletPage` cmdlet creates a page, if it doesn't exist, with `greeter` name and opens connection. The cmdlet returns connection ID, but we don't need to save it for our example as the last opened connection ID is stored in the script context.
+A Node app won't wait for any input and should exit. Now, if you run the same `hello.js` script for the second time another "Hello, world!" message will be added to the page. This is because the page is stateful. Its contents can be updated at any time by any number of scripts, multiple scripts can connect and update the same page simultanously.
 
-`Invoke-Pglet` cmdlet sends [commands](/docs/reference/protocol#command-messages) to open Pglet connection. You use [add](/docs/reference/protocol/commands/add), [set](/docs/reference/protocol/commands/set), [get](/docs/reference/protocol/commands/get), [clean](/docs/reference/protocol/commands/clean) and [remove](/docs/reference/protocol/commands/remove) commands to update and query page contents.
+If you need a clean page on every start of the program use connection's `clean()` method:
 
-An app won't wait for any input and should exit. Now, if you run the same `greeter.ps1` script for the second time another "Hello, world!" message will be added to the page. This is because the page is stateful. Its contents can be updated at any time by any number of scripts, multiple scripts can connect and update the same page simultanously.
-
-If you need a clean page on every start of the program use `clean` command:
-
-```powershell {3}
-Import-Module pglet
-Connect-PgletPage "hello"
-Invoke-Pglet "clean page"
-Invoke-Pglet "add text value='Hello, world!'"
+```javascript
+await p.send("clean");
+await p.send("add text value='Hello, world!'");
 ```
 
 ## Getting user input
 
-Pglet provides a number of [controls](/docs/reference/controls) for building forms: [Textbox](/docs/reference/controls/textbox), [Checkbox](/docs/reference/controls/checkbox), [Dropdown](/docs/reference/controls/dropdown), [Button](/docs/reference/controls/button).
+Pglet provides a number of controls for building forms: [Textbox](/docs/reference/controls/textbox), [Checkbox](/docs/reference/controls/checkbox), [Dropdown](/docs/reference/controls/dropdown), [Button](/docs/reference/controls/button).
 
 Let's ask a user for a name:
 
-```powershell title="greeter.ps1"
-Import-Module pglet
+```javascript title="greeter.js"
+const pglet = require("pglet");
 
-Connect-PgletPage "greeter"
-
-Invoke-Pglet "clean"
-Invoke-Pglet "add textbox label='Your name' description='Please provide your full name'"
-Invoke-Pglet "add button primary text='Say hello'"
+(async () => {
+    let p = await pglet.page("greeter");
+    let txt_name = await p.send("add textbox label='Your name' description='Please provide your full name'");
+    let btn_hello = await p.send("add button primary text='Say hello'");
+})();
 ```
 
 ## Handling events
 
 When you click "Say hello" button on the form above nothing will happen in our program though `Button` control itself emits "click" event each time it's pressed/clicked. The event is just not handled.
 
-In PowerShell you use event loop to handle control events.
+In Node.js Pglet app you use event loop to handle control events.
 
 ### Event loop
 
-Once the form is rendered use `Wait-PgletEvent` cmdlet in a loop to receive all page events triggered by a user:
+Once the form is rendered use `await p.waitEvent()` method in a loop to receive all page events triggered by a user:
 
-```powershell title="greeter.ps1"
-Import-Module pglet
+```javascript title="greeter.js"
+const pglet = require("pglet");
 
-Connect-PgletPage "greeter"
+(async () => {
+    let p = await pglet.page("greeter");
 
-Invoke-Pglet "clean"
-$txt_name = Invoke-Pglet "add textbox label='Your name' description='Please provide your full name'"
-$btn_hello = Invoke-Pglet "add button primary text='Say hello'"
-
-while($true) {
-  $e = Wait-PgletEvent
-  if ($e.Target -eq $btn_hello -and $e.Name -eq 'click') {
-    $name = Invoke-Pglet "get $txt_name value"
-    Invoke-Pglet "clean page"
-    Invoke-Pglet "add text value='Hello, $name!'"
-    return
-  }
-}
+    let txt_name = await p.send("add textbox label='Your name' description='Please provide your full name'");
+    let btn_hello = await p.send("add button primary text='Say hello'");
+    
+    while(true) {
+        const e = await p.waitEvent();
+        if (e.target === btn_hello && e.name === 'click') {
+            let name = await p.send(`get ${txt_name} value`);
+            await p.send("clean page");
+            await p.send(`add text value='Hello, ${name}!'`);
+        }
+    }
+})();
 ```
 
 Notice how IDs of the added textbox and button are saved, so we can refer to these controls later.
 
-`Wait-PgletEvent` returns [Event](#event-class) object and we are interested in `click` events coming from the button (`e.Target` is control's ID). Next, we use `get` command to read `value` property of textbox control, `clean` the page, output greeting and leave the program.
+`waitEvent()` returns [Event](#event-class) object and we are interested in `click` events coming from the button (`e.target` is control's ID). Next, we use `get` command to read `value` property of textbox control, `clean` the page, output greeting and leave the program.
 
 ## Multi-user apps
 
-In multi-user Pglet apps every user has a unique session with its own page contents. To start an app page you use `Connect-PgletApp` cmdlet which takes a `ScriptBlock` with a session handler code. The handler script is called in a separate PowerShell Runspace for every new user connected. The program stays blocked on `Connect-PgletApp` while constantly waiting for new user connections.
+In multi-user Pglet apps every user has a unique session with its own page contents. To start an app page you use `pglet.app()` method which takes a reference to a session handler function. The handler function is called for every new user connected with connection object in parameters. The program stays blocked on `pglet.app()` while constantly waiting for new user connections.
 
-In the example below we are going to encapsulate user session state and app logic in a class instance. Below is a minimal Pglet multi-user app in PowerShell:
+This could be a minimal Pglet multi-user app in Node.js:
 
-```powershell title="hello-app.ps1"
-Import-Module pglet
+```javascript title="hello-app.js"
+const pglet = require("pglet");
 
-Connect-PgletApp -Name 'greeter-app' -ScriptBlock {
-    Invoke-Pglet "add text value='Hello to connection $PGLET_CONNECTION_ID!'"
-}
+(async () => {
+    await pglet.app("hello-app", async (p) => {
+
+        await p.send("clean");
+        await p.send("add text value='Hello, world!'");
+    });
+
+    process.stdin.resume();
+})();
 ```
 
 Now, a multi-user version of greeter app could look like the following:
 
-```powershell title="greeter-app.ps1"
-Import-Module pglet
+```javascript title="greeter-app.js"
+const pglet = require("pglet");
 
-Connect-PgletApp -Name 'greeter-app' -ScriptBlock {
-  $txt_name = Invoke-Pglet "add textbox label='Your name' description='Please provide your full name'"
-  $btn_hello = Invoke-Pglet "add button primary text='Say hello'"
-  
-  while($true) {
-    $e = Wait-PgletEvent
-    if ($e.Target -eq $btn_hello -and $e.Name -eq 'click') {
-      $name = Invoke-Pglet "get $txt_name value"
-      Invoke-Pglet "clean page"
-      Invoke-Pglet "add text value='Hello, $name!'"
-      return
-    }
-  }
-}
+(async () => {
+
+    // start a new session for every user visit
+    await pglet.app("greeter-app", async (p) => {
+
+        // add textbox and a button
+        let txt_name = await p.send("add textbox label='Your name' description='Please provide your full name'");
+        let btn_hello = await p.send("add button primary text='Say hello'");
+        
+        while(true) {
+            // wait until button is clicked
+            const e = await p.waitEvent();
+            if (e.target === btn_hello && e.name === 'click') {
+
+                // get the entered value of a textbox
+                let name = await p.send(`get ${txt_name} value`);
+
+                // clean the page and output the greeting
+                await p.send("clean page");
+                await p.send(`add text value='Hello, ${name}!'`);
+            }
+        }
+    });
+
+    process.stdin.resume();
+})();
 ```
 
 ## Getting apps and pages to the Web
@@ -145,62 +159,87 @@ With literarily no changes to the code Pglet allows to make your program accessi
 
 In contrast to a classic deployment you are not packaging your program and it's not going anywhere. It continues to run on the same computer where it was built or cloned while UI is "streamed" to [Pglet service](/docs/pglet-service) and available via `https://app.pglet.io/public/{your-app-name}` URL.
 
-So, to make your greeter app available on the web add `-Web` parameter to either 'Connect-PgletPage` or `Connect-PgletApp` call:
+So, to make your greeter app available on the web add `{web: true}` options to either `pglet.page()` or `pglet.app()` call:
 
-```powershell
-Connect-PgletApp -Name 'greeter-app' -Web -ScriptBlock { <# ... #> }
+```javascript
+await pglet.app("greeter-app", {web: true}, async (p) => { /* ... */ })
 ```
 
 As it's going to a public service the page name must be unique. One way is to prepend page name with "account" or "namespace", for example:
 
-```python
-Connect-PgletApp -Name 'john/greeter-app' -Web -ScriptBlock { <# ... #> }
+```javascript
+await pglet.app("john/greeter-app", {web: true}, async (p) => { /* ... */ })
 ```
 
 or just omit page name, so it will be randomly generated. Look at [this article](/docs/pglet-service) to understand how page naming works.
 
 ## `pglet` module reference
 
-### `Connect-PgletApp` cmdlet
+### `page` function
 
-Creates an application page if not exists and opens a new connection.
+`pglet.page(name, options)`
 
-Parameters:
-
-* `Name` (optional) - the name of Pglet app. Random name will be generated if this parameter left blank.
-* `ScriptBlock` - a handler script block for a new user session.
-* `Web` (switch) - makes the app available as public at pglet.io service or a self-hosted Pglet server.
-* `Server` (optional) - connects to the app on a self-hosted Pglet server.
-* `Token` (optional) - authentication token for pglet.io service or a self-hosted Pglet server.
-* `NoWindow` (switch) - do not open browser window.
-
-### `Connect-PgletPage` cmdlet
-
-Creates a shared page if not exists and opens a new connection.
+Creates a shared page if not exists and returns a [connection](#connection-class) to it.
 
 Parameters:
 
-* `Name` (optional) - the name of Pglet page. Random name will be generated if this parameter left blank.
-* `Web` (switch) - makes the page available as public at pglet.io service or a self-hosted Pglet server.
-* `Server` (optional) - connects to the page on a self-hosted Pglet server.
-* `Token` (optional) - authentication token for pglet.io service or a self-hosted Pglet server.
-* `NoWindow` (switch) - do not open browser window.
+* `name` - the name of app in the form `{account}/{page_name}`. The name will be auto-generated if left blank.
+* `options` - app creation options object with the following properties:
+  * `web` (bool) - make app UI available on the web.
+  * `noWindow` (bool) - do not open browser window.
+  * `server` (string) - URL of the self-hosted Pglet server to run the app on.
+  * `token` (string) - authentication token for self-hosted server.
 
-### `Invoke-Pglet` cmdlet
+### `app` function
 
-Sends [commands](/docs/reference/protocol#command-messages) to a Pglet connection.
+`pglet.app(name, options, sessionCallback)`
+
+Creates an app page with a session handler function defined by `sessionCallback` parameter and starts waiting for new user connections.
+Handler function is called for every new session with [connection](#connection-class) passed into handler.
 
 Parameters:
 
-* `Command` - command text.
-* `Page` (optional) - connection ID to send command to. The last opened connection is used if not specified.
+* `name` - the name of app in the form `{account}/{page_name}`. The name will be auto-generated if left blank.
+* `options` - app creation options object with the following properties:
+  * `web` (bool) - make app UI available on the web.
+  * `noWindow` (bool) - do not open browser window.
+  * `server` (string) - URL of the self-hosted Pglet server to run the app on.
+  * `token` (string) - authentication token for self-hosted server.
+* `sessionCallback` - callback function for handling a session. [Connection](#connection-class) is passed as an argument.
 
-### `Wait-PgletEvent` cmdlet
+### `Connection` class
 
-Blocks until a user generated event is received.
+Represents a connection to a page or session. `Connection` provides methods for adding, modifying, querying and removing controls on a web page.
 
-Returns an object describing the event with the following properties:
+#### `send(command)`
 
-* `Target` - ID of control triggered event.
-* `Name` - event name, for example "click".
-* `Data` - additional data attached to the event. Button control has `data` property which supplies additional event data.
+Sends a raw command to Pglet server via [Pglet protocol](/docs/reference/protocol).
+
+For example, to update `errorMessage` property of textbox with ID `number`:
+
+```javascript
+await page.send("set number errorMessage='Some error message'")
+```
+
+#### `waitEvent()`
+
+Blocks until an event triggered by a user received. The method returns an instance of [Event](#event-class) class.
+
+For example, reading events in a loop until any button clicked:
+
+```javascript
+while(true) {
+  let e = await page.waitEvent()
+  if e.name === 'click' {
+    break
+  }
+}
+```
+
+### `Event` class
+
+Describes the details of event returned by `waitEvent()` method and has the following properties:
+
+* `target` - ID of control triggered event.
+* `name` - event name, for example "click".
+* `data` - additional data attached to the event. Button control has `data` property which supplies additional event data.

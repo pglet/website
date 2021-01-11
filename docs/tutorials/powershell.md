@@ -106,7 +106,7 @@ Notice how IDs of the added textbox and button are saved, so we can refer to the
 
 In multi-user Pglet apps every user has a unique session with its own page contents. To start an app page you use `Connect-PgletApp` cmdlet which takes a `ScriptBlock` with a session handler code. The handler script is called in a separate PowerShell Runspace for every new user connected. The program stays blocked on `Connect-PgletApp` while constantly waiting for new user connections.
 
-In the example below we are going to encapsulate user session state and app logic in a class instance. Below is a minimal Pglet multi-user app in PowerShell:
+Below is a minimal Pglet multi-user app in PowerShell:
 
 ```powershell title="hello-app.ps1"
 Import-Module pglet

@@ -89,13 +89,13 @@ Pglet allows you creating **shared** and **app** pages.
 
 OK, this is a minimal "Hello world" Pglet page running in a local mode:
 
-```python title="greeter.py"
+```python title="hello.py"
 # import pglet main module and Text control
 import pglet
 from pglet import Text
 
 # Create a new page with a random name and open a connection to it
-p = pglet.page("greeter")
+p = pglet.page("hello")
 
 # Add Text control to a page
 p.add(Text(value="Hello, world!"))
@@ -214,7 +214,7 @@ class HelloWorldApp:
     def main(self):
         self.p.add(Text(value=f"Hello to session {self.p.conn_id}!"))
 
-pglet.app(target=HelloWorldApp, web=True)
+pglet.app("hello-app", target=HelloWorldApp)
 ```
 
 We pass a reference to a `HelloWorldApp` class constructor as a `target` in `pglet.app` call. Every time a new user visits app URL `HelloWorldApp` constructor is called with connection `p` as a parameter and a new class instance created. In the constructor we save a reference to `p` for further work with session-specific page content and call `main()` method to output initial screen.
