@@ -153,7 +153,7 @@ Connect-PgletApp -Name 'greeter-app' -Web -ScriptBlock { <# ... #> }
 
 As it's going to a public service the page name must be unique. One way is to prepend page name with "account" or "namespace", for example:
 
-```python
+```powershell
 Connect-PgletApp -Name 'john/greeter-app' -Web -ScriptBlock { <# ... #> }
 ```
 

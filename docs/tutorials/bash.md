@@ -61,83 +61,92 @@ Pglet provides a number of [controls](/docs/reference/controls) for building for
 
 Let's ask a user for a name:
 
-```powershell title="greeter.ps1"
-Import-Module pglet
+```bash title="greeter.sh"
+. pglet.sh
 
-Connect-PgletPage "greeter"
+pglet_page "index"
 
-Invoke-Pglet "clean"
-Invoke-Pglet "add textbox label='Your name' description='Please provide your full name'"
-Invoke-Pglet "add button primary text='Say hello'"
+pglet_send "clean"
+pglet_send "add textbox label='Your name' description='Please provide your full name'"
+pglet_send "add button primary text='Say hello'"
 ```
 
 ## Handling events
 
 When you click "Say hello" button on the form above nothing will happen in our program though `Button` control itself emits "click" event each time it's pressed/clicked. The event is just not handled.
 
-In PowerShell you use event loop to handle control events.
+In Bash you use event loop to handle control events.
 
 ### Event loop
 
-Once the form is rendered use `Wait-PgletEvent` cmdlet in a loop to receive all page events triggered by a user:
+Once the form is rendered use `pglet_wait_event` function in a loop to receive all page events triggered by a user:
 
-```powershell title="greeter.ps1"
-Import-Module pglet
+```bash title="greeter.sh"
+. pglet.sh
 
-Connect-PgletPage "greeter"
+pglet_page "index"
 
-Invoke-Pglet "clean"
-$txt_name = Invoke-Pglet "add textbox label='Your name' description='Please provide your full name'"
-$btn_hello = Invoke-Pglet "add button primary text='Say hello'"
+pglet_send "clean"
+txt_name=`pglet_send "add textbox label='Your name' description='Please provide your full name'"`
+btn_hello=`pglet_send "add button primary text='Say hello'"`
 
-while($true) {
-  $e = Wait-PgletEvent
-  if ($e.Target -eq $btn_hello -and $e.Name -eq 'click') {
-    $name = Invoke-Pglet "get $txt_name value"
-    Invoke-Pglet "clean page"
-    Invoke-Pglet "add text value='Hello, $name!'"
-    return
-  }
-}
+while true
+do
+    pglet_wait_event
+    if [[ "$PGLET_EVENT_TARGET" == $btn_hello && "$PGLET_EVENT_NAME" == "click" ]]; then
+        name=`pglet_send "get $txt_name value"`
+        pglet_send "clean page"
+        pglet_send "add text value='Hello, $name!'"
+        pglet_send "add text value='Close browser window to exit the program...'"
+        break
+    fi
+done
 ```
 
 Notice how IDs of the added textbox and button are saved, so we can refer to these controls later.
 
-`Wait-PgletEvent` returns [Event](#event-class) object and we are interested in `click` events coming from the button (`e.Target` is control's ID). Next, we use `get` command to read `value` property of textbox control, `clean` the page, output greeting and leave the program.
+`pglet_wait_event` stores event details into `PGLET_EVENT_TARGET`, `PGLET_EVENT_NAME` and `PGLET_EVENT_DATA` variables. We are interested in `click` events coming from the button (`PGLET_EVENT_TARGET` is control's ID). Next, we use `get` command to read `value` property of textbox control, `clean` the page, output greeting and leave the program.
 
 ## Multi-user apps
 
-In multi-user Pglet apps every user has a unique session with its own page contents. To start an app page you use `Connect-PgletApp` cmdlet which takes a `ScriptBlock` with a session handler code. The handler script is called in a separate PowerShell Runspace for every new user connected. The program stays blocked on `Connect-PgletApp` while constantly waiting for new user connections.
+In multi-user Pglet apps every user has a unique session with its own page contents. To start an app page you use `pglet_app` function which takes a reference to a session handling function. The handler function is called in a new sub-shell for every new user connected. The program stays blocked on `pglet_app` while constantly waiting for new user connections.
 
-Below is a minimal Pglet multi-user app in PowerShell:
+Below is a minimal Pglet multi-user app in Bash:
 
-```powershell title="hello-app.ps1"
-Import-Module pglet
+```bash title="hello-app.sh"
+. pglet.sh
 
-Connect-PgletApp -Name 'greeter-app' -ScriptBlock {
-    Invoke-Pglet "add text value='Hello to connection $PGLET_CONNECTION_ID!'"
+function main() {
+  pglet_send "clean"
+  pglet_send "add text value='Hello, world!'"
 }
+
+pglet_app "hello-app" main
 ```
 
 Now, a multi-user version of greeter app could look like the following:
 
-```powershell title="greeter-app.ps1"
-Import-Module pglet
+```bash title="greeter-app.sh"
+. pglet.sh
 
-Connect-PgletApp -Name 'greeter-app' -ScriptBlock {
-  $txt_name = Invoke-Pglet "add textbox label='Your name' description='Please provide your full name'"
-  $btn_hello = Invoke-Pglet "add button primary text='Say hello'"
-  
-  while($true) {
-    $e = Wait-PgletEvent
-    if ($e.Target -eq $btn_hello -and $e.Name -eq 'click') {
-      $name = Invoke-Pglet "get $txt_name value"
-      Invoke-Pglet "clean page"
-      Invoke-Pglet "add text value='Hello, $name!'"
-      return
-    }
-  }
+function main() {
+    pglet_send "clean"
+    txt_name=`pglet_send "add textbox label='Your name' description='Please provide your full name'"`
+    btn_hello=`pglet_send "add button primary text='Say hello'"`
+
+    while true
+    do
+        pglet_wait_event
+        if [[ "$PGLET_EVENT_TARGET" == $btn_hello && "$PGLET_EVENT_NAME" == "click" ]]; then
+            name=`pglet_send "get $txt_name value"`
+            pglet_send "clean page"
+            pglet_send "add text value='Hello, $name!'"
+            break
+        fi
+    done
 }
+
+pglet_app "greeter-app" main
 ```
 
 ## Getting apps and pages to the Web
@@ -148,62 +157,156 @@ With literarily no changes to the code Pglet allows to make your program accessi
 
 In contrast to a classic deployment you are not packaging your program and it's not going anywhere. It continues to run on the same computer where it was built or cloned while UI is "streamed" to [Pglet service](/docs/pglet-service) and available via `https://app.pglet.io/public/{your-app-name}` URL.
 
-So, to make your greeter app available on the web add `-Web` parameter to either 'Connect-PgletPage` or `Connect-PgletApp` call:
+So, to make your greeter app available on the web add `PGLET_WEB=true` variable before either 'pglet_page` or `pglet_app` call:
 
-```powershell
-Connect-PgletApp -Name 'greeter-app' -Web -ScriptBlock { <# ... #> }
+```bash
+PGLET_WEB=true pglet_app "greeter-app" main
 ```
 
 As it's going to a public service the page name must be unique. One way is to prepend page name with "account" or "namespace", for example:
 
-```python
-Connect-PgletApp -Name 'john/greeter-app' -Web -ScriptBlock { <# ... #> }
+```bash
+PGLET_WEB=true pglet_app "john/greeter-app" main
 ```
 
 or just omit page name, so it will be randomly generated. Look at [this article](/docs/pglet-service) to understand how page naming works.
 
-## `pglet` module reference
+## `pglet.sh` reference
 
-### `Connect-PgletApp` cmdlet
-
-Creates an application page if not exists and opens a new connection.
-
-Parameters:
-
-* `Name` (optional) - the name of Pglet app. Random name will be generated if this parameter left blank.
-* `ScriptBlock` - a handler script block for a new user session.
-* `Web` (switch) - makes the app available as public at pglet.io service or a self-hosted Pglet server.
-* `Server` (optional) - connects to the app on a self-hosted Pglet server.
-* `Token` (optional) - authentication token for pglet.io service or a self-hosted Pglet server.
-* `NoWindow` (switch) - do not open browser window.
-
-### `Connect-PgletPage` cmdlet
+### `pglet_page`
 
 Creates a shared page if not exists and opens a new connection.
 
 Parameters:
 
-* `Name` (optional) - the name of Pglet page. Random name will be generated if this parameter left blank.
-* `Web` (switch) - makes the page available as public at pglet.io service or a self-hosted Pglet server.
-* `Server` (optional) - connects to the page on a self-hosted Pglet server.
-* `Token` (optional) - authentication token for pglet.io service or a self-hosted Pglet server.
-* `NoWindow` (switch) - do not open browser window.
+* `$1` (optional) - the name of Pglet page. Random name will be generated if this parameter left blank.
 
-### `Invoke-Pglet` cmdlet
+Variables:
+
+* `PGLET_WEB=true` - makes the app available as public at pglet.io service or a self-hosted Pglet server.
+* `PGLET_SERVER=<url>` - connects to the app on a self-hosted Pglet server.
+* `PGLET_TOKEN=<token>` - authentication token for pglet.io service or a self-hosted Pglet server.
+* `PGLET_NO_WINDOW=true` - do not open browser window.
+
+### `pglet_app`
+
+Creates an application page if not exists and opens a new connection.
+
+Parameters:
+
+* `$1` (optional) - the name of Pglet page. Random name will be generated if this parameter left blank.
+* `$2` - session handler function.
+
+Variables:
+
+* `PGLET_WEB=true` - makes the app available as public at pglet.io service or a self-hosted Pglet server.
+* `PGLET_SERVER=<url>` - connects to the app on a self-hosted Pglet server.
+* `PGLET_TOKEN=<token>` - authentication token for pglet.io service or a self-hosted Pglet server.
+* `PGLET_NO_WINDOW=true` - do not open browser window.
+
+### `pglet_send`
 
 Sends [commands](/docs/reference/protocol#command-messages) to a Pglet connection.
 
 Parameters:
 
-* `Command` - command text.
-* `Page` (optional) - connection ID to send command to. The last opened connection is used if not specified.
+* `$1` - command text or connection ID.
+* `$2` (optional) - command text (if connection ID is specified in `$1`).
 
-### `Wait-PgletEvent` cmdlet
+For example, setting page title:
+
+```bash
+pglet_send "set page title='My app'"
+```
+
+### `pglet_wait_event`
 
 Blocks until a user generated event is received.
 
-Returns an object describing the event with the following properties:
+Stores event details into the following variables:
 
-* `Target` - ID of control triggered event.
-* `Name` - event name, for example "click".
-* `Data` - additional data attached to the event. Button control has `data` property which supplies additional event data.
+* `PGLET_EVENT_TARGET` - ID of control triggered event.
+* `PGLET_EVENT_NAME` - event name, for example "click".
+* `PGLET_EVENT_DATA` - additional data attached to the event. Button control has `data` property which supplies additional event data.
+
+### `pglet_add`
+
+Shortcut for `add` command, for example:
+
+```bash
+pglet_add "button text=OK"
+```
+
+### `pglet_set`
+
+Shortcut for `set` command, for example:
+
+```bash
+pglet_set "page title='My app'"
+```
+
+### `pglet_set_value`
+
+Updates `value` property of a control, for example:
+
+```bash
+pglet_set_value "progress1" "10"
+```
+
+### `pglet_get_value`
+
+Reads `value` property of a control, for example:
+
+```bash
+name=`pglet_get_value "txt_name"`
+```
+
+### `pglet_show`
+
+Sets `visible` property of a control to `true`, for example:
+
+```bash
+pglet_show "stack_buttons"
+```
+
+### `pglet_hide`
+
+Sets `visible` property of a control to `false`, for example:
+
+```bash
+pglet_hide "stack_buttons"
+```
+
+### `pglet_enable`
+
+Sets `disabled` property of a control to `false`, for example:
+
+```bash
+pglet_enable "stack_buttons"
+```
+
+### `pglet_disable`
+
+Sets `disabled` property of a control to `true`, for example:
+
+```bash
+pglet_disable "stack_buttons"
+```
+
+### `pglet_clean`
+
+Cleans children collection of a control, but leaves control itself.
+
+For example, to clean the contents of the entire page:
+
+```bash
+pglet_clean page
+```
+
+### `pglet_remove`
+
+Removes a control and all its children, for example:
+
+```bash
+pglet_remove footer
+```

@@ -120,7 +120,7 @@ function pglet_send() {
     echo "$cmd" > "$conn_id"
 
     # take result if command doesn't end with "f" (fire-and-forget)
-    if [[ "$cmd" =~ \s*\w*f ]]; then
+    if [[ "$cmd" =~ ^[[:space:]]*[A-Za-z]+f ]]; then
         return
     fi
 
@@ -202,7 +202,7 @@ function pglet_wait_event() {
         local conn_id=$PGLET_CONNECTION_ID
     fi
 
-    read PGLET_EVENT_TARGET PGLET_EVENT_NAME PGLET_EVENT_DATA < "$conn_id.events"
+    IFS=' ' read PGLET_EVENT_TARGET PGLET_EVENT_NAME PGLET_EVENT_DATA < "$conn_id.events"
 }
 
 function pglet_dispatch_events() {
