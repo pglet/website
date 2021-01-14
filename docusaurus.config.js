@@ -1,6 +1,6 @@
 module.exports = {
-  title: 'Pglet - Web UI streaming service and toolkit',
-  tagline: 'Easily program rich and secure user interface in any language. No knowledge of HTML, CSS or JavaScript required.',
+  title: 'Pglet - Web UI framework for backend developers',
+  tagline: 'Build web apps like a frontend pro in the language you already know. No knowledge of HTML, CSS or JavaScript required.',
   url: 'https://pglet.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
