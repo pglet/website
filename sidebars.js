@@ -12,7 +12,6 @@ module.exports = {
     ],
     'Pglet service': [
       'pglet-service/overview',
-      'pglet-service/beta',
     ],
     'Reference': [{
       'Controls': [

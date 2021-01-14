@@ -4,6 +4,8 @@ sidebar_label: JavaScript
 slug: javascript
 ---
 
+Node.js can be used to build standalone web apps and dashboards or add web UI to existing scripts, jobs.
+
 ## Installing `pglet` module
 
 Requirements:

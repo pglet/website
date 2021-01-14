@@ -7,7 +7,7 @@ slug: python
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Python 3.7 or higher is required to use Pglet library.
+Python 3.7 or higher is required to build apps with Pglet.
 
 ## Installing `pglet` module
 

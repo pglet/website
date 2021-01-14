@@ -4,6 +4,8 @@ sidebar_label: Bash
 slug: bash
 ---
 
+Bash can be used to build standalone web apps and dashboards or add web UI to existing scripts, jobs.
+
 Requirements:
 
 * Bash, Zsh on Linux or macOS. Windows is not supported.

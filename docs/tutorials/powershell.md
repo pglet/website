@@ -4,6 +4,8 @@ sidebar_label: PowerShell
 slug: powershell
 ---
 
+You can use PowerShell to build standalone web apps or add web UI to existing scripts.
+
 ## Installing `pglet` module
 
 Requirements:
