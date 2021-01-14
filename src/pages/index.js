@@ -8,38 +8,35 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: <>Easy to Use</>,
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
+    title: <>Build web apps in your language</>,
+    imageUrl: 'img/home-languages.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Add rich interactive web UI to your backend apps, scripts, jobs written in <a href="/docs/tutorials/python">Python</a>, <a href="/docs/tutorials/bash">Bash</a>, <a href="/docs/tutorials/powershell">PowerShell</a> or <a href="/docs/tutorials/javascript">Node.js</a>.
       </>
     ),
   },
   {
-    title: <>Focus on What Matters</>,
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
+    title: <>No HTML/CSS/JavaScript required</>,
+    imageUrl: 'img/home-no-html.svg',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Focus on your work rather than fighting with endless JavaScript frameworks, HTML templates, requests parsing or state management.
       </>
     ),
   },
   {
-    title: <>Powered by React</>,
-    imageUrl: 'img/undraw_docusaurus_react.svg',
+    title: <>Zero deployment</>,
+    imageUrl: 'img/home-zero-deploy.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Instantly make your work available on the web by streaming app UI to a central Pglet web server or a hosted Pglet service.
       </>
     ),
   },
 ];
 
-function Feature({imageUrl, title, description}) {
+function Feature({ imageUrl, title, description }) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
     <div className={clsx('col col--4', styles.feature)}>
@@ -56,24 +53,33 @@ function Feature({imageUrl, title, description}) {
 
 function Home() {
   const context = useDocusaurusContext();
-  const {siteConfig = {}} = context;
+  const { siteConfig = {} } = context;
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      title={`${siteConfig.title}`}
       description="Description will go into a meta tag in <head />">
-      <header className={clsx('hero hero--primary', styles.heroBanner)}>
-        <div className="container">
-          <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
-          <div className={styles.buttons}>
-            <Link
-              className={styles.indexCtasGetStartedButton}
-              to={useBaseUrl('docs/')}>
-              Get Started
-            </Link>
+      <div className="container">
+        <header className={clsx('pglet-hero',styles.heroBanner)}>
+          <div className="row">
+            <div className="col col--6">
+              <div className={styles.bkg}></div>
+            </div>
+            <div className="col col--6">
+              <div className={styles.right}>
+                <h1 className="hero__title">{siteConfig.customFields.heroTitle}</h1>
+                <p className="hero__subtitle">{siteConfig.customFields.heroSubTitle}</p>
+                <div className={styles.buttons}>
+                  <Link
+                    className={styles.indexCtasGetStartedButton}
+                    to={useBaseUrl('docs/')}>
+                    Get Started
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
       <main>
         {features && features.length > 0 && (
           <section className={styles.features}>

@@ -1,5 +1,5 @@
 ---
-title: Quit
+title: Quit command
 sidebar_label: Quit
 slug: quit
 ---

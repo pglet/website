@@ -1,5 +1,5 @@
 ---
-title: Add
+title: Add command
 sidebar_label: Add
 slug: add
 ---

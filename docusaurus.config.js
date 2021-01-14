@@ -1,17 +1,22 @@
 module.exports = {
-  title: 'Instant web frontend for internal apps',
+  title: 'Pglet - Web UI streaming service and toolkit',
   tagline: 'Easily program rich and secure user interface in any language. No knowledge of HTML, CSS or JavaScript required.',
   url: 'https://pglet.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'pglet', // Usually your GitHub org/user name.
   projectName: 'pglet.github.io', // Usually your repo name.
+  customFields: {
+    heroTitle: 'Web UI framework for backend developers',
+    heroSubTitle: 'Build web apps like a frontend pro in the language you already know. No knowledge of HTML, CSS or JavaScript required.',
+  },  
   themeConfig: {
     navbar: {
-      title: 'pglet',
+      title: '',
       logo: {
         alt: 'pglet Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo_light.svg',
+        srcDark: 'img/logo_dark.svg',
       },
       items: [
         {
@@ -28,14 +33,19 @@ module.exports = {
         },
       ],
     },
+    prism: {
+      theme: require('prism-react-renderer/themes/github'),
+      darkTheme: require('prism-react-renderer/themes/dracula'),
+      additionalLanguages: ['powershell'],
+    },    
     footer: {
-      style: 'dark',
+      style: 'light',
       links: [
         {
           title: 'Docs',
           items: [
             {
-              label: 'Style Guide',
+              label: 'Getting started',
               to: 'docs/',
             }
           ],

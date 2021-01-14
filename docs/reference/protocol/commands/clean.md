@@ -1,5 +1,5 @@
 ---
-title: Clean
+title: Clean command
 sidebar_label: Clean
 slug: clean
 ---

@@ -1,5 +1,5 @@
 ---
-title: Remove
+title: Remove command
 sidebar_label: Remove
 slug: remove
 ---
