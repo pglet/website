@@ -6,10 +6,26 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  padding: 4rem 0 4rem 0;
+  background: url('/img/hero_back_light.svg') right 60px/115% auto no-repeat;
+}
+
+.bkg {
+  width: auto;
+  height: 400px;
+  background: url('/img/hero_pglet_light.svg') center left/100% 400px no-repeat;
+}
+
+html[data-theme='dark'] .heroBanner {
+  background-image: url('/img/hero_back_dark.svg');
+}
+
+html[data-theme='dark'] .bkg {
+  background-image: url('/img/hero_pglet_dark.svg');
+}
+
+.right {
+  padding: 3rem 5rem 0 0;
 }
 
 @media screen and (max-width: 966px) {
@@ -20,8 +36,7 @@
 
 .buttons {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
 }
 
 .features {
@@ -31,28 +46,37 @@
   width: 100%;
 }
 
+.feature h3 {
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.feature p {
+  text-align: center;
+}
+
 .featureImage {
   height: 200px;
   width: 200px;
 }
 
 .indexCtasGetStartedButton {
-  border: 2px solid var(--ifm-color-secondary);
+  background-color: #bf5efe;
   display: inline-block;
   line-height: 1.2em;
   text-decoration: none !important;
   text-transform: uppercase;
-  transition: background 0.3s, color 0.3s, border 0.3s;
+  transition: background 0.6s;
   border-radius: 8px;
   border-width: 2px;
-  color: var(--ifm-color-secondary);
+  color: #fff;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
   padding: 12px 26px;  
 }
 
 .indexCtasGetStartedButton:hover {
-  color: var(--ifm-color-primary);
-  border-color: var(--ifm-color-secondary-lightest);
-  background-color: var(--ifm-color-secondary-lightest);
+  color: #fff;
+  background-color: #ffa0ad;
 }

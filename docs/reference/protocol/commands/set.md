@@ -1,5 +1,5 @@
 ---
-title: Set
+title: Set command
 sidebar_label: Set
 slug: set
 ---
