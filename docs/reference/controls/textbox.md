@@ -30,7 +30,7 @@ import TabItem from '@theme/TabItem';
   { label: 'Python', value: 'python', },
   { label: 'Bash', value: 'bash', },
   { label: 'PowerShell', value: 'powershell', },
-  { label: 'JavaScript', value: 'javascript', },
+  { label: 'Node.js', value: 'node', },
 ]}>
 
 <TabItem value="python">
@@ -75,7 +75,7 @@ for i in range(5):
 
 </TabItem>
 
-<TabItem value="javascript">
+<TabItem value="node">
 
 ```javascript
 // TODO

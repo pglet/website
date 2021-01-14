@@ -1,7 +1,7 @@
 ---
-title: JavaScript tutorial
-sidebar_label: JavaScript
-slug: javascript
+title: Node.js tutorial
+sidebar_label: Node.js
+slug: node
 ---
 
 Node.js can be used to build standalone web apps and dashboards or add web UI to existing scripts, jobs.

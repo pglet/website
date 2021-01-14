@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
   { label: 'Python', value: 'python', },
   { label: 'Bash', value: 'bash', },
   { label: 'PowerShell', value: 'powershell', },
-  { label: 'JavaScript', value: 'javascript', },
+  { label: 'Node.js', value: 'node', },
 ]}>
 
 <TabItem value="python">
@@ -66,7 +66,7 @@ This could drastically speed up the interaction with a page, but you should be a
 
 </TabItem>
 
-<TabItem value="javascript">
+<TabItem value="node">
 
 ```javascript
 // TODO

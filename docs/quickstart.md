@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
   { label: 'Python', value: 'python', },
   { label: 'Bash', value: 'bash', },
   { label: 'PowerShell', value: 'powershell', },
-  { label: 'JavaScript', value: 'javascript', },
+  { label: 'Node.js', value: 'node', },
 ]}>
 
 <TabItem value="python">
@@ -38,7 +38,7 @@ Install-Module pglet
 
 </TabItem>
 
-<TabItem value="javascript">
+<TabItem value="node">
 
 ```bash
 npm install pglet
@@ -58,7 +58,7 @@ npm install pglet
   { label: 'Python', value: 'python', },
   { label: 'Bash', value: 'bash', },
   { label: 'PowerShell', value: 'powershell', },
-  { label: 'JavaScript', value: 'javascript', },
+  { label: 'Node.js', value: 'node', },
 ]}>
 
 <TabItem value="python">
@@ -101,7 +101,7 @@ Run `hello.ps1` in a PowerShell session and in a new browser window you'll get:
 
 </TabItem>
 
-<TabItem value="javascript">
+<TabItem value="node">
 
 ```javascript title="hello.js"
 const pglet = require("pglet");
@@ -130,7 +130,7 @@ Now let's bring that page to a web, so others can see it.
   { label: 'Python', value: 'python', },
   { label: 'Bash', value: 'bash', },
   { label: 'PowerShell', value: 'powershell', },
-  { label: 'JavaScript', value: 'javascript', },
+  { label: 'Node.js', value: 'node', },
 ]}>
 
 <TabItem value="python">
@@ -166,7 +166,7 @@ Invoke-Pglet "add text value='Hello, world!'"
 
 </TabItem>
 
-<TabItem value="javascript">
+<TabItem value="node">
 
 Add `{ web: true }` option to `pglet.page` call:
 

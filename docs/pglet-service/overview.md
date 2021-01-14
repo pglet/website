@@ -19,7 +19,7 @@ import TabItem from '@theme/TabItem';
   { label: 'Python', value: 'python', },
   { label: 'Bash', value: 'bash', },
   { label: 'PowerShell', value: 'powershell', },
-  { label: 'JavaScript', value: 'javascript', },
+  { label: 'Node.js', value: 'node', },
 ]}>
 
 <TabItem value="python">
@@ -52,7 +52,7 @@ Connect-PgletPage -Web
 
 </TabItem>
 
-<TabItem value="javascript">
+<TabItem value="node">
 
 Add `{ web: true }` option to `pglet.page` or `pglet.app` calls:
 

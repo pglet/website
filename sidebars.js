@@ -8,7 +8,7 @@ module.exports = {
       'tutorials/python',
       'tutorials/bash',
       'tutorials/powershell',
-      'tutorials/javascript',
+      'tutorials/node',
     ],
     'Pglet service': [
       'pglet-service/overview',
