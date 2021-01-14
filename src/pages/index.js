@@ -9,31 +9,28 @@ import styles from './styles.module.css';
 const features = [
   {
     title: <>Build web apps in your language</>,
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
+    imageUrl: 'img/home-languages.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Add rich interactive web UI to your backend apps, scripts, jobs written in <a href="/docs/tutorials/python">Python</a>, <a href="/docs/tutorials/bash">Bash</a>, <a href="/docs/tutorials/powershell">PowerShell</a> or <a href="/docs/tutorials/javascript">Node.js</a>.
       </>
     ),
   },
   {
     title: <>No HTML/CSS/JavaScript required</>,
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
+    imageUrl: 'img/home-no-html.svg',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Focus on your work rather than fighting with endless JavaScript frameworks, HTML templates, requests parsing or state management.
       </>
     ),
   },
   {
     title: <>Zero deployment</>,
-    imageUrl: 'img/undraw_docusaurus_react.svg',
+    imageUrl: 'img/home-zero-deploy.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Instantly make your work available on the web by streaming app UI to a central Pglet web server or a hosted Pglet service.
       </>
     ),
   },

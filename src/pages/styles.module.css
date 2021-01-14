@@ -46,6 +46,16 @@ html[data-theme='dark'] .bkg {
   width: 100%;
 }
 
+.feature h3 {
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.feature p {
+  text-align: center;
+}
+
 .featureImage {
   height: 200px;
   width: 200px;
