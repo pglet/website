@@ -6,6 +6,10 @@ slug: /pglet-service
 
 <p style={{fontSize: '16pt'}}>Pglet Service is a secure, always updated, highly-available and fault-tolerant installation of Pglet server.</p>
 
+:::caution
+Pglet Service is currently in Technical Preview and not intended for running production apps. Use it on your own risk. The service might be unavailable at any time and data could be periodically erased.
+:::
+
 When your program or script using Pglet is ready and tested you can start "streaming" its UI to a centralized Pglet server installed in your organization or a hosted Pglet service.
 
 Use Pglet service if you need to instantly bring your apps to the web rather than dealing with a hosting of your own Pglet server instance and all the related hassle such as securing a web server, installing SSL certificates, updating Pglet server and underlying OS, doing backups.
@@ -80,9 +84,9 @@ https://app.pglet.io/{account_name}/{page_name}
 
 `{page_name}` defaults to a random string under `public` account if not specified for a new page or app. 
 
-## Beta limitations
+## Preview limitations
 
-During the beta Pglet hosted service is working in a public non-authenticated mode with some constraints applied.
+During Preview Pglet Service is working in a public non-authenticated mode with some constraints applied.
 Anonymous clients are tracked by IP address, so there might be situations when many users from the same network quickly exhaust allowed quotas.
 
 ### Pages
