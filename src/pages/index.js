@@ -30,7 +30,7 @@ const features = [
     imageUrl: 'img/home-zero-deploy.svg',
     description: (
       <>
-        Instantly make your work available on the web by streaming app UI to a central Pglet web server or a hosted Pglet service.
+        Instantly make your work available on the web by streaming app UI to a central Pglet web server or a <a href="/docs/pglet-service">hosted Pglet service</a>.
       </>
     ),
   },

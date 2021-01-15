@@ -2,7 +2,8 @@ module.exports = {
   someSidebar: {
     'Getting started': [
       'introduction',
-      'quickstart',
+      'how-it-works',
+      'use-cases',
     ],
     'Tutorials': [
       'tutorials/python',
