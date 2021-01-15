@@ -10,7 +10,7 @@ tags: [pglet, launch]
 
 Today we are officially launching Pglet!
 
-This is not a groundshaking event changing the World and it won't make any ripples on the Internet, but it's still very important milestone for us as it's a good chance to make functionality cut off and present Pglet to the public.
+This is not a groundbreaking event shaking the World and it won't make any ripples on the Internet, but it's still very important milestone for us as it's a good chance to make functionality cut off and present Pglet to the public.
 
 ## What we've got
 
@@ -28,17 +28,17 @@ It's been really exciting to work on Pglet during the last 6 months and we learn
 
 For year 2021 our goal is being able to build and run full-blown backend apps in production. Therefore we are going to work in multiple directions:
 
-### More controls
+### Controls
 
 We are going to add more controls and improve existing ones. Pglet is still missing navigation controls like [menus](https://developer.microsoft.com/en-us/fluentui#/controls/web/nav), [toolbars](https://developer.microsoft.com/en-us/fluentui#/controls/web/commandbar) and [tabs](https://developer.microsoft.com/en-us/fluentui#/controls/web/pivot). [Grid](https://developer.microsoft.com/en-us/fluentui#/controls/web/detailslist) is on top priority, for sure, and it's going to be the huge! Charts will be added as well, so you can build beautiful dashboards.
 
-### Examples
-
-[TBD]
-
 ### Pglet Service
 
-[TBD]
+This year we are going to bring Pglet Service into production mode with a proper persistence, authentication and account/profile dashboards. All Pglet backend UI is going to be implemented with Pglet.
+
+### More docs and examples
+
+We'll be working on providing more [Pglet examples](https://github.com/pglet/examples), we'll write deployment guides for standalone Pglet apps and self-hosted Pglet Server.
 
 ## Conclusion
 
@@ -46,6 +46,7 @@ At this stage we are actively looking for any feedback to understand if the proj
 
 Feel free to [give Pglet a try](/docs/) and let us know what you think! There are multiple feedback channels available:
 
-* [Submit an issue](https://github.com/pglet/pglet/issues) in Pglet repository.
+* [Submit an issue in Pglet repository](https://github.com/pglet/pglet/issues)
 * [Joing a chat in our Discord channel](https://discord.gg/rWjf7xx)
 * [Follow us on Twitter](https://twitter.com/pgletio)
+* [Drop us email](mailto:hello@pglet.io)
