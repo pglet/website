@@ -27,7 +27,7 @@ module.exports = {
         },
         {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/pglet',
+          href: 'https://github.com/pglet/pglet',
           label: 'GitHub',
           position: 'right',
         },
