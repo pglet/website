@@ -71,7 +71,7 @@ Create `hello.sh` with the following contents:
 . pglet.sh
 
 pglet_page
-pglet_add "text value='Hello, world!"
+pglet_add "text value='Hello, world!'"
 ```
 
 Run `sh hello.sh` and in a new browser window you'll get:
@@ -86,7 +86,7 @@ Add `PGLET_WEB=true` before `pglet_page` call:
 
 ```bash {1}
 PGLET_WEB=true pglet_page
-pglet_add "text value='Hello, world!"
+pglet_add "text value='Hello, world!'"
 ```
 
 </TabItem>
