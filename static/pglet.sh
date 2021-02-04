@@ -1,5 +1,5 @@
 # Constants
-PGLET_VER="0.1.12"        # Pglet version required by this script
+PGLET_VER="0.2.0"        # Pglet version required by this script
 
 # Default session variables:
 PGLET_EXE=""             # full path to Pglet executable
@@ -39,6 +39,10 @@ function pglet_page() {
     if [[ "$PGLET_NO_WINDOW" != "" ]]; then
         pargs+=(--no-window)
     fi
+
+    if [[ "$PGLET_TICKER" != "" ]]; then
+        pargs+=(--ticker $PGLET_TICKER)
+    fi    
 
     # execute pglet and get page connection ID
     local page_results=`$PGLET_EXE "${pargs[@]}"`
@@ -85,6 +89,10 @@ function pglet_app() {
     if [[ "$PGLET_NO_WINDOW" != "" ]]; then
         pargs+=(--no-window)
     fi
+
+    if [[ "$PGLET_TICKER" != "" ]]; then
+        pargs+=(--ticker $PGLET_TICKER)
+    fi    
 
     # reset vars
     PGLET_PAGE_URL=""
@@ -228,19 +236,32 @@ function pglet_dispatch_events() {
 }
 
 function __pglet_install() {
-    if [ "$(uname -m)" != "x86_64" ]; then
-        echo "Error: Unsupported architecture $(uname -m). Only x64 binaries are available." 1>&2
-        exit 1
-    fi
 
     if [ "$OS" = "Windows_NT" ]; then
         echo "Error: Bash for Windows is not supported." 1>&2
         exit 1
+    fi
+
+    platform=$(uname -s)
+    if [[ $platform == Darwin ]]; then
+        platform="darwin"
+    elif [[ $platform == Linux ]]; then
+        platform="linux"
     else
-        case $(uname -s) in
-        Darwin) target="darwin-amd64.tar.gz" ;;
-        *) target="linux-amd64.tar.gz" ;;
-        esac
+        echo "Error: Unsupported platform $platform." 1>&2
+        exit 1
+    fi
+
+    arch=$(uname -m)
+    if [[ $arch == x86_64 ]] || [[ $arch == amd64 ]]; then
+        arch="amd64"
+    elif [[ $arch == arm64 ]] || [[ $arch == aarch64 ]]; then
+        arch="arm64"
+    elif [[ $arch == arm* ]]; then
+        arch="arm"
+    else
+        echo "Error: Unsupported architecture $arch." 1>&2
+        exit 1
     fi
 
     # check if pglet.exe is in PATH already (development mode)
@@ -271,13 +292,11 @@ function __pglet_install() {
             mkdir -p "$pglet_bin"
         fi
 
-        local pglet_url="https://github.com/pglet/pglet/releases/download/v${ver}/pglet-${target}"
+        local pglet_url="https://github.com/pglet/pglet/releases/download/v${ver}/pglet-${ver}-${platform}-${arch}.tar.gz"
         local tempTar="$HOME/.pglet/pglet.tar.gz"
         curl -fsSL $pglet_url -o $tempTar
         tar zxf $tempTar -C $pglet_bin
         rm $tempTar
-
-        #echo "OK"
     fi
 }
 
