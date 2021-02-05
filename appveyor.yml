@@ -6,9 +6,16 @@ test: off
 
 build_script:
 - yarn
+- sh: |
+    if [[ "$APPVEYOR_REPO_BRANCH" != "master" ]]; then
+      yarn build
+    fi
 
 deploy_script:
-- git config --global user.name "${GH_NAME}"
-- git config --global user.email "${GH_EMAIL}"
-- echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
-- GIT_USER="${GH_NAME}" yarn deploy
+- sh: |
+    if [[ "$APPVEYOR_REPO_BRANCH" == "master" ]]; then
+      git config --global user.name "${GH_NAME}"
+      git config --global user.email "${GH_EMAIL}"
+      echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
+      GIT_USER="${GH_NAME}" yarn deploy
+    fi
