@@ -21,6 +21,7 @@ module.exports = {
         'reference/controls/stack',
         'reference/controls/text',
         'reference/controls/link',
+        'reference/controls/icon',
         'reference/controls/textbox',
         'reference/controls/button',
         'reference/controls/checkbox',
