@@ -20,6 +20,7 @@ module.exports = {
         'reference/controls/page',
         'reference/controls/stack',
         'reference/controls/text',
+        'reference/controls/link',
         'reference/controls/textbox',
         'reference/controls/button',
         'reference/controls/checkbox',
