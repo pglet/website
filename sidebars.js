@@ -43,6 +43,7 @@ module.exports = {
             'reference/protocol/commands/set',
             'reference/protocol/commands/get',
             'reference/protocol/commands/clean',
+            'reference/protocol/commands/replace',
             'reference/protocol/commands/remove',
             'reference/protocol/commands/quit'        
           ],

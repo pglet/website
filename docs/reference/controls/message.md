@@ -65,9 +65,7 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="bash">
 
-```bash
 [Message control live demo in Bash](https://repl.it/@pglet/bash-messages-example)
-```
 
 </TabItem>
 
