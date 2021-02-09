@@ -33,7 +33,9 @@ module.exports = {
         'reference/controls/dropdown',
         'reference/controls/choicegroup',
         'reference/controls/progress',
-        'reference/controls/spinner'
+        'reference/controls/spinner',
+        'reference/controls/tabs',
+        'reference/controls/nav',
       ],
       'Pglet protocol': [
         'reference/protocol/overview',
