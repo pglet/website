@@ -23,8 +23,10 @@ module.exports = {
         'reference/controls/link',
         'reference/controls/icon',
         'reference/controls/textbox',
-        'reference/controls/button',
         'reference/controls/checkbox',
+        'reference/controls/toggle',
+        'reference/controls/slider',
+        'reference/controls/button',
         'reference/controls/dropdown',
         'reference/controls/progress',
         'reference/controls/spinner'
