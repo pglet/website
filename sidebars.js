@@ -26,8 +26,10 @@ module.exports = {
         'reference/controls/checkbox',
         'reference/controls/toggle',
         'reference/controls/slider',
+        'reference/controls/spinbutton',
         'reference/controls/button',
         'reference/controls/dropdown',
+        'reference/controls/choicegroup',
         'reference/controls/progress',
         'reference/controls/spinner'
       ],

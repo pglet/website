@@ -10,7 +10,7 @@ A slider provides a visual indication of adjustable content, as well as the curr
 
 | Name      | Type    | Default | Description |
 | --------- | ------- | ------- | ----------- |
-| `value`   | bool    | `false` | Current value of the slider. |
+| `value`   | number  |         | Current value of the slider. |
 | `label`   | string  |         | Description label of the slider. |
 | `min`     | number  |         | The min value of the slider. |
 | `max`     | number  |         | The max value of the slider. |

@@ -15,6 +15,7 @@ Button allows to trigger an action.
 | `primary`      | bool   | `false` | The button with a theme color background. Usually, there is only one primary button on a form. |
 | `text`         | string |         | The text displayed on a button. |
 | `disabled`     | string |         | Whether the button is disabled. |
+| `data`         | string  |         | Additional data attached to the control. The value is passed in `click` event data. |
 
 ## Events
 
