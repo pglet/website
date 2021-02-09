@@ -23,6 +23,7 @@ module.exports = {
         'reference/controls/link',
         'reference/controls/icon',
         'reference/controls/textbox',
+        'reference/controls/searchbox',
         'reference/controls/checkbox',
         'reference/controls/toggle',
         'reference/controls/slider',

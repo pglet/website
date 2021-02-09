@@ -18,6 +18,13 @@ Represents a textbox element with optional label, hint and validation messages.
 | `multiline`    | bool   | `false` | Whether or not the text field is a multiline text field. |
 | `align`        | string | `left`  | Text alignment within textbox: `left` or `right`. |
 | `password`     | bool   | `false` | Whether the textbox is a masked field for entering password. |
+| `onChange`     | bool   | `false` | Whether `change` event should be fired while text is typed into the Textbox. |
+
+## Events
+
+| Name      | Description |
+| --------- | ----------- |
+| `change`  | Fires when the typed input for the Textbox has changed. For performance optimization this event is disabled unless `onChange` property set to `true`. |
 
 ## Examples
 
