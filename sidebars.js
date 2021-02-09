@@ -20,6 +20,7 @@ module.exports = {
         'reference/controls/page',
         'reference/controls/stack',
         'reference/controls/text',
+        'reference/controls/message',
         'reference/controls/link',
         'reference/controls/icon',
         'reference/controls/textbox',

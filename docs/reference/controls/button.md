@@ -6,8 +6,6 @@ slug: button
 
 Button allows to trigger an action.
 
-[IMAGE]
-
 ## Properties
 
 | Name           | Type   | Default | Description |
