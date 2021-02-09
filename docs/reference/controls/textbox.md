@@ -6,8 +6,6 @@ slug: textbox
 
 Represents a textbox element with optional label, hint and validation messages.
 
-[IMAGE]
-
 ## Properties
 
 | Name           | Type   | Default | Description |

@@ -8,7 +8,7 @@ A dropdown is a list in which the selected item is always visible while other it
 
 [IMAGE]
 
-## Dropdown properties
+## Properties
 
 | Name           | Type    | Default | Description |
 | -------------- | ------- | ------- | ----------- |
@@ -17,20 +17,24 @@ A dropdown is a list in which the selected item is always visible while other it
 | `placeholder`  | string  |         | The short hint displayed in the dropdown before the user selects a value. |
 | `errorMessage` | string  |         | Static error message displayed below the dropdown. |
 
-## Option control
-
-`Option` represents an item within dropdown list.
-
-| Name           | Type    | Default | Description |
-| -------------- | ------- | ------- | ----------- |
-| `key`          | string  |         | Option's key. |
-| `text`         | string  |         | Option's display text. |
-
 ## Events
 
 | Name      | Description |
 | --------- | ----------- |
 | `change`  | Fires when the value of dropdown is changed. |
+
+## Child controls
+
+* [`Option`](#option-control)
+
+## `Option` control
+
+`Option` represents an item within dropdown list.
+
+| Name           | Type    | Default | Description |
+| -------------- | ------- | ------- | ----------- |
+| `key`          | string  |         | Mandatory. Option's key. |
+| `text`         | string  |         | Option's display text. `key` value will be used instead if `text` is not specified. |
 
 
 ## Examples
@@ -77,9 +81,7 @@ favorite_color = page.get_value(dd1)
 
 <TabItem value="bash">
 
-```bash
-# TODO
-```
+[Dropdown control live demo in Bash](https://repl.it/@pglet/bash-dropdown-example)
 
 </TabItem>
 
