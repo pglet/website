@@ -7,7 +7,7 @@ test: off
 build_script:
 - yarn
 - sh: |
-    if [[ "$APPVEYOR_REPO_BRANCH" != "master" ]]; then
+    if [[ "$APPVEYOR_REPO_BRANCH" != "master" || "$APPVEYOR_PULL_REQUEST_NUMBER" != "" ]]; then
       yarn build
     fi
 
