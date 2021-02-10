@@ -37,6 +37,8 @@ module.exports = {
         'reference/controls/tabs',
         'reference/controls/nav',
         'reference/controls/toolbar',
+        'reference/controls/dialog',
+        'reference/controls/panel',
       ],
       'Pglet protocol': [
         'reference/protocol/overview',

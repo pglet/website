@@ -22,7 +22,6 @@ Button allows to trigger an action.
 | `title`        | string |         | Popup hint for the button. |
 | `icon`         | string |         | Icon shown in the button. |
 | `iconColor`    | string |         | Icon color. |
-| `disabled`     | string |         | Whether the button is disabled. |
 | `data`         | string |         | Additional data attached to the control. The value is passed in `click` event data. |
 
 ## Events
