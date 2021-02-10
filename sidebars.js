@@ -36,6 +36,7 @@ module.exports = {
         'reference/controls/spinner',
         'reference/controls/tabs',
         'reference/controls/nav',
+        'reference/controls/toolbar',
       ],
       'Pglet protocol': [
         'reference/protocol/overview',
