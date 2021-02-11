@@ -31,7 +31,7 @@ Represents a tab within Tabs control.
 
 | Name            | Type   | Default | Description |
 | --------------- | ------ | ------- | ----------- |
-| `key`           | string |         | An key to uniquely identify a tab. Tab's control ID is used if `key` is not specified.  |
+| `key`           | string |         | An key to uniquely identify a tab. `text` value is used if `key` is not specified.  |
 | `text`          | string |         | The text displayed of each tab link. `key` value is used if `text` is not specified. |
 | `icon`          | string |         | An optional icon to show next to the tab link. |
 | `count`         | string |         | Defines an optional item count displayed in parentheses just after the linkText. Examples: Completed (4), Unread (99+). |

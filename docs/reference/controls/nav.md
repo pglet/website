@@ -16,7 +16,9 @@ A navigation pane provides links to the main areas of an app or site.
 
 | Name      | Description |
 | --------- | ----------- |
-| `click`  | Fires when the selected nav item is changed. |
+| `change`  | Fires when the selected nav item is changed. |
+| `expand`  | Fires when nav item is expanded. Item's `key` is passed in event data. |
+| `collapse`  | Fires when nav item is collapsed. Item's `key` is passed in event data. |
 
 ## Child controls
 
@@ -30,7 +32,7 @@ Represents a link item within Nav control.
 
 | Name            | Type   | Default | Description |
 | --------------- | ------ | ------- | ----------- |
-| `key`           | string |         | An key to uniquely identify a link. Item's control ID is used if `key` is not specified.  |
+| `key`           | string |         | An key to uniquely identify a link. `text` value is used if `key` is not specified.  |
 | `text`          | string |         | Text to render for this link. `key` value is used if `text` is not specified. |
 | `icon`          | string |         | An optional icon to show next to the nav link. |
 | `iconColor`     | string |         | Icon color. |

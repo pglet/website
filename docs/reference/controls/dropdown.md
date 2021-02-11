@@ -32,7 +32,7 @@ A dropdown is a list in which the selected item is always visible while other it
 
 | Name           | Type    | Default | Description |
 | -------------- | ------- | ------- | ----------- |
-| `key`          | string  |         | Mandatory. Option's key. |
+| `key`          | string  |         | Option's key. `text` value will be used instead if `key` is not specified. |
 | `text`         | string  |         | Option's display text. `key` value will be used instead if `text` is not specified. |
 
 

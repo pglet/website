@@ -30,7 +30,7 @@ Radio buttons let people select a single option from two or more choices.
 
 | Name           | Type    | Default | Description |
 | -------------- | ------- | ------- | ----------- |
-| `key`          | string  |         | Mandatory. Option's key. |
+| `key`          | string  |         | Option's key. `text` value will be used instead if `key` is not specified. |
 | `text`         | string  |         | Option's display text. `key` value will be used instead if `text` is not specified. |
 | `icon`         | string  |         | Icon name to display with this option. |
 

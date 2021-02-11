@@ -11,15 +11,14 @@ A banner displays errors, warnings, or important information about an open app o
 | Name            | Type   | Default | Description |
 | --------------- | ------ | ------- | ----------- |
 | `value`         | string |         | Message text. |
-| `info`          | bool   | `true`  | Info type of message. |
-| `error`         | bool   | `false` | Error type of message. |
-| `blocked`       | bool   | `false` | Blocked type of message. |
-| `severeWarning` | bool   | `false` | Severe warning type of message. |
-| `success`       | bool   | `false` | Success type of message. |
-| `warning`       | bool   | `false` | Warning type of message. |
+| `type`          | string | `info`  | Message type: `info` (default), `error`, `blocked`, `severeWarning`, `success`, `warning` |
 | `multiline`     | bool   | `false` | Determines if the message bar is multi lined. If false, and the text overflows over buttons or to another line, it is clipped. |
 | `truncated`     | bool   | `false` | Determines if the message bar text is truncated. If true, a button will render to toggle between a single line view and multiline view. This prop is for single line message bars with no buttons only in a limited space scenario. |
 | `dismiss`       | bool   | `false` | Whether to display "dismiss" button. |
+| `icon`          | string |         | Custom icon to replace the message bar icon. If unset, default will be the icon set by message `type`. |
+| `iconColor`     | string |         | Message icon color. |
+| `dismissIcon`   | string |         | Custom icon to replace the dismiss icon. If unset, default will be "Clear" icon. |
+| `dismissIconColor` | string |      | Custom dismiss icon color. |
 | `data`          | string |         | Additional data attached to the control. The value is passed in `click` event data. |
 
 ## Events
