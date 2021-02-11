@@ -6,20 +6,20 @@ slug: checkbox
 
 Checkbox allows to select one or more items from a group, or switch between two mutually exclusive options (checked or unchecked, on or off).
 
-[IMAGE]
-
 ## Properties
 
 | Name      | Type    | Default | Description |
 | --------- | ------- | ------- | ----------- |
 | `value`   | bool    | `false` | Current value of the checkbox. |
 | `label`   | string  |         | Label to display next to the checkbox. |
+| `boxSide`   | string  | `start` | Allows you to set the checkbox to be at the before (start) or after (end) the label. |
+| `data`     | string  |         | Additional data attached to the control. The value is passed in `change` event data along with a checkbox state. |
 
 ## Events
 
 | Name      | Description |
 | --------- | ----------- |
-| `change`  | Fires when the value of checkbox is changed. |
+| `change`  | Fires when the state of checkbox is changed. |
 
 
 ## Examples

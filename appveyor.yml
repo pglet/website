@@ -1,3 +1,5 @@
+skip_branch_with_pr: true
+
 image: ubuntu
 
 stack: node 12
@@ -7,7 +9,7 @@ test: off
 build_script:
 - yarn
 - sh: |
-    if [[ "$APPVEYOR_REPO_BRANCH" != "master" ]]; then
+    if [[ "$APPVEYOR_REPO_BRANCH" != "master" || "$APPVEYOR_PULL_REQUEST_NUMBER" != "" ]]; then
       yarn build
     fi
 

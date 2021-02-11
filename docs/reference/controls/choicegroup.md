@@ -1,26 +1,24 @@
 ---
-title: Dropdown
-sidebar_label: Dropdown
-slug: dropdown
+title: ChoiceGroup
+sidebar_label: ChoiceGroup
+slug: choicegroup
 ---
 
-A dropdown is a list in which the selected item is always visible while other items are visible on demand by clicking a dropdown button. Dropdowns are typically used for forms.
+Radio buttons let people select a single option from two or more choices.
 
 ## Properties
 
 | Name           | Type    | Default | Description |
 | -------------- | ------- | ------- | ----------- |
 | `value`        | string  |         | `key` value of the selected option. |
-| `label`        | string  |         | Label to display above the control. |
-| `placeholder`  | string  |         | The short hint displayed in the dropdown before the user selects a value. |
-| `errorMessage` | string  |         | Static error message displayed below the dropdown. |
-| `data`         | string  |         | Additional data attached to the control. The value is passed in `change` event data along with a dropdown selected value. |
+| `label`        | string  |         | Descriptive label for the choice group. |
+| `data`         | string  |         | Additional data attached to the control. The value is passed in `change` event data along with a ChoiceGroup selected value. |
 
 ## Events
 
 | Name      | Description |
 | --------- | ----------- |
-| `change`  | Fires when the value of dropdown is changed. |
+| `change`  | Fires when the choice has been changed. |
 
 ## Child controls
 
@@ -28,13 +26,13 @@ A dropdown is a list in which the selected item is always visible while other it
 
 ## `Option` control
 
-`Option` represents an item within dropdown list.
+`Option` represents an item within ChoiceGroup.
 
 | Name           | Type    | Default | Description |
 | -------------- | ------- | ------- | ----------- |
 | `key`          | string  |         | Option's key. `text` value will be used instead if `key` is not specified. |
 | `text`         | string  |         | Option's display text. `key` value will be used instead if `text` is not specified. |
-
+| `icon`         | string  |         | Icon name to display with this option. |
 
 ## Examples
 
@@ -50,10 +48,10 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="python">
 
-Adding a new dropdown with a couple of options defined as tuples:
+Adding a new ChoiceGroup with a couple of options defined as tuples:
 
 ```python
-dd1 = page.add(Dropdown(label="Favorite color:", options=[
+cg1 = page.add(ChoiceGroup(label="Favorite color:", options=[
     ("r", "Red"),
     ("g", "Green"),
     ("b", "Blue")
@@ -63,7 +61,7 @@ dd1 = page.add(Dropdown(label="Favorite color:", options=[
 or as `Option` controls:
 
 ```python
-dd1 = page.add(Dropdown(label="Favorite color:", options=[
+cg1 = page.add(ChoiceGroup(label="Favorite color:", options=[
     Option("r", "Red"),
     Option("g", "Green"),
     Option("b", "Blue")
@@ -73,14 +71,14 @@ dd1 = page.add(Dropdown(label="Favorite color:", options=[
 Get the key of selected option:
 
 ```python
-favorite_color = page.get_value(dd1)
+favorite_color = page.get_value(cg1)
 ```
 
 </TabItem>
 
 <TabItem value="bash">
 
-[Dropdown control live demo in Bash](https://repl.it/@pglet/bash-dropdown-example)
+[ChoiceGroup control live demo in Bash](https://repl.it/@pglet/bash-choicegroup-example)
 
 </TabItem>
 
