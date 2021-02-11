@@ -1,5 +1,5 @@
 # Constants
-PGLET_VER="0.2.0"        # Pglet version required by this script
+PGLET_VER="0.2.1"        # Pglet version required by this script
 
 # Default session variables:
 PGLET_EXE=""             # full path to Pglet executable
