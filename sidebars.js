@@ -23,6 +23,7 @@ module.exports = {
         'reference/controls/message',
         'reference/controls/link',
         'reference/controls/icon',
+        'reference/controls/image',
         'reference/controls/textbox',
         'reference/controls/searchbox',
         'reference/controls/checkbox',
@@ -40,6 +41,7 @@ module.exports = {
         'reference/controls/dialog',
         'reference/controls/panel',
         'reference/controls/grid',
+        'reference/controls/vertical-bar-chart',
       ],
       'Pglet protocol': [
         'reference/protocol/overview',

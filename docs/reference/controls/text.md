@@ -11,6 +11,7 @@ Text is a control for displaying text.
 | Name      | Type    | Default | Description |
 | --------- | ------- | ------- | ----------- |
 | `value`   | string  |         | The text displayed. |
+| `markdown` | bool  | `false` | Treat `value` as [markdown](https://remarkjs.github.io/react-markdown/). [GitHub Flavored Markdown](https://github.github.com/gfm/) is supported. |
 | `align`   | string  | `left`  | `left`, `center`, `right`, `justify`  |
 | `verticalAlign`   | string  |   | `top`, `center`, `bottom`  |
 | `size`    | string  |         | `tiny`, `xSmall`, `small`, `smallPlus`, `medium`, `mediumPlus`, `large`, `xLarge`, `xxLarge`, `superLarge`, `mega`  |
@@ -22,6 +23,9 @@ Text is a control for displaying text.
 | `color`   | string  |         | Font color. |
 | `bgcolor` | string  |         | Text background color. |
 | `border`  | string  |         | Border around text in `<width> <style> <color>` format, e.g. `1px solid #550000` |
+| `borderStyle` | string  |         | Border style: `dotted`, `dashed`, `solid`, `double`, `groove`, `ridge`, `inset`, `outset` |
+| `borderWidth` | string  |         | Border width, e.g. `1`. |
+| `borderColor` | string  |         | Border color. |
 | `borderRadius` | string  |         | Border radius. |
 | `borderLeft`   | string  |         | Border of the left side of text in `<width> <style> <color>` format, e.g. `1px solid #550000` |
 | `borderRight`  | string  |         | Border of the right side of text in `<width> <style> <color>` format, e.g. `1px solid #550000` |

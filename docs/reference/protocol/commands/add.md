@@ -11,6 +11,7 @@ add <control-type>
   [id=<string>]
   [to=<string>]
   [at=<int>]
+  [trim=<int>]
   property1=value
   property2=value
   ...
@@ -58,3 +59,42 @@ Parent control ID. If not specified the control is added to the bottom of the pa
 ### `at`
 
 Insert control at the specified position in the children collection.
+
+### `trim`
+
+`trim` allows to specify the maximum number of children to leave after adding new child controls.
+Negative `trim` value trims items from the end; positive - from the start.
+
+For example, if we have the following controls tree:
+
+```
+page
+  stack id=lines
+    text value='Line 1'
+    text value='Line 2'
+    text value='Line 3'
+```
+
+Running `add to=lines trim=3 text value='Line 4'` will result into:
+
+```
+page
+  stack id=lines
+    text value='Line 2'
+    text value='Line 3'
+    text value='Line 4'
+```
+
+so controls were trimmed from the start to have a total number of children at `3`.
+
+On the other hand, running `add to=lines at=0 trim=-3 text value='Line 4'` will result into:
+
+```
+page
+  stack id=lines
+    text value='Line 4'
+    text value='Line 1'
+    text value='Line 2'
+```
+
+so new control was insterted to `lines` stack at position 0 and controls were trimmed from the end to have a total number of children at `3`.

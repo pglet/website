@@ -23,6 +23,11 @@ Stacks can be nested inside one another in order to be able to configure the lay
 | `horizontalAlign` | string    |         | Defines how to align stack children horizontally: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly`, `baseline` or `stretch`. |
 | `verticalAlign`   | string    |         | Defines how to align stack children vertically: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly`, `baseline` or `stretch`. |
 | `gap`             | string    |         | A gap between stack child controls. |
+| `wrap`            | bool      | `false` | Defines whether Stack children should wrap onto multiple rows or columns when they are about to overflow the size of the Stack. |
+
+### Child controls
+
+* Any control - will be rendered in the body of the stack.
 
 ## Examples
 
