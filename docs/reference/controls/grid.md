@@ -52,7 +52,7 @@ Describes Grid column.
 | Name            | Type   | Default | Description |
 | --------------- | ------ | ------- | ----------- |
 | `name`          | string |         | Column header text. |
-| `iconName`      | string |         | Column header icon next to the text. |
+| `icon`      | string |         | Column header icon next to the text. |
 | `iconOnly`      | bool   | `false` | Display only header icon. |
 | `fieldName`     | string |         | Item's property name to display in the column. |
 | `sortable`      | string |         | Whether client-side sorting is enabled for this column. Supported values: `true` - column is sortable as a string; `number` - column is sortable as a number; `false` or empty - column is not sortable. |
