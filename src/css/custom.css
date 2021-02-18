@@ -77,6 +77,26 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
+.control-screenshot {
+  padding: 10px;
+  text-align: center;
+}
+
+.control-demo {
+  color: var(--ifm-color-secondary-lightest);
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: var(--ifm-color-primary);
+  transition: background 0.6s;
+}
+
+.control-demo:hover {
+  color: var(--ifm-color-secondary-lightest);
+  text-decoration: none;
+  background-color: var(--ifm-color-primary-darkest);
+}
+
 /* Dark theme */
 html[data-theme='dark']:root {
   --pglet-link-color: #bf5efe;

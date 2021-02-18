@@ -26,7 +26,7 @@ A navigation pane provides links to the main areas of an app or site.
 
 ## `Item` control
 
-Represents a link item within Nav control.
+Represents a group or a link item within Nav control. Top level `item` controls are rendered as groups.
 
 ### Properties
 
@@ -38,8 +38,7 @@ Represents a link item within Nav control.
 | `iconColor`     | string |         | Icon color. |
 | `url`           | string |         | URL to navigate to for this link. |
 | `newWindow`     | bool   | `false` | Whether to open link in a new browser window. |
-| `expanded`      | bool   | `false` | Whether or not the link is in an expanded state. |
-| `collapsed`     | bool   | `false` | If true, the group should render collapsed by default. |
+| `expanded`      | bool   | `false` | Whether or not the link is in an expanded state. By default group is expanded and link is collapsed. |
 
 ### Child controls
 

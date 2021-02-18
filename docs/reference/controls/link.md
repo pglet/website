@@ -13,6 +13,7 @@ Link navigates to an external web page or initiate command within the app.
 | `value`   | string  |         | Link text. |
 | `url`     | string  |         | Link URL to navigate. If `url` is not specified the link will be firing `click` event. |
 | `newWindow`    | bool    | `false` | Whether to open link in a new browser window. |
+| `title`        | string |         | Popup hint for the link. |
 | `size`    | string  |         | `tiny`, `xSmall`, `small`, `smallPlus`, `medium`, `mediumPlus`, `large`, `xLarge`, `xxLarge`, `superLarge`, `mega`  |
 | `bold`    | bool    | `false` | Whether font weight is bold. |
 | `italic`  | bool    | `false` | Whether font style is italic. |
@@ -23,7 +24,11 @@ Link navigates to an external web page or initiate command within the app.
 
 | Name      | Description |
 | --------- | ----------- |
-| `click`   | Fires when a user clicks the link with no `url` specified. This case link acts as a button. |
+| `click`   | Fires when a user clicks the link. |
+
+## Child controls
+
+* Any control - will be wrapped by the link.
 
 ## Examples
 

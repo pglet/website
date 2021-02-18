@@ -36,6 +36,10 @@ Represents a tab within Tabs control.
 | `icon`          | string |         | An optional icon to show next to the tab link. |
 | `count`         | string |         | Defines an optional item count displayed in parentheses just after the linkText. Examples: Completed (4), Unread (99+). |
 
+### Child controls
+
+* Any control - will be rendered in the body of the tab.
+
 ## Examples
 
 import Tabs from '@theme/Tabs';
