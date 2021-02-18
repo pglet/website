@@ -55,7 +55,7 @@ Describes Grid column.
 | `iconName`      | string |         | Column header icon next to the text. |
 | `iconOnly`      | bool   | `false` | Display only header icon. |
 | `fieldName`     | string |         | Item's property name to display in the column. |
-| `sortable`      | string |         | Whether client-side sorting is enabled for this column. |
+| `sortable`      | string |         | Whether client-side sorting is enabled for this column. Supported values: `true` - column is sortable as a string; `number` - column is sortable as a number; `false` or empty - column is not sortable. |
 | `sortField`     | string |         | Item's property name used for sorting. Sort by `fieldName` if not specified. |
 | `sorted`        | string | `false` | Whether the items are sorted by `sortField` or `fieldName` and in what direction. Supported values: `false` (unsorted), `asc` or `desc`. |
 | `resizable`     | bool   | `false` | Whether the column is resizable. |
