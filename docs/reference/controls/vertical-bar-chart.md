@@ -6,6 +6,12 @@ slug: vertical-bar-chart
 
 Vertical Bar Chart (`VerticalBarChart`) is a chart control.
 
+<div class="control-screenshot">
+  <img src="/img/blog/pglet-0-2-2/vertical-bar-chart-example.png" width="60%" />
+</div>
+
+<a class="control-demo" href="https://repl.it/@pglet/bash-vertical-bar-chart-example" target="_blank">Live Demo</a>
+
 ## Properties
 
 | Name       | Type   | Default | Description |

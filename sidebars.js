@@ -17,31 +17,59 @@ module.exports = {
     'Reference': [{
       'Controls': [
         'reference/controls/overview',
-        'reference/controls/page',
-        'reference/controls/stack',
-        'reference/controls/text',
-        'reference/controls/message',
-        'reference/controls/link',
-        'reference/controls/icon',
-        'reference/controls/image',
-        'reference/controls/textbox',
-        'reference/controls/searchbox',
-        'reference/controls/checkbox',
-        'reference/controls/toggle',
-        'reference/controls/slider',
-        'reference/controls/spinbutton',
-        'reference/controls/button',
-        'reference/controls/dropdown',
-        'reference/controls/choicegroup',
-        'reference/controls/progress',
-        'reference/controls/spinner',
-        'reference/controls/tabs',
-        'reference/controls/nav',
-        'reference/controls/toolbar',
-        'reference/controls/dialog',
-        'reference/controls/panel',
-        'reference/controls/grid',
-        'reference/controls/vertical-bar-chart',
+        {
+          'Layout': [
+            'reference/controls/page',
+            'reference/controls/stack',
+            'reference/controls/text',
+            'reference/controls/icon',
+            'reference/controls/image',
+          ]
+        },        
+        {
+          'Basic inputs': [
+            'reference/controls/button',
+            'reference/controls/checkbox',
+            'reference/controls/choicegroup',
+            'reference/controls/dropdown',
+            'reference/controls/link',
+            'reference/controls/message',
+            'reference/controls/searchbox',
+            'reference/controls/slider',
+            'reference/controls/spinbutton',
+            'reference/controls/textbox',
+            'reference/controls/toggle',
+          ]
+        },
+        {
+          'Commands & Navs': [
+            'reference/controls/nav',
+            'reference/controls/toolbar',
+            'reference/controls/tabs',
+          ]
+        },        
+        {
+          'Lists & Grids': [
+            'reference/controls/grid',
+          ]
+        },
+        {
+          'Progress': [
+            'reference/controls/progress',
+            'reference/controls/spinner',
+          ]
+        },
+        {
+          'Surfaces': [
+            'reference/controls/dialog',
+            'reference/controls/panel',
+          ]
+        },
+        {
+          'Charts': [
+            'reference/controls/vertical-bar-chart',
+          ]
+        },        
       ],
       'Pglet protocol': [
         'reference/protocol/overview',
