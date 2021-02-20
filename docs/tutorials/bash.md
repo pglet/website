@@ -187,9 +187,9 @@ or just omit page name, so it will be randomly generated. Look at [this article]
 
 ## Escaping command parameters
 
-Pglet command must be written in a single line, therefore new lines and quotes in command arguments must be properly escaped. Also, if an argument value contains spaces it must be surrounded with single or double quotes. 
+Pglet command must be written in a single line, therefore new line symbols (`CR`) must be replaced with `\n`. If a command argument value contains spaces it must be surrounded with single or double quotes.
 
-For example, you want to add a new `text` control with the following contents:
+For example, you want to add a new `text` control with the following contents having new lines, single and double quotes:
 
 ```
 Line 1
@@ -203,7 +203,7 @@ Command should look like:
 pglet_add "text pre value=\"Line 1\nLine's 2\nLine \\\"3\\\"\""
 ```
 
-Notice, new lines are replaced with `\n`, double quotes replaced with `\\\"`.
+Notice, new lines `{CR}` are replaced with `\n`, double quotes `"` replaced with `\"`.
 
 The value in double quotes can have unescaped single quotes inside and vice versa, for example:
 
