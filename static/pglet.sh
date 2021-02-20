@@ -332,7 +332,7 @@ function __pglet_install() {
 
     if [[ "$installed_ver" != "$ver" ]]; then
 
-        killall -9 pglet
+        pkill pglet
 
         printf "Installing Pglet v$ver to $pglet_dir..."
 
