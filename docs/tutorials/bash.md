@@ -12,13 +12,25 @@ Requirements:
 
 ## Installing `pglet.sh`
 
-`pglet.sh` script contains Bash functions to work with Pglet and therefore must be dot-sourced in every script using Pglet.
+`pglet.sh` script contains Bash functions to work with Pglet and could be dot-sourced in your scripts using Pglet.
 
 To download `pglet.sh` run the following command:
 
 ```bash
 curl -O https://pglet.io/pglet.sh
 ```
+
+During the first run of `pglet.sh` Pglet binary will be downloaded to `$HOME/.pglet/bin` directory.
+
+If you want to install Pglet binary into a custom directory you can define `PGLET_INSTALL_DIR` environment variable. For example to install Pglet binary to `/usr/local/bin` directory run:
+
+```bash
+PGLET_INSTALL_DIR=/usr/local/bin sudo bash pglet.sh
+```
+
+:::note
+Custom installation directory must be in `$PATH`.
+:::
 
 ## Creating a page
 
@@ -173,6 +185,65 @@ PGLET_WEB=true pglet_app "john/greeter-app" main
 
 or just omit page name, so it will be randomly generated. Look at [this article](/docs/pglet-service) to understand how page naming works.
 
+## Escaping command parameters
+
+Pglet command must be written in a single line, therefore new line symbols (`CR`) must be replaced with `\n`. If a command argument value contains spaces it must be surrounded with single or double quotes.
+
+For example, you want to add a new `text` control with the following contents having new lines, single and double quotes:
+
+```
+Line 1
+Line's 2
+Line "3"
+```
+
+Command should look like:
+
+```bash
+pglet_add "text pre value=\"Line 1\nLine's 2\nLine \\\"3\\\"\""
+```
+
+Notice, new lines `{CR}` are replaced with `\n`, double quotes `"` replaced with `\"`.
+
+The value in double quotes can have unescaped single quotes inside and vice versa, for example:
+
+```bash
+text value='something in "double quotes"'
+```
+
+or
+
+```bash
+text value="let's try a single 'quotes' inside"
+```
+
+`pglet.sh` includes helper functions to help you with strings escaping:
+
+* [`escape_sq_str()`](#escape_sq_str) - takes string in `$1` argument and escapes new lines and single quotes.
+* [`escape_dq_str()`](#escape_dq_str) - takes string in `$1` argument and escapes new lines and double quotes.
+* [`escape_sq_cmd()`](#escape_sq_cmd) - takes command with arguments, runs it and escapes new lines and single quotes in command result.
+* [`escape_dq_cmd()`](#escape_dq_cmd) - takes command with arguments, runs it and escapes new lines and double quotes in command result.
+
+Example 1:
+
+```bash
+function main() {
+  local t=$(escape_sq_cmd curl http://echo.jsontest.com/key/value/one/two)
+  pglet_send "add text pre value='$t'"
+}
+pglet_app "index" "main"
+```
+
+Example 2:
+
+```bash
+function main() {
+  local t2=$(escape_dq_str $(curl -s http://echo.jsontest.com/key/value/one/two | jq '.one'))
+  pglet_add "text pre value=\"$t2\""
+}
+pglet_app "index" "main"
+```
+
 ## `pglet.sh` reference
 
 ### `pglet_page`
@@ -311,4 +382,76 @@ Removes a control and all its children, for example:
 
 ```bash
 pglet_remove footer
+```
+
+### `escape_sq_str`
+
+Takes string in `$1` argument and escapes new lines and single quotes.
+
+For example, running the following script:
+
+```bash
+s='{
+   "one": "two",
+   "key": "value"
+}'
+escape_sq_str "$s"
+```
+
+will output:
+
+```
+{\n "one": "two",\n "key": "value"\n}
+```
+
+### `escape_dq_str`
+
+Takes string in `$1` argument and escapes new lines and double quotes.
+
+For example, running the following script:
+
+```bash
+s='{
+   "one": "two",
+   "key": "value"
+}'
+escape_dq_str "$s"
+```
+
+will output:
+
+```
+{\n \"one\": \"two\",\n \"key\": \"value\"\n}
+```
+
+### `escape_sq_cmd`
+
+Executes command `$@` and then escapes new lines and single quotes in the command result.
+
+For example, running the following script:
+
+```bash
+escape_sq_cmd curl -s http://echo.jsontest.com/key/value/one/two
+```
+
+will output:
+
+```
+{\n "one": "two",\n "key": "value"\n}
+```
+
+### `escape_dq_cmd`
+
+Executes command `$@` and then escapes new lines and double quotes in the command result.
+
+For example, running the following script:
+
+```bash
+escape_dq_cmd curl -s http://echo.jsontest.com/key/value/one/two
+```
+
+will output:
+
+```
+{\n \"one\": \"two\",\n \"key\": \"value\"\n}
 ```
