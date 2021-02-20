@@ -1,5 +1,9 @@
 # Constants
-PGLET_VER="0.2.2"        # Pglet version required by this script
+PGLET_VER="0.2.2"                             # Pglet version required by this script
+PGLET_DEFAULT_INSTALL_DIR="$HOME/.pglet/bin"  # Default installation directory
+
+# Installation variables
+PGLET_INSTALL_DIR=""                          # Custom installation directory
 
 # Default session variables:
 PGLET_EXE=""             # full path to Pglet executable
@@ -235,6 +239,40 @@ function pglet_dispatch_events() {
   done
 }
 
+# escape new lines and single quotes
+function escape_sq_str() {
+  local CR="
+"
+  local r1="${1//${CR}/\\\n}"
+  echo ${r1//\'/\\\'}
+}
+
+# escape new lines and double quotes
+function escape_dq_str() {
+  local CR="
+"
+  local r1="${1//${CR}/\\\n}"
+  echo ${r1//\"/\\\"} # escape double quotes
+}
+
+# execute command and escape new lines and single quotes
+function escape_sq_cmd() {
+  local CR="
+"
+  local result=`$@`
+  local r1="${result//${CR}/\\\n}"
+  echo ${r1//\'/\\\'} # escape single quotes
+}
+
+# execute command and escape new lines and double quotes
+function escape_dq_cmd() {
+  local CR="
+"
+  local result=`$@`
+  local r1="${result//${CR}/\\\n}"
+  echo ${r1//\"/\\\"} # escape double quotes
+}
+
 function __pglet_install() {
 
     if [ "$OS" = "Windows_NT" ]; then
@@ -264,17 +302,24 @@ function __pglet_install() {
         exit 1
     fi
 
-    # check if pglet.exe is in PATH already (development mode)
+    # check if pglet.exe is in PATH already
+    local current_pglet_dir=""
     if command -v pglet &> /dev/null
     then
         PGLET_EXE=`which pglet`
-        return
+        current_pglet_dir="$(dirname "${PGLET_EXE}")"
+    fi
+
+    # pglet installation dir
+    local pglet_dir="$PGLET_DEFAULT_INSTALL_DIR"
+    if [[ "$PGLET_INSTALL_DIR" != "" ]]; then
+        pglet_dir="$PGLET_INSTALL_DIR"
+    elif [[ "$current_pglet_dir" != "" ]]; then
+        pglet_dir="$current_pglet_dir"
     fi
 
     # check if there is Pglet aready installed
-    local pglet_dir="$HOME/.pglet"
-    local pglet_bin="$pglet_dir/bin"
-    PGLET_EXE="$pglet_bin/pglet"
+    PGLET_EXE="$pglet_dir/pglet"
 
     local ver="$PGLET_VER"
     local installed_ver=""
@@ -286,17 +331,23 @@ function __pglet_install() {
     #echo "Installed version: $installed_ver"
 
     if [[ "$installed_ver" != "$ver" ]]; then
-        printf "Installing Pglet v$ver..."
 
-        if [ ! -d "$pglet_bin" ]; then
-            mkdir -p "$pglet_bin"
+        killall -9 pglet
+
+        printf "Installing Pglet v$ver to $pglet_dir..."
+
+        if [ ! -d "$pglet_dir" ]; then
+            mkdir -p "$pglet_dir"
         fi
 
         local pglet_url="https://github.com/pglet/pglet/releases/download/v${ver}/pglet-${ver}-${platform}-${arch}.tar.gz"
-        local tempTar="$HOME/.pglet/pglet.tar.gz"
-        curl -fsSL $pglet_url -o $tempTar
-        tar zxf $tempTar -C $pglet_bin
+        local tempTar="/tmp/pglet.tar.gz"
+        curl -fsSL $pglet_url -o $tempTar &&
+        tar -zxf $tempTar -C $pglet_dir pglet ||
+          { echo "Error downloading and extracting pglet executable." 1>&2; exit 1; }
         rm $tempTar
+
+        printf "OK\n"
     fi
 }
 
