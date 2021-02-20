@@ -187,7 +187,7 @@ or just omit page name, so it will be randomly generated. Look at [this article]
 
 ## Escaping command parameters
 
-Pglet command must be written in a single line, therefore new lines and quotes in command arguments must be properly escaped. Also, if an argument value contains spaces it must be surrounded with single or double quotes.
+Pglet command must be written in a single line, therefore new lines and quotes in command arguments must be properly escaped. Also, if an argument value contains spaces it must be surrounded with single or double quotes. 
 
 For example, you want to add a new `text` control with the following contents:
 
@@ -204,6 +204,18 @@ pglet_add "text pre value=\"Line 1\nLine's 2\nLine \\\"3\\\"\""
 ```
 
 Notice, new lines are replaced with `\n`, double quotes replaced with `\\\"`.
+
+The value in double quotes can have unescaped single quotes inside and vice versa, for example:
+
+```bash
+text value='something in "double quotes"'
+```
+
+or
+
+```bash
+text value="let's try a single 'quotes' inside"
+```
 
 `pglet.sh` includes helper functions to help you with strings escaping:
 
