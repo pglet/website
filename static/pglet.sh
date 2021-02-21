@@ -3,7 +3,7 @@ PGLET_VER="0.2.2"                             # Pglet version required by this s
 PGLET_DEFAULT_INSTALL_DIR="$HOME/.pglet/bin"  # Default installation directory
 
 # Installation variables
-PGLET_INSTALL_DIR=""                          # Custom installation directory
+PGLET_INSTALL_DIR=${PGLET_INSTALL_DIR:-""}                          # Custom installation directory
 
 # Default session variables:
 PGLET_EXE=""             # full path to Pglet executable
