@@ -25,7 +25,7 @@ During the first run of `pglet.sh` Pglet binary will be downloaded to `$HOME/.pg
 If you want to install Pglet binary into a custom directory you can define `PGLET_INSTALL_DIR` environment variable. For example to install Pglet binary to `/usr/local/bin` directory run:
 
 ```bash
-PGLET_INSTALL_DIR=/usr/local/bin sudo bash pglet.sh
+export PGLET_INSTALL_DIR=/usr/local/bin && sudo bash pglet.sh
 ```
 
 :::note
