@@ -16,9 +16,11 @@ module.exports = {
       'theming',
       'deep-linking',
       'deployment',
-      'self-hosting',
     ],
-    'Pglet service': [
+    'Pglet Server': [
+      'pglet-server/installation',
+    ],    
+    'Pglet Service': [
       'pglet-service/overview',
     ],
     'Reference': [{
