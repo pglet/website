@@ -61,13 +61,17 @@ module.exports = {
         },
         {
           'Surfaces': [
+            'reference/controls/callout',
             'reference/controls/dialog',
             'reference/controls/panel',
           ]
         },
         {
           'Charts': [
+            'reference/controls/line-chart',
+            'reference/controls/pie-chart',
             'reference/controls/vertical-bar-chart',
+            'reference/controls/bar-chart',
           ]
         },        
       ],
