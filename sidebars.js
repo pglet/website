@@ -11,6 +11,13 @@ module.exports = {
       'tutorials/powershell',
       'tutorials/node',
     ],
+    'Guides': [
+      'layout',
+      'theming',
+      'deep-linking',
+      'deployment',
+      'self-hosting',
+    ],
     'Pglet service': [
       'pglet-service/overview',
     ],
