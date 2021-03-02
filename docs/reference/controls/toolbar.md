@@ -12,7 +12,9 @@ All command items should have an icon and a label. Commands can render as labels
 
 ## Properties
 
-Toolbar control does not have any specific properties.
+| Name            | Type   | Default | Description |
+| --------------- | ------ | ------- | ----------- |
+| `inverted`      | bool   | `false` | Display toolbar with transparent background and white text to use as main navigation menu in the header with darker background. |
 
 ## Events
 

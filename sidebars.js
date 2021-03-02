@@ -11,7 +11,16 @@ module.exports = {
       'tutorials/powershell',
       'tutorials/node',
     ],
-    'Pglet service': [
+    'Guides': [
+      //'layout',
+      //'theming',
+      'deep-linking',
+      //'deployment',
+    ],
+    'Pglet Server': [
+      'pglet-server/installation',
+    ],    
+    'Pglet Service': [
       'pglet-service/overview',
     ],
     'Reference': [{
@@ -61,13 +70,17 @@ module.exports = {
         },
         {
           'Surfaces': [
+            'reference/controls/callout',
             'reference/controls/dialog',
             'reference/controls/panel',
           ]
         },
         {
           'Charts': [
+            'reference/controls/line-chart',
+            'reference/controls/pie-chart',
             'reference/controls/vertical-bar-chart',
+            'reference/controls/bar-chart',
           ]
         },        
       ],
