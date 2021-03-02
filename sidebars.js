@@ -12,10 +12,10 @@ module.exports = {
       'tutorials/node',
     ],
     'Guides': [
-      'layout',
-      'theming',
+      //'layout',
+      //'theming',
       'deep-linking',
-      'deployment',
+      //'deployment',
     ],
     'Pglet Server': [
       'pglet-server/installation',
