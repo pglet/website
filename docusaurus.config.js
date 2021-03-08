@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Pglet - Web UI framework for backend developers',
+  title: 'Pglet - Fast and secure way to build internal web apps',
   tagline: 'Build web apps like a frontend pro in the language you already know. No knowledge of HTML, CSS or JavaScript required.',
   url: 'https://pglet.io',
   baseUrl: '/',
@@ -7,7 +7,7 @@ module.exports = {
   organizationName: 'pglet', // Usually your GitHub org/user name.
   projectName: 'pglet.github.io', // Usually your repo name.
   customFields: {
-    heroTitle: 'Web UI framework for backend developers',
+    heroTitle: 'Fast and secure way to build internal web apps',
     heroSubTitle: 'Build web apps like a frontend pro in the language you already know. No knowledge of HTML, CSS or JavaScript required.',
   },  
   themeConfig: {
