@@ -28,7 +28,7 @@ Callout can be "attached" to the following controls:
 
 | Name          | Type    | Default | Description |
 | ------------- | ------- | ------- | ----------- |
-| `target`      | string  |         | Whether the panel is shown. |
+| `target`      | string  |         | Id of the control to which the collout is attached. |
 | `position`    | string  | `bottomAuto` | The position of the callout relative to the target control: `topLeft`, `topCenter`, `topRight`, `topAuto`, `bottomLeft`, `bottomCenter`, `bottomRight`, `bottomAuto` (default), `leftTop`, `leftCenter`, `leftBottom`, `rightTop`, `rightCenter`, `rightBottom`. |
 | `gap`         | number  | 0       | The gap between the callout and the target control. |
 | `beak`        | bool    | `true`  | Whether the beak is visible. |

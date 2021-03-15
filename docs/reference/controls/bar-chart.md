@@ -35,7 +35,7 @@ Describes chart data point.
 
 | Name       | Type   | Default | Description |
 | ---------- | ------ | ------- | ----------- |
-| `x`        | number |         | Independent value of the data point, rendered along the x-axis. If chart's `xType` is `number`, then each y-coordinate is plotted at its x-coordinate. If xType is `string`, then the data is evenly spaced along the x-axis. |
+| `x`        | number |         | Independent value of the data point, rendered along the x-axis. |
 | `y`        | number |         | Dependent value of the data point, rendered along the y-axis. |
 | `legend`   | string |         | Legend text for the datapoint in the chart.  |
 | `color`    | string |         | Color for the legend in the chart. |
