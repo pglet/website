@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Pglet - Fast and secure way to build internal web apps',
+  title: 'Pglet',
   tagline: 'Build web apps like a frontend pro in the language you already know. No knowledge of HTML, CSS or JavaScript required.',
   url: 'https://pglet.io',
   baseUrl: '/',
