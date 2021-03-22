@@ -22,8 +22,19 @@ Stacks can be nested inside one another in order to be able to configure the lay
 | `verticalFill`    | bool      | `false` | Defines whether the Stack should take up 100% of the height of its parent. |
 | `horizontalAlign` | string    |         | Defines how to align stack children horizontally: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly`, `baseline` or `stretch`. |
 | `verticalAlign`   | string    |         | Defines how to align stack children vertically: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly`, `baseline` or `stretch`. |
+| `minWidth`        | string    |         | The minimum stack width. |
+| `maxWidth`        | string    |         | The maximum stack width. |
+| `minHeight`       | string    |         | The minimum stack height. |
+| `maxHeight`       | string    |         | The maximum stack height. |
 | `gap`             | string    |         | A gap between stack child controls. |
 | `wrap`            | bool      | `false` | Defines whether Stack children should wrap onto multiple rows or columns when they are about to overflow the size of the Stack. |
+| `bgcolor` | string  |         | Stack background color. |
+| `border`  | string  |         | Border around stack in `<width> <style> <color>` format, e.g. `1px solid #550000` |
+| `borderRadius` | string  |         | Border radius. |
+| `borderLeft`   | string  |         | Border of the left side of stack in `<width> <style> <color>` format, e.g. `1px solid #550000` |
+| `borderRight`  | string  |         | Border of the right side of stack in `<width> <style> <color>` format, e.g. `1px solid #550000` |
+| `borderTop`    | string  |         | Border of the top side of stack in `<width> <style> <color>` format, e.g. `1px solid #550000` |
+| `borderBottom` | string  |         | Border of the bottom side of stack in `<width> <style> <color>` format, e.g. `1px solid #550000` |
 | `scrollx`         | bool      | `false` | Enable horizontal scrolling if stack contents doesn't fit into stack boundaries. |
 | `scrolly`         | bool      | `false` | Enable vertical scrolling if stack contents doesn't fit into stack boundaries. |
 
