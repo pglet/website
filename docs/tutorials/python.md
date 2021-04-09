@@ -7,9 +7,27 @@ slug: python
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Python 3.7 or higher is required to build apps with Pglet.
+Pglet is an open-source framework and a service for building and running web apps. There are tons of UI libraries for Python out there, so why would you choose Pglet? 
+- using Pglet, you will write a standalone console app in Python and get a multi-user Web app
+- no knowledge of HTML/CSS/Web technologies required
+- Pglet will greatly speed up your UI development. Your code will look clean and simple, and UI will look professional and work smoothly. 
 
+In this tutorial we show step-by-step how to create a To-do app in Python using Pglet library and then share it on the internet. We chose To-do app because it covers main concepts of creating web app with Pglet: working with controls, UI layout, ...
+
+To-do app in this example is under 100 lines of code and UI looks professional and works smoothly.
+
+The tutorial consists of 6 parts:
+Part 1: To-do app requirements
+Part 2: Creating a Pglet app
+Part 3: Edit/Save stacks
+Part 4: Delete and Clear Completed actions
+Part 5: Tabs 
+Part 6: Deploying the app
+
+## 
 ## Installing `pglet` module
+
+Python 3.7 or higher is required to build apps with Pglet.
 
 Before installing `pglet` module make sure you have the latest versions of package management utilities:
 
