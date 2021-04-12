@@ -56,8 +56,8 @@ function Home() {
   const { siteConfig = {} } = context;
   return (
     <Layout
-      title={`${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.customFields.heroTitle}`}
+      description={`${siteConfig.tagline}`}>
       <div className="container">
         <header className={clsx('pglet-hero',styles.heroBanner)}>
           <div className="row">
