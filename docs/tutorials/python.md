@@ -7,11 +7,35 @@ slug: python
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Python 3.7 or higher is required to build apps with Pglet.
+Pglet is an open-source framework and a service for building and running web apps. There are tons of UI libraries for Python out there, so why would you choose Pglet? 
+- using Pglet, you will write a standalone console app in Python and get a multi-user Web app
+- no knowledge of HTML/CSS/Web technologies required
+- Pglet will greatly speed up your UI development. Your code will look clean and simple, and UI will look professional and work smoothly. 
 
-## Installing `pglet` module
+In this tutorial we show step-by-step how to create a To-do app in Python using Pglet library and then share it on the internet. We chose To-do app because it covers main concepts of creating web app with Pglet: UI layout, ...
 
-Before installing `pglet` module make sure you have the latest versions of package management utilities:
+To-do app in this example is under 100 lines of code and UI looks professional and works smoothly. You can see the demo of To-Do app we are going to build here:
+[TBD]
+
+The tutorial consists of 6 parts:
+Part 1: Install `pglet` module
+Part 2: Create a web app with `pglet`
+Part 3: Edit/Save stacks
+Part 4: Delete and Clear Completed actions
+Part 5: Tabs 
+Part 6: Deploying the app
+
+## Part 1. Install Pglet module
+
+To create a web app in Python with `pglet`, you need to install `pglet` module first.
+
+Before installing `pglet` module, make sure:
+
+1) You have Python 3.7 or higher installed 
+```bash
+python --version 
+```
+2) You have the latest versions of package management utilities:
 
 <Tabs groupId="os" defaultValue="macos" values={[
   { label: 'macOS', value: 'macos', },
@@ -79,13 +103,15 @@ python3 -m pip install pglet
 
 </Tabs>
 
-## Creating a page
+## Part 2. Create a web app with `pglet`
 
-Pglet allows you creating **shared** and **app** pages.
+Now that we have Pglet nodule installed we are ready to create our first web app!
 
-**Shared page** is like a singleton: many programs can connect and author the same page and all web users connecting to a page see and interact with the same content. Shared pages are useful for developing local tools, web dashboards, progress reports, distributed processes visualization, etc. 
+We need to import Pglet module, then import Page from it and 
 
-**App page** creates for each web user a new session with its own content. In your program you define a "handler" method which is invoked for every new session. App pages are used for creating multi-user web apps.
+
+
+Pglet allows you to create web apps in two modes: shared and multi-session. In shared app, when you run your program it will create a single session that will be shared between all browsers, which may be useful for dashboards, status pages and other apps that need to show the same information to all users. In multi-session app, each browser will open a new session. For To-Do app we want every user see their own tasks, so we will choose a multi-session mode. 
 
 OK, this is a minimal "Hello world" Pglet page running in a local mode:
 
