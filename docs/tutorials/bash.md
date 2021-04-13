@@ -71,7 +71,7 @@ pglet_send "add text value='Hello, world!'"
 
 ## Getting user input
 
-Pglet provides a number of [controls](/docs/reference/controls) for building forms: [Textbox](/docs/reference/controls/textbox), [Checkbox](/docs/reference/controls/checkbox), [Dropdown](/docs/reference/controls/dropdown), [Button](/docs/reference/controls/button).
+Pglet provides a number of [controls](/docs/controls) for building forms: [Textbox](/docs/controls/textbox), [Checkbox](/docs/controls/checkbox), [Dropdown](/docs/controls/dropdown), [Button](/docs/controls/button).
 
 Let's ask a user for a name:
 

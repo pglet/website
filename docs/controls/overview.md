@@ -1,7 +1,7 @@
 ---
 title: Overview
 sidebar_label: Overview
-slug: /reference/controls
+slug: /controls
 ---
 
 Pglet UI is built of controls. Most controls are composed from multiple HTML elements, have finished functionality and sane defaults to make UI development as quick and pleasant as possible. For example, [Textbox](controls/textbox) control is not just `<input type="text">` in terms of HTML, but it has an attached label, description, validation message and a help tip.
