@@ -4,7 +4,127 @@ sidebar_label: Button
 slug: button
 ---
 
+import { Replit } from '@site/src/components/replit';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Button allows to trigger an action.
+
+## Usage
+
+### Regular buttons
+
+<Tabs defaultValue="demo" values={[
+  { label: 'Demo', value: 'demo', },
+  { label: 'Python', value: 'python', },
+  { label: 'PowerShell', value: 'powershell', },
+  { label: 'Bash', value: 'bash', },
+]}>
+
+<TabItem value="demo">
+  <Replit src="https://python-demo.pglet.repl.co/#regular_buttons" height="90px" />
+</TabItem>
+
+<TabItem value="python">
+
+```python
+from pglet import Stack, Button
+
+Stack(controls=[
+  Stack(horizontal=True, controls=[
+    Button("Standard"),
+    Button("Standard disabled", disabled=True)
+  ]),
+  Stack(horizontal=True, controls=[
+    Button("Primary", primary=True),
+    Button("Primary disabled", primary=True, disabled=True)
+  ])
+])
+```
+
+</TabItem>
+
+<TabItem value="bash">
+</TabItem>
+
+<TabItem value="powershell">
+</TabItem>
+
+<TabItem value="node">
+</TabItem>
+
+</Tabs>
+
+### Compound buttons
+
+<Tabs defaultValue="demo" values={[
+  { label: 'Demo', value: 'demo', },
+  { label: 'Python', value: 'python', },
+  { label: 'PowerShell', value: 'powershell', },
+  { label: 'Bash', value: 'bash', },
+]}>
+
+<TabItem value="demo">
+  <Replit src="https://python-demo.pglet.repl.co/#compound_buttons" height="90px" />
+</TabItem>
+
+<TabItem value="python">
+
+```python
+Stack(horizontal=True, controls=[
+  Button("Compound", secondary_text='This is a secondary text', compound=True),
+  Button("Primary compound", secondary_text='This is a secondary text', compound=True, primary=True)
+])
+```
+
+</TabItem>
+
+<TabItem value="bash">
+</TabItem>
+
+<TabItem value="powershell">
+</TabItem>
+
+<TabItem value="node">
+</TabItem>
+
+</Tabs>
+
+### Buttons with icon
+
+<Tabs defaultValue="demo" values={[
+  { label: 'Demo', value: 'demo', },
+  { label: 'Python', value: 'python', },
+  { label: 'PowerShell', value: 'powershell', },
+  { label: 'Bash', value: 'bash', },
+]}>
+
+<TabItem value="demo">
+  <Replit src="https://python-demo.pglet.repl.co/#buttons_with_icon" height="40px" />
+</TabItem>
+
+<TabItem value="python">
+
+```python
+Stack(horizontal=True, controls=[
+  Button("Create account", icon='AddFriend', primary=True),
+  Button("New item", icon='Add'),
+  Button("Delete", icon='Delete')
+])
+```
+
+</TabItem>
+
+<TabItem value="bash">
+</TabItem>
+
+<TabItem value="powershell">
+</TabItem>
+
+<TabItem value="node">
+</TabItem>
+
+</Tabs>
 
 ## Properties
 
@@ -63,62 +183,3 @@ Represents a menu item within a context menu button.
 `Item` control can contain other `item` controls to add nested menu items.
 
 * [`Item`](#item-control)
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-Adding a button with event handler:
-
-```python
-btn_next = page.add(Button(text="Next", onclick=lambda e: print("Clicked!")))
-```
-
-or without lambda:
-
-```python
-btn_next = Button(text="Next", onclick=next_onclick)
-
-def next_onclick(e):
-    page.disable(btn_next)
-    time.sleep(2) # simulate doing something
-    page.enable(btn_next)
-
-page.add(btn_next)
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Button control live examples in Bash](https://repl.it/@pglet/bash-buttons-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

@@ -4,6 +4,10 @@ sidebar_label: Stack
 slug: stack
 ---
 
+import { Replit } from '@site/src/components/replit';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Stack is a container-type control that allows to define the layout of its children controls.
 
 Although the Stack control has a number of different properties, there are three in particular that define the overall layout that the component has:
@@ -13,6 +17,78 @@ Although the Stack control has a number of different properties, there are three
 * **Spacing**: Refers to the space that exists between children controls inside the Stack. This is controlled via `gap` property.
 
 Stacks can be nested inside one another in order to be able to configure the layout of the application as desired.
+
+## Usage
+
+### Horizontal stack
+
+<Tabs defaultValue="demo" values={[
+  { label: 'Demo', value: 'demo', },
+  { label: 'Python', value: 'python', },
+  { label: 'PowerShell', value: 'powershell', },
+  { label: 'Bash', value: 'bash', },
+]}>
+
+<TabItem value="demo">
+  <Replit src="https://python-demo.pglet.repl.co/#horizontal_stack" height="100px" />
+</TabItem>
+
+<TabItem value="python">
+
+```python
+stack1 = page.add(Stack(horizontal=True, controls=[
+    Button(id="ok", text="OK"),
+    Button(id="cancel", text="Cancel")
+]))
+```
+
+</TabItem>
+
+<TabItem value="bash">
+</TabItem>
+
+<TabItem value="powershell">
+</TabItem>
+
+<TabItem value="node">
+</TabItem>
+
+</Tabs>
+
+### Vertical stack
+
+<Tabs defaultValue="demo" values={[
+  { label: 'Demo', value: 'demo', },
+  { label: 'Python', value: 'python', },
+  { label: 'PowerShell', value: 'powershell', },
+  { label: 'Bash', value: 'bash', },
+]}>
+
+<TabItem value="demo">
+  <Replit src="https://python-demo.pglet.repl.co/#vertical_stack" height="100px" />
+</TabItem>
+
+<TabItem value="python">
+
+```python
+stack1 = page.add(Stack(horizontal=True, controls=[
+    Button(id="ok", text="OK"),
+    Button(id="cancel", text="Cancel")
+]))
+```
+
+</TabItem>
+
+<TabItem value="bash">
+</TabItem>
+
+<TabItem value="powershell">
+</TabItem>
+
+<TabItem value="node">
+</TabItem>
+
+</Tabs>
 
 ## Properties
 
@@ -41,79 +117,3 @@ Stacks can be nested inside one another in order to be able to configure the lay
 ### Child controls
 
 * Any control - will be rendered in the body of the stack.
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-Adding a new horizontal stack to a page:
-
-```python
-page.add(Stack(horizontal=True))
-```
-
-Adding a stack with buttons in it:
-
-```python
-stack1 = page.add(Stack(horizontal=True, controls=[
-    Button(id="ok", text="OK"),
-    Button(id="cancel", text="Cancel")
-]))
-```
-
-Hiding stack from a previous example:
-
-```python
-stack1.visible = False
-page.update(stack1)
-```
-
-or shorter:
-
-```python
-page.hide(stack1)
-```
-
-Removing all children of a stack:
-
-```python
-page.clean(stack1)
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-```bash
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>
