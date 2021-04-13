@@ -12,7 +12,7 @@ Button allows to trigger an action.
 
 ## Usage
 
-### Regular buttons
+### Regular button
 
 <Tabs defaultValue="demo" values={[
   { label: 'Demo', value: 'demo', },
@@ -50,12 +50,12 @@ Stack(controls=[
 <TabItem value="powershell">
 </TabItem>
 
-<TabItem value="node">
+<TabItem value="bash">
 </TabItem>
 
 </Tabs>
 
-### Compound buttons
+### Compound button
 
 <Tabs defaultValue="demo" values={[
   { label: 'Demo', value: 'demo', },
@@ -85,12 +85,12 @@ Stack(horizontal=True, controls=[
 <TabItem value="powershell">
 </TabItem>
 
-<TabItem value="node">
+<TabItem value="bash">
 </TabItem>
 
 </Tabs>
 
-### Buttons with icon
+### Button with icon
 
 <Tabs defaultValue="demo" values={[
   { label: 'Demo', value: 'demo', },
@@ -121,7 +121,7 @@ Stack(horizontal=True, controls=[
 <TabItem value="powershell">
 </TabItem>
 
-<TabItem value="node">
+<TabItem value="bash">
 </TabItem>
 
 </Tabs>

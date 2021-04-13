@@ -50,7 +50,7 @@ stack1 = page.add(Stack(horizontal=True, controls=[
 <TabItem value="powershell">
 </TabItem>
 
-<TabItem value="node">
+<TabItem value="bash">
 </TabItem>
 
 </Tabs>
@@ -85,7 +85,7 @@ stack1 = page.add(Stack(horizontal=True, controls=[
 <TabItem value="powershell">
 </TabItem>
 
-<TabItem value="node">
+<TabItem value="bash">
 </TabItem>
 
 </Tabs>
