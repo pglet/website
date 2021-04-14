@@ -47,8 +47,11 @@ page.add(Text(value="Hello, world!"))
 
 Run this app and you will see a new browser window with a greeting:
 
-<div style={{textAlign: 'center'}}><img src="/img/docs/quickstart-hello-world.png" /></div>
+<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-hello-world.png" /></p>
 
+:::note
+In this example page URL is a random string, because we didn't specify it in `pglet.page()` call. Try changing it to `pglet.page('hello')`.
+:::
 
 ## Pglet app structure
 
@@ -58,7 +61,7 @@ In [previous part](#getting-started-with-pglet) we have learned how to create a 
 
 Try adding `Textbox` control instead of `Text`:
 
-```python title="hello.py"
+```python
 import pglet
 from pglet import Textbox
 
@@ -109,15 +112,15 @@ def main(page):
 pglet.app("todo-app", target=main)
 ```
 
-[SCREENSHOT]
+<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-1.png" /></p>
 
 ### Page layout
 
-Now we want it to look nice. We want the entire app centered and stretched over 50% of screen width. The textbox and the button should be aligned horizontally and take full app width:
+Now let's make the app looking nice. We want the entire app to be at the top center of the page and stretched over 70% of the page width. The textbox and the button should be aligned horizontally and take full app width:
 
-[DIAGRAM]
+<p style={{ textAlign: 'center' }}><img style={{ width: '90%' }} src="/img/docs/tutorial/todo-diagram-1.svg" /></p>
 
-`Stack` is used to layout controls on a page:
+`Stack` is a container control that is used to layout other controls on a page. `Stack` can be vertical (default), horizontal and can contain other stacks:
 
 ```python title="todo.py"
 import pglet
@@ -127,7 +130,7 @@ def main(page):
 
     page.title = "ToDo App"
     page.horizontal_align = 'center'
-    page.update()
+    page.update() # needs to be called every time "page" control is changed
     
     def add_clicked(e):
         tasks_view.controls.append(Checkbox(label=new_task.value))
@@ -136,7 +139,7 @@ def main(page):
     new_task = Textbox(placeholder='Whats needs to be done?', width='100%')
     tasks_view = Stack()
 
-    page.add(Stack(width='50%', controls=[
+    page.add(Stack(width='70%', controls=[
         Stack(horizontal=True, controls=[
             new_task,
             Button('Add', on_click=add_clicked)
@@ -147,19 +150,64 @@ def main(page):
 pglet.app("todo-app", target=main)
 ```
 
+<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-2.png" /></p>
+
 :::note
 Try `page.vertical_align = 'center'` to center the app vertically.
 :::
 
-(stack, create new tasks and displaying the list).
-
 ## Reusable UI components
 
-(MyApp class, app structure diagram, reusable app component with two components on the page). Composability and reusability.
+We can continue writing our app and adding controls to the `main` function, however the best practice would be creating a reusable UI component. Imagine you are working on an app header, or a side menu or other UI that will be a part of a larger project. Even if you can't think of such uses right now we still recommend creating all your web apps with composability and reusability in mind.
 
-...
+To make a reusable ToDo app component we are going to encapsulate its state and presentation logic in a separate class: 
 
-For Textbox it doesn't make much sense but imagine you have a side panel, or header, or even a chat component that you can add anywhere, ... composability and re-use.
+```python title="todo.py"
+import pglet
+from pglet import Stack, Textbox, Button, Checkbox
+
+class TodoApp():
+    def __init__(self):
+        self.new_task = Textbox(placeholder='Whats needs to be done?', width='100%')
+        self.tasks_view = Stack()
+
+        # application's root control (i.e. "view") containing all other controls
+        self.view = Stack(width='70%', controls=[
+            Stack(horizontal=True, controls=[
+                self.new_task,
+                Button('Add', on_click=self.add_clicked)
+            ]),
+            self.tasks_view
+        ])
+
+    def add_clicked(self, e):
+        self.tasks_view.controls.append(Checkbox(label=self.new_task.value))
+        self.tasks_view.update()
+
+def main(page):
+    page.title = "ToDo App"
+    page.horizontal_align = 'center'
+    page.update()
+
+    # create application instance
+    app = TodoApp()
+
+    # add application's root control to the page
+    page.add(app.view)
+
+pglet.app("todo-app", target=main)
+```
+
+:::note
+Try adding two `TodoApp` components to the page:
+
+```python
+app1 = TodoApp()
+app2 = TodoApp()
+page.add(app1.view, app2.view)
+```
+
+:::
 
 ## View, edit and delete list items
 
