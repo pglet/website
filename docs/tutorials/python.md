@@ -12,7 +12,7 @@ In this tutorial we will show step-by-step how to create a ToDo web app in Pytho
 
 <Replit src="https://Todo-web-app-in-Bash.pglet.repl.co" height="400px" />
 
-We chose ToDo for the tutorial because it covers the most of concepts you would need to write any web app: building page layout, adding controls, working with lists, making reusable UI components and deploy options.
+We chose ToDo for the tutorial because it covers most of concepts you would need to write any web app: building page layout, adding controls, working with lists, making reusable UI components and deploy options.
 
 The tutorial consists of the following steps:
 
@@ -34,7 +34,7 @@ Pglet requires Python 3.7 or above. To create a web app in Python with Pglet, yo
 pip install pglet
 ```
 
-Let's do a simple hello-world app.
+Let's create a simple hello-world app.
 
 Create `hello.py` with the following contents:
 
@@ -56,7 +56,7 @@ In this example page URL is a random string, because we didn't specify it in `pg
 
 ## Pglet app structure
 
-In [previous part](#getting-started-with-pglet) we have learned how to create a simple Pglet page. On that page all users work with the same contents ("**shared page**").
+In [previous step](#getting-started-with-pglet) we have learned how to create a simple Pglet page. On that page all users work with the same contents ("**shared page**").
 
 :::note
 
@@ -74,7 +74,7 @@ Run the app and open its URL in multiple browser tabs. You'll see that changing 
 
 :::
 
-Shared page may be useful for some types of apps: dashboards, status pages, reports. For ToDo app though we want every user to see their own set of tasks. To achieve that we need to create a "**multi-user app**":
+Shared page may be useful for certain types of apps: dashboards, status pages, reports. For ToDo app though we want every user to see their own set of tasks. To achieve this we need to create a "**multi-user app**":
 
 ```python title="hello-app.py"
 import pglet
@@ -92,7 +92,7 @@ For every new user session Pglet calls `main` function with unique page contents
 
 Now we are ready to create a multi-user ToDo app.
 
-To start with we'll need a Textbox for entering task name, "Add" button with event handler that will display a checkbox with a new task:
+For a start, we'll need a Textbox for entering task name and "Add" button with event handler that will display a checkbox with a new task:
 
 ```python title="todo.py"
 import pglet
@@ -115,11 +115,9 @@ pglet.app("todo-app", target=main)
 
 <p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-1.png" /></p>
 
-You can find a full source code for this step [here](#source-code).
-
 ### Page layout
 
-Now let's make the app looking nice. We want the entire app to be at the top center of the page and stretched over 70% of the page width. The textbox and the button should be aligned horizontally and take full app width:
+Now let's make the app look nice. We want the entire app to be at the top center of the page and stretched over 70% of the page width. The textbox and the button should be aligned horizontally and take full app width:
 
 <p style={{ textAlign: 'center' }}><img style={{ width: '90%' }} src="/img/docs/tutorial/todo-diagram-1.svg" /></p>
 
@@ -158,8 +156,6 @@ pglet.app("todo-app", target=main)
 :::note
 Try `page.vertical_align = 'center'` to center the app vertically.
 :::
-
-You can find a full source code for this step [here](#source-code).
 
 ### Reusable UI components
 
@@ -212,13 +208,14 @@ app2 = TodoApp()
 page.add(app1.view, app2.view)
 ```
 
+How fun!
 :::
 
 You can find a full source code for this step [here](#source-code).
 
 ## View, edit and delete list items
 
-In [previous section](#adding-page-controls-and-handling-events) we created basic ToDo app with task items shown as checkboxes. Let's improve the app by adding "Edit" and "Delete" buttons next to the task name. "Edit" button will switch task item to edit mode.
+In [previous step](#adding-page-controls-and-handling-events) we created a basic ToDo app with task items shown as checkboxes. Let's improve the app by adding "Edit" and "Delete" buttons next to the task name. "Edit" button will switch task item to edit mode.
 
 <p style={{ textAlign: 'center' }}><img style={{ width: '90%' }} src="/img/docs/tutorial/todo-diagram-2.svg" /></p>
 
@@ -279,7 +276,7 @@ class TodoApp():
 
 We have just implemented "Edit" and "Save" functionality in `Task` class. "Delete" is going to be a bit different as `TodoApp` holds the list of task instances, so the implementation has to be split between `Task` and `TodoApp` classes.
 
-First, we implement `delete_task()` method in `TodoApp` class which accepts task instance as a paremeter:
+First, we implement `delete_task()` method in `TodoApp` class which accepts task instance as a parameter:
 
 ```python
 class TodoApp():
