@@ -474,12 +474,22 @@ To run ToDo app on Replit:
 pglet.app("index", target=main)
 ```
 
-* Run the app.
+* Run the app. Now both application code and UI are running on Replit service as a "standalone" app.
 
 :::note
 We are not affiliated with Replit - we just love the service. Todo app demo for this tutorial is [hosted on Replit](https://replit.com/@pglet/ToDo-web-app-in-Python) and you can just "fork" it there and play.
 :::
 
-## What's next
+## Summary
 
-In this tutorial you've learned how to create a multi-user web app in Python using Pglet framework.
+In this tutorial you have learned how to:
+
+* Create a shared page and a multi-user web app;
+* Work with Reusable UI components;
+* Design UI layout using `Stack` control;
+* Work with lists: view, edit and delete items, filtering;
+* Deploy your app in two ways: Pglet Service and Replit;
+
+For further reading you can explore [controls](/docs/controls) and [examples repository](https://github.com/pglet/examples/tree/main/python).
+
+We would love to hear your feedback! Please drop us an [email](mailto:hello@pglet.io), join the discussion on [Discord](https://discord.gg/rWjf7xx), follow on [Twitter](https://twitter.com/pgletio).
