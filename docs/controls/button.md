@@ -17,6 +17,8 @@ Button allows to trigger an action.
 <Tabs defaultValue="demo" values={[
   { label: 'Demo', value: 'demo', },
   { label: 'Python', value: 'python', },
+  { label: 'TypeScript', value: 'ts', },
+  { label: 'C#', value: 'csharp', },
   { label: 'PowerShell', value: 'powershell', },
   { label: 'Bash', value: 'bash', },
 ]}>
@@ -44,13 +46,29 @@ Stack(controls=[
 
 </TabItem>
 
-<TabItem value="bash">
+<TabItem value="ts">
+</TabItem>
+
+<TabItem value="csharp">
 </TabItem>
 
 <TabItem value="powershell">
 </TabItem>
 
 <TabItem value="bash">
+
+```bash
+pglet_send "add
+  stack
+    text value='Regular buttons' size=large
+    stack horizontal
+      button text='Standard'
+      button disabled text='Standard disabled'
+    stack horizontal
+      button primary text='Primary'
+      button primary disabled text='Primary disabled'"
+```
+
 </TabItem>
 
 </Tabs>
@@ -60,6 +78,8 @@ Stack(controls=[
 <Tabs defaultValue="demo" values={[
   { label: 'Demo', value: 'demo', },
   { label: 'Python', value: 'python', },
+  { label: 'TypeScript', value: 'ts', },
+  { label: 'C#', value: 'csharp', },
   { label: 'PowerShell', value: 'powershell', },
   { label: 'Bash', value: 'bash', },
 ]}>
@@ -79,7 +99,10 @@ Stack(horizontal=True, controls=[
 
 </TabItem>
 
-<TabItem value="bash">
+<TabItem value="ts">
+</TabItem>
+
+<TabItem value="csharp">
 </TabItem>
 
 <TabItem value="powershell">
@@ -95,6 +118,8 @@ Stack(horizontal=True, controls=[
 <Tabs defaultValue="demo" values={[
   { label: 'Demo', value: 'demo', },
   { label: 'Python', value: 'python', },
+  { label: 'TypeScript', value: 'ts', },
+  { label: 'C#', value: 'csharp', },
   { label: 'PowerShell', value: 'powershell', },
   { label: 'Bash', value: 'bash', },
 ]}>
@@ -115,7 +140,10 @@ Stack(horizontal=True, controls=[
 
 </TabItem>
 
-<TabItem value="bash">
+<TabItem value="ts">
+</TabItem>
+
+<TabItem value="csharp">
 </TabItem>
 
 <TabItem value="powershell">
