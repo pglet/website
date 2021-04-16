@@ -8,7 +8,7 @@ import { Replit } from '@site/src/components/replit';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In this tutorial we will show step-by-step how to create a ToDo web app in Python using Pglet library and then share it on the internet. The app is under [100 lines of Python code](#) yet it is a multi-user, professionally looking full-featured web app:
+In this tutorial we will show step-by-step how to create a ToDo web app in Python using Pglet library and then share it on the internet. The app is just [100 lines of Python code](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py) yet it is a multi-user, professionally looking full-featured web app:
 
 <Replit src="https://Todo-web-app-in-Bash.pglet.repl.co" height="400px" />
 
@@ -211,7 +211,7 @@ page.add(app1.view, app2.view)
 How fun!
 :::
 
-You can find a full source code for this step [here](#source-code).
+You can find a full source code for this step [here](https://github.com/pglet/examples/blob/main/python/todo/todo-app-class.py).
 
 ## View, edit and delete list items
 
@@ -302,7 +302,7 @@ class Task():
         self.app.delete_task(self)
 ```
 
-You can find a full source code for this step [here](#source-code).
+You can find a full source code for this step [here](https://github.com/pglet/examples/blob/main/python/todo/todo-with-delete.py).
 
 ## Filtering list items
 
@@ -373,16 +373,88 @@ class Task():
 
 <p style={{ textAlign: 'center' }}><img style={{ width: '50%', borderLeft: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-filtering.gif" /></p>
 
-You can find a full source code for this step [here](#source-code).
+You can find a full source code for this step [here](https://github.com/pglet/examples/blob/main/python/todo/todo-with-filter.py).
 
 ## Clear completed and tasks summary
 
+Our Todo app is almost complete now. As a final touch we will add a footer (`Stack` control) displaying the number of incomplete tasks (`Text` control) and "Clear completed" button:
+
+```python {5,15-18,26,31-33,36-39}
+class TodoApp():
+    def __init__(self):
+        # ...
+
+        self.items_left = Text('0 items left')
+
+        self.view = Stack(width='70%', controls=[
+            Text(value='Todos', size='large', align='center'),
+            Stack(horizontal=True, controls=[
+                self.new_task,
+                Button(primary=True, text='Add', on_click=self.add_clicked)]),
+            Stack(gap=25, controls=[
+                self.filter,
+                self.tasks_view,
+                Stack(horizontal=True, horizontal_align='space-between', vertical_align='center', controls=[
+                    self.items_left,
+                    Button(text='Clear completed', on_click=self.clear_clicked)
+                ])
+            ])
+        ])
+
+    # ...
+
+    def update(self):
+        status = self.filter.value
+        count = 0
+        for task in self.tasks:
+            task.view.visible = (status == 'all'
+                or (status == 'active' and task.display_task.value == False)
+                or (status == 'completed' and task.display_task.value))
+            if task.display_task.value == False:
+                count += 1
+        self.items_left.value = f"{count} active item(s) left"
+        self.view.update()        
+
+    def clear_clicked(self, e):
+        for task in self.tasks[:]:
+            if task.display_task.value == True:
+                self.delete_task(task)
+```
+
+<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-4.png" /></p>
+
+You can find a full source code for this step [here](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py).
 
 ## Deploying the app
 
+Congratulations! You have created your first Python web app with Pglet and it looks awesome!
+
+Now it's time to share the app with the world!
 
 ### Instant sharing
 
+Pglet is not only a framework for building web apps, but it is also a service for hosting apps' UI.
+You can have the application running on your computer while its UI is streaming to Pglet service in real-time.
+
+To make the app instantly available on the Internet just add `web=True` to `pglet.app()` call:
+
+```python
+# ...
+
+pglet.app(target=main, web=True)
+```
+
+A new browser windows will be opened with the URL like this:
+
+```
+https://app.pglet.io/public/{random}
+```
+
+:::note
+[Pglet Service](/docs/pglet-service) is in technical preview now. You are sharing the app without authentication and its lifetime is limited to 20 minutes.
+
+Please note that we have removed the name of the page from the call above, so it's generated randomly to avoid name collision on public Pglet service with other users.
+:::
 
 ### Replit
 
