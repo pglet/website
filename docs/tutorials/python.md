@@ -8,7 +8,7 @@ import { Replit } from '@site/src/components/replit';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In this tutorial we will show step-by-step how to create a ToDo web app in Python using Pglet library and then share it on the internet. The app is just [100 lines of Python code](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py) yet it is a multi-user, professionally looking full-featured web app:
+In this tutorial we will show step-by-step how to create a ToDo web app in Python using Pglet framework and then share it on the internet. The app is just [100 lines of Python code](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py) yet it is a multi-user, professionally looking full-featured web app:
 
 <Replit src="https://Todo-web-app-in-Bash.pglet.repl.co" height="400px" />
 
@@ -451,12 +451,35 @@ https://app.pglet.io/public/{random}
 ```
 
 :::note
-[Pglet Service](/docs/pglet-service) is in technical preview now. You are sharing the app without authentication and its lifetime is limited to 20 minutes.
+[Pglet Service](/docs/pglet-service) is in technical preview now and you are sharing the app in a public namespace.
 
 Please note that we have removed the name of the page from the call above, so it's generated randomly to avoid name collision on public Pglet service with other users.
 :::
 
 ### Replit
 
+Instant sharing is the great option to quickly share the app on the web, but it requires your computer to be constantly on all the time.
 
-### Heroku
+[Replit](https://replit.com/) is an online IDE and hosting platform for web apps written in any language. Their free tier allows running any number of apps with some limitations.
+
+To run ToDo app on Replit:
+
+* Click "New repl" button
+* Select "Python" language from a list and provide repl name, e.g. `my-todo`
+* Click "Packages" tab and search for `pglet` package; select its latest version
+* Switch back to "Files" tab and copy-paste the [code of Todo app](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py) into `main.py`.
+* Change page name in `pglet.app()` call to `index` to make the app available on the root domain:
+
+```python
+pglet.app("index", target=main)
+```
+
+* Run the app.
+
+:::note
+We are not affiliated with Replit - we just love the service. Todo app demo for this tutorial is [hosted on Replit](https://replit.com/@pglet/ToDo-web-app-in-Python) and you can just "fork" it there and play.
+:::
+
+## What's next
+
+In this tutorial you've learned how to create a multi-user web app in Python using Pglet framework.
