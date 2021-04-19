@@ -5,6 +5,7 @@ slug: button
 ---
 
 import { Replit } from '@site/src/components/replit';
+import { CodeSample } from '@site/src/components/code-sample';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -13,6 +14,8 @@ Button allows to trigger an action.
 ## Usage
 
 ### Regular button
+
+<CodeSample python="python-url" powershell="powershell-url" />
 
 <Tabs defaultValue="demo" values={[
   { label: 'Demo', value: 'demo', },
@@ -30,9 +33,10 @@ Button allows to trigger an action.
 <TabItem value="python">
 
 ```python
+import pglet
 from pglet import Stack, Button
 
-Stack(controls=[
+pglet.page().add(Stack(controls=[
   Stack(horizontal=True, controls=[
     Button("Standard"),
     Button("Standard disabled", disabled=True)
@@ -41,7 +45,7 @@ Stack(controls=[
     Button("Primary", primary=True),
     Button("Primary disabled", primary=True, disabled=True)
   ])
-])
+]))
 ```
 
 </TabItem>
