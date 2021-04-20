@@ -295,15 +295,32 @@ class TodoApp():
 
 Then, we pass a reference to `TodoApp` into Task constructor and call `TodoApp.delete_task()` in "Delete" button event handler:
 
-```python
+```python {2-3,11,16-17,24}
 class Task():
     def __init__(self, app, name):
         self.app = app
         
         # ...
 
+        self.display_view = Stack(horizontal=True, horizontal_align='space-between', vertical_align='center', controls=[
+            self.display_task,
+            Stack(horizontal=True, gap='0', controls=[
+                Button(icon='Edit', title='Edit todo', on_click=self.edit_clicked),
+                Button(icon='Delete', title='Delete todo', on_click=self.delete_clicked)]),
+            ])
+
+        # ...        
+
     def delete_clicked(self, e):
         self.app.delete_task(self)
+
+class TodoApp():
+
+    # ...
+
+    def add_clicked(self, e):
+        task = Task(self, self.new_task.value)
+        # ...
 ```
 
 You can find a full source code for this step [here](https://github.com/pglet/examples/blob/main/python/todo/todo-with-delete.py).
@@ -314,7 +331,11 @@ We already have a functional ToDo app where we can create, edit and delete tasks
 
 We are going to use `Tabs` control for filter:
 
-```python {7-10,18}
+```python {1,11-14,22}
+from pglet import Tabs, Tab
+
+# ...
+
 class TodoApp():
     def __init__(self):
         self.tasks = []
@@ -462,7 +483,7 @@ Please note that we have removed the name of the page from the call above, so it
 
 ### Replit
 
-Instant sharing is the great option to quickly share the app on the web, but it requires your computer to be constantly on all the time.
+Instant sharing is the great option to quickly share the app on the web, but it requires your computer to be on all the time.
 
 [Replit](https://replit.com/) is an online IDE and hosting platform for web apps written in any language. Their free tier allows running any number of apps with some limitations.
 
@@ -492,7 +513,7 @@ In this tutorial you have learned how to:
 * Work with Reusable UI components;
 * Design UI layout using `Stack` control;
 * Work with lists: view, edit and delete items, filtering;
-* Deploy your app in two ways: Pglet Service and Replit;
+* Deploy your app two ways: Pglet Service and Replit;
 
 For further reading you can explore [controls](/docs/controls) and [examples repository](https://github.com/pglet/examples/tree/main/python).
 
