@@ -5,8 +5,6 @@ slug: button
 ---
 
 import { CodeSample } from '@site/src/components/code-sample';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## Examples
 
