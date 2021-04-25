@@ -7,7 +7,7 @@ slug: python
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In this tutorial we will show step-by-step how to create a ToDo web app in Python using Pglet framework and then share it on the internet. The app is just [100 lines of Python code](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py) yet it is a multi-user, professionally looking full-featured web app:
+In this tutorial we will show you, step-by-step, how to create a ToDo web app in Python using Pglet framework and then share it on the internet. The app is just [100 lines of Python code](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py), yet it is a multi-user, professionally looking, full-featured web app:
 
 <iframe src="https://todo-web-app-in-python.pglet.repl.co"
         style={{
@@ -16,7 +16,7 @@ In this tutorial we will show step-by-step how to create a ToDo web app in Pytho
             height: '400px',
         }}/>
 
-We chose ToDo for the tutorial because it covers basic concepts you would need to create any web app: building page layout, adding controls, handling events, displaying and editing lists, making reusable UI components and deploy options.
+We chose a ToDo list for the tutorial, because it covers all of the basic concepts you would need to create any web app: building a page layout, adding controls, handling events, displaying and editing lists, making reusable UI components, and deploy options.
 
 The tutorial consists of the following steps:
 
@@ -25,12 +25,12 @@ The tutorial consists of the following steps:
 * [Adding page controls and handling events](#adding-page-controls-and-handling-events)
 * [View, edit and delete list items](#view-edit-and-delete-list-items)
 * [Filtering list items](#filtering-list-items)
-* [Clear completed and tasks summary](#clear-completed-and-tasks-summary)
+* [Final touches](#final-touches)
 * [Deploying the app](#deploying-the-app)
 
 ## Getting started with Pglet
 
-To write a Pglet web app you don't need to know HTML, CSS or JavaScript, but you need a basic knowledge of Python and object-oriented programming.
+To write a Pglet web app you don't need to know HTML, CSS or JavaScript, but you do need a basic knowledge of Python and object-oriented programming.
 
 Pglet requires Python 3.7 or above. To create a web app in Python with Pglet, you need to install `pglet` module first:
 
@@ -38,7 +38,7 @@ Pglet requires Python 3.7 or above. To create a web app in Python with Pglet, yo
 pip install pglet
 ```
 
-Let's create a simple hello-world app.
+To start, let's create a simple hello-world app.
 
 Create `hello.py` with the following contents:
 
@@ -55,12 +55,12 @@ Run this app and you will see a new browser window with a greeting:
 <p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-hello-world.png" /></p>
 
 :::note
-In this example page URL is a random string, because we didn't specify it in `pglet.page()` call. Try changing it to `pglet.page('hello')`.
+In this example, the page URL is a random string, because we didn't specify it in `pglet.page()` call. Try changing it to `pglet.page('hello')`.
 :::
 
 ## Pglet app structure
 
-In [previous step](#getting-started-with-pglet) we have learned how to create a simple Pglet page. On that page all users work with the same contents ("**shared app**").
+In the [previous step](#getting-started-with-pglet), we learned how to create a simple Pglet page. On that page, all users work with the same contents ("**shared app**").
 
 :::note
 
@@ -78,7 +78,7 @@ Run the app and open its URL in multiple browser tabs. You'll see that changing 
 
 :::
 
-Shared page may be useful for certain types of apps: dashboards, status pages, reports. For ToDo app though we want every user to see their own set of tasks. To achieve this we need to create a "**multi-user app**".
+A shared page may be useful for certain types of apps, such as dashboards, status pages, or reports. But for a ToDo app, we want every user to see their own set of tasks. To achieve this, we need to create a "**multi-user app**".
 
 Create `hello-app.py` with the following contents:
 
@@ -92,17 +92,17 @@ def main(page):
 pglet.app("hello-app", target=main)
 ```
 
-While the application is running for every new user session Pglet calls `main` function with unique page contents.
+While the application is running, for every new user session Pglet calls `main` function with unique page contents.
 
 :::note
-To see multiple sessions in action open application URL in a new "incognito" browser window.
+To see multiple sessions in action, open the application URL in a new "incognito" browser window.
 :::
 
 ## Adding page controls and handling events
 
-Now we are ready to create a multi-user ToDo app.
+Now we're ready to create a multi-user ToDo app.
 
-For a start, we'll need a Textbox for entering task name and "Add" button with event handler that will display a checkbox with a new task.
+To start, we'll need a Textbox for entering a task name, and an "Add" button with an event handler that will display a checkbox with a new task.
 
 Create `todo.py` with the following contents:
 
@@ -131,11 +131,11 @@ Run the app and you should see a page like this:
 
 ### Page layout
 
-Now let's make the app look nice! We want the entire app to be at the top center of the page and stretched over 70% of the page width. The textbox and the button should be aligned horizontally and take full app width:
+Now let's make the app look nice! We want the entire app to be at the top center of the page, stretched over 70% of the page width. The textbox and the button should be aligned horizontally, and take up full app width:
 
 <p style={{ textAlign: 'center' }}><img style={{ width: '90%' }} src="/img/docs/tutorial/todo-diagram-1.svg" /></p>
 
-`Stack` is a container control that is used to layout other controls on a page. `Stack` can be vertical (default), horizontal and can contain other stacks:
+`Stack` is a container control that is used to lay other controls out on a page. `Stack` can be vertical (default) or horizontal, and can contain other stacks:
 
 ```python title="todo.py"
 import pglet
@@ -171,9 +171,9 @@ Run the app and you should see a page like this:
 
 ### Reusable UI components
 
-We can continue writing our app and adding controls to the `main` function, however the best practice would be creating a reusable UI component. Imagine you are working on an app header, or a side menu or other UI that will be a part of a larger project. Even if you can't think of such uses right now we still recommend creating all your web apps with composability and reusability in mind.
+While we could continue writing our app in the `main` function, the best practice would be to create a reusable UI component. Imagine you are working on an app header, a side menu, or UI that will be a part of a larger project. Even if you can't think of such uses right now, we still recommend creating all your web apps with composability and reusability in mind.
 
-To make a reusable ToDo app component we are going to encapsulate its state and presentation logic in a separate class: 
+To make a reusable ToDo app component, we are going to encapsulate its state and presentation logic in a separate class: 
 
 ```python title="todo.py"
 import pglet
@@ -226,17 +226,17 @@ page.add(app1.view, app2.view)
 
 ## View, edit and delete list items
 
-In [previous step](#adding-page-controls-and-handling-events) we created a basic ToDo app with task items shown as checkboxes. Let's improve the app by adding "Edit" and "Delete" buttons next to the task name. "Edit" button will switch task item to edit mode.
+In the [previous step](#adding-page-controls-and-handling-events), we created a basic ToDo app with task items shown as checkboxes. Let's improve the app by adding "Edit" and "Delete" buttons next to a task name. The "Edit" button will switch a task item to edit mode.
 
 <p style={{ textAlign: 'center' }}><img style={{ width: '90%' }} src="/img/docs/tutorial/todo-diagram-2.svg" /></p>
 
 Each task item is represented by two stacks: `display_view` stack with Checkbox, "Edit" and "Delete" buttons and `edit_view` stack with Textbox and "Save" button. `view` stack serves as a container for both `display_view` and `edit_view` stacks.
 
-Before this step the code was short enough to be fully included in the tutorial. Going forward we will be highlighting only new changes introduced in a step.
+Before this step, the code was short enough to be fully included in the tutorial. Going forward, we will be highlighting only the changes introduced in a step.
 
-Copy the entire code for this step from [here](https://github.com/pglet/examples/blob/main/python/todo/todo-with-delete.py). Below we will explain the changes we've done to implement view, edit and delete tasks.
+Copy the entire code for this step from [here](https://github.com/pglet/examples/blob/main/python/todo/todo-with-delete.py). Below we will explain the changes we've done to implement view, edit, and delete tasks.
 
-To encapsulate task item views and actions we introduced a new `Task` class:
+To encapsulate task item views and actions, we introduced a new `Task` class:
 
 ```python
 class Task():
@@ -271,7 +271,7 @@ class Task():
         self.view.update()
 ```
 
-Additionally, we changed `TodoApp` class to create and hold `Task` instances when "Add" button is clicked:
+Additionally, we changed `TodoApp` class to create and hold `Task` instances when the "Add" button is clicked:
 
 ```python
 class TodoApp():
@@ -287,7 +287,7 @@ class TodoApp():
         self.view.update()
 ```
 
-For "Delete" task operation we implemented `delete_task()` method in `TodoApp` class which accepts task instance as a parameter:
+For "Delete" task operation, we implemented `delete_task()` method in `TodoApp` class which accepts task instance as a parameter:
 
 ```python
 class TodoApp():
@@ -330,13 +330,13 @@ class TodoApp():
         # ...
 ```
 
-Run the app and try edit and delete tasks:
+Run the app and try to edit and delete tasks:
 
 <p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-3.png" /></p>
 
 ## Filtering list items
 
-We already have a functional ToDo app where we can create, edit and delete tasks. To be even more productive we want to be able to filter tasks by their status.
+We already have a functional ToDo app where we can create, edit, and delete tasks. To be even more productive, we want to be able to filter tasks by their status.
 
 Copy the entire code for this step from [here](https://github.com/pglet/examples/blob/main/python/todo/todo-with-filter.py). Below we will explain the changes we've done to implement filtering.
 
@@ -370,7 +370,7 @@ class TodoApp():
         ])
 ```
 
-To display different lists of tasks depending on their status we could maintain three lists with "All", "Active" and "Completed" tasks. We, however, chose an easier approach where we maintain the same list and just change task item's visibility depending on the status.
+To display different lists of tasks depending on their statuses, we could maintain three lists with "All", "Active" and "Completed" tasks. We, however, chose an easier approach where we maintain the same list and only change a task's visibility depending on the status.
 
 In `TodoApp` class we introduced `update()` method which iterates through all the tasks and updates their `view` Stack's `visible` property depending on the status of the task:
 
@@ -413,7 +413,7 @@ Run the app and try filtering tasks by clicking on the tabs:
 
 ## Final touches
 
-Our Todo app is almost complete now. As a final touch we will add a footer (`Stack` control) displaying the number of incomplete tasks (`Text` control) and "Clear completed" button.
+Our Todo app is almost complete now. As a final touch, we will add a footer (`Stack` control) displaying the number of incomplete tasks (`Text` control) and a "Clear completed" button.
 
 Copy the entire code for this step from [here](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py). Below we highlighted the changes we've done to implement the footer:
 
@@ -465,16 +465,16 @@ Run the app:
 
 ## Deploying the app
 
-Congratulations! You have created your first Python web app with Pglet and it looks awesome!
+Congratulations! You have created your first Python web app with Pglet, and it looks awesome!
 
-Now it's time to share the app with the world!
+Now it's time to share your app with the world!
 
 ### Instant sharing
 
 Pglet is not only a framework for building web apps, but it is also a service for hosting apps' UI.
 You can have the application running on your computer while its UI is streaming to Pglet service in real-time.
 
-To make the app instantly available on the Internet just add `web=True` parameter to `pglet.app()` call at the very end of the program:
+To make the app instantly available on the Internet, just add `web=True` parameter to `pglet.app()` call at the very end of the program:
 
 ```python
 # ...
@@ -496,11 +496,11 @@ Please note that we have removed the name of the page from the call above, so it
 
 ### Replit
 
-Instant sharing is the great option to quickly share the app on the web, but it requires your computer to be on all the time.
+Instant sharing is a great option to quickly share an app on the web, but it requires your computer to be on all the time.
 
 [Replit](https://replit.com/) is an online IDE and hosting platform for web apps written in any language. Their free tier allows running any number of apps with some limitations.
 
-To run ToDo app on Replit:
+To run your ToDo app on Replit:
 
 * [Sign up](https://replit.com/signup?from=landing) on Replit.
 * Click "New repl" button.
@@ -513,7 +513,7 @@ To run ToDo app on Replit:
 pglet.app("index", target=main)
 ```
 
-* Run the app. Now both application code and UI are running on Replit service as a "standalone" app.
+* Run the app. Now both the application code and UI are running on Replit service as a "standalone" app.
 
 :::note
 We are not affiliated with Replit - we just love the service. Todo app demo for this tutorial is [hosted on Replit](https://replit.com/@pglet/ToDo-web-app-in-Python) and you can just "fork" it there and play.
