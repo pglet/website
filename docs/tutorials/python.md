@@ -1,5 +1,5 @@
 ---
-title: Create web app in Python with Pglet
+title: Create a web app in Python with Pglet
 sidebar_label: Python
 slug: python
 ---
