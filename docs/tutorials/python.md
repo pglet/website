@@ -135,7 +135,9 @@ Now let's make the app look nice! We want the entire app to be at the top center
 
 <p style={{ textAlign: 'center' }}><img style={{ width: '90%' }} src="/img/docs/tutorial/todo-diagram-1.svg" /></p>
 
-`Stack` is a container control that is used to lay other controls out on a page. `Stack` can be vertical (default) or horizontal, and can contain other stacks:
+`Stack` is a container control that is used to lay other controls out on a page. `Stack` can be vertical (default) or horizontal, and can contain other stacks.
+
+Replace `todo.py` contents with the following:
 
 ```python title="todo.py"
 import pglet
