@@ -16,7 +16,7 @@ A search box provides an input field for searching content within a site or app 
 | `icon`         | string |         | Replace "search" icon with a custom one. |
 | `iconColor`    | string |         | Icon color. |
 | `data`         | string |         | Additional data attached to the control. The value is passed in event data. |
-| `onChange`     | bool   | `false` | Whether `change` event should be fired while text is typed into the SearchBox. |
+| `onChange`     | bool   | `false` | Whether `change` event should be fired while text is typed into the SearchBox. This property is used by command-based client libraries only like Bash. |
 
 ## Events
 
@@ -24,7 +24,6 @@ A search box provides an input field for searching content within a site or app 
 | --------- | ----------- |
 | `search`  | Fires when the user presses Enter in the search box. |
 | `clear`  | Fires when the user clears the search box by either clicking 'X' or hitting escape. |
-| `escape`  | Fires when the user presses Esc in the search box. |
 | `change`  | Fires when the typed input for the SearchBox has changed. For performance optimization this event is disabled unless `onChange` property set to `true`. |
 
 ## Examples

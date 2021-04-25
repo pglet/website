@@ -11,9 +11,9 @@ A dialog box (Dialog) is a temporary pop-up that takes focus from the page or ap
 | Name          | Type    | Default | Description |
 | ------------- | ------- | ------- | ----------- |
 | `open`        | bool    | `false` | Whether the dialog is shown. |
+| `type`        | string  | `normal` | Dialog type: `normal` - standard dialog, `largeHeader` - dialog with large header banner, `close` - dialog with an 'x' close button in the upper-right corner. |
 | `title`       | string  |         | The title text to display at the top of the dialog. |
 | `subText`     | string  |         | The subtext to display in the dialog. |
-| `largeHeader` | bool    | `false` | Dialog with large header banner. |
 | `autoDismiss` | bool    | `false` | Whether dialog should be automatically hidden when dismissed. |
 | `width`       | string  |         | Minimum width of the dialog. |
 | `maxWidth`    | string  |         | Maximum width of the dialog. |

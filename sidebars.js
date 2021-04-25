@@ -1,10 +1,7 @@
 module.exports = {
-  someSidebar: {
-    'Getting started': [
-      'introduction',
-      'how-it-works',
-      'use-cases',
-    ],
+  someSidebar: [
+    'introduction',
+    {
     'Tutorials': [
       'tutorials/python',
       'tutorials/bash',
@@ -28,6 +25,7 @@ module.exports = {
           'controls/checkbox',
           'controls/choicegroup',
           'controls/dropdown',
+          'controls/datepicker',
           'controls/link',
           'controls/message',
           'controls/searchbox',
@@ -99,5 +97,5 @@ module.exports = {
         }
       ]
     }],
-  },
+  }],
 };

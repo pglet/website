@@ -4,7 +4,6 @@ sidebar_label: Stack
 slug: stack
 ---
 
-import { Replit } from '@site/src/components/replit';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -30,7 +29,6 @@ Stacks can be nested inside one another in order to be able to configure the lay
 ]}>
 
 <TabItem value="demo">
-  <Replit src="https://python-demo.pglet.repl.co/#horizontal_stack" height="100px" />
 </TabItem>
 
 <TabItem value="python">
@@ -65,7 +63,6 @@ stack1 = page.add(Stack(horizontal=True, controls=[
 ]}>
 
 <TabItem value="demo">
-  <Replit src="https://python-demo.pglet.repl.co/#vertical_stack" height="100px" />
 </TabItem>
 
 <TabItem value="python">

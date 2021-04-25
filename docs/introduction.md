@@ -6,7 +6,7 @@ slug: /
 
 ## What is Pglet
 
-Pglet (*"piglet"*) is a rich user interface (UI) framework for scripts and programs written in any language. [Python](/docs/tutorials/python), [Bash](/docs/tutorials/bash), [PowerShell](/docs/tutorials/powershell) and [Node.js](/docs/tutorials/node) are already supported and other languages can be easily added via [Pglet protocol](/docs/reference/protocol).
+Pglet (*"piglet"*) is a rich user interface (UI) framework for scripts and programs written in any language and a service for securely sharing your application UI. [Python](/docs/tutorials/python), [Bash](/docs/tutorials/bash), [PowerShell](/docs/tutorials/powershell) and [Node.js](/docs/tutorials/node) are already supported and other languages can be easily added via [Pglet protocol](/docs/reference/protocol).
 
 Pglet renders web UI, so you can easily build web apps with your favorite language. Knowledge of HTML/CSS/JavaScript is not required as you build UI with [controls](/docs/controls). Pglet controls are built with [Fluent UI React](https://developer.microsoft.com/en-us/fluentui#/controls/web) to ensure your programs look cool and professional.
 
@@ -37,7 +37,7 @@ import pglet
 from pglet import Text
 
 p = pglet.page()
-p.add(Text(value="Hello, world!"))
+p.add(Text("Hello, world!"))
 ```
 
 Run `hello.py` with Python 3 and in a new browser window you'll get:
@@ -52,7 +52,7 @@ Add `web=True` to `pglet.page` call:
 
 ```python {1}
 p = pglet.page(web=True)
-p.add(Text(value="Hello, world!"))
+p.add(Text("Hello, world!"))
 ```
 
 </TabItem>
@@ -104,8 +104,8 @@ Create `hello.ps1` with the following contents:
 ```powershell title="hello.ps1"
 Import-Module pglet
 
-Connect-PgletPage
-Invoke-Pglet "add text value='Hello, world!'"
+$page = Connect-PgletPage
+$page.add((Text 'Hello, world!'))
 ```
 
 Run `hello.ps1` in a PowerShell session and in a new browser window you'll get:
@@ -119,8 +119,8 @@ Now let's bring that page to a web, so others can see it!
 Add `-Web` parameter to `Connect-PgletPage` call:
 
 ```powershell {1}
-Connect-PgletPage -Web
-Invoke-Pglet "add text value='Hello, world!'"
+$page = Connect-PgletPage -Web
+$page.add((Text 'Hello, world!'))
 ```
 
 </TabItem>

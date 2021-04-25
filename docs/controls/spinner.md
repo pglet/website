@@ -10,7 +10,7 @@ A Spinner is an outline of a circle which animates around itself indicating to t
 
 | Name           | Type    | Default | Description |
 | -------------- | ------- | ------- | ----------- |
-| `size`         | string  | `medium` | The size of Spinner to render: `extraSmall`, `small`, `medium`, `large` |
+| `size`         | string  | `medium` | The size of Spinner to render: `xSmall`, `small`, `medium`, `large` |
 | `label`        | string  |          | The label to show next to the Spinner. |
 | `labelPosition` | string  | `bottom` | The position of the label in regards of the spinner animation: `top`, `right`, `left`, `bottom` |
 
