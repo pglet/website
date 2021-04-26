@@ -1,5 +1,5 @@
 # Constants
-PGLET_VER="0.3.0"                             # Pglet version required by this script
+PGLET_VER="0.3.1"                             # Pglet version required by this script
 PGLET_DEFAULT_INSTALL_DIR="$HOME/.pglet/bin"  # Default installation directory
 
 # Installation variables
