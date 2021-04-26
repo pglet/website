@@ -6,6 +6,15 @@ slug: nav
 
 A navigation pane provides links to the main areas of an app or site.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-nav-example.pgletio.repl.co" height="700px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/nav_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/nav.sh"
+    />
+
 ## Properties
 
 | Name            | Type   | Default | Description |
@@ -45,47 +54,3 @@ Represents a group or a link item within Nav control. Top level `item` controls 
 `Item` control can contain other `item` controls to build links tree.
 
 * [`Item`](#item-control)
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-```python
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Nav control live demo in Bash](https://repl.it/@pglet/bash-nav-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

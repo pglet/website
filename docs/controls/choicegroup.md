@@ -6,6 +6,15 @@ slug: choicegroup
 
 Radio buttons let people select a single option from two or more choices.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-choicegroup-example.pgletio.repl.co" height="700px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/choicegroup_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/choicegroup.sh"
+    />
+
 ## Properties
 
 | Name           | Type    | Default | Description |
@@ -34,69 +43,3 @@ Radio buttons let people select a single option from two or more choices.
 | `text`         | string  |         | Option's display text. `key` value will be used instead if `text` is not specified. |
 | `icon`         | string  |         | Icon name to display with this option. |
 | `iconColor`    | string  |         | Icon color. |
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-Adding a new ChoiceGroup with a couple of options defined as tuples:
-
-```python
-cg1 = page.add(ChoiceGroup(label="Favorite color:", options=[
-    ("r", "Red"),
-    ("g", "Green"),
-    ("b", "Blue")
-]))
-```
-
-or as `Option` controls:
-
-```python
-cg1 = page.add(ChoiceGroup(label="Favorite color:", options=[
-    Option("r", "Red"),
-    Option("g", "Green"),
-    Option("b", "Blue")
-]))
-```
-
-Get the key of selected option:
-
-```python
-favorite_color = page.get_value(cg1)
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[ChoiceGroup control live demo in Bash](https://repl.it/@pglet/bash-choicegroup-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

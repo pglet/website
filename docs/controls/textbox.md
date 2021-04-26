@@ -6,6 +6,14 @@ slug: textbox
 
 Represents a textbox element with optional label, hint and validation messages.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-textbox-example.pgletio.repl.co" height="600px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/textbox_control.py"
+    />
+
 ## Properties
 
 | Name           | Type   | Default | Description |
@@ -34,67 +42,3 @@ Represents a textbox element with optional label, hint and validation messages.
 | Name      | Description |
 | --------- | ----------- |
 | `change`  | Fires when the typed input for the Textbox has changed. For performance optimization this event is disabled unless `onChange` property set to `true`. |
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-Adding a new textbox control onto the page:
-
-```python
-txt_name = page.add(Textbox(label="Your name", placeholder="Enter your name", description="This is your full name"))
-```
-
-Retrieving the value entered into textbox:
-
-```python
-your_name = page.get_value(txt_name)
-print(f'Your name: {your_name}')
-```
-
-Add multiline textbox and then output a couple of lines into it:
-
-```python
-txt_log = page.add(Textbox(label="Operations", multiline=True))
-
-for i in range(5):
-    page.append(txt_log, f'Line {i}\n')
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-```bash
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

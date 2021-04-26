@@ -10,6 +10,16 @@ Commands should be sorted in order of importance, from left-to-right or right-to
 
 All command items should have an icon and a label. Commands can render as labels only as well. In smaller widths, commands can just use icon only, but only for the most recognizable and frequently used commands. All other commands should go into an overflow where text labels can be shown.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-toolbar-example.pgletio.repl.co" height="300px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/toolbar_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/toolbar.sh"
+    />
+
+
 ## Properties
 
 | Name            | Type   | Default | Description |
@@ -71,47 +81,3 @@ Group items to display on the right side of the toolbar.
 ### Child controls
 
 * [`Item`](#item-control)
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-```python
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Toolbar control live demo in Bash](https://repl.it/@pglet/bash-toolbar-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

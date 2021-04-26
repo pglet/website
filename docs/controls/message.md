@@ -6,6 +6,15 @@ slug: message
 
 A banner displays errors, warnings, or important information about an open app or file. For example, if a file failed to upload an error message bar should appear.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-message-example.pgletio.repl.co" height="600px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/message_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/message.sh"
+    />
+
 ## Properties
 
 | Name            | Type   | Default | Description |
@@ -41,47 +50,3 @@ Allows adding custom action buttons on the right side or message, e.g. "Yes/No",
 | --------------- | ------ | ------- | ----------- |
 | `text`          | string |         | Button text. |
 | `action`        | string |         | The value to pass into `dismiss` event when the button is clicked. The `text` value is used if `action` is not specified. |
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-```python
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Message control live demo in Bash](https://repl.it/@pglet/bash-messages-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

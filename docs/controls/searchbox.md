@@ -6,6 +6,15 @@ slug: searchbox
 
 A search box provides an input field for searching content within a site or app to find specific items.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-searchbox-example.pgletio.repl.co" height="450px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/searchbox_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/searchbox.sh"
+    />
+
 ## Properties
 
 | Name           | Type   | Default | Description |
@@ -25,51 +34,3 @@ A search box provides an input field for searching content within a site or app 
 | `search`  | Fires when the user presses Enter in the search box. |
 | `clear`  | Fires when the user clears the search box by either clicking 'X' or hitting escape. |
 | `change`  | Fires when the typed input for the SearchBox has changed. For performance optimization this event is disabled unless `onChange` property set to `true`. |
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-Adding a new SearchBox control onto the page:
-
-```python
-sb = page.add(SearchBox(placeholder="Search by city name", on_search=perform_search))
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-```bash
-[SearchBox control live demo in Bash](https://repl.it/@pglet/bash-searchbox-example)
-```
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

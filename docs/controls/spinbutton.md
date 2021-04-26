@@ -6,6 +6,16 @@ slug: spinbutton
 
 A spin button allows someone to incrementally adjust a value in small steps. Itâ€™s mainly used for numeric values, but other values are supported too.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-spinbutton-example.pgletio.repl.co" height="100px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/spinbutton_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/spinbutton.sh"
+    />
+
+
 ## Properties
 
 | Name      | Type    | Default | Description |
@@ -23,50 +33,3 @@ A spin button allows someone to incrementally adjust a value in small steps. Itâ
 | Name      | Description |
 | --------- | ----------- |
 | `change`  | Fires when the value of the SpinButton has been changed. |
-
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-Adding a new slider:
-
-```python
-enabled = page.add(SpinButton(label="Basic SpinButton", min=0, max=100))
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[SpinButton control live demo in Bash](https://repl.it/@pglet/bash-spinbuttons-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

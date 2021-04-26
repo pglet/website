@@ -6,6 +6,14 @@ slug: spinner
 
 A Spinner is an outline of a circle which animates around itself indicating to the user that things are processing. A Spinner is shown when it's unsure how long a task will take making it the indeterminate version of a [Progress](progress).
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-spinner-example.pgletio.repl.co" height="500px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/spinner_control.py"
+    />
+
 ## Properties
 
 | Name           | Type    | Default | Description |
@@ -13,57 +21,3 @@ A Spinner is an outline of a circle which animates around itself indicating to t
 | `size`         | string  | `medium` | The size of Spinner to render: `xSmall`, `small`, `medium`, `large` |
 | `label`        | string  |          | The label to show next to the Spinner. |
 | `labelPosition` | string  | `bottom` | The position of the label in regards of the spinner animation: `top`, `right`, `left`, `bottom` |
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-Adding a new spinner:
-
-```python
-spin1 = page.add(Spinner(label="Please wait while we are doing something..."))
-```
-
-Remove spinner when a long operation is complete:
-
-```python
-page.remove(spin1)
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-```bash
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

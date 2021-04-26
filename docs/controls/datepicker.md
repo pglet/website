@@ -6,9 +6,14 @@ slug: datepicker
 
 A date picker (DatePicker) offers a drop-down control that’s optimized for picking a single date from a calendar view where contextual information like the day of the week or fullness of the calendar is important.
 
-## Usage
+import { CodeSample } from '@site/src/components/code-sample';
 
+## Examples
 
+<CodeSample src="https://python-datepicker-example.pgletio.repl.co" height="450px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/datepicker_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/datepicker.sh"
+    />
 
 ## Properties
 

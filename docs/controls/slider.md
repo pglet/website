@@ -6,6 +6,15 @@ slug: slider
 
 A slider provides a visual indication of adjustable content, as well as the current setting in the total range of content. Use a slider when you want people to set defined values (such as volume or brightness), or when people would benefit from instant feedback on the effect of setting changes.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-slider-example.pgletio.repl.co" height="750px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/slider_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/slider.sh"
+    />
+
 ## Properties
 
 | Name      | Type    | Default | Description |
@@ -25,50 +34,3 @@ A slider provides a visual indication of adjustable content, as well as the curr
 | Name      | Description |
 | --------- | ----------- |
 | `change`  | Fires when the value of a slider has been changed. |
-
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-Adding a new slider:
-
-```python
-enabled = page.add(Slider(label="Default slider", min=0, max=100))
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Slider control live demo in Bash](https://repl.it/@pglet/bash-slider-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

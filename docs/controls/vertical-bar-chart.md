@@ -6,11 +6,14 @@ slug: vertical-bar-chart
 
 Vertical Bar Chart (`VerticalBarChart`) is a chart control.
 
-<div class="control-screenshot">
-  <img src="/img/blog/pglet-0-2-2/vertical-bar-chart-example.png" width="60%" />
-</div>
+import { CodeSample } from '@site/src/components/code-sample';
 
-<a class="control-demo" href="https://repl.it/@pglet/bash-vertical-bar-chart-example" target="_blank">Live Demo</a>
+## Examples
+
+<CodeSample src="https://python-verticalbarchart-example.pgletio.repl.co" height="820px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/vertical_barchart_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/vertical_barchart.sh"
+    />
 
 ## Properties
 
@@ -52,47 +55,3 @@ Describes chart data point.
 | `color`    | string |         | Color for the legend in the chart. |
 | `xTooltip` | string |         | Callout data for x axis. `legend` will be used if not provided. |
 | `yTooltip` | string |         | Callout data for y axis. `y` will be used if not provided. |
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-```python
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[VerticalBarChart control live demo in Bash](https://repl.it/@pglet/bash-vertical-bar-chart-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

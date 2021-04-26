@@ -8,10 +8,10 @@ import { CodeSample } from '@site/src/components/code-sample';
 
 ## Examples
 
-<CodeSample src="https://bash-buttons-example.pglet.repl.co/" height="600px"
-    python="https://github.com/pglet/examples/blob/python-examples/python/controls/button_control.py"
-    powershell="powershell-url"
-    csharp="ddddd" />
+<CodeSample src="https://python-button-example.pgletio.repl.co" height="940px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/button_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/button.sh"
+    />
 
 ## Properties
 

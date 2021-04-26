@@ -6,6 +6,15 @@ slug: toggle
 
 A toggle represents a physical switch that allows someone to choose between two mutually exclusive options.  For example, "On/Off", "Show/Hide". Choosing an option should produce an immediate result.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-toggle-example.pgletio.repl.co" height="600px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/toggle_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/theme_example.sh"
+    />
+
 ## Properties
 
 | Name      | Type    | Default | Description |
@@ -22,50 +31,3 @@ A toggle represents a physical switch that allows someone to choose between two 
 | Name      | Description |
 | --------- | ----------- |
 | `change`  | Fires when the state of toggle is changed. |
-
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-Adding a new toggle:
-
-```python
-enabled = page.add(Toggle(label="Dark mode", on_text="On", off_text="Off"))
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Toggle control live demo in Bash](https://repl.it/@pglet/bash-toggle-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

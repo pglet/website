@@ -6,7 +6,14 @@ slug: line-chart
 
 Line Chart (`LineChart`) is a chart control.
 
-<a class="control-demo" href="https://repl.it/@pglet/bash-linechart-example" target="_blank">Live Demo</a>
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-linechart-example.pgletio.repl.co" height="1000px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/linechart_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/linechart.sh"
+    />
 
 ## Properties
 
@@ -53,47 +60,3 @@ Describes chart data point.
 | `legend`   | string |         | Legend text for the datapoint in the chart. |
 | `xTooltip` | string |         | Callout data for x axis. `legend` will be used if not provided. |
 | `yTooltip` | string |         | Callout data for y axis. `y` will be used if not provided. |
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-```python
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Line Chart live demo in Bash](https://repl.it/@pglet/bash-linechart-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

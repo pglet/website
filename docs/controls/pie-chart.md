@@ -6,7 +6,14 @@ slug: pie-chart
 
 Pie Chart (`PieChart`) is a chart control.
 
-<a class="control-demo" href="https://repl.it/@pglet/bash-piechart-example" target="_blank">Live Demo</a>
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-piechart-example.pgletio.repl.co" height="600px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/piechart_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/piechart.sh"
+    />
 
 ## Properties
 
@@ -41,47 +48,3 @@ Describes chart data point.
 | `legend`   | string |         | Legend text for the datapoint in the chart.  |
 | `color`    | string |         | Color for the legend in the chart. |
 | `tooltip` | string |         | Callout data the value. `legend` will be used if not provided. |
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-```python
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Pie Chart live demo in Bash](https://repl.it/@pglet/bash-piechart-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

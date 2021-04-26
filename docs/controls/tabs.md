@@ -6,6 +6,15 @@ slug: tabs
 
 The Tabs control and related tabs pattern are used for navigating frequently accessed, distinct content categories. Tabs allow for navigation between two or more content views and relies on text headers to articulate the different sections of content.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-tabs-example.pgletio.repl.co" height="400px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/tabs_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/tabs.sh"
+    />
+
 ## Properties
 
 | Name            | Type   | Default | Description |
@@ -39,47 +48,3 @@ Represents a tab within Tabs control.
 ### Child controls
 
 * Any control - will be rendered in the body of the tab.
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-```python
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Tabs control live demo in Bash](https://repl.it/@pglet/bash-tabs-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>
