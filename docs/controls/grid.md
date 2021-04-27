@@ -6,6 +6,15 @@ slug: grid
 
 A Grid is a robust way to display an information-rich collection of items, and allow people to sort, group, and filter the content. Use Grid when information density is critical.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-grid-example.pgletio.repl.co" height="1100px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/grid_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/grid.sh"
+    />
+
 ## Properties
 
 | Name            | Type   | Default | Description |
@@ -81,49 +90,3 @@ Item control holds the data for a single row.
 ### Properties
 
 Item control can have any properties.
-
-
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-```python
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Grid control live demo in Bash](https://repl.it/@pglet/bash-grid-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

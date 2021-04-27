@@ -6,6 +6,15 @@ slug: image
 
 An image is a graphic representation of something (e.g photo or illustration).
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-image-example.pgletio.repl.co" height="700px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/image_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/image.sh"
+    />
+
 ## Properties
 
 | Name           | Type    | Default | Description |
@@ -16,48 +25,3 @@ An image is a graphic representation of something (e.g photo or illustration).
 | `fit`        | string  |          | Used to determine how the image is scaled and cropped to fit the frame. Allowed values: `none`, `contain`, `cover`, `center`, `centerContain`, `centerCover` |
 | `maximizeFrame` | boolean | `false` | If true, the image frame will expand to fill its parent container. |
 
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-Adding a new Link control onto the page:
-
-```python
-link1 = page.add(Link(url="https://pglet.io", value="Pglet website", new_window=True))
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Image control live demo in Bash](https://repl.it/@pglet/bash-image-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

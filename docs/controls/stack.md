@@ -4,9 +4,6 @@ sidebar_label: Stack
 slug: stack
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 Stack is a container-type control that allows to define the layout of its children controls.
 
 Although the Stack control has a number of different properties, there are three in particular that define the overall layout that the component has:
@@ -17,75 +14,13 @@ Although the Stack control has a number of different properties, there are three
 
 Stacks can be nested inside one another in order to be able to configure the layout of the application as desired.
 
-## Usage
+import { CodeSample } from '@site/src/components/code-sample';
 
-### Horizontal stack
+## Examples
 
-<Tabs defaultValue="demo" values={[
-  { label: 'Demo', value: 'demo', },
-  { label: 'Python', value: 'python', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Bash', value: 'bash', },
-]}>
-
-<TabItem value="demo">
-</TabItem>
-
-<TabItem value="python">
-
-```python
-stack1 = page.add(Stack(horizontal=True, controls=[
-    Button(id="ok", text="OK"),
-    Button(id="cancel", text="Cancel")
-]))
-```
-
-</TabItem>
-
-<TabItem value="bash">
-</TabItem>
-
-<TabItem value="powershell">
-</TabItem>
-
-<TabItem value="bash">
-</TabItem>
-
-</Tabs>
-
-### Vertical stack
-
-<Tabs defaultValue="demo" values={[
-  { label: 'Demo', value: 'demo', },
-  { label: 'Python', value: 'python', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Bash', value: 'bash', },
-]}>
-
-<TabItem value="demo">
-</TabItem>
-
-<TabItem value="python">
-
-```python
-stack1 = page.add(Stack(horizontal=True, controls=[
-    Button(id="ok", text="OK"),
-    Button(id="cancel", text="Cancel")
-]))
-```
-
-</TabItem>
-
-<TabItem value="bash">
-</TabItem>
-
-<TabItem value="powershell">
-</TabItem>
-
-<TabItem value="bash">
-</TabItem>
-
-</Tabs>
+<CodeSample src="https://python-stack-example.pgletio.repl.co" height="1300px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/stack_control.py"
+    />
 
 ## Properties
 

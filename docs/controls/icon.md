@@ -6,6 +6,15 @@ slug: icon
 
 Displays an icon.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-icon-example.pgletio.repl.co" height="150px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/icon_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/icon.sh"
+    />
+
 ## Properties
 
 | Name      | Type    | Default | Description |
@@ -13,49 +22,3 @@ Displays an icon.
 | `name`    | string  |         | The name of the icon. You can search through the list of all available icons on [Fluent UI Icons](https://developer.microsoft.com/en-us/fluentui#/styles/web/icons#fabric-react) page. |
 | `color`     | string  |         | Icon color. |
 | `size`     | string  |         | Icon size. |
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-Adding a new Icon control onto the page:
-
-```python
-link1 = page.add(Icon(name="Dictionary", color="green", size="50"))
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Icon control live demo in Bash](https://repl.it/@pglet/bash-icon-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

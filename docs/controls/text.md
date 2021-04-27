@@ -6,6 +6,15 @@ slug: text
 
 Text is a control for displaying text.
 
+import { CodeSample } from '@site/src/components/code-sample';
+
+## Examples
+
+<CodeSample src="https://python-text-example.pgletio.repl.co" height="1050px"
+    python="https://github.com/pglet/examples/blob/main/python/controls/text_control.py"
+    bash="https://github.com/pglet/examples/blob/main/bash/controls/text.sh"
+    />
+
 ## Properties
 
 | Name      | Type    | Default | Description |
@@ -32,62 +41,3 @@ Text is a control for displaying text.
 | `borderTop`    | string  |         | Border of the top side of text in `<width> <style> <color>` format, e.g. `1px solid #550000` |
 | `borderBottom` | string  |         | Border of the bottom side of text in `<width> <style> <color>` format, e.g. `1px solid #550000` |
 
-
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-Adding a new text control onto the page:
-
-```python
-t1 = page.add(Text(value="Hello, world!"))
-```
-
-Updating just added text:
-
-```python
-t1.value = "Running step A..."
-page.update(t1)
-```
-
-or shorter:
-
-```python
-page.set_value(t1, "Running step A...")
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Text control live demo in Bash](https://repl.it/@pglet/bash-text-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>
