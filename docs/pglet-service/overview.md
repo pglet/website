@@ -95,12 +95,12 @@ Anonymous clients are tracked by IP address, so there might be situations when m
 * Anonymous client can create up to 10 pages per hour.
 * Once a page is created from a certain IP it must be updated from the same IP; otherwise page name could not be reused untill the page is expired and its name reclaimed.
 * Shared page lifetime is limited to 6 hours since the last time it was updated.
-* App page lifetime is limited to 60 minutes since the last time any app session was updated.
+* App page lifetime is limited to 20 minutes since the last time any app session was viewed.
 
 ### Sessions
 
 * Anonymous client can create up to 10 app sessions per hour.
-* App page session lifetime is limited to 60 minutes since the last time it was accessed or updated.
+* App page session lifetime is limited to 20 minutes since the last time it was accessed.
 * When a host client serving an app page is disconnected all app sessions are immediately invalidated.
   That's a convenient "feature" during beta-testing because when user restarts the app and refreshes the page in the browser they'll start a new session.
 

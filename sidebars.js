@@ -1,16 +1,74 @@
 module.exports = {
-  someSidebar: {
-    'Getting started': [
-      'introduction',
-      'how-it-works',
-      'use-cases',
-    ],
+  someSidebar: [
+    'introduction',
+    {
     'Tutorials': [
       'tutorials/python',
       'tutorials/bash',
       'tutorials/powershell',
       'tutorials/node',
     ],
+    'Controls': [
+      'controls/overview',
+      {
+        'Layout': [
+          'controls/page',
+          'controls/stack',
+          'controls/text',
+          'controls/icon',
+          'controls/image',
+        ]
+      },        
+      {
+        'Basic inputs': [
+          'controls/button',
+          'controls/checkbox',
+          'controls/choicegroup',
+          'controls/dropdown',
+          'controls/datepicker',
+          'controls/link',
+          'controls/message',
+          'controls/searchbox',
+          'controls/slider',
+          'controls/spinbutton',
+          'controls/textbox',
+          'controls/toggle',
+        ]
+      },
+      {
+        'Commands & Navs': [
+          'controls/nav',
+          'controls/toolbar',
+          'controls/tabs',
+        ]
+      },        
+      {
+        'Lists & Grids': [
+          'controls/grid',
+        ]
+      },
+      {
+        'Progress': [
+          'controls/progress',
+          'controls/spinner',
+        ]
+      },
+      {
+        'Surfaces': [
+          'controls/callout',
+          'controls/dialog',
+          'controls/panel',
+        ]
+      },
+      {
+        'Charts': [
+          'controls/line-chart',
+          'controls/pie-chart',
+          'controls/vertical-bar-chart',
+          'controls/bar-chart',
+        ]
+      },        
+    ],    
     'Guides': [
       //'layout',
       //'theming',
@@ -24,66 +82,6 @@ module.exports = {
       'pglet-service/overview',
     ],
     'Reference': [{
-      'Controls': [
-        'reference/controls/overview',
-        {
-          'Layout': [
-            'reference/controls/page',
-            'reference/controls/stack',
-            'reference/controls/text',
-            'reference/controls/icon',
-            'reference/controls/image',
-          ]
-        },        
-        {
-          'Basic inputs': [
-            'reference/controls/button',
-            'reference/controls/checkbox',
-            'reference/controls/choicegroup',
-            'reference/controls/dropdown',
-            'reference/controls/link',
-            'reference/controls/message',
-            'reference/controls/searchbox',
-            'reference/controls/slider',
-            'reference/controls/spinbutton',
-            'reference/controls/textbox',
-            'reference/controls/toggle',
-          ]
-        },
-        {
-          'Commands & Navs': [
-            'reference/controls/nav',
-            'reference/controls/toolbar',
-            'reference/controls/tabs',
-          ]
-        },        
-        {
-          'Lists & Grids': [
-            'reference/controls/grid',
-          ]
-        },
-        {
-          'Progress': [
-            'reference/controls/progress',
-            'reference/controls/spinner',
-          ]
-        },
-        {
-          'Surfaces': [
-            'reference/controls/callout',
-            'reference/controls/dialog',
-            'reference/controls/panel',
-          ]
-        },
-        {
-          'Charts': [
-            'reference/controls/line-chart',
-            'reference/controls/pie-chart',
-            'reference/controls/vertical-bar-chart',
-            'reference/controls/bar-chart',
-          ]
-        },        
-      ],
       'Pglet protocol': [
         'reference/protocol/overview',
         {
@@ -99,5 +97,5 @@ module.exports = {
         }
       ]
     }],
-  },
+  }],
 };

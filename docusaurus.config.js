@@ -45,18 +45,22 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Getting started',
+              label: 'Introduction',
               to: 'docs/',
-            }
+            },
+            {
+              label: 'Python tutorial',
+              to: 'docs/tutorials/python/',
+            },
+            {
+              label: 'Controls reference',
+              to: 'docs/controls/',
+            }            
           ],
         },
         {
           title: 'Community',
           items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/pglet',
-            },
             {
               label: 'Discord',
               href: 'https://discord.gg/rWjf7xx',
@@ -64,6 +68,10 @@ module.exports = {
             {
               label: 'Twitter',
               href: 'https://twitter.com/pgletio',
+            },
+            {
+              label: 'Stack Overflow',
+              href: 'https://stackoverflow.com/questions/tagged/pglet',
             },
           ],
         },

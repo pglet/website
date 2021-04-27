@@ -1,5 +1,5 @@
 ---
-title: Python tutorial
+title: Create a web app in Python with Pglet
 sidebar_label: Python
 slug: python
 ---
@@ -7,274 +7,44 @@ slug: python
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Python 3.7 or higher is required to build apps with Pglet.
+In this tutorial we will show you, step-by-step, how to create a ToDo web app in Python using Pglet framework and then share it on the internet. The app is a single-file console program of just [100 lines of Python code](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py), yet it is a multi-session, modern single-page application with rich, responsive UI.
 
-## Installing `pglet` module
+You can play with the live demo below:
 
-Before installing `pglet` module make sure you have the latest versions of package management utilities:
+<iframe src="https://todo-web-app-in-python.pglet.repl.co"
+        style={{
+            border: 'none',
+            width: '100%',
+            height: '400px',
+        }}/>
 
-<Tabs groupId="os" defaultValue="macos" values={[
-  { label: 'macOS', value: 'macos', },
-  { label: 'Windows', value: 'windows', },
-  { label: 'Linux', value: 'linux', },
-]}>
+We chose a ToDo app for the tutorial, because it covers all of the basic concepts you would need to create any web app: building a page layout, adding controls, handling events, displaying and editing lists, making reusable UI components, and deploy options.
 
-<TabItem value="macos">
+The tutorial consists of the following steps:
 
-```bash
-python3 -m pip install --upgrade pip setuptools wheel
-```
+* [Getting started with Pglet](#getting-started-with-pglet)
+* [Pglet app structure](#pglet-app-structure)
+* [Adding page controls and handling events](#adding-page-controls-and-handling-events)
+* [View, edit and delete list items](#view-edit-and-delete-list-items)
+* [Filtering list items](#filtering-list-items)
+* [Final touches](#final-touches)
+* [Deploying the app](#deploying-the-app)
 
-</TabItem>
+## Getting started with Pglet
 
-<TabItem value="windows">
+To write a Pglet web app you don't need to know HTML, CSS or JavaScript, but you do need a basic knowledge of Python and object-oriented programming.
 
-```bash
-pip install --upgrade pip setuptools wheel
-```
-
-</TabItem>
-
-<TabItem value="linux">
-
-```bash
-python3 -m pip install --upgrade pip setuptools wheel
-```
-
-</TabItem>
-
-</Tabs>
-
-To install `pglet` module run the following command:
-
-<Tabs groupId="os" defaultValue="macos" values={[
-  { label: 'macOS', value: 'macos', },
-  { label: 'Windows', value: 'windows', },
-  { label: 'Linux', value: 'linux', },
-]}>
-
-<TabItem value="macos">
-
-```bash
-python3 -m pip install pglet
-```
-
-</TabItem>
-
-<TabItem value="windows">
+Pglet requires Python 3.7 or above. To create a web app in Python with Pglet, you need to install `pglet` module first:
 
 ```bash
 pip install pglet
 ```
 
-</TabItem>
+To start, let's create a simple hello-world app.
 
-<TabItem value="linux">
-
-```bash
-python3 -m pip install pglet
-```
-
-</TabItem>
-
-</Tabs>
-
-## Creating a page
-
-Pglet allows you creating **shared** and **app** pages.
-
-**Shared page** is like a singleton: many programs can connect and author the same page and all web users connecting to a page see and interact with the same content. Shared pages are useful for developing local tools, web dashboards, progress reports, distributed processes visualization, etc. 
-
-**App page** creates for each web user a new session with its own content. In your program you define a "handler" method which is invoked for every new session. App pages are used for creating multi-user web apps.
-
-OK, this is a minimal "Hello world" Pglet page running in a local mode:
+Create `hello.py` with the following contents:
 
 ```python title="hello.py"
-# import pglet main module and Text control
-import pglet
-from pglet import Text
-
-# Create a new page with a random name and open a connection to it
-p = pglet.page("hello")
-
-# Add Text control to a page
-p.add(Text(value="Hello, world!"))
-```
-
-When you run this app a new browser window should popup with the greeting:
-
-<div style={{textAlign: 'center'}}><img src="/img/docs/quickstart-hello-world.png" /></div>
-
-A Python app won't wait for any input and should exit. Now, if you run the same `greeter.py` script for the second time another "Hello, world!" message will be added to the page. This is because the page is stateful. Its contents can be updated at any time by any number of scripts, multiple scripts can connect and update the same page simultanously.
-
-If you need a clean page on every start of the program use connection's `clean()` method:
-
-```python
-p.clean()
-p.add(Text(value="Hello, world!"))
-```
-
-## Getting user input
-
-Pglet provides a number of controls for building forms: [Textbox](/docs/reference/controls/textbox), [Checkbox](/docs/reference/controls/checkbox), [Dropdown](/docs/reference/controls/dropdown), [Button](/docs/reference/controls/button).
-
-Let's ask a user for a name:
-
-```python title="greeter.py"
-import pglet
-from pglet import Textbox, Button
-
-p = pglet.page("greeter")
-
-p.clean()
-p.add(Textbox(label="Your name", description="Please provide your full name"))
-p.add(Button(text="Say hello", primary=True))
-```
-
-## Handling events
-
-When you click "Say hello" button on the form above nothing will happen in our program though `Button` control itself emits "click" event each time it's pressed/clicked. The event is just not handled.
-
-There are two ways to handle control events:
-
-* Event loop
-* Control-specific event handlers
-
-### Event loop
-
-Once the form is rendered use connection's `wait_event()` blocking method in a loop to receive all page events triggered by a user:
-
-```python title="greeter.py"
-import pglet
-from pglet import Textbox, Button, Text
-
-p = pglet.page("greeter")
-
-p.clean()
-txt_name = p.add(Textbox(label="Your name", description="Please provide your full name"))
-btn_hello = p.add(Button(text="Say hello", primary=True))
-
-while True:
-    e = p.wait_event()
-    if e.target == btn_hello.id and e.name == 'click':
-        name = p.get_value(txt_name)
-        p.clean()
-        p.add(Text(value=f'Hello, {name}!'))
-        break
-```
-
-Notice how references to the added textbox and button are saved, so we can refer to the controls later.
-
-`wait_event()` returns [Event](#event-class) object and we are interested in `click` events coming from the button (`e.target` is control ID). Next, we use connection's `get_value()` method to read `value` property of textbox control, clean the page, output greeting and leave the program.
-
-### Event handlers
-
-Event loop approach is simple and straightforward, but can become bulky if there is a lot of events to handle. In Python programs Pglet controls can have event handlers which are just functions. Control Python classes use `on` prefix for naming event handlers. For example, if [Button](/docs/reference/controls/button) control has `click` event then in Python handler's name is `onclick`.
-
-Let's re-write the greeter app to use event handler instead of event loop:
-
-```python title="greeter.py"
-import sys
-import pglet
-from pglet import Textbox, Button, Text
-
-p = pglet.page("greeter")
-p.clean()
-
-def say_hello_click(e):
-    name = p.get_value(txt_name)
-    p.clean()
-    p.add(Text(value=f'Hello, {name}!'))
-    sys.exit()
-
-txt_name = p.add(Textbox(label="Your name", description="Please provide your full name"))
-p.add(Button(text="Say hello", primary=True, onclick=say_hello_click))
-
-# wait until browser window is closed or page reloaded
-p.wait_close()
-```
-
-## Multi-user apps
-
-In multi-user Pglet apps every user has a unique session with its own page contents. To start an app page you use `pglet.app()` method which takes a reference to a session handler function. The handler function is called on a separate thread for every new user connected. The program stays blocked on `pglet.app()` while constantly waiting for new user connections.
-
-One of the aspects of multi-user apps you should care about is state management: session-specific variables and control references at minimum.
-
-In the example below we are going to use Python class to encapsulate user session state and logic. This could be a minimal Pglet multi-user app in Python:
-
-```python title="hello-app.py"
-import pglet
-from pglet import Text
-
-class HelloWorldApp:
-    def __init__(self, p):
-        self.p = p
-        self.main()
-    
-    def main(self):
-        self.p.add(Text(value=f"Hello to session {self.p.conn_id}!"))
-
-pglet.app("hello-app", target=HelloWorldApp)
-```
-
-We pass a reference to a `HelloWorldApp` class constructor as a `target` in `pglet.app` call. Every time a new user visits app URL `HelloWorldApp` constructor is called with connection `p` as a parameter and a new class instance created. In the constructor we save a reference to `p` for further work with session-specific page content and call `main()` method to output initial screen.
-
-Now, a multi-user version of greeter app could look like the following:
-
-```python title="greeter-app.py"
-import pglet
-from pglet import Textbox, Button, Text
-
-class GreeterApp:
-    def __init__(self, p):
-        self.p = p
-        self.main()
-    
-    def main(self):
-        self.txt_name = self.p.add(Textbox(label="Your name", description="Please provide your full name"))
-        self.p.add(Button(text="Say hello", primary=True, onclick=self.say_hello_click))
-
-    def say_hello_click(self, e):
-        name = self.p.get_value(self.txt_name)
-        self.p.clean()
-        self.p.add(Text(value=f'Hello, {name}!'))
-
-pglet.app("greeter-app", target=GreeterApp)
-```
-
-## Getting apps and pages to the Web
-
-Up until this moment you've been running all tutotial samples on your computer with a local Pglet server instance running in the background.
-
-With literarily no changes to the code Pglet allows to make your program accessible from the web. This could be an admin app for managing backend services, or a dashboard with server metrics, or an application prototype you are sharing with your colleagues or clients.
-
-In contrast to a classic deployment you are not packaging your program and it's not going anywhere. It continues to run on the same computer where it was built or cloned while UI is "streamed" to [Pglet service](/docs/pglet-service) and available via `https://app.pglet.io/public/{your-app-name}` URL.
-
-So, to make your greeter app available on the web add `web=True` parameter to either `pglet.page()` or `pglet.app()` call:
-
-```python
-pglet.app("greeter-app", target=GreeterApp, web=True)
-```
-
-As it's going to a public service the page name must be unique. One way is to prepend page name with "account" or "namespace", for example:
-
-```python
-pglet.app("john/greeter-app", target=GreeterApp, web=True)
-```
-
-or just omit page name, so it will be randomly generated. Look at [this article](/docs/pglet-service) to understand how page naming works.
-
-## `pglet` module reference
-
-### `page` function
-
-`pglet.page(name='', web=False, private=False, server='', token='', no_window=False)`
-
-Creates a shared page if not exists and returns a [connection](#connection-class) to it.
-
-The following example creates a new page with random name and connects to it:
-
-```python
 import pglet
 from pglet import Text
 
@@ -282,182 +52,487 @@ page = pglet.page()
 page.add(Text(value="Hello, world!"))
 ```
 
-### `app` function
+Run this app and you will see a new browser window with a greeting:
 
-`pglet.app(name='', web=False, private=False, server='', token='', target=None, no_window=False)`
+<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-hello-world.png" /></p>
 
-Creates an app page with a session handler function defined by `target` parameter and starts waiting for new user connections.
-Handler function is called for every new session with [connection](#connection-class) passed into handler.
+:::note
+In this example, the page URL is a random string, because we didn't specify it in `pglet.page()` call. Try changing it to `pglet.page('hello')`.
+:::
 
-In the following example `main` function is called for every new user session and `page` argument is an instance of [`Connection`](#connection-class) class.
+## Pglet app structure
+
+In the [previous step](#getting-started-with-pglet), we learned how to create a simple Pglet page. On that page, all users work with the same contents ("**shared app**").
+
+:::note
+
+Try adding `Textbox` control instead of `Text`:
 
 ```python
+import pglet
+from pglet import Textbox
+
+page = pglet.page()
+page.add(Textbox())
+```
+
+Run the app and open its URL in multiple browser tabs. You'll see that changing Textbox contents in one tab is instantly reflected in others.
+
+:::
+
+A shared page may be useful for certain types of apps, such as dashboards, status pages, or reports. But for a ToDo app, we want every user to see their own set of tasks. To achieve this, we need to create a "**multi-user app**".
+
+Create `hello-app.py` with the following contents:
+
+```python title="hello-app.py"
+import pglet
+from pglet import Textbox
+
 def main(page):
-  page.add(Text(value="Hello, world!"))
+  page.add(Textbox())
 
-pglet.app("app1", web=True, target=main)
+pglet.app("hello-app", target=main)
 ```
 
-### `Connection` class
+While the application is running, for every new user session Pglet calls `main` function with unique page contents.
 
-Represents a connection to a page or session. `Connection` provides methods for adding, modifying, querying and removing controls on a web page.
+:::note
+To see multiple sessions in action, open the application URL in a new "incognito" browser window.
+:::
 
-#### `add(*controls, to=None, at=None, fire_and_forget=False)`
+## Adding page controls and handling events
 
-Add one or more controls to a page.
+Now we're ready to create a multi-user ToDo app.
 
-* `controls` is one or more instances of [Control class](#control-classes).
-* `to` is ID of the parent control. If `to` is not specified a control is added to a `page`.
-* `at` allows inserting control into parent's children collection at specific index. If `at` is not specified a control is appended to children collection.
-* `fire_and_forget` ignores the result of operation.
+To start, we'll need a Textbox for entering a task name, and an "Add" button with an event handler that will display a checkbox with a new task.
 
-For example, inserting a text control at the top of stack control with `body` ID:
+Create `todo.py` with the following contents:
+
+```python title="todo.py"
+import pglet
+from pglet import Textbox, Button, Checkbox
+
+def main(page):
+    
+    def add_clicked(e):
+        page.add(Checkbox(label=new_task.value))
+
+    new_task = Textbox(placeholder='Whats needs to be done?')
+
+    page.add(
+        new_task,
+        Button('Add', on_click=add_clicked)
+    )
+
+pglet.app("todo-app", target=main)
+```
+
+Run the app and you should see a page like this:
+
+<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-1.png" /></p>
+
+### Page layout
+
+Now let's make the app look nice! We want the entire app to be at the top center of the page, stretched over 70% of the page width. The textbox and the button should be aligned horizontally, and take up full app width:
+
+<p style={{ textAlign: 'center' }}><img style={{ width: '90%' }} src="/img/docs/tutorial/todo-diagram-1.svg" /></p>
+
+`Stack` is a container control that is used to lay other controls out on a page. `Stack` can be vertical (default) or horizontal, and can contain other stacks.
+
+Replace `todo.py` contents with the following:
+
+```python title="todo.py"
+import pglet
+from pglet import Stack, Textbox, Button, Checkbox
+
+def main(page):
+
+    page.title = "ToDo App"
+    page.horizontal_align = 'center'
+    page.update() # needs to be called every time "page" control is changed
+    
+    def add_clicked(e):
+        tasks_view.controls.append(Checkbox(label=new_task.value))
+        tasks_view.update()
+
+    new_task = Textbox(placeholder='Whats needs to be done?', width='100%')
+    tasks_view = Stack()
+
+    page.add(Stack(width='70%', controls=[
+        Stack(horizontal=True, on_submit=add_clicked, controls=[
+            new_task,
+            Button('Add', on_click=add_clicked)
+        ]),
+        tasks_view
+    ]))
+
+pglet.app("todo-app", target=main)
+```
+
+Run the app and you should see a page like this:
+
+<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-2.png" /></p>
+
+### Reusable UI components
+
+While we could continue writing our app in the `main` function, the best practice would be to create a reusable UI component. Imagine you are working on an app header, a side menu, or UI that will be a part of a larger project. Even if you can't think of such uses right now, we still recommend creating all your web apps with composability and reusability in mind.
+
+To make a reusable ToDo app component, we are going to encapsulate its state and presentation logic in a separate class: 
+
+```python title="todo.py"
+import pglet
+from pglet import Stack, Textbox, Button, Checkbox
+
+class TodoApp():
+    def __init__(self):
+        self.new_task = Textbox(placeholder='Whats needs to be done?', width='100%')
+        self.tasks_view = Stack()
+
+        # application's root control (i.e. "view") containing all other controls
+        self.view = Stack(width='70%', controls=[
+            Stack(horizontal=True, on_submit=self.add_clicked, controls=[
+                self.new_task,
+                Button('Add', on_click=self.add_clicked)
+            ]),
+            self.tasks_view
+        ])
+
+    def add_clicked(self, e):
+        self.tasks_view.controls.append(Checkbox(label=self.new_task.value))
+        self.tasks_view.update()
+
+def main(page):
+    page.title = "ToDo App"
+    page.horizontal_align = 'center'
+    page.update()
+
+    # create application instance
+    app = TodoApp()
+
+    # add application's root control to the page
+    page.add(app.view)
+
+pglet.app("todo-app", target=main)
+```
+
+:::note
+Try adding two `TodoApp` components to the page:
 
 ```python
-page.add(Text(value="1st line"), to="body", at=0)
+# create application instance
+app1 = TodoApp()
+app2 = TodoApp()
+
+# add application's root control to the page
+page.add(app1.view, app2.view)
 ```
+:::
 
-#### `update(*controls, fire_and_forget=False)`
+## View, edit and delete list items
 
-Update one or more controls.
+In the [previous step](#adding-page-controls-and-handling-events), we created a basic ToDo app with task items shown as checkboxes. Let's improve the app by adding "Edit" and "Delete" buttons next to a task name. The "Edit" button will switch a task item to edit mode.
 
-* `controls` is one or more instances of [Control class](#control-classes).
-* `fire_and_forget` ignores the result of operation.
+<p style={{ textAlign: 'center' }}><img style={{ width: '90%' }} src="/img/docs/tutorial/todo-diagram-2.svg" /></p>
 
-For example, adding and then updating a text control:
+Each task item is represented by two stacks: `display_view` stack with Checkbox, "Edit" and "Delete" buttons and `edit_view` stack with Textbox and "Save" button. `view` stack serves as a container for both `display_view` and `edit_view` stacks.
+
+Before this step, the code was short enough to be fully included in the tutorial. Going forward, we will be highlighting only the changes introduced in a step.
+
+Copy the entire code for this step from [here](https://github.com/pglet/examples/blob/main/python/todo/todo-with-delete.py). Below we will explain the changes we've done to implement view, edit, and delete tasks.
+
+To encapsulate task item views and actions, we introduced a new `Task` class:
 
 ```python
-# add Text control
-txt = Text(value="One!")
-page.add(txt)
+class Task():
+    def __init__(self, name):
+        self.display_task = Checkbox(value=False, label=name)
+        self.edit_name = Textbox(width='100%')
 
-# update control
-txt.value = "Two!"
-page.update(txt)
+        self.display_view = Stack(horizontal=True, horizontal_align='space-between',
+                vertical_align='center', controls=[
+            self.display_task,
+            Stack(horizontal=True, gap='0', controls=[
+                Button(icon='Edit', title='Edit todo', on_click=self.edit_clicked),
+                Button(icon='Delete', title='Delete todo')]),
+            ])
+        
+        self.edit_view = Stack(visible=False, horizontal=True, horizontal_align='space-between',
+                vertical_align='center', controls=[
+            self.edit_name, Button(text='Save', on_click=self.save_clicked)
+            ])
+        self.view = Stack(controls=[self.display_view, self.edit_view])
+
+    def edit_clicked(self, e):
+        self.edit_name.value = self.display_task.label
+        self.display_view.visible = False
+        self.edit_view.visible = True
+        self.view.update()
+
+    def save_clicked(self, e):
+        self.display_task.label = self.edit_name.value
+        self.display_view.visible = True
+        self.edit_view.visible = False
+        self.view.update()
 ```
 
-#### `set_value(id_or_control, value, fire_and_forget=False)`
-
-Shortcut method to update `value` property of any control.
-
-* `id_or_control` is either control ID or an instances of [Control class](#control-classes).
-* `value` is a new value to set.
-* `fire_and_forget` ignores the result of operation.
-
-For example, updating the current value of progress bar with ID `prog1` to 50%:
+Additionally, we changed `TodoApp` class to create and hold `Task` instances when the "Add" button is clicked:
 
 ```python
-page.set_value('prog1', 50)
+class TodoApp():
+    def __init__(self):
+        self.tasks = []
+        # ... the rest of constructor is the same
+
+    def add_clicked(self, e):
+        task = Task(self.new_task.value)
+        self.tasks.append(task)
+        self.tasks_view.controls.append(task.view)
+        self.new_task.value = ''
+        self.view.update()
 ```
 
-#### `get_value(id_or_control)`
-
-Shortcut method to read `value` property of any control.
-
-For example, reading the value entered into `first_name` textbox:
+For "Delete" task operation, we implemented `delete_task()` method in `TodoApp` class which accepts task instance as a parameter:
 
 ```python
-first_name = page.get_value('first_name')
+class TodoApp():
+    
+    # ...
+
+    def delete_task(self, task):
+        self.tasks.remove(task)
+        self.tasks_view.controls.remove(task.view)
+        self.view.update()
 ```
 
-#### `append_value(id_or_control, value, fire_and_forget=False)`
+Then, we passed a reference to `TodoApp` into Task constructor and called `TodoApp.delete_task()` in "Delete" button event handler:
 
-Appends a string to `value` property of any control.
+```python {2-3,11,16-17,24}
+class Task():
+    def __init__(self, app, name):
+        self.app = app
+        
+        # ...
 
-For example, appending a new line to a multiline textbox with ID `notes`:
+        self.display_view = Stack(horizontal=True, horizontal_align='space-between', vertical_align='center', controls=[
+            self.display_task,
+            Stack(horizontal=True, gap='0', controls=[
+                Button(icon='Edit', title='Edit todo', on_click=self.edit_clicked),
+                Button(icon='Delete', title='Delete todo', on_click=self.delete_clicked)]),
+            ])
+
+        # ...        
+
+    def delete_clicked(self, e):
+        self.app.delete_task(self)
+
+class TodoApp():
+
+    # ...
+
+    def add_clicked(self, e):
+        task = Task(self, self.new_task.value)
+        # ...
+```
+
+Run the app and try to edit and delete tasks:
+
+<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-3.png" /></p>
+
+## Filtering list items
+
+We already have a functional ToDo app where we can create, edit, and delete tasks. To be even more productive, we want to be able to filter tasks by their status.
+
+Copy the entire code for this step from [here](https://github.com/pglet/examples/blob/main/python/todo/todo-with-filter.py). Below we will explain the changes we've done to implement filtering.
+
+`Tabs` control is used to display filter:
+
+```python {1,11-14,22}
+from pglet import Tabs, Tab
+
+# ...
+
+class TodoApp():
+    def __init__(self):
+        self.tasks = []
+        self.new_task = Textbox(placeholder='Whats needs to be done?', width='100%')
+        self.tasks_view = Stack()
+
+        self.filter = Tabs(value='all', on_change=self.tabs_changed, tabs=[
+                Tab(text='all'),
+                Tab(text='active'),
+                Tab(text='completed')])
+
+        self.view = Stack(width='70%', controls=[
+            Text(value='Todos', size='large', align='center'),
+            Stack(horizontal=True, on_submit=self.add_clicked, controls=[
+                self.new_task,
+                Button(primary=True, text='Add', on_click=self.add_clicked)]),
+            Stack(gap=25, controls=[
+                self.filter,
+                self.tasks_view
+            ])
+        ])
+```
+
+To display different lists of tasks depending on their statuses, we could maintain three lists with "All", "Active" and "Completed" tasks. We, however, chose an easier approach where we maintain the same list and only change a task's visibility depending on the status.
+
+In `TodoApp` class we introduced `update()` method which iterates through all the tasks and updates their `view` Stack's `visible` property depending on the status of the task:
 
 ```python
-page.append("notes", "\nLine2")
+class TodoApp():
+
+    # ...
+
+    def update(self):
+        status = self.filter.value
+        for task in self.tasks:
+            task.view.visible = (status == 'all'
+                or (status == 'active' and task.display_task.value == False)
+                or (status == 'completed' and task.display_task.value))
+        self.view.update()
 ```
 
-#### `show(*id_or_controls, fire_and_forget=False)`
-
-Shortcut method to set control's `visible` property to `true`.
-
-#### `hide(*id_or_controls, fire_and_forget=False)`
-
-Shortcut method to set control's `visible` property to `true`.
-
-#### `disable(*id_or_controls, fire_and_forget=False)`
-
-Shortcut method to set control's `disabled` property to `true`. By default, all controls are enabled.
-`disabled` property is recursive meaning you can disable parent control to disable all its children.
-
-For example, you may have a stack with two buttons and then while performing some operation you may disable both buttons by disabling a stack:
+Filtering should occur when we click on a tab or change a task status. `TodoApp.update()` method is called when Tabs selected value is changed or Task item checkbox is clicked:
 
 ```python
-footer = Stack(horizontal=True, controls=[
-  Button(text="OK", primary=True),
-  Button(text="Cancel")
-])
-page.add(footer)
+class TodoApp():
 
-# on click to OK
-page.disable(footer) # disable stack and all its buttons
+    # ...
+
+    def tabs_changed(self, e):
+        self.update()
+
+class Task():
+    def __init__(self, app, name):
+        self.display_task = Checkbox(value=False, label=name, on_change=self.status_changed)
+        # ...
+
+    def status_changed(self, e):
+        self.app.update() 
 ```
 
-#### `enable(*id_or_controls, fire_and_forget=False)`
+Run the app and try filtering tasks by clicking on the tabs:
 
-Shortcut method to set control's `disabled` property to `false`.
+<p style={{ textAlign: 'center' }}><img style={{ width: '50%', borderLeft: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-filtering.gif" /></p>
 
-#### `clean(*id_or_controls, at=None, fire_and_forget=False)`
+## Final touches
 
-Cleans children collection of a control, but leaves control itself.
+Our Todo app is almost complete now. As a final touch, we will add a footer (`Stack` control) displaying the number of incomplete tasks (`Text` control) and a "Clear completed" button.
 
-For example, to clean the contents of the entire page:
+Copy the entire code for this step from [here](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py). Below we highlighted the changes we've done to implement the footer:
+
+```python {5,15-18,26,31-33,36-39}
+class TodoApp():
+    def __init__(self):
+        # ...
+
+        self.items_left = Text('0 items left')
+
+        self.view = Stack(width='70%', controls=[
+            Text(value='Todos', size='large', align='center'),
+            Stack(horizontal=True, on_submit=self.add_clicked, controls=[
+                self.new_task,
+                Button(primary=True, text='Add', on_click=self.add_clicked)]),
+            Stack(gap=25, controls=[
+                self.filter,
+                self.tasks_view,
+                Stack(horizontal=True, horizontal_align='space-between', vertical_align='center', controls=[
+                    self.items_left,
+                    Button(text='Clear completed', on_click=self.clear_clicked)
+                ])
+            ])
+        ])
+
+    # ...
+
+    def update(self):
+        status = self.filter.value
+        count = 0
+        for task in self.tasks:
+            task.view.visible = (status == 'all'
+                or (status == 'active' and task.display_task.value == False)
+                or (status == 'completed' and task.display_task.value))
+            if task.display_task.value == False:
+                count += 1
+        self.items_left.value = f"{count} active item(s) left"
+        self.view.update()        
+
+    def clear_clicked(self, e):
+        for task in self.tasks[:]:
+            if task.display_task.value == True:
+                self.delete_task(task)
+```
+
+Run the app:
+
+<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-4.png" /></p>
+
+## Deploying the app
+
+Congratulations! You have created your first Python web app with Pglet, and it looks awesome!
+
+Now it's time to share your app with the world!
+
+### Instant sharing
+
+Pglet is not only a framework for building web apps, but it is also a service for hosting apps' UI.
+You can have the application running on your computer while its UI is streaming to Pglet service in real-time.
+
+To make the app instantly available on the Internet, just add `web=True` parameter to `pglet.app()` call at the very end of the program:
 
 ```python
-page.clean()
+# ...
+
+pglet.app(target=main, web=True)
 ```
 
-#### `remove(*id_or_controls, at=None, fire_and_forget=False)`
+A new browser windows will be opened with the URL like this:
 
-Removes a control and all its children.
+```
+https://app.pglet.io/public/{random}
+```
 
-#### `send(command)`
+:::note
+[Pglet Service](/docs/pglet-service) is in technical preview now and you are sharing the app in a public namespace.
 
-Sends a raw command to Pglet server via [Pglet protocol](/docs/reference/protocol).
-This method is useful when something is not yet implemented in Python library.
+Please note that we have removed the name of the page from the call above, so it's generated randomly to avoid name collision on public Pglet service with other users.
+:::
 
-For example, to update `errorMessage` property of textbox with ID `number`:
+### Replit
+
+Instant sharing is a great option to quickly share an app on the web, but it requires your computer to be on all the time.
+
+[Replit](https://replit.com/) is an online IDE and hosting platform for web apps written in any language. Their free tier allows running any number of apps with some limitations.
+
+To run your ToDo app on Replit:
+
+* [Sign up](https://replit.com/signup?from=landing) on Replit.
+* Click "New repl" button.
+* Select "Python" language from a list and provide repl name, e.g. `my-todo`.
+* Click "Packages" tab and search for `pglet` package; select its latest version.
+* Switch back to "Files" tab and copy-paste the [code of Todo app](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py) into `main.py`.
+* Update `pglet.app()` call (at the very end of the program) to:
 
 ```python
-page.send("set number errorMessage='Some error message'")
+pglet.app("index", target=main)
 ```
 
-#### `wait_event()`
+* Run the app. Now both the application code and UI are running on Replit service as a "standalone" app.
 
-Blocks until an event triggered by a user arrives. The method returns an instance of [Event](#event-class) class.
+:::note
+We are not affiliated with Replit - we just love the service. Todo app demo for this tutorial is [hosted on Replit](https://replit.com/@pglet/ToDo-web-app-in-Python) and you can just "fork" it there and play.
+:::
 
-For example, reading events in a loop until any button clicked:
+## Summary
 
-```python
-while True:
-    e = page.wait_event()
-    if e.name == 'click':
-        break
-```
+In this tutorial you have learned how to:
 
-#### `wait_close()`
+* Create a shared page and a multi-user web app;
+* Work with Reusable UI components;
+* Design UI layout using `Stack` control;
+* Work with lists: view, edit and delete items, filtering;
+* Deploy your app two ways: Pglet Service and Replit;
 
-Blocks until browser window is closed or page reloaded.
+For further reading you can explore [controls](/docs/controls) and [examples repository](https://github.com/pglet/examples/tree/main/python).
 
-### `Event` class
-
-Describes the details of event returned by `wait_event()` method and has the following properties:
-
-* `target` - ID of control triggered event.
-* `name` - event name, for example "click".
-* `data` - additional data attached to the event. Button control has `data` property which supplies additional event data.
-
-### Control classes
-
-* [`Page`](/docs/reference/controls/page)
-* [`Stack`](/docs/reference/controls/stack)
-* [`Text`](/docs/reference/controls/text)
-* [`Textbox`](/docs/reference/controls/textbox)
-* [`Button`](/docs/reference/controls/button)
-* [`Checkbox`](/docs/reference/controls/checkbox)
-* [`Dropdown`](/docs/reference/controls/dropdown)
-* [`Progress`](/docs/reference/controls/progress)
-* [`Spinner`](/docs/reference/controls/spinner)
+We would love to hear your feedback! Please drop us an [email](mailto:hello@pglet.io), join the discussion on [Discord](https://discord.gg/rWjf7xx), follow on [Twitter](https://twitter.com/pgletio).
