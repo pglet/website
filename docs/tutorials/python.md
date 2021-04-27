@@ -7,7 +7,9 @@ slug: python
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In this tutorial we will show you, step-by-step, how to create a ToDo web app in Python using Pglet framework and then share it on the internet. The app is just [100 lines of Python code](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py), yet it is a multi-user, professionally looking, full-featured web app:
+In this tutorial we will show you, step-by-step, how to create a ToDo web app in Python using Pglet framework and then share it on the internet. The app is a single-file console program of just [100 lines of Python code](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py), yet it is a multi-session, modern single-page application with rich, responsive UI.
+
+You can play with the live demo below:
 
 <iframe src="https://todo-web-app-in-python.pglet.repl.co"
         style={{
@@ -16,7 +18,7 @@ In this tutorial we will show you, step-by-step, how to create a ToDo web app in
             height: '400px',
         }}/>
 
-We chose a ToDo list for the tutorial, because it covers all of the basic concepts you would need to create any web app: building a page layout, adding controls, handling events, displaying and editing lists, making reusable UI components, and deploy options.
+We chose a ToDo app for the tutorial, because it covers all of the basic concepts you would need to create any web app: building a page layout, adding controls, handling events, displaying and editing lists, making reusable UI components, and deploy options.
 
 The tutorial consists of the following steps:
 
