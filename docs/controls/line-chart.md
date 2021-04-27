@@ -54,9 +54,9 @@ Describes chart data point.
 
 | Name       | Type   | Default | Description |
 | ---------- | ------ | ------- | ----------- |
-| `x`        | number or date |         | Independent value of the data point, rendered along the x-axis. |
+| `x`        | number or date |         | Independent value of the data point, rendered along the x-axis. Date should be a string in format 'YYYY-MM-DD' or datetime odject (for Python)|
 | `y`        | number |         | Dependent value of the data point, rendered along the y-axis. |
-| `tick`     | number or date |         | Tick value for the datapoint. If at least one tick value is provided all X axis labels will be replaced with ticks. |
+| `tick`     | number or date |         | Tick value for the datapoint. If at least one tick value is provided all X axis labels will be replaced with ticks. Date should be a string in format 'YYYY-MM-DD' or datetime odject (for Python)|
 | `legend`   | string |         | Legend text for the datapoint in the chart. |
 | `xTooltip` | string |         | Callout data for x axis. `legend` will be used if not provided. |
 | `yTooltip` | string |         | Callout data for y axis. `y` will be used if not provided. |
