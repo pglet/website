@@ -8,15 +8,9 @@ author_image_url: https://avatars0.githubusercontent.com/u/5041459?s=400&v=4
 tags: [examples]
 ---
 
-Pglet is a free open-source service for adding remote UI to your programs and scripts.
+Normally, to access computer via PowerShell you need to configure PowerShell remoting, open WinRM ports on firewall and, the most unpleasant part, add NAT rule on your router to expose a computer to the entire Internet.
 
-As we just released [PowerShell](https://www.powershellgallery.com/packages/pglet)/[C#](https://www.nuget.org/packages/Pglet/) client library for Pglet I decided to give it a real-world test drive and wrote a simple app that allows me to run PowerShell commands on a my computer via nice web UI available from anywhere:
-
-<div style={{textAlign: 'center'}}><img src="/img/blog/remote-powershell/remote-powershell-console.png" width="70%" /></div>
-
-Normally, to access computer via PowerShell you'd need to configure PowerShell remoting, open WinRM ports on firewall and, the most unpleasant part, add NAT rule on your router to expose a computer to the entire Internet.
-
-So, how can I securely make a web UI for my script and without any port opened on the firewall? Pglet service acts as a relay between your script and a web browser. Your script "dials" the service and sends UI state updates while web users receive live page updates via WebSockets. Kind of Phoenix LiveView for PowerShell :)
+So, how can I securely make a web UI for my script without any port opened on the firewall? I used Pglet - a free open-source service for adding remote UI to your scripts. Pglet acts as a relay between your script and a web browser. Your script "dials" the service and sends UI state updates while web users receive live page updates via WebSockets. Kind of Phoenix LiveView for PowerShell :)
 
 To run the app you need to install [pglet module](https://www.powershellgallery.com/packages/pglet):
 
@@ -108,7 +102,7 @@ Connect-PgletApp -Name "ps-console/*" -Web -ScriptBlock {
 
 In the program I used just a few Pglet controls: Textbox, Button, Spinner and Stack for the layout. Controls are organized into DOM and every time `page.update()` is called its state is sent to Pglet service.
 
-When you run the script a new random URL will be generated for your app and printed to the console:
+When you run the script, a new random URL is generated for your app and printed to the console:
 
 <div style={{textAlign: 'center'}}><img src="/img/blog/remote-powershell/windows-console-output.png" width="90%" /></div>
 
@@ -122,6 +116,6 @@ Connect-PgletApp -Name "ps-console/*" -Web -ScriptBlock {
 
 `-Name` parameter is a page URL and `*` means a randomly-generated string. You can add your own prefix to the random string or use another namespace, e.g. `my-pages/ps-example-*`.
 
-If you want to tweak the app and test it locally remove `-Web` parameter and a local Pglet server will be started. There is also [self-hosted Pglet server](https://pglet.io/docs/pglet-server/installation) if you need more control.
+If you want to tweak the app and test it locally, remove `-Web` parameter and a local Pglet server will be started. There is also [self-hosted Pglet server](https://pglet.io/docs/pglet-server/installation) if you need more control.
 
 That's it! More great examples are coming!
