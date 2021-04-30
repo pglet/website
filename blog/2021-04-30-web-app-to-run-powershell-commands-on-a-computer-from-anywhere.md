@@ -20,6 +20,10 @@ Install-Module pglet -Scope CurrentUser -Force
 
 The module works on Windows PowerShell on Windows 10 and PowerShell Core 6+ on Windows, Linux and Mac.
 
+Here is how it looks like:
+
+<div style={{textAlign: 'center'}}><img src="/img/blog/remote-powershell/remote-powershell-console.png" width="70%" /></div>
+
 Below is the entire program ([GitHub](https://github.com/pglet/examples/blob/main/powershell/remote-console/remote-console.ps1)):
 
 ```powershell
