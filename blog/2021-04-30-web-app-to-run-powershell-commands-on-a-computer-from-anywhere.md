@@ -20,7 +20,7 @@ Install-Module pglet -Scope CurrentUser -Force
 
 The module works on Windows PowerShell on Windows 10 and PowerShell Core 6+ on Windows, Linux and Mac.
 
-Here is how it looks like:
+Here is how the app looks like:
 
 <div style={{textAlign: 'center'}}><img src="/img/blog/remote-powershell/remote-powershell-console.png" width="70%" /></div>
 
