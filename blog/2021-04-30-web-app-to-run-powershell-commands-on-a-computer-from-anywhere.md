@@ -9,7 +9,7 @@ tags: [examples]
 ---
 
 :::info
-After publishing this post on [Reddit PowerShell community](https://www.reddit.com/r/PowerShell/comments/n22dzm/i_wrote_a_script_that_allows_running_powershell/) we received great feedback about security. Currently Pglet service is in preview mode and is not recommended for use in production. We are working on built-in authentication/authorization functionality at the moment. It's going to be "Login with GitHub/Google/Microsoft" OAuth at first plus OpenID for any other providers.
+After publishing this post on [Reddit PowerShell community](https://www.reddit.com/r/PowerShell/comments/n22dzm/i_wrote_a_script_that_allows_running_powershell/) we received great feedback about security. Currently Pglet service is in preview and is not recommended for use in production. We are working on built-in authentication/authorization functionality at the moment. It's going to be "Login with GitHub/Google/Microsoft" OAuth at first plus OpenID for any other providers.
 :::
 
 Normally, to access computer via PowerShell you need to configure PowerShell remoting, open WinRM ports on firewall and, the most unpleasant part, add NAT rule on your router to expose a computer to the entire Internet.
