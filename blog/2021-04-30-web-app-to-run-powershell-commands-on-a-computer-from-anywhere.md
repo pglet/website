@@ -8,6 +8,10 @@ author_image_url: https://avatars0.githubusercontent.com/u/5041459?s=400&v=4
 tags: [examples]
 ---
 
+:::info
+After publishing this post on [Reddit PowerShell community](https://www.reddit.com/r/PowerShell/comments/n22dzm/i_wrote_a_script_that_allows_running_powershell/) we received great feedback about security. Currently Pglet service is in preview mode and is not recommended for use in production. We are working on built-in authentication/authorization functionality at the moment. It's going to be "Login with GitHub/Google/Microsoft" OAuth at first plus OpenID for any other providers.
+:::
+
 Normally, to access computer via PowerShell you need to configure PowerShell remoting, open WinRM ports on firewall and, the most unpleasant part, add NAT rule on your router to expose a computer to the entire Internet.
 
 So, how can I securely make a web UI for my script without any port opened on the firewall? I used Pglet - a free open-source service for adding remote UI to your scripts. Pglet acts as a relay between your script and a web browser. Your script "dials" the service and sends UI state updates while web users receive live page updates via WebSockets. Kind of Phoenix LiveView for PowerShell :)
