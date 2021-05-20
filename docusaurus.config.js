@@ -7,8 +7,8 @@ module.exports = {
   organizationName: 'pglet', // Usually your GitHub org/user name.
   projectName: 'pglet.github.io', // Usually your repo name.
   customFields: {
-    heroTitle: 'Fast and secure way to build internal web apps',
-    heroSubTitle: 'Build web apps like a frontend pro in the language you already know. No knowledge of HTML, CSS or JavaScript required.',
+    heroTitle: 'Secure web UI for your backend apps',
+    heroSubTitle: 'Fast ...Stream UI from your bots, backup scripts, cron jobs, crawlers. No knowledge of HTML, CSS or JavaScript required.',
   },  
   themeConfig: {
     navbar: {
@@ -88,6 +88,15 @@ module.exports = {
             },
           ],
         },
+        {
+          title: 'Legal',
+          items: [
+            {
+              label: 'Privacy policy',
+              to: 'privacy-policy',
+            },
+          ],
+        },        
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Appveyor Systems Inc. Built with Docusaurus.`,
     }
