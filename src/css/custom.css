@@ -107,3 +107,44 @@ html[data-theme='dark'] .hero__subtitle {
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgb(50, 52, 64);
 }
+
+.legal ol {
+  counter-reset: item;
+  list-style-type: none;
+}
+
+.legal > ol > li {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  margin: 1.5rem 0;
+}
+
+.legal ol li:before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}
+
+.legal ol ol ol li:before {
+  content: none;
+}
+
+.legal ol ol {
+  list-style-type: none;
+}
+
+.legal ol ol li {
+  text-transform: none;
+  margin: 0.5rem 0;
+}
+
+.legal ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.legal ol ol ol ol {
+  list-style-type: lower-roman;
+}
+
+.legal ol ol ol ol ol {
+  list-style-type: upper-alpha;
+}
