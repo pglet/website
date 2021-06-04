@@ -1,6 +1,6 @@
 module.exports = {
   title: 'Pglet',
-  tagline: 'Build web apps like a frontend pro in the language you already know. No knowledge of HTML, CSS or JavaScript required.',
+  tagline: 'Fast and secure remote UI for your bots, backup scripts, cron jobs, crawlers. No knowledge of HTML, CSS or JavaScript required.',
   url: 'https://pglet.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
@@ -8,7 +8,7 @@ module.exports = {
   projectName: 'pglet.github.io', // Usually your repo name.
   customFields: {
     heroTitle: 'Secure web UI for your backend apps',
-    heroSubTitle: 'Fast ...Stream UI from your bots, backup scripts, cron jobs, crawlers. No knowledge of HTML, CSS or JavaScript required.',
+    heroSubTitle: 'Fast and secure remote UI for your bots, backup scripts, cron jobs, crawlers. No knowledge of HTML, CSS or JavaScript required.',
   },  
   themeConfig: {
     navbar: {
