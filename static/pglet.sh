@@ -1,5 +1,5 @@
 # Constants
-PGLET_VER="0.3.1"                             # Pglet version required by this script
+PGLET_VER="0.4.4"                             # Pglet version required by this script
 PGLET_DEFAULT_INSTALL_DIR="$HOME/.pglet/bin"  # Default installation directory
 
 # Installation variables
@@ -28,8 +28,8 @@ function pglet_page() {
         pargs+=($1)
     fi
 
-    if [[ "$PGLET_WEB" == "true" ]]; then
-        pargs+=(--web)
+    if [[ "$PGLET_LOCAL" == "true" ]]; then
+        pargs+=(--local)
     fi
 
     if [[ "$PGLET_SERVER" != "" ]]; then
@@ -78,8 +78,8 @@ function pglet_app() {
         exit 1
     fi
 
-    if [[ "$PGLET_WEB" == "true" ]]; then
-        pargs+=(--web)
+    if [[ "$PGLET_LOCAL" == "true" ]]; then
+        pargs+=(--local)
     fi
 
     if [[ "$PGLET_SERVER" != "" ]]; then
