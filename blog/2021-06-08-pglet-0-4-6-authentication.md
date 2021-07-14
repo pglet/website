@@ -1,5 +1,5 @@
 ---
-slug: pglet-0-4-5-authentication
+slug: pglet-0-4-6-authentication
 title: Built-in authentication in a new Pglet release
 author: Feodor Fitsner
 author_title: Pglet founder and developer
@@ -8,7 +8,7 @@ author_image_url: https://avatars0.githubusercontent.com/u/5041459?s=400&v=4
 tags: [release, security]
 ---
 
-The major feature of Pglet 0.4.5 release is built-in authentication and authorization. Pglet now allows creating protected pages and apps which require users to sign in with any of three methods: GitHub, Google or Microsoft account (Azure AD):
+The major feature of Pglet 0.4.6 release is built-in authentication and authorization. Pglet now allows creating protected pages and apps which require users to sign in with any of three methods: GitHub, Google or Microsoft account (Azure AD):
 
 <p style={{textAlign: 'center'}}><img src="/img/blog/auth/pglet-signin-example.png" width="70%" /></p>
 
