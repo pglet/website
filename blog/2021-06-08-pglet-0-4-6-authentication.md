@@ -12,7 +12,7 @@ The major feature of Pglet 0.4.6 release is built-in authentication and authoriz
 
 <p style={{textAlign: 'center'}}><img src="/img/blog/auth/pglet-signin-example.png" width="70%" /></p>
 
-Just imagine, you can instantly add authentication to any of your scripts.
+Just imagine, you can instantly add authentication to any of your backend scripts!
 
 For example, in Python to create a page accessible to GitHub user with username `ExampleUser` and all users in `myorg/Developers` team:
 
@@ -31,8 +31,6 @@ To give access to users authenticating with any method and `@custom-domain.com` 
 ```python
 page = pglet.page(permissions="*@custom-domain.com")
 ```
-
-Pglet does not implement a complete user management with signups, password resets, 2FA, role management, etc. and you wouldn't probably expect this funcitonaity (especially "done right" and secure) from every web app. Instead, Pglet implements OAuth integration with the most popular identity providers (IdP): GitHub, Google and Azure AD. ... User information is not stored in Pglet, but you can get essential data about the user: login, name, email.
 
 
 ## Other changes and improvements
