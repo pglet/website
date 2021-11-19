@@ -7,16 +7,16 @@ module.exports = {
   organizationName: 'pglet', // Usually your GitHub org/user name.
   projectName: 'pglet.github.io', // Usually your repo name.
   customFields: {
-    heroTitle: 'Secure web UI for your backend apps',
-    heroSubTitle: 'Fast and secure remote UI for your bots, backup scripts, cron jobs, crawlers. No knowledge of HTML, CSS or JavaScript required.',
+    heroTitle: 'Build internal web apps quickly in the language you already know',
+    heroSubTitle: 'Build secure dashboards and interactive web apps in Python, Bash, PowerShell, C# or Node.js. No web dev experience required.',
   },  
   themeConfig: {
     navbar: {
-      title: '',
+      title: 'pglet',
       logo: {
         alt: 'pglet Logo',
-        src: 'img/logo_light.svg',
-        srcDark: 'img/logo_dark.svg',
+        src: 'img/logo2.svg',
+        srcDark: 'img/logo2.svg',
       },
       items: [
         {

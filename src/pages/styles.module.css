@@ -66,7 +66,6 @@ html[data-theme='dark'] .bkg {
   display: inline-block;
   line-height: 1.2em;
   text-decoration: none !important;
-  text-transform: uppercase;
   transition: background 0.6s;
   border-radius: 8px;
   border-width: 2px;
@@ -78,5 +77,5 @@ html[data-theme='dark'] .bkg {
 
 .indexCtasGetStartedButton:hover {
   color: #fff;
-  background-color: #ffa0ad;
+  background-color: #a847e9;
 }

@@ -21,6 +21,22 @@ Install-Module pglet
 
 ## Creating a page
 
+```
+    'installation',
+    'connect-to-pglet',
+    'displaying-data',
+    'getting-user-input',
+    'handling-events',
+    'showing-progress',
+    'security',
+    'grids-and-lists',
+    'charting',
+    'theming',
+    'deep-linking',
+    'multi-user-apps',
+    'local-development'
+```
+
 Pglet allows you creating **shared** and **app** pages.
 
 **Shared page** is like a singleton: many programs can connect and author the same page and all web users connecting to a page see and interact with the same content. Shared pages are useful for developing local tools, web dashboards, progress reports, distributed processes visualization, etc. 
