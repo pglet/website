@@ -2,7 +2,7 @@ skip_branch_with_pr: true
 
 image: ubuntu
 
-stack: node 12
+stack: node 14
 
 test: off
 
