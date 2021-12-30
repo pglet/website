@@ -34,8 +34,12 @@ Install-Module pglet
     'theming',
     'deep-linking',
     'multi-user-apps',
-    'local-development'
+    'local-development1'
 ```
+
+## NOTES:
+
+Handling events - tell about limitations in event handlers scope
 
 Pglet allows you creating **shared** and **app** pages.
 
