@@ -7,27 +7,27 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #bf5efe;
-  --ifm-color-primary-dark: #b13bfe;
-  --ifm-color-primary-darker: #aa2afe;
-  --ifm-color-primary-darkest: #9302f2;
-  --ifm-color-primary-light: #cd81fe;
-  --ifm-color-primary-lighter: #d492fe;
-  --ifm-color-primary-lightest: #e8c6ff;
+  --ifm-color-primary: #a95efe;
+  --ifm-color-primary-dark: #7f3bfe;
+  --ifm-color-primary-darker: #742afe;
+  --ifm-color-primary-darkest: #5602f2;
+  --ifm-color-primary-light: #ad81fe;
+  --ifm-color-primary-lighter: #b892fe;
+  --ifm-color-primary-lightest: #dac6ff;
 
   --ifm-color-secondary: #f8f8f8;
 
   --ifm-code-font-size: 95%;
   --ifm-h4-font-size: 1.1rem;
 
-  --pglet-link-color: #bf5efe;
+  --pglet-link-color: #a95efe;
   --ifm-link-color: var(--pglet-link-color);
   --ifm-navbar-link-hover-color: var(--pglet-link-color);
 
   /* navbar */
   /* --ifm-navbar-padding-vertical: 0.5rem;
   --ifm-navbar-padding-horizontal: 0.7rem; */
-  --ifm-navbar-background-color: #f1eefc;
+  --ifm-navbar-background-color: #fff;
 
   /* menu */
   --ifm-menu-color-active: var(--pglet-link-color);
@@ -40,9 +40,9 @@
 }
 
 .navbar__title {
-  color: #6300ae;
-  font-size: 19px;
-  font-weight: 600;
+  color: #333;
+  font-size: 18px;
+  font-weight: 700;
   padding-bottom: 2px;
 }
 
@@ -56,16 +56,16 @@
 .pglet-hero h1 {
   color: #333;
   font-size: 42px;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .hero__subtitle {
   color: #333;
-  font-size: 17px;
+  font-size: 18px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .control-screenshot {
@@ -94,6 +94,10 @@ html[data-theme='dark']:root {
   --ifm-background-color: #181A21;
   --ifm-navbar-background-color: #181A21;
   --ifm-footer-background-color: #1f2127;
+}
+
+html[data-theme='dark'] .navbar__title {
+  color: #f0f0f0;
 }
 
 html[data-theme='dark'] .pglet-hero h1 {

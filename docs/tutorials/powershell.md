@@ -4,6 +4,22 @@ sidebar_label: PowerShell
 slug: powershell
 ---
 
+<!--
+* Introduction
+* Quick "Hello, world!"
+* Installation
+* Connecting to Pglet
+* Displaying data: Text, update text (current time)
+* Showing progress
+* Getting user input: textboxes, dialog, etc.
+* Handling events
+* Security
+* Multi-user apps
+* Grids and lists
+* Charts
+* Theming
+-->
+
 You can use PowerShell to build standalone web apps or add web UI to existing scripts.
 
 ## Installing `pglet` module
