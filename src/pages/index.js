@@ -5,6 +5,8 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 const features = [
   {
@@ -92,6 +94,17 @@ function Home() {
             </div>
           </section>
         )}
+        <Tabs>
+          <TabItem value="apple" label="Apple" default>
+            This is an apple 🍎
+          </TabItem>
+          <TabItem value="orange" label="Orange">
+            This is an orange 🍊
+          </TabItem>
+          <TabItem value="banana" label="Banana">
+            This is a banana 🍌
+          </TabItem>
+        </Tabs>
       </main>
     </Layout>
   );
