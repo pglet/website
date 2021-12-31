@@ -4,6 +4,7 @@ sidebar_label: PowerShell
 slug: powershell
 ---
 
+<!--
 * Introduction
 * Quick "Hello, world!"
 * Installation
@@ -17,6 +18,7 @@ slug: powershell
 * Grids and lists
 * Charts
 * Theming
+-->
 
 You can use PowerShell to build standalone web apps or add web UI to existing scripts.
 
@@ -34,26 +36,6 @@ Install-Module pglet
 ```
 
 ## Creating a page
-
-```
-    'installation',
-    'connect-to-pglet',
-    'displaying-data',
-    'getting-user-input',
-    'handling-events',
-    'showing-progress',
-    'security',
-    'grids-and-lists',
-    'charting',
-    'theming',
-    'deep-linking',
-    'multi-user-apps',
-    'local-development1'
-```
-
-## NOTES:
-
-Handling events - tell about limitations in event handlers scope
 
 Pglet allows you creating **shared** and **app** pages.
 

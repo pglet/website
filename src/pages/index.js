@@ -94,7 +94,7 @@ function Home() {
             </div>
           </section>
         )}
-        <Tabs>
+        {/* <Tabs>
           <TabItem value="apple" label="Apple" default>
             This is an apple 🍎
           </TabItem>
@@ -104,7 +104,7 @@ function Home() {
           <TabItem value="banana" label="Banana">
             This is a banana 🍌
           </TabItem>
-        </Tabs>
+        </Tabs> */}
       </main>
     </Layout>
   );
