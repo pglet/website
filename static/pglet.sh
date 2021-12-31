@@ -1,5 +1,6 @@
+# shellcheck shell=bash
 # Constants
-PGLET_VER="0.4.5"                             # Pglet version required by this script
+PGLET_VER="0.5.5"                             # Pglet version required by this script
 PGLET_DEFAULT_INSTALL_DIR="$HOME/.pglet/bin"  # Default installation directory
 
 # Installation variables
@@ -24,32 +25,33 @@ PGLET_EVENT_DATA=""      # the last received event data.
 function pglet_page() {
     local pargs=(page)
 
-    if [[ "$1" != "" ]]; then
-        pargs+=($1)
+    if [[ $# -ne 0 && "$1" != "" ]]; then
+        pargs+=("$1")
     fi
 
-    if [[ "$PGLET_LOCAL" == "true" ]]; then
-        pargs+=(--local)
+    if [[ -n "${PGLET_WEB-}" && "$PGLET_WEB" == "true" ]]; then
+        pargs+=(--web)
     fi
 
-    if [[ "$PGLET_SERVER" != "" ]]; then
-        pargs+=(--server $PGLET_SERVER)
+    if [[ -n "${PGLET_SERVER-}" && "$PGLET_SERVER" != "" ]]; then
+        pargs+=(--server "$PGLET_SERVER")
     fi
 
-    if [[ "$PGLET_TOKEN" != "" ]]; then
-        pargs+=(--token $PGLET_TOKEN)
+    if [[ -n "${PGLET_TOKEN-}" && "$PGLET_TOKEN" != "" ]]; then
+        pargs+=(--token "$PGLET_TOKEN")
     fi
 
-    if [[ "$PGLET_NO_WINDOW" != "" ]]; then
+    if [[ -n "${PGLET_NO_WINDOW-}" && "$PGLET_NO_WINDOW" != "" ]]; then
         pargs+=(--no-window)
     fi
 
-    if [[ "$PGLET_TICKER" != "" ]]; then
-        pargs+=(--ticker $PGLET_TICKER)
+    if [[ -n "${PGLET_TICKER-}" && "$PGLET_TICKER" != "" ]]; then
+        pargs+=(--ticker "$PGLET_TICKER")
     fi    
 
     # execute pglet and get page connection ID
-    local page_results=`$PGLET_EXE "${pargs[@]}"`
+    local page_results
+    page_results=$($PGLET_EXE "${pargs[@]}")
     IFS=' ' read -r PGLET_CONNECTION_ID PGLET_PAGE_URL <<< "$page_results"
 
     echo "Page URL: $PGLET_PAGE_URL"
@@ -71,31 +73,31 @@ function pglet_app() {
         local fn=$1
     elif [[ $# -eq 2 ]]; then
         # page name and hander function specified
-        pargs+=($1)
+        pargs+=("$1")
         local fn=$2
     else
         echo "Error: wrong number of arguments"
         exit 1
     fi
 
-    if [[ "$PGLET_LOCAL" == "true" ]]; then
-        pargs+=(--local)
+    if [[ -n "${PGLET_WEB-}" && "$PGLET_WEB" == "true" ]]; then
+        pargs+=(--web)
     fi
 
-    if [[ "$PGLET_SERVER" != "" ]]; then
-        pargs+=(--server $PGLET_SERVER)
+    if [[ -n "${PGLET_SERVER-}" && "$PGLET_SERVER" != "" ]]; then
+        pargs+=(--server "$PGLET_SERVER")
     fi
 
-    if [[ "$PGLET_TOKEN" != "" ]]; then
-        pargs+=(--token $PGLET_TOKEN)
+    if [[ -n "${PGLET_TOKEN-}" && "$PGLET_TOKEN" != "" ]]; then
+        pargs+=(--token "$PGLET_TOKEN")
     fi
 
-    if [[ "$PGLET_NO_WINDOW" != "" ]]; then
+    if [[ -n "${PGLET_NO_WINDOW-}" && "$PGLET_NO_WINDOW" != "" ]]; then
         pargs+=(--no-window)
     fi
 
-    if [[ "$PGLET_TICKER" != "" ]]; then
-        pargs+=(--ticker $PGLET_TICKER)
+    if [[ -n "${PGLET_TICKER-}" && "$PGLET_TICKER" != "" ]]; then
+        pargs+=(--ticker "$PGLET_TICKER")
     fi    
 
     # reset vars
@@ -110,7 +112,7 @@ function pglet_app() {
                 PGLET_PAGE_URL="$session_id"
                 echo "Page URL: $PGLET_PAGE_URL"
             else
-                __pglet_start_session $session_id $fn &
+                __pglet_start_session "$session_id" "$fn" &
             fi
         done
     }
@@ -207,14 +209,16 @@ function pglet_remove() {
     pglet_send "remove $1"
 }
 
+# shellcheck disable=SC2120
 function pglet_wait_event() {
-    if [[ "$1" != "" ]]; then
+    if [[ $# -ne 0 && "$1" != "" ]]; then
         local conn_id=$1
     else
         local conn_id=$PGLET_CONNECTION_ID
     fi
 
-    IFS=' ' read PGLET_EVENT_TARGET PGLET_EVENT_NAME PGLET_EVENT_DATA < "$conn_id.events"
+    # shellcheck disable=SC2034
+    IFS=' ' read -r PGLET_EVENT_TARGET PGLET_EVENT_NAME PGLET_EVENT_DATA < "$conn_id.events"
 }
 
 function pglet_dispatch_events() {
@@ -244,7 +248,7 @@ function escape_sq_str() {
   local CR="
 "
   local r1="${1//${CR}/\\\n}"
-  echo ${r1//\'/\\\'}
+  echo "${r1//\'/\\\'}"
 }
 
 # escape new lines and double quotes
@@ -252,30 +256,32 @@ function escape_dq_str() {
   local CR="
 "
   local r1="${1//${CR}/\\\n}"
-  echo ${r1//\"/\\\"} # escape double quotes
+  echo "${r1//\"/\\\"}" # escape double quotes
 }
 
 # execute command and escape new lines and single quotes
 function escape_sq_cmd() {
   local CR="
 "
-  local result=`$@`
+  local result
+  result=$("$@")
   local r1="${result//${CR}/\\\n}"
-  echo ${r1//\'/\\\'} # escape single quotes
+  echo "${r1//\'/\\\'}" # escape single quotes
 }
 
 # execute command and escape new lines and double quotes
 function escape_dq_cmd() {
   local CR="
 "
-  local result=`$@`
+  local result
+  result=$("$@")
   local r1="${result//${CR}/\\\n}"
-  echo ${r1//\"/\\\"} # escape double quotes
+  echo "${r1//\"/\\\"}" # escape double quotes
 }
 
 function __pglet_install() {
 
-    if [ "$OS" = "Windows_NT" ]; then
+    if [[ -n "${OS-}" && "$OS" = "Windows_NT" ]]; then
         echo "Error: Bash for Windows is not supported." 1>&2
         exit 1
     fi
@@ -306,7 +312,7 @@ function __pglet_install() {
     local current_pglet_dir=""
     if command -v pglet &> /dev/null
     then
-        PGLET_EXE=`which pglet`
+        PGLET_EXE=$(which pglet)
         current_pglet_dir="$(dirname "${PGLET_EXE}")"
     fi
 
@@ -330,11 +336,11 @@ function __pglet_install() {
 
     #echo "Installed version: $installed_ver"
 
-    if [[ "$installed_ver" != "$ver" ]]; then
+    if [[ "$installed_ver" != "unknown" && "$installed_ver" != "$ver" ]]; then
 
         pkill pglet
 
-        printf "Installing Pglet v$ver to $pglet_dir..."
+        printf "Installing Pglet v%s to %s..." "$ver" "$pglet_dir"
 
         if [ ! -d "$pglet_dir" ]; then
             mkdir -p "$pglet_dir"
@@ -342,9 +348,13 @@ function __pglet_install() {
 
         local pglet_url="https://github.com/pglet/pglet/releases/download/v${ver}/pglet-${ver}-${platform}-${arch}.tar.gz"
         local tempTar="/tmp/pglet.tar.gz"
-        curl -fsSL $pglet_url -o $tempTar &&
-        tar -zxf $tempTar -C $pglet_dir pglet ||
-          { echo "Error downloading and extracting pglet executable." 1>&2; exit 1; }
+        {
+            curl -fsSL $pglet_url -o $tempTar &&
+                tar -zxf $tempTar -C "$pglet_dir" pglet
+        } || {
+            echo "Error downloading and extracting pglet executable." 1>&2
+            exit 1
+        }
         rm $tempTar
 
         printf "OK\n"
