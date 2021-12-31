@@ -78,7 +78,7 @@ Let's ask a user for a name:
 ```bash title="greeter.sh"
 . pglet.sh
 
-pglet_page "index"
+pglet_page
 
 pglet_send "clean"
 pglet_send "add textbox label='Your name' description='Please provide your full name'"
@@ -98,7 +98,7 @@ Once the form is rendered use `pglet_wait_event` function in a loop to receive a
 ```bash title="greeter.sh"
 . pglet.sh
 
-pglet_page "index"
+pglet_page
 
 pglet_send "clean"
 txt_name=`pglet_send "add textbox label='Your name' description='Please provide your full name'"`

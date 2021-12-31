@@ -3,7 +3,7 @@ const TwitterSvg =
 
 module.exports = {
   title: 'Pglet',
-  tagline: 'Fast and secure remote UI for your bots, backup scripts, cron jobs, crawlers. No knowledge of HTML, CSS or JavaScript required.',
+  tagline: 'Build internal web apps quickly in the language you already know.',
   url: 'https://pglet.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
