@@ -7,6 +7,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Form from '@site/src/components/subscribe-form'
 
 const features = [
   {
@@ -105,6 +106,7 @@ function Home() {
             This is a banana 🍌
           </TabItem>
         </Tabs> */}
+        <Form/>
       </main>
     </Layout>
   );
