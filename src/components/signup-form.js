@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 
-export default function Form() {
+export default function SignupForm() {
     const [token, setToken] = useState(null);
     const [email, setEmail] = useState("");
     const captchaRef = useRef(null);
