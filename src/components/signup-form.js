@@ -23,11 +23,22 @@ export default function SignupForm() {
         console.log(`hCaptcha Error: ${err}`);
     };
 
-    useEffect(() => {
+    useEffect(async () => {
         if (token) {
-            // Token is set, can submit here
-            console.log(`User Email: ${email}`);
-            console.log(`hCaptcha Token: ${token}`);
+            var data = {
+                email: email,
+                captcha_token: token
+            };
+
+            // send message
+            const response = await fetch("/api/email-signup", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+              });
+            const results = await response.json();
+
+            console.log(`Results:`, results);
         }
     }, [token, email]);
 

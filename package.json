@@ -14,7 +14,8 @@
     "@hcaptcha/react-hcaptcha": "^1.0.0",
     "clsx": "^1.1.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "wrangler": "^0.0.7"
   },
   "browserslist": {
     "production": [
