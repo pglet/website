@@ -1,3 +1,6 @@
+import { encryptData } from "./crypto";
+import { decryptData } from "./crypto";
+
 export async function onRequestPost(context) {
     // Contents of context object
     const {
@@ -19,6 +22,12 @@ export async function onRequestPost(context) {
     const body = await request.json();
     console.log(body);
 
+    // try encrypting data
+    const encryptedData = await encryptData("Hello, world!", env.CRYPTO_KEY);
+    console.log(encryptedData);
+    const decryptedData = await decryptData(encryptedData, env.CRYPTO_KEY);
+    console.log(decryptedData);
+
     // 1. Validate hCaptcha response
     // 2. Check if email address is already added into mailing list
     // 3. If email is not added - add it to a mailing list
@@ -34,7 +43,6 @@ export async function onRequestPost(context) {
     }
 
     return new Response(JSON.stringify(j), {
-      headers: { 'content-type': 'application/json' },
-      status: 200
-    })    
+      headers: { 'content-type': 'application/json' }
+    })
   }
