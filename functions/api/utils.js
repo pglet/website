@@ -3,3 +3,8 @@ export function urlEncodeObject(obj) {
       .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]))
       .join('&')
   }
+
+export async function sha1(str) {
+    var buffer = await crypto.subtle.digest("SHA-1", new TextEncoder("utf-8").encode(str));
+    return Array.prototype.map.call(new Uint8Array(buffer), x=>(('00'+x.toString(16)).slice(-2))).join('');
+}
