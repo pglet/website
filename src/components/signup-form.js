@@ -27,7 +27,7 @@ export default function SignupForm() {
         if (token) {
             var data = {
                 email: email,
-                captcha_token: token
+                captchaToken: token
             };
 
             // send message
