@@ -43,25 +43,26 @@ export default function SignupForm() {
     }, [token, email]);
 
     return (
-        <>
-        {!token && <form onSubmit={onSubmit}>
-            <input
-                type="email"
-                value={email}
-                placeholder="Email adddress"
-                onChange={(evt) => setEmail(evt.target.value)}
-            />
-            <input type="submit" value="Submit" />
-            <HCaptcha
-                sitekey="450cf388-4fd0-4485-a786-dd0129a596ed"
-                size="invisible"
-                onVerify={setToken}
-                onError={onError}
-                onExpire={onExpire}
-                ref={captchaRef}
-            />
-        </form>}
-        {token && <div>Thank you! You should receive subscribe confirmation shortly.</div>}
-        </>
+        <div className="signup-form">
+            <h3>Subscribe to Pglet newsletter for project updates, news and tutorials:</h3>
+            {!token && <form onSubmit={onSubmit}>
+                <input
+                    type="email"
+                    value={email}
+                    placeholder="Your email address"
+                    onChange={(evt) => setEmail(evt.target.value)}
+                />
+                <input type="submit" value="Submit" />
+                <HCaptcha
+                    sitekey="450cf388-4fd0-4485-a786-dd0129a596ed"
+                    size="invisible"
+                    onVerify={setToken}
+                    onError={onError}
+                    onExpire={onExpire}
+                    ref={captchaRef}
+                />
+            </form>}
+            {token && <div>Thank you! You should receive subscribe confirmation shortly.</div>}
+        </div>
     );
 }
