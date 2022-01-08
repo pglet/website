@@ -55,9 +55,8 @@ async function addMailingListMember(mailgunApiKey, listName, memberAddress) {
   }
 }
 
-async function sendEmail(mailgunApiKey, from, to, subject, htmlBody) {
+async function sendEmail(mailgunApiKey, mailDomain, from, to, subject, htmlBody) {
 
-  const mailDomain = from.split('@').pop()
   const data = {
     from: from,
     to: to,
@@ -80,8 +79,8 @@ async function sendEmail(mailgunApiKey, from, to, subject, htmlBody) {
   )
 
   if (response.status !== 200) {
-    const responseBody = await response.json()
-    throw `Error sending email message: ${responseBody.message}`
+    const responseBody = await response.text()
+    throw `Error sending email message: ${responseBody}`
   }
 }
 
@@ -92,54 +91,47 @@ export async function onRequestPost(context) {
       env, // same as existing Worker API
     } = context;
 
-    console.log(JSON.stringify(env, null, '  '));
-
     const { headers } = request;
     const contentType = headers.get('content-type');
     if (!contentType.includes('application/json')) {
-      throw "Content type not recognized!"
+      throw "Content type not recognized"
     }
 
     // this is request body
-    const body = await request.json();
-    console.log(body);
-  
-    const email = body.email;
+    const reqBody = await request.json();
+    const email = reqBody.email;
+    const captchaToken = reqBody.captchaToken;
 
-    // try hashing data
-    const hashedData = await sha1("Hello, world!");
-    console.log('hashedData', hashedData);
+    // verify parameters
+    if (!email || !captchaToken) {
+      throw "Invalid request parameters"
+    }
 
-    // 1. Validate hCaptcha response
-    //await validateCaptcha(body.captchaToken, env.HCAPTCHA_SECRET)
+    // validate hCaptcha response
+    await validateCaptcha(captchaToken, env.HCAPTCHA_SECRET)
 
-    // 2. Add email address to the mailing list
+    // add email address to the mailing list
     var added = await addMailingListMember(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST, email);
     if (added) {
-      // 3. Build confirmation link
+      // build confirmation link
       const urlParams = {
         email: email,
         code: await sha1(email + env.CONFIRM_SECRET)
       }
       const url = new URL(request.url);
-      const confirmUrl = `${url.origin}/api/confirm-email-signup?${urlEncodeObject(urlParams)}`
-      console.log("confirmUrl:", confirmUrl);
+      const confirmUrl = `${url.origin}/api/confirm-subscription?${urlEncodeObject(urlParams)}`
       
-      // 4. Send email with a confirmation link
-      await sendEmail(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST, email,
-        "Confirm your subscription to Pglet project updates", confirmUrl);
+      // send email with a confirmation link
+      await sendEmail(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST.split('@').pop(), "Pglet <hello@pglet.io>", email,
+        "Confirm your subscription to Pglet newsletter", confirmUrl);
     }
-
-    const clientIP = request.headers.get("CF-Connecting-IP");
-    console.log("IP:", clientIP);
 
     // send response
-    var j = {
-      result: "OK",
-      error: null
+    var resp = {
+      result: "OK"
     }
 
-    return new Response(JSON.stringify(j), {
+    return new Response(JSON.stringify(resp), {
       headers: { 'content-type': 'application/json' }
     })
   }
