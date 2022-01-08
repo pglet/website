@@ -7,6 +7,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import SignupForm from '@site/src/components/signup-form'
 
 const features = [
   {
@@ -83,6 +84,7 @@ function Home() {
         </header>
       </div>
       <main>
+        <SignupForm/>
         {features && features.length > 0 && (
           <section className={styles.features}>
             <div className="container">
