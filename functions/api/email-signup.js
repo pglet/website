@@ -1,4 +1,62 @@
-import { urlEncodeObject, sha1 } from "./utils";
+import { urlEncodeObject, sha1, callMailgunApi } from "./utils";
+import { fromTemplate, subjectTemplate, bodyTemplate } from "./email-template"
+
+// Environment variables used in the handler:
+//   HCAPTCHA_SECRET      - A secret corresponding to a site key and used to verify your hCaptcha account
+//   MAILGUN_API_KEY      - Mailgun private API key
+//   MAILGUN_MAILING_LIST - Mailgun mailing list email address, e.g. news@mydomain.com
+//   CONFIRM_SECRET       - A random value that is used to calculate email confirmation code
+
+export async function onRequestPost(context) {
+  const { request, env } = context;
+  const { headers } = request;
+
+  const contentType = headers.get('content-type');
+  if (!contentType.includes('application/json')) {
+    throw "Content type not recognized"
+  }
+
+  // get request body
+  const reqBody = await request.json();
+  const email = reqBody.email;
+  const captchaToken = reqBody.captchaToken;
+
+  // verify parameters
+  if (!email || !captchaToken) {
+    throw "Invalid request parameters"
+  }
+
+  // validate hCaptcha response
+  await validateCaptcha(captchaToken, env.HCAPTCHA_SECRET)
+
+  // add email address to the mailing list
+  var added = await addMailingListMember(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST, email);
+  if (added) {
+    // build confirmation link
+    const urlParams = {
+      email: email,
+      code: await sha1(email + env.CONFIRM_SECRET)
+    }
+    const url = new URL(request.url);
+
+    var templateData = {
+      confirmUrl: `${url.origin}/api/confirm-subscription?${urlEncodeObject(urlParams)}`
+    }
+
+    // send email with a confirmation link
+    await sendEmail(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST.split('@').pop(), fromTemplate(templateData), email,
+      subjectTemplate(templateData), bodyTemplate(templateData));
+  }
+
+  // send response
+  var resp = {
+    result: "OK"
+  }
+
+  return new Response(JSON.stringify(resp), {
+    headers: { 'content-type': 'application/json' }
+  })
+}
 
 async function validateCaptcha(token, secret) {
   const data = {
@@ -31,19 +89,8 @@ async function addMailingListMember(mailgunApiKey, listName, memberAddress) {
     upsert: 'no'
   }
 
-  const encData = urlEncodeObject(data)
-  const response = await fetch(
-    `https://api.mailgun.net/v3/lists/${listName}/members`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: 'Basic ' + btoa('api:' + mailgunApiKey),
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': encData.length.toString()
-      },
-      body: encData
-    }
-  )
+  const response = await callMailgunApi(mailgunApiKey,
+    'POST', `https://api.mailgun.net/v3/lists/${listName}/members`, data)
 
   if (response.status === 200) {
     return true; // member has been added
@@ -56,7 +103,6 @@ async function addMailingListMember(mailgunApiKey, listName, memberAddress) {
 }
 
 async function sendEmail(mailgunApiKey, mailDomain, from, to, subject, htmlBody) {
-
   const data = {
     from: from,
     to: to,
@@ -64,74 +110,11 @@ async function sendEmail(mailgunApiKey, mailDomain, from, to, subject, htmlBody)
     html: htmlBody
   }
 
-  const encData = urlEncodeObject(data)
-  const response = await fetch(
-    `https://api.mailgun.net/v3/${mailDomain}/messages`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: 'Basic ' + btoa('api:' + mailgunApiKey),
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': encData.length.toString()
-      },
-      body: encData
-    }
-  )
+  const response = await callMailgunApi(mailgunApiKey,
+    'POST', `https://api.mailgun.net/v3/${mailDomain}/messages`, data)  
 
   if (response.status !== 200) {
     const responseBody = await response.text()
     throw `Error sending email message: ${responseBody}`
   }
 }
-
-export async function onRequestPost(context) {
-    // Contents of context object
-    const {
-      request, // same as existing Worker API
-      env, // same as existing Worker API
-    } = context;
-
-    const { headers } = request;
-    const contentType = headers.get('content-type');
-    if (!contentType.includes('application/json')) {
-      throw "Content type not recognized"
-    }
-
-    // this is request body
-    const reqBody = await request.json();
-    const email = reqBody.email;
-    const captchaToken = reqBody.captchaToken;
-
-    // verify parameters
-    if (!email || !captchaToken) {
-      throw "Invalid request parameters"
-    }
-
-    // validate hCaptcha response
-    await validateCaptcha(captchaToken, env.HCAPTCHA_SECRET)
-
-    // add email address to the mailing list
-    var added = await addMailingListMember(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST, email);
-    if (added) {
-      // build confirmation link
-      const urlParams = {
-        email: email,
-        code: await sha1(email + env.CONFIRM_SECRET)
-      }
-      const url = new URL(request.url);
-      const confirmUrl = `${url.origin}/api/confirm-subscription?${urlEncodeObject(urlParams)}`
-      
-      // send email with a confirmation link
-      await sendEmail(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST.split('@').pop(), "Pglet <hello@pglet.io>", email,
-        "Confirm your subscription to Pglet newsletter", confirmUrl);
-    }
-
-    // send response
-    var resp = {
-      result: "OK"
-    }
-
-    return new Response(JSON.stringify(resp), {
-      headers: { 'content-type': 'application/json' }
-    })
-  }

@@ -8,10 +8,6 @@ export default function SignupForm() {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        // this reaches out to the hcaptcha library and runs the
-        // execute function on it. you can use other functions as well
-        // documented in the api:
-        // https://docs.hcaptcha.com/configuration#jsapi
         captchaRef.current.execute();
     };
 
@@ -61,7 +57,7 @@ export default function SignupForm() {
                     ref={captchaRef}
                 />
             </form>}
-            {token && <div>Thank you! You will receive your confirmation shortly.</div>}
+            {token && <div>Thank you! You will receive the confirmation email shortly.</div>}
         </div>
     );
 }

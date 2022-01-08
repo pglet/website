@@ -156,10 +156,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 .signup-form {
   text-align: center;
+  margin: 2rem auto 1rem auto;
   padding: 20px;
   max-width: 600px;
   width: 100%;
-  margin: auto;
   background-color: var(--ifm-color-secondary);
   border-radius: 8px;
   box-shadow: var(--ifm-global-shadow-lw);

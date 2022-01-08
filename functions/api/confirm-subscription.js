@@ -1,4 +1,34 @@
-import { urlEncodeObject, sha1 } from "./utils";
+import { sha1, callMailgunApi } from "./utils";
+
+// Environment variables used in the handler:
+//   MAILGUN_API_KEY      - Mailgun private API key
+//   MAILGUN_MAILING_LIST - Mailgun mailing list email address, e.g. news@mydomain.com
+//   CONFIRM_SECRET       - A random value that is used to calculate email confirmation code
+
+export async function onRequestGet(context) {
+  const { request, env } = context;
+
+  // get request params
+  const { searchParams } = new URL(request.url)
+  const email = searchParams.get('email')
+  const code = searchParams.get('code')
+
+  if (!code || !email) {
+    throw "Invalid request parameters"
+  }
+
+  // validate confirmation code
+  const calculatedCode = await sha1(email + env.CONFIRM_SECRET)
+  if (calculatedCode !== code) {
+    throw "Invalid email or confirmation code"
+  }
+
+  // subscribe member
+  await subscribeMailingListMember(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST, email);
+
+  // redirect to home page
+  return Response.redirect(new URL(request.url).origin, 302)
+}
 
 async function subscribeMailingListMember(mailgunApiKey, listName, memberAddress) {
   const data = {
@@ -6,19 +36,8 @@ async function subscribeMailingListMember(mailgunApiKey, listName, memberAddress
     subscribed: 'yes'
   }
 
-  const encData = urlEncodeObject(data)
-  const response = await fetch(
-    `https://api.mailgun.net/v3/lists/${listName}/members/${encodeURIComponent(memberAddress)}`,
-    {
-      method: 'PUT',
-      headers: {
-        Authorization: 'Basic ' + btoa('api:' + mailgunApiKey),
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': encData.length.toString()
-      },
-      body: encData
-    }
-  )
+  const response = await callMailgunApi(mailgunApiKey,
+    'PUT', `https://api.mailgun.net/v3/lists/${listName}/members/${encodeURIComponent(memberAddress)}`, data)
 
   if (response.status === 200) {
     return true; // member has been subscribed
@@ -27,32 +46,3 @@ async function subscribeMailingListMember(mailgunApiKey, listName, memberAddress
     throw `Error updating mailing list member: ${responseBody}`
   }
 }
-
-export async function onRequestGet(context) {
-    // Contents of context object
-    const {
-      request, // same as existing Worker API
-      env, // same as existing Worker API
-    } = context;
-
-    // get request params
-    const { searchParams } = new URL(request.url)
-    const email = searchParams.get('email')
-    const code = searchParams.get('code')
-
-    if (!code || !email) {
-      throw "Invalid request parameters"
-    }
-
-    // validate confirmation code
-    const calculatedCode = await sha1(email + env.CONFIRM_SECRET)
-    if (calculatedCode !== code) {
-      throw "Invalid email or confirmation code"
-    }
-
-    // subscribe member
-    await subscribeMailingListMember(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST, email);
-
-    // redirect to home page
-    return Response.redirect(new URL(request.url).origin, 302)
-  }
