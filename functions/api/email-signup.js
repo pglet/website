@@ -7,10 +7,12 @@ import { fromTemplate, subjectTemplate, bodyTemplate } from "./email-template"
 //   MAILGUN_MAILING_LIST - Mailgun mailing list email address, e.g. news@mydomain.com
 //   CONFIRM_SECRET       - A random value that is used to calculate email confirmation code
 
+// Function POST handler
 export async function onRequestPost(context) {
   const { request, env } = context;
   const { headers } = request;
 
+  // validate content type
   const contentType = headers.get('content-type');
   if (!contentType.includes('application/json')) {
     throw "Content type not recognized"
@@ -44,20 +46,17 @@ export async function onRequestPost(context) {
     }
 
     // send email with a confirmation link
-    await sendEmail(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST.split('@').pop(), fromTemplate(templateData), email,
-      subjectTemplate(templateData), bodyTemplate(templateData));
+    await sendEmail(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST.split('@').pop(),
+      fromTemplate(templateData), email, subjectTemplate(templateData), bodyTemplate(templateData));
   }
 
-  // send response
-  var resp = {
-    result: "OK"
-  }
-
-  return new Response(JSON.stringify(resp), {
+  // send successful response
+  return new Response(JSON.stringify({ result: "OK" }), {
     headers: { 'content-type': 'application/json' }
   })
 }
 
+// Validates hCaptcha response and throws if invalid
 async function validateCaptcha(token, secret) {
   const data = {
     response: token,
@@ -82,6 +81,9 @@ async function validateCaptcha(token, secret) {
   }
 }
 
+// Adds a new member (email address) into Mailgun mailing list
+// returns `true` if the member was successfully added
+// returns `false` if the member already exists in the list
 async function addMailingListMember(mailgunApiKey, listName, memberAddress) {
   const data = {
     address: memberAddress,
@@ -102,6 +104,7 @@ async function addMailingListMember(mailgunApiKey, listName, memberAddress) {
   }
 }
 
+// Sends email message via Mailgun API
 async function sendEmail(mailgunApiKey, mailDomain, from, to, subject, htmlBody) {
   const data = {
     from: from,

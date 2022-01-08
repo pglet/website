@@ -5,6 +5,7 @@ import { sha1, callMailgunApi } from "./utils";
 //   MAILGUN_MAILING_LIST - Mailgun mailing list email address, e.g. news@mydomain.com
 //   CONFIRM_SECRET       - A random value that is used to calculate email confirmation code
 
+// Function GET handler
 export async function onRequestGet(context) {
   const { request, env } = context;
 
@@ -23,13 +24,14 @@ export async function onRequestGet(context) {
     throw "Invalid email or confirmation code"
   }
 
-  // subscribe member
+  // update subscription status
   await subscribeMailingListMember(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST, email);
 
-  // redirect to home page
+  // redirect to a home page
   return Response.redirect(new URL(request.url).origin, 302)
 }
 
+// Updates mailing list member's status to "subscribed=yes"
 async function subscribeMailingListMember(mailgunApiKey, listName, memberAddress) {
   const data = {
     address: memberAddress,
