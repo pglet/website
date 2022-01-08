@@ -37,15 +37,14 @@ export default function SignupForm() {
                 body: JSON.stringify(data),
               });
             const results = await response.json();
-
             console.log(`Results:`, results);
         }
     }, [token, email]);
 
     return (
         <div className="signup-form">
-            <h3>Subscribe to Pglet newsletter for project updates, news and tutorials:</h3>
             {!token && <form onSubmit={onSubmit}>
+                <h3>Subscribe to Pglet newsletter for project updates and tutorials!</h3>
                 <input
                     type="email"
                     value={email}
@@ -62,7 +61,7 @@ export default function SignupForm() {
                     ref={captchaRef}
                 />
             </form>}
-            {token && <div>Thank you! You should receive subscribe confirmation shortly.</div>}
+            {token && <div>Thank you! You will receive your confirmation shortly.</div>}
         </div>
     );
 }
