@@ -20,8 +20,6 @@ export default function SignupForm() {
         console.log(`hCaptcha Error: ${err}`);
     };
 
-    const signupConfirmed = window.location.href.endsWith('?signup-confirmed')
-
     useEffect(async () => {
         if (token) {
             var data = {
@@ -42,7 +40,9 @@ export default function SignupForm() {
 
     return (
         <BrowserOnly fallback={<div>Loading...</div>}>
-            {() => <div id="signup" className="signup-form">
+            {() => {
+                const signupConfirmed = window.location.href.endsWith('?signup-confirmed')
+                return <div id="signup" className="signup-form">
                 {!token && !signupConfirmed && <form onSubmit={onSubmit}>
                     <h3>Subscribe to Pglet newsletter for project updates and tutorials!</h3>
                     <input
@@ -63,7 +63,7 @@ export default function SignupForm() {
                 </form>}
                 {token && !signupConfirmed && <div>Thank you! You will receive the confirmation email shortly.</div>}
                 {signupConfirmed && <div><span style={{fontSize:'25px', marginRight:'10px'}}>🎉</span>Congratulations! You have successfully subscribed to Pglet newsletter.</div>}
-            </div>}
+            </div>}}
         </BrowserOnly>
     );
 }
