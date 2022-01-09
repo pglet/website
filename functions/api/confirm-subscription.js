@@ -28,7 +28,7 @@ export async function onRequestGet(context) {
   await subscribeMailingListMember(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST, email);
 
   // redirect to a home page
-  return Response.redirect(new URL(request.url).origin, 302)
+  return Response.redirect(new URL(request.url).origin + "?signup-confirmed", 302)
 }
 
 // Updates mailing list member's status to "subscribed=yes"
