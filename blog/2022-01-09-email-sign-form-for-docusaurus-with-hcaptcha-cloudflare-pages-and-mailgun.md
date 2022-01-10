@@ -67,13 +67,67 @@ Put your site key.
 To test hCaptcha locally you need to access website via some domain name, not `localhost`.
 Add `127.0.0.1  mysite.local` into `sudo nano /private/etc/hosts`.
 
+`<BrowserOnly>` in Docusaurus: https://docusaurus.io/docs/docusaurus-core#browseronly
+
 ## Cloudflare Pages Functions
 
-Running Wrangler locally:
+[Cloudflare Page Functions](https://developers.cloudflare.com/pages/platform/functions) are based on [Cloudflare Workers](https://developers.cloudflare.com/workers/).
+
+Functions runtime environment is different from Node.js. You can't use Node.js built-in modules, you can't install anything from NPM. It's more like JavaScript in a headless browser with [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/fetch), [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket), [Crypto](https://developer.mozilla.org/en-US/docs/Web/API/Crypto) and other [Web APIs](https://developers.cloudflare.com/workers/runtime-apis/web-standards).
+
+For signup form we are going to have two handlers:
+
+* `POST /api/email-signup` - for initial form processing and signup
+* `GET /api/confirm-subscription?email={email}&code={code}` - for confirming subscription
+
+To generate [routes](api/confirm-subscription) above we need to create two files: `/functions/api/email-signup.js` and `/functions/api/confirm-subscription.js` in the project repository.
+
+:::caution
+`/functions` directory must be in the root of your repository, not in `/static` directory and published along with the site.
+:::
+
+I'm not going to repeat [Functions docs](https://developers.cloudflare.com/pages/platform/functions) here, but will only cover some tricky issues which could arise while you develop.
+
+First, it's possible to run and debug your functions locally. A "beta" version of [`Wrangler`](https://developers.cloudflare.com/pages/platform/functions#develop-and-preview-locally) tool should be installed for that:
 
 ```
-npx wrangler pages dev -b CRYPTO_KEY=123! -- yarn start
+yarn add wrangler@beta --save-dev
 ```
+
+:::caution
+Disregard deprecation warning while searching for [wrangler](https://www.npmjs.com/package/wrangler) package on npmjs.com.
+Apparently, Cloudflare team is actively [working on Wrangler v2](https://github.com/cloudflare/wrangler2) and publishes it as that package.
+:::
+
+Wrangler should be run as a proxy for your local Docusaurus run:
+
+```
+npx wrangler pages dev -- yarn start
+```
+
+For configurable settings in functions we use environment variables. In contrast with Cloudflare Workers environment variables are not set as globals in your functions, however they can be accessed via context, like that:
+
+```javascript
+// handler function
+export async function onRequestPost(context) {
+  const { request, env } = context;
+  const apiKey = env.API_KEY;
+}
+```
+
+where `API_KEY` is the name of environment variable.
+
+For Workers environment variables can be configured in `wrangler.toml`, but `wrangler.toml` is not supported by Functions, so the only way to pass environment variables locally is a command line using `-b` switch:
+
+```
+npx wrangler pages dev -b API_KEY=123! -b MY_VAR2=some_value ... -- yarn start
+```
+
+For your Cloudflare Pages website you can configure `Production` and `Preview` environment variables on **Settings &#8594; Environment variables** page.
+
+:::danger
+Do not put real secrets into "Preview" environment variables if your project in a public repository. Any pull request to the repository publishes "preview" website to a temp URL which is visible to everyone in [commit status](https://github.com/pglet/website/runs/4754500508). Therefore, it's possible for the attacker to submit malicious PR with a function printing all environment variables and then run it via temp URL.
+:::
 
 ## Validating hCaptcha response
 
