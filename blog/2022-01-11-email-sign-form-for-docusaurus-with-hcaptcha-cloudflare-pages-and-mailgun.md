@@ -170,7 +170,7 @@ For signup form we are going to have two handlers:
 * `POST /api/email-signup` - for initial form processing and signup
 * `GET /api/confirm-subscription?email={email}&code={code}` - for confirming subscription
 
-To generate [routes](api/confirm-subscription) above we need to create two files: `/functions/api/email-signup.js` and `/functions/api/confirm-subscription.js` in the project repository.
+To generate routes above we need to create two files: `/functions/api/email-signup.js` and `/functions/api/confirm-subscription.js` in the project repository.
 
 :::caution
 `/functions` directory must be in the root of your repository, not in `/static` directory and published along with the site.
