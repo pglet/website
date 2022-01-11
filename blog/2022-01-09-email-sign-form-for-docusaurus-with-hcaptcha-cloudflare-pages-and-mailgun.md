@@ -10,64 +10,136 @@ tags: [Tutorial, Docusaurus, React, hCaptcha, Cloudflare, Mailgun]
 
 ## Introduction
 
-This blog is going to be about ...
-But ...
+Staying in touch with your users via email is still effective and reliable communication channel. In this tutorial we are going to add to a home page a form that allows users to submit their email address and subscribe to a project mailing list. You may wonder how is this related to Pglet?
 
-What we have:
+Project requirements:
 
-* Website made with [Docusaurus](https://docusaurus.io/) and hosted on [Cloudflare Pages](https://pages.cloudflare.com/).
+* The form must be as simple as possible: just "email" field and "submit" button.
+* The form must protected by CAPTCHA.
+* Double opt-in subscription process should be implemented: after submitting the form a user receives an email with a confirmation link to complete the process.
 
-What we want to do:
+[Pglet website](https://pglet.io) is made with [Docusaurus](https://docusaurus.io/) and hosted on [Cloudflare Pages](https://pages.cloudflare.com/).
 
-* A simple form on a landing page with just "Email" field and "Subscribe" button.
-* When submitting form there is no refresh, but a message "Thank you! You should receive a confirmation email shortly" messages appears in-place.
-* Form is protected by captcha.
-* Double opt-in subscription process: after submitting email address a user receives a message with a confirmation link to complete the process.
+Docusaurus is, essentially, a React app, so we could implement any interactivity on a client side as we like.
 
-How we are going to build that:
+For CAPTCHA we are going to use [hCaptcha](https://www.hcaptcha.com/), which is a great alternative to Google's reCAPTCHA and has a similar API.
 
-* [Mailgun](https://www.mailgun.com/) will be used to manage mailing list and sending emails. Mailgun offers great functionality at a flexible pricing and we have a lot of experience with it.
-* Docusaurus is on the client side which is, essentially, a React app.
-* For captcha we are going to use [hCaptcha](https://www.hcaptcha.com/). I have experience with Google Captcha and hCaptcha has a very similar API.
-* [Cloudflare Functions](https://developers.cloudflare.com/pages/platform/functions) will be used for processing subscription requests and interacting with Mailgun mailinglist API.
+A signup form requires some server-side processing and for that we re going to use [Functions](https://developers.cloudflare.com/pages/platform/functions) which are part of Cloudflare Pages platform.
+
+For maintaining maling list and sending email messages we are going to use [Mailgun](https://www.mailgun.com/) offers great functionality, first-class API at a flexible pricing, plus we have a lot of experience with it.
 
 ## Email signup form
 
-[This official hCaptcha demo React app](https://codesandbox.io/s/react-hcaptchaform-example-invisible-f7ekt?file=/src/Form.jsx) is a perfect starting point for implementing a client side in Docusaurus.
+Signup form is implemented as React component and includes an email entry form with hCaptcha and two messages:
 
-Add hCaptcha:
+<p style={{textAlign: 'center'}}><img src="/img/blog/email-signup-form/email-signup-form.png" width="70%" /></p>
+
+[The official hCaptcha demo React app](https://codesandbox.io/s/react-hcaptchaform-example-invisible-f7ekt?file=/src/Form.jsx) with invisible captcha was a perfect starting point for our own implementation for Docusaurus.
+
+Add hCaptcha component to your project:
 
 ```
 yarn add @hcaptcha/react-hcaptcha --save
 ```
 
-Create `src/components/signup-form.js`:
+Create `src/components/signup-form.js` with the following contents:
 
-```js
-// content
+```javascript
+import React, { useEffect, useRef, useState } from "react";
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+
+export default function SignupForm() {
+    const [token, setToken] = useState(null);
+    const [email, setEmail] = useState("");
+    const captchaRef = useRef(null);
+
+    const onSubmit = (event) => {
+        event.preventDefault();
+        captchaRef.current.execute();
+    };
+
+    useEffect(async () => {
+        if (token) {
+            var data = {
+                email: email,
+                captchaToken: token
+            };
+
+            // send message
+            const response = await fetch("/api/email-signup", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+              });
+        }
+    }, [token, email]);
+
+    return (
+        <div id="signup" className="signup-form">
+            <BrowserOnly fallback={<div>Loading...</div>}>
+                {() => {
+                    if (token) {
+                        // signup submitted
+                        return <div>Thank you! You will receive the confirmation email shortly.</div>
+                    } else if (window.location.href.endsWith('?signup-confirmed')) {
+                        // signup confirmed
+                        return <div><span style={{fontSize:'25px', marginRight:'10px'}}>🎉</span>Congratulations! You have successfully subscribed to Pglet newsletter.</div>
+                    } else {
+                        // signup form
+                        return <form onSubmit={onSubmit}>
+                            <h3>Subscribe to Pglet newsletter for project updates and tutorials!</h3>
+                            <input
+                                type="email"
+                                value={email}
+                                placeholder="Your email address"
+                                onChange={(evt) => setEmail(evt.target.value)}
+                            />
+                            <input type="submit" value="Submit" />
+                            <HCaptcha
+                                sitekey="{YOUR-HCAPTCHA-SITE-KEY}"
+                                size="invisible"
+                                onVerify={setToken}
+                                ref={captchaRef}
+                            />
+                        </form>
+                    }
+                }}
+            </BrowserOnly>
+        </div>
+    );
+}
 ```
 
-In `src/pages/index.js` import `SignupForm` component:
+It's simply `<form>` element with "email" and "submit" inputs - except hCaptcha, no other 3rd-party components or hooks used. 
+
+Replace `{YOUR-HCAPTCHA-SITE-KEY}` with your own site key.
+
+Captcha is verified on `form.onSubmit` event which supports submitting form with ENTER and triggers built-in form validators.
+The result of captcha verification is stored in `token` state variable which is sent to a server along with entered email for further verification and processing.
+
+Add `signup-form.js` component to `src/pages/index.js` page:
 
 ```js
 import SignupForm from '@site/src/components/signup-form'
 ```
 
-and add it inside `<main>` layout:
+and then put `<SignupForm/>` inside `<main>` element:
 
-```js
+```javascript
 <main>
     <SignupForm/>
     ...
 </main>
 ```
 
-Put your site key.
+When you run Docusaurus site with `yarn start` and navigate a page with captcha at http://localhost:3000 you'll get "blocked by CORS policy" JavaScript errors. To make captcha work locally you should use some domain instead of "localhost".
 
-To test hCaptcha locally you need to access website via some domain name, not `localhost`.
-Add `127.0.0.1  mysite.local` into `sudo nano /private/etc/hosts`.
+Add a new mapping `127.0.0.1  mysite.local` to `sudo nano /private/etc/hosts` and then you can open http://mysite.local with working captcha.
 
-`<BrowserOnly>` in Docusaurus: https://docusaurus.io/docs/docusaurus-core#browseronly
+:::note
+A part of form component is wrapped with `<BrowserOnly>` which tells Docusaurus that the contents inside `<BrowserOnly>` is not suitable for server-side rendering because of client-side API used, in our case `window.location.ref`. You can read more about `<BrowserOnly>` [here](https://docusaurus.io/docs/docusaurus-core#browseronly).
+:::
 
 ## Cloudflare Pages Functions
 
