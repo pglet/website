@@ -28,6 +28,12 @@ A signup form requires some server-side processing and for that we re going to u
 
 For maintaining maling list and sending email messages we are going to use [Mailgun](https://www.mailgun.com/) offers great functionality, first-class API at a flexible pricing, plus we have a lot of experience with it.
 
+All code samples in this article can be found in:
+
+* [Pglet website GitHub repository](https://github.com/pglet/website)
+* [`functions` directory with server-side logic](https://github.com/pglet/website/tree/master/functions/api)
+* [`<SignupForm/>` React component](https://github.com/pglet/website/blob/master/src/components/signup-form.js)
+
 ## Email signup form
 
 Signup form is implemented as React component and includes an email entry form with hCaptcha and two messages:
@@ -195,31 +201,130 @@ For Workers environment variables can be configured in `wrangler.toml`, but `wra
 npx wrangler pages dev -b API_KEY=123! -b MY_VAR2=some_value ... -- yarn start
 ```
 
-For your Cloudflare Pages website you can configure `Production` and `Preview` environment variables on **Settings &#8594; Environment variables** page.
+For your Cloudflare Pages website you can configure `Production` and `Preview` environment variables on **Settings &#8594; Environment variables** page:
+
+<p style={{textAlign: 'center'}}><img src="/img/blog/email-signup-form/cloudflare-pages-environment-variables.png" width="80%" /></p>
 
 :::danger
 Do not put real secrets into "Preview" environment variables if your project in a public repository. Any pull request to the repository publishes "preview" website to a temp URL which is visible to everyone in [commit status](https://github.com/pglet/website/runs/4754500508). Therefore, it's possible for the attacker to submit malicious PR with a function printing all environment variables and then run it via temp URL.
 :::
 
+## `api/email-signup` function
+
+[`functions/api/email-signup.js`](https://github.com/pglet/website/blob/master/functions/api/email-signup.js) function has a single `onRequestPost()` handler which performs the following:
+
+1. Parses request body as JSON and validates its `email` and `captchaToken` fields.
+2. Performs hCaptcha response validation and aborts the request if validation fails.
+3. Try adding a new email (member) into Mailgun mailing list and exits if's already added.
+4. Sends email with confirmation link via Mailgun to a newly added email address.
+
 ## Validating hCaptcha response
 
-An API and pseudo-code for verifying hCaptcha response on server side could be found [here](https://docs.hcaptcha.com/#verify-the-user-response-server-side) and [this Cloudflare worker code for validating reCaptcha response](https://github.com/HR/recaptcha-worker/blob/main/index.js) (MIT license) can be easily adopted for validating hCaptcha response with Cloudflare functions.
+An API and pseudo-code for verifying hCaptcha response (token) on server side could be found [here](https://docs.hcaptcha.com/#verify-the-user-response-server-side) and [this](https://github.com/HR/recaptcha-worker/blob/main/index.js) example for validating reCaptcha response with Cloudflare Worker could be easily adopted for hCaptcha with Cloudflare Functions.
 
-* Functions structure
-* How to pass and access environment variables in Functions.
+[Validating hCaptcha response on the server](https://docs.hcaptcha.com/#verify-the-user-response-server-side) is `POST` request to `https://hcaptcha.com/siteverify` with hCaptcha response received from browser and hCaptcha site key secret in the body:
+
+```javascript
+async function validateCaptcha(token, secret) {
+  const data = {
+    response: token,
+    secret: secret
+  }
+
+  const encData = urlEncodeObject(data)
+  const captchaResponse = await fetch(
+    `https://hcaptcha.com/siteverify`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': encData.length.toString()
+      },
+      body: encData
+    }
+  )
+  const captchaBody = await captchaResponse.json()
+  if (!captchaBody.success) {
+    throw captchaBody["error-codes"]
+  }
+}
+```
+
+Thanks to [this great example](https://github.com/sitepoint-editors/cloudflare-form-service/blob/master/email-service.js) on how to send a form request with `fetch()` method.
 
 ## Adding email to a mailing list
 
-This article was also super-helpful: https://www.sitepoint.com/jamstack-form-handling-cloudflare-workers/ (Source: https://github.com/brandiqa/cloudflare-form-service - MIT license)
+Helper method for calling [Mailgun API](https://documentation.mailgun.com/en/latest/api_reference.html):
 
-* Working with Mailgun mailist
+```javascript
+export function callMailgunApi(mailgunApiKey, method, url, data) {
+    const encData = urlEncodeObject(data)
+    return fetch(
+      url,
+      {
+        method: method,
+        headers: {
+          Authorization: 'Basic ' + btoa('api:' + mailgunApiKey),
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Length': encData.length.toString()
+        },
+        body: encData
+      }
+    )
+  }
+
+export function urlEncodeObject(obj) {
+    return Object.keys(obj)
+      .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]))
+      .join('&')
+  }
+```
+
+Request parameters are passed in urlencoded form in the body.
+
+Requests uses with Basic authentication with `api` and "private API key" as username and password respectively.
+
+A function for adding a new member into Mailgun mailing lists is trivial and self-descriptive:
+
+```javascript
+async function addMailingListMember(mailgunApiKey, listName, memberAddress) {
+  const data = {
+    address: memberAddress,
+    subscribed: 'no',
+    upsert: 'no'
+  }
+
+  const response = await callMailgunApi(mailgunApiKey,
+    'POST', `https://api.mailgun.net/v3/lists/${listName}/members`, data)
+
+  if (response.status === 200) {
+    return true; // member has been added
+  } else if (response.status === 400) {
+    return false; // member already added
+  } else {
+    const responseBody = await response.json()
+    throw `Error adding mailing list member: ${responseBody.message}`
+  }
+}
+```
+
+It tries to add a new member into mailing list and returns `true` if it was successfully added; otherwise returns `false`.
 
 ## Sending confirmation email
 
-* Encrypting email and building link
-* Sending email with Mailgun
+Sending confirmation email message to a user via Mailgun is [straightforward](https://github.com/pglet/website/blob/master/functions/api/email-signup.js#L107-L123), so we are not going to post it here. Instead, let's see how confirmation URL is built.
 
-## Completing signup process
+Confirmation URL contains two parameters: **email** and **confirmation code**.
+
+Email is just recepient's email address which is, obviously, not a secret.
+
+Confirmation code is calculated as `sha1(email + secret)` with `secret` known to the server only.
+
+When the server receives a request with email and confirmation code it could calculate a new confirmation code for the received email and compare with it with received code.
+
+The algorithm could be further improved by implementing expiring confirmation code, but we want to keep it simple.
+
+## Verifying email and completing signup process
 
 * Updating member in a mailing list
 * Performing redirect to a home page
