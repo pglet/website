@@ -44,6 +44,11 @@
     font-size: 18px;    
   }
 
+
+  html[data-theme='dark'] .sidebarLogo {
+    color: #f0f0f0;
+  }
+
   .sidebarLogo img {
     margin-right: 0.5rem;
     height: 2rem;
