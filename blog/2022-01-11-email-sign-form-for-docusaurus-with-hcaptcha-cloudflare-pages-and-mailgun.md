@@ -10,7 +10,9 @@ tags: [Tutorial, Docusaurus, React, hCaptcha, Cloudflare, Mailgun]
 
 ## Introduction
 
-Staying in touch with your users via email is still effective and reliable communication channel. In this tutorial we are going to add to a home page a form that allows users to submit their email address and subscribe to a project mailing list. You may wonder how is this related to Pglet?
+Staying in touch with your users via email is still effective and reliable communication channel. In this tutorial we are going to add [email signup form](https://pglet.io/#signup) to a React-based static website that allows users to submit their email address and subscribe to a project mailing list.
+
+[Pglet website](https://pglet.io) is made with [Docusaurus](https://docusaurus.io/) and hosted on [Cloudflare Pages](https://pages.cloudflare.com/). However, the following solution could be easily adopted for other React-based website frameworks such as [Next.js](https://nextjs.org/) and use a different backend for server-side logic such as [Vercel Functions](https://vercel.com/docs/concepts/functions/introduction) or [Deno Deploy](https://deno.com/deploy/docs).
 
 Project requirements:
 
@@ -18,13 +20,9 @@ Project requirements:
 * The form must protected by CAPTCHA.
 * Double opt-in subscription process should be implemented: after submitting the form a user receives an email with a confirmation link to complete the process.
 
-[Pglet website](https://pglet.io) is made with [Docusaurus](https://docusaurus.io/) and hosted on [Cloudflare Pages](https://pages.cloudflare.com/).
-
-Docusaurus is, essentially, a React app, so we could implement any interactivity on a client side as we like.
-
 For CAPTCHA we are going to use [hCaptcha](https://www.hcaptcha.com/), which is a great alternative to Google's reCAPTCHA and has a similar API.
 
-A signup form requires some server-side processing and for that we re going to use [Functions](https://developers.cloudflare.com/pages/platform/functions) which are part of Cloudflare Pages platform.
+A signup form requires server-side processing and for that we re going to use [Cloudflare Pages Functions](https://developers.cloudflare.com/pages/platform/functions) which are part of Cloudflare Pages platform.
 
 For maintaining maling list and sending email messages we are going to use [Mailgun](https://www.mailgun.com/) offers great functionality, first-class API at a flexible pricing, plus we have a lot of experience with it.
 
@@ -122,7 +120,7 @@ It's simply `<form>` element with "email" and "submit" inputs - except hCaptcha,
 Replace `{YOUR-HCAPTCHA-SITE-KEY}` with your own site key.
 
 Captcha is verified on `form.onSubmit` event which supports submitting form with ENTER and triggers built-in form validators.
-The result of captcha verification is stored in `token` state variable which is sent to a server along with entered email for further verification and processing.
+The result of captcha verification is stored in `token` state variable which is sent to `/api/email-signup` server function along with entered email for further verification and processing.
 
 Add `signup-form.js` component to `src/pages/index.js` page:
 
@@ -146,6 +144,20 @@ Add a new mapping `127.0.0.1  mysite.local` to `sudo nano /private/etc/hosts` an
 :::note
 A part of form component is wrapped with `<BrowserOnly>` which tells Docusaurus that the contents inside `<BrowserOnly>` is not suitable for server-side rendering because of client-side API used, in our case `window.location.ref`. You can read more about `<BrowserOnly>` [here](https://docusaurus.io/docs/docusaurus-core#browseronly).
 :::
+
+## Configuring Mailgun
+
+[Mailgun](https://www.mailgun.com/) is a transactional email service that offers first-class APIs for sending, receiving and tracking email messages.
+
+:::note
+We are not affiliated with Mailgun - we just like their service and have a lot of experience with its API.
+:::
+
+A few things to know before creating a mailing list at Mailgun:
+
+* **Start with a free "Flex" plan** - it allows sending 5,000 messages per month and includes custom domains.
+* **Configure custom domain** - of course, you can test everything on a built-in `{something}.mailgun.org` domain, but messages sent from it will be trapped in recipient's Junk folder. Custom domain is included with a free plan and it's just a matter of adding a few records to your DNS zone.
+* **Get dedicated IP addresss** - if you require even greater deliverability assign your domain to a dedicated IP address. Dedicated IP is part of ["Foundation" plan](https://www.mailgun.com/pricing/) which starts at $35/month.
 
 ## Cloudflare Pages Functions
 
@@ -205,17 +217,21 @@ For your Cloudflare Pages website you can configure `Production` and `Preview` e
 
 <p style={{textAlign: 'center'}}><img src="/img/blog/email-signup-form/cloudflare-pages-environment-variables.png" width="80%" /></p>
 
+:::info
+Environment variables are immutable. If you update/add/delete environment variable and then call the function using it again it won't work - once variables changed the **website must be re-built to pick up new values**.
+:::
+
 :::danger
 Do not put real secrets into "Preview" environment variables if your project in a public repository. Any pull request to the repository publishes "preview" website to a temp URL which is visible to everyone in [commit status](https://github.com/pglet/website/runs/4754500508). Therefore, it's possible for the attacker to submit malicious PR with a function printing all environment variables and then run it via temp URL.
 :::
 
-## `api/email-signup` function
+## Form submit handler
 
-[`functions/api/email-signup.js`](https://github.com/pglet/website/blob/master/functions/api/email-signup.js) function has a single `onRequestPost()` handler which performs the following:
+Email signup form `POST`s entered email and hCaptcha response to [`/api/email-signup`](https://github.com/pglet/website/blob/master/functions/api/email-signup.js) function which performs the following:
 
 1. Parses request body as JSON and validates its `email` and `captchaToken` fields.
 2. Performs hCaptcha response validation and aborts the request if validation fails.
-3. Try adding a new email (member) into Mailgun mailing list and exits if's already added.
+3. Tries adding a new email (member) into Mailgun mailing list and exits if's already added.
 4. Sends email with confirmation link via Mailgun to a newly added email address.
 
 ## Validating hCaptcha response
@@ -326,9 +342,42 @@ The algorithm could be further improved by implementing expiring confirmation co
 
 ## Verifying email and completing signup process
 
-* Updating member in a mailing list
-* Performing redirect to a home page
+[`/api/confirm-subscription`](https://github.com/pglet/website/blob/master/functions/api/confirm-subscription.js) function has a single `onRequestGet()` handler which performs the following:
+
+* Validates `email` and `code` request parameters.
+* Calculates confirmation code and compares it with one from request.
+* If both codes match updates Mailgun mailing list member's `subscribed` status to `yes`.
+* Redirects to a home page with `?signup-confirmed` appended to the URL.
+
+```javascript
+export async function onRequestGet(context) {
+  const { request, env } = context;
+
+  // get request params
+  const { searchParams } = new URL(request.url)
+  const email = searchParams.get('email')
+  const code = searchParams.get('code')
+
+  if (!code || !email) {
+    throw "Invalid request parameters"
+  }
+
+  // validate confirmation code
+  const calculatedCode = await sha1(email + env.CONFIRM_SECRET)
+  if (calculatedCode !== code) {
+    throw "Invalid email or confirmation code"
+  }
+
+  // update subscription status
+  await subscribeMailingListMember(env.MAILGUN_API_KEY, env.MAILGUN_MAILING_LIST, email);
+
+  // redirect to a home page
+  return Response.redirect(new URL(request.url).origin + "?signup-confirmed", 302)
+}
+```
 
 ## Conclusion
 
-[TBD]
+In this article we created an email signup form for Docusaurus website protected with hCaptcha. The form allows user to submit their email address and subscribe to a project mailing list. We implemented "double opt-in" process where upon signup an email is sent out to the user which includes a link to click and confirm the subscription. We have used Cloudflare Pages Functions to implement all server-side logic. Mailgun service was used to send email messages and maintain mailing list.
+
+In the future articles we will build an interactive Python app using [Pglet](https://pglet.io/docs/tutorials/python) for sending messages to Mailgun mailist lists.
