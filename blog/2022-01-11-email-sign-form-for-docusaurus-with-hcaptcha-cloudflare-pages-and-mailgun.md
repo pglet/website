@@ -24,7 +24,7 @@ For CAPTCHA we are going to use [hCaptcha](https://www.hcaptcha.com/), which is 
 
 A signup form requires server-side processing and for that we re going to use [Cloudflare Pages Functions](https://developers.cloudflare.com/pages/platform/functions) which are a part of Cloudflare Pages platform.
 
-For maintaining maling list and sending email messages we are going to use [Mailgun](https://www.mailgun.com/) offers great functionality, first-class API at a flexible pricing, plus we have a lot of experience with it.
+For maintaining mailing list and sending email messages we are going to use [Mailgun](https://www.mailgun.com/). Mailgun offers great functionality, first-class API at a flexible pricing, plus we have a lot of experience with it.
 
 All code samples in this article can be found in:
 
