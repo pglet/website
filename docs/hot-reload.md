@@ -4,9 +4,9 @@ sidebar_label: Hot reload
 slug: hot-reload
 ---
 
-In this How-To we are going to show how to ease the development of Pglet Python apps with hot reload tool.
+In this How-To we are going to show how to speed up the development of Pglet Python apps with hot reload tool.
 
-Pglet app consists of one or more `.py` files in app directory. It normally runs as any other Python app with `python your-app.py`. When any of `.py` files changed the application must be restarted. When you do a lot of small changes while trying to perfect your Pglet UI those constant restarts could become a real hassle.
+Pglet app consists of one or more `.py` files in app directory. It normally runs as any other Python app with `python your-app.py`. When any of `.py` files change, the application must be restarted. While you do a lot of small changes working to perfect your Pglet UI, those constant restarts could become very annoying.
 
 [**watchexec**](https://github.com/watchexec/watchexec) is a simple, standalone tool that watches a path and runs a command whenever it detects modifications.
 
