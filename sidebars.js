@@ -74,7 +74,7 @@ module.exports = {
         },
       ],
       'Guides': [
-        //'layout',
+        'hot-reload',
         //'theming',
         'deep-linking',
         //'deployment',
