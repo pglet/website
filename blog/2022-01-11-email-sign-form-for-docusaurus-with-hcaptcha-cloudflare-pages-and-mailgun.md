@@ -360,7 +360,7 @@ The algorithm could be further improved by implementing expiring confirmation co
 [`/api/confirm-subscription`](https://github.com/pglet/website/blob/master/functions/api/confirm-subscription.js) function has a single `onRequestGet()` handler which performs the following:
 
 * Validates `email` and `code` request parameters.
-* Calculates confirmation code and compares it withto the one from the request.
+* Calculates confirmation code and compares it to the one from the request.
 * If both codes match, updates Mailgun mailing list member's `subscribed` status to `yes`.
 * Redirects to a home page with `?signup-confirmed` appended to the URL.
 
