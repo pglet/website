@@ -31,3 +31,9 @@ watchexec -r -e py -- python your-app.py
 ```
 
 Once the app is restarted just hit refresh in your browser to reload it.
+
+You also need to modify your Pglet app and set an application name to run on a permanent URL and disable browser opening on the start:
+
+```python
+pglet.app("my-app", target=main, no_window=True)
+```
