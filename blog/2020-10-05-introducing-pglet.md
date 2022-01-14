@@ -8,7 +8,7 @@ author_image_url: https://avatars0.githubusercontent.com/u/5041459?s=400&v=4
 tags: [internal apps, pglet, introduction, design]
 ---
 
-<div style={{fontSize: '16pt'}}><b>Pglet</b> (pronounced as "<i>piglet</i>") empowers DevOps to easily add rich user interface into their internal apps and utilities without any knowledge of HTML, CSS and JavaScript.</div>
+<div style={{fontSize: '16pt'}}><b>Pglet</b> empowers DevOps to easily add rich user interface into their internal apps and utilities without any knowledge of HTML, CSS and JavaScript.</div>
 
 ## The problems of internal apps
 

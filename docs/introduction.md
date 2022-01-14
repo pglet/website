@@ -6,7 +6,7 @@ slug: /
 
 ## What is Pglet
 
-Pglet (*"piglet"*) is a rich user interface (UI) framework for scripts and programs written in any language and a service for securely sharing your application UI. [Python](/docs/tutorials/python), [Bash](/docs/tutorials/bash), [PowerShell](/docs/tutorials/powershell) and [Node.js](/docs/tutorials/node) are already supported and other languages can be easily added via [Pglet protocol](/docs/reference/protocol).
+Pglet is a rich user interface (UI) framework for scripts and programs written in any language and a service for securely sharing your application UI. [Python](/docs/tutorials/python), [Bash](/docs/tutorials/bash), [PowerShell](/docs/tutorials/powershell) and [Node.js](/docs/tutorials/node) are already supported and other languages can be easily added via [Pglet protocol](/docs/reference/protocol).
 
 Pglet renders web UI, so you can easily build web apps with your favorite language. Knowledge of HTML/CSS/JavaScript is not required as you build UI with [controls](/docs/controls). Pglet controls are built with [Fluent UI React](https://developer.microsoft.com/en-us/fluentui#/controls/web) to ensure your programs look cool and professional.
 
