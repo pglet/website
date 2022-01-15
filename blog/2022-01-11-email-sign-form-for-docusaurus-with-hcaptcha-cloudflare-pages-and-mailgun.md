@@ -349,7 +349,7 @@ async function sendEmail(mailgunApiKey, mailDomain, from, to, subject, htmlBody)
 
 An interesting part here is how confirmation URL is built, which is sent in the message and should be clicked by a user to confirm subscription.
 
-Confirmation URL contains two parameters: **email** and **confirmation code**. Email is just recepient's email address which is, obviously, not a secret. Confirmation code is calculated as `sha1(email + secret)`, with `secret` known to the server only.
+Confirmation URL contains two parameters: **email** and **confirmation code**. Email is just recipient's email address which is, obviously, not a secret. Confirmation code is calculated as `sha1(email + secret)`, with `secret` known to the server only.
 
 When the server receives a request with email and confirmation code, it calculates a new confirmation code for the received email and compares it with the code from the request.
 
@@ -360,7 +360,7 @@ The algorithm could be further improved by implementing expiring confirmation co
 [`/api/confirm-subscription`](https://github.com/pglet/website/blob/master/functions/api/confirm-subscription.js) function has a single `onRequestGet()` handler which performs the following:
 
 * Validates `email` and `code` request parameters.
-* Calculates confirmation code and compares it withto the one from the request.
+* Calculates confirmation code and compares it to the one from the request.
 * If both codes match, updates Mailgun mailing list member's `subscribed` status to `yes`.
 * Redirects to a home page with `?signup-confirmed` appended to the URL.
 
