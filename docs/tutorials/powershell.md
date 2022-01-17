@@ -18,13 +18,18 @@ slug: powershell
 * Grids and lists
 * Charts
 * Theming
+
+Misc notes:
+
+* what is new session
+* how local variables are caught in event handlers
 -->
 
 You can use PowerShell to build standalone web apps or add web UI to existing scripts.
 
-## Installing `pglet` module
+## Install `pglet` module
 
-Requirements:
+System requirements:
 
 * Windows PowerShell 5.1
 * PowerShell Core 7 or above on Windows, Linux or macOS
@@ -35,40 +40,109 @@ To install `pglet` module run the following command in PowerShell session:
 Install-Module pglet
 ```
 
-## Creating a page
+## Create your first app
 
-Pglet allows you creating **shared** and **app** pages.
+Create a new PowerShell script `app.ps1` with the following contents:
 
-**Shared page** is like a singleton: many programs can connect and author the same page and all web users connecting to a page see and interact with the same content. Shared pages are useful for developing local tools, web dashboards, progress reports, distributed processes visualization, etc. 
-
-**App page** creates for each web user a new session with its own content. In your program you define a "handler" method which is invoked for every new session. App pages are used for creating multi-user web apps.
-
-OK, this is a minimal "Hello world" Pglet page running in a local mode:
-
-```powershell title="hello.ps1"
+```powershell
 Import-Module pglet
-Connect-PgletPage "hello"
-Invoke-Pglet "add text value='Hello, world!'"
+$page = Connect-PgletPage
+$page.Add((Text -Value "Hello, world!"))
+$page.Close()
 ```
 
-When you run this script a new browser window should popup with the greeting:
+When you run the script a new browser window will popup with "Hello, world!" text:
 
 <div style={{textAlign: 'center'}}><img src="/img/docs/quickstart-hello-world.png" /></div>
 
-`Connect-PgletPage` cmdlet creates a page, if it doesn't exist, with `greeter` name and opens connection. The cmdlet returns connection ID, but we don't need to save it for our example as the last opened connection ID is stored in the script context.
+`Connect-PgletPage` connects to a local instance of Pglet Server and creates a new page with a random URL. You can specify page name, so it has a permanent URL:
 
-`Invoke-Pglet` cmdlet sends [commands](/docs/reference/protocol#command-messages) to open Pglet connection. You use [add](/docs/reference/protocol/commands/add), [set](/docs/reference/protocol/commands/set), [get](/docs/reference/protocol/commands/get), [clean](/docs/reference/protocol/commands/clean) and [remove](/docs/reference/protocol/commands/remove) commands to update and query page contents.
-
-An app won't wait for any input and should exit. Now, if you run the same `greeter.ps1` script for the second time another "Hello, world!" message will be added to the page. This is because the page is stateful. Its contents can be updated at any time by any number of scripts, multiple scripts can connect and update the same page simultanously.
-
-If you need a clean page on every start of the program use `clean` command:
-
-```powershell {3}
-Import-Module pglet
-Connect-PgletPage "hello"
-Invoke-Pglet "clean page"
-Invoke-Pglet "add text value='Hello, world!'"
+```powershell
+$page = Connect-PgletPage -Name "my-app"
 ```
+
+The line with `$page.Add` adds `Text` control to a page's `Controls` collection and sends page update to Pglet. `$page.Add()` is a shortcut for:
+
+```powershell
+$page.Controls.Add((Text -Value "Hello, world!"))
+$page.Update()
+```
+
+It is important to call `$page.Close()` at the end of your script to close WebSocket connection to Pglet server. We recommend using `try...finally` pattern for guaranteed cleanup as `finally` block is called whenever you break the execution of the script with `CTRL+C`:
+
+```powershell
+Import-Module pglet
+$page = Connect-PgletPage -Name "my-app"
+try {
+  # your code here
+} finally {
+  $page.Close()
+}
+```
+
+:::note
+If you run your script with `pwsh app.ps1` you can ommit `$page.Close()` as all connections are automatically closed on PowerShell session end.
+:::
+
+Now, try running `app.ps1` a few more times. You'll notice that a new "Hello, world!" text is added at the end of the page every time you run the script. This is because the contents of a page is persistent. You can clean the page at beginning of your script with `$page.Clean()`:
+
+```powershell
+Import-Module pglet
+$page = Connect-PgletPage -Name "my-app"
+try {
+  $page.Clean()
+  $page.Add((Text -Value (Get-Date)))
+} finally {
+  $page.Close()
+}
+```
+
+Now, every run of the script above will replace page contents with the current date/time.
+
+:::note
+You can disable automatic browser opening with `-NoWindow` parameter:
+
+```powershell
+$page = Connect-PgletPage -Name "my-app" -NoWindow
+```
+:::
+
+Multiple pages can be updated from the same script:
+
+```powershell
+Import-Module pglet
+$page1 = Connect-PgletPage -Name "page-1"
+$page2 = Connect-PgletPage -Name "page-2"
+
+try {
+  $page1.Clean()
+  $page1.Add((Text -Value "Hello, page 1!"))
+
+  $page2.Clean()
+  $page2.Add((Text -Value "Hello, page 2!"))
+} catch {
+  $page1.Close()
+  $page2.Close()
+}
+```
+
+## Displaying data
+
+Text, update control properties, working with collections
+
+Text with markdown
+
+HTML
+
+Grid
+
+Charts
+
+## Showing progress
+
+Progress
+
+Spinner
 
 ## Getting user input
 
@@ -119,6 +193,10 @@ while($true) {
 Notice how IDs of the added textbox and button are saved, so we can refer to these controls later.
 
 `Wait-PgletEvent` returns [Event](#event-class) object and we are interested in `click` events coming from the button (`e.Target` is control's ID). Next, we use `get` command to read `value` property of textbox control, `clean` the page, output greeting and leave the program.
+
+## Layout
+
+Stack...
 
 ## Multi-user apps
 
