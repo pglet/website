@@ -128,21 +128,72 @@ try {
 
 ## Displaying data
 
-Text, update control properties, working with collections
+### Text
+
+`Text` control is used to output textual data. Its main properties are `Value` and `Size`, but it also has a number of formatting properties to control its appearence. For example:
+
+```powershell
+Text -Value 'Centered Text' -Size xlarge -Align Center -VerticalAlign Center -Width 100 -Height 100 `
+     -Color 'White' -BgColor 'Salmon' -Padding 5 -Border '1px solid #555'
+```
+
+You create control with `Text` cmdlet, add it to `Controls` collection of `$page` (or children collection of other container control such as `Stack`) and then call `$page.Update()` to send local page changes to Pglet server:
+
+```powershell
+$txt = Text -Value "Hi there!"
+$page.Controls.Add($txt)
+$page.Update()
+```
+
+You can update control properties and send the changes again:
+
+```powershell
+$txt.Text = "Current date is: $(GetDate)"
+$txt.Color = "Blue"
+$page.Update()
+```
+
+You can even do some animations, for example:
+
+```powershell
+$text = Text -Value 'Centered Text' -Size xlarge -Align Center -VerticalAlign Center -Width 100 -Height 100 `
+  -Color 'White' -BgColor 'Salmon' -Padding 5 -Border '1px solid #555'
+$page.Add($text)
+
+for($i = 0; $i -le 20; $i++) {
+  $text.Value = "$($i)px"
+  $text.BorderRadius = $i
+  $page.Update()
+  Start-Sleep -Milliseconds 100
+}
+```
+
+<div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/radius-animation.gif" /></div>
+
+`$page.Update()` is smart enough to send only the changes made since its last call, so you can add a few new controls to the page, remove some of them, change control properties and then call `$page.Update()` to do batched update, for example:
+
+```powershell
+for($i = 0; $i -le 20; $i++) {
+  $page.Controls.Add((Text "Line $i"))
+  if ($i -gt 4) {
+    $page.Controls.RemoveAt(0)
+  }
+  $page.Update()
+  Start-Sleep -Milliseconds 300
+}
+```
+
+<div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/lines-animation.gif" /></div>
 
 Text with markdown
 
 HTML
 
-Grid
-
-Charts
-
-## Showing progress
-
 Progress
 
 Spinner
+
+## Updating the same page from multiple scripts
 
 ## Getting user input
 
@@ -194,6 +245,14 @@ Notice how IDs of the added textbox and button are saved, so we can refer to the
 
 `Wait-PgletEvent` returns [Event](#event-class) object and we are interested in `click` events coming from the button (`e.Target` is control's ID). Next, we use `get` command to read `value` property of textbox control, `clean` the page, output greeting and leave the program.
 
+## Grid
+
+TBD
+
+## Charts
+
+TBD
+
 ## Layout
 
 Stack...
@@ -233,7 +292,7 @@ Connect-PgletApp -Name 'greeter-app' -ScriptBlock {
 }
 ```
 
-## Getting apps and pages to the Web
+## Publishing app
 
 Up until this moment you've been running all tutotial samples on your computer with a local Pglet server instance running in the background.
 
