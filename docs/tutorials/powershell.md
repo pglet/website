@@ -1,5 +1,5 @@
 ---
-title: PowerShell tutorial
+title: Creating web apps in PowerShell with Pglet
 sidebar_label: PowerShell
 slug: powershell
 ---
@@ -14,9 +14,6 @@ slug: powershell
 * Getting user input: textboxes, dialog, etc.
 * Handling events
 * Security
-* Multi-user apps
-* Grids and lists
-* Charts
 * Theming
 
 Misc notes:
@@ -145,7 +142,7 @@ $page.Controls.Add($txt)
 $page.Update()
 ```
 
-You can update control properties and send the changes again:
+You can update control properties and push the changes again:
 
 ```powershell
 $txt.Text = "Current date is: $(GetDate)"
@@ -160,11 +157,11 @@ $text = Text -Value 'Centered Text' -Size xlarge -Align Center -VerticalAlign Ce
   -Color 'White' -BgColor 'Salmon' -Padding 5 -Border '1px solid #555'
 $page.Add($text)
 
-for($i = 0; $i -le 20; $i++) {
-  $text.Value = "$($i)px"
+for($i = 0; $i -le 50; $i++) {
+  $text.Value = "Radius $i"
   $text.BorderRadius = $i
   $page.Update()
-  Start-Sleep -Milliseconds 100
+  Start-Sleep -Milliseconds 50
 }
 ```
 
@@ -185,17 +182,147 @@ for($i = 0; $i -le 20; $i++) {
 
 <div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/lines-animation.gif" /></div>
 
-Text with markdown
+### Markdown
 
-HTML
+`Text` control is able to display markdown rich contents if `-Markdown` parameter is added/enabled, for example:
 
-Progress
+````powershell
+$t = Text -Markdown -Value '# Using Markdown with Pglet
 
-Spinner
+You can add `-Markdown` parameter to `Text` cmdlet
+to output **rich** *text*.
 
-## Updating the same page from multiple scripts
+[GitHaub Flavored Markdown](https://github.github.com/gfm/) is supported.
+
+This is a code snippet:
+
+```
+import Pglet
+```
+'
+$page.Add($t)
+````
+
+### HTML
+
+You can use `Html` control to add raw HTML to the page if absolutely required:
+
+```powershell
+$html = Html -Value '<h1>Hello, world!</h1>
+<p>This is a test paragraph with a <a href="https://pglet.io">link</a>.</p>'
+$page.Add($html)
+```
+
+### Progress
+
+Use `Progress` control to display a progress bar. For example, to display a progress of imaginary copy operation:
+
+```powershell
+$prog1 = Progress -Label "Copying /file1.txt to /file2.txt" -Width "30%" -BarHeight 4
+$page.Add($prog1)
+
+for($i = 0; $i -le 100; $i=$i+5) {
+  $prog1.Value = $i
+  $prog1.Update()
+  Start-Sleep -Milliseconds 100
+}
+```
+
+<div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/progress-copy.gif" /></div>
+
+You can use `Description` property to display the progress of some multi-step operation:
+
+```powershell
+$prog2 = Progress -Label "Create new account" -Width "30%"
+$page.Add($prog2)
+
+$steps = @('Preparing environment...', 'Collecting information...', 'Performing operation...', 'Complete!')
+for($i = 0; $i -lt $steps.Length; $i++) {
+    $prog2.Description = $steps[$i]
+    $prog2.Value = 100 / ($steps.Length - 1) * $i
+    $page.Update()
+    Start-Sleep -Seconds 1
+}
+```
+
+<div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/progress-multi-step.gif" /></div>
+
+### Spinner
+
+Use `Spinner` control to visualize an indeterminate progress:
+
+```powershell
+$sp = Spinner -Label "Please wait while the process is running..." -LabelPosition Right
+$page.Add($sp)
+```
+
+<div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/spinner-animation.gif" /></div>
 
 ## Getting user input
+
+### Button
+
+TBD
+
+### Waiting for events
+
+Waiting for the next event with `Wait-PgletEvent`:
+
+```powershell
+$btn = Button -Text "Click me!"
+$page.Add($btn)
+Wait-PgletEvent
+```
+
+Output:
+
+```
+Control : Pglet.PowerShell.Controls.PsButton
+Page    : Pglet.PowerShell.Controls.PsPage
+Target  : _30
+Name    : click
+Data    : 
+```
+
+TBD - describe event object
+
+### Event handlers
+
+"Counter" app with `Switch-PgletEvents`:
+
+```powershell
+Import-Module pglet
+$page = Connect-PgletPage -Name "counter"
+
+try {
+    $page.Clean()
+
+    $num_txt = TextBox -Value 0
+
+    $minus_btn = Button "-" -OnClick {
+      $num_txt.Value = [int]$num_txt.Value - 1
+      $page.Update()
+    }
+  
+    $plus_btn = Button "+" -OnClick {
+      $num_txt.Value = [int]$num_txt.Value + 1
+      $page.Update()
+    }
+  
+    $page.Add((Stack -Horizontal -Controls @(
+      $minus_btn
+      $num_txt
+      $plus_btn
+    )))
+
+    Switch-PgletEvents
+}
+finally {
+    $page.Close()
+}
+```
+
+### Textbox
 
 Pglet provides a number of [controls](/docs/controls) for building forms: [Textbox](/docs/controls/textbox), [Checkbox](/docs/controls/checkbox), [Dropdown](/docs/controls/dropdown), [Button](/docs/controls/button).
 
@@ -211,43 +338,65 @@ Invoke-Pglet "add textbox label='Your name' description='Please provide your ful
 Invoke-Pglet "add button primary text='Say hello'"
 ```
 
-## Handling events
+### Checkbox
 
-When you click "Say hello" button on the form above nothing will happen in our program though `Button` control itself emits "click" event each time it's pressed/clicked. The event is just not handled.
+TBD
 
-In PowerShell you use event loop to handle control events.
+### Dropdown
 
-### Event loop
-
-Once the form is rendered use `Wait-PgletEvent` cmdlet in a loop to receive all page events triggered by a user:
-
-```powershell title="greeter.ps1"
-Import-Module pglet
-
-Connect-PgletPage "greeter"
-
-Invoke-Pglet "clean"
-$txt_name = Invoke-Pglet "add textbox label='Your name' description='Please provide your full name'"
-$btn_hello = Invoke-Pglet "add button primary text='Say hello'"
-
-while($true) {
-  $e = Wait-PgletEvent
-  if ($e.Target -eq $btn_hello -and $e.Name -eq 'click') {
-    $name = Invoke-Pglet "get $txt_name value"
-    Invoke-Pglet "clean page"
-    Invoke-Pglet "add text value='Hello, $name!'"
-    return
-  }
-}
-```
-
-Notice how IDs of the added textbox and button are saved, so we can refer to these controls later.
-
-`Wait-PgletEvent` returns [Event](#event-class) object and we are interested in `click` events coming from the button (`e.Target` is control's ID). Next, we use `get` command to read `value` property of textbox control, `clean` the page, output greeting and leave the program.
+TBD
 
 ## Grid
 
-TBD
+Grid with auto-generated columns displaying a list of `Hashtable` objects:
+
+```powershell
+$items = @(
+  @{
+    "First name" = "John"
+    "Last name" = "Smith"
+  }
+  @{
+    "First name" = "Alice"
+    "Last name" = "Brown"
+  }
+)
+
+$grid = Grid -Items $items
+$page.Add($grid)
+```
+
+Grid with auto-generated columns displaying the results (`PSObject[]`) of PowerShell command:
+
+```powershell
+$items = Get-Command
+$grid = Grid -Items $items
+$page.Add($grid)
+```
+
+Grid with explicitly defined columns displaying a list of custom class instances:
+
+```powershell
+class Person {
+    [string]$FirstName
+    [string]$LastName
+  
+    Person($firstName, $lastName) {
+        $this.FirstName = $firstName
+        $this.LastName = $lastName
+    }
+}
+
+$items = @(
+    [Person]::new('John', 'Smith')
+    [Person]::new('Alice', 'Brown')
+)
+$grid = Grid -Items $items -Columns @(
+    GridColumn -Name "First name" -FieldName "FirstName" -Sortable "string"
+    GridColumn -Name "Last name" -FieldName "LastName" -Sortable "string"
+)
+$page.Add($grid)
+```
 
 ## Charts
 
@@ -256,6 +405,10 @@ TBD
 ## Layout
 
 Stack...
+
+## Multi-host dashboards
+
+TBD
 
 ## Multi-user apps
 
