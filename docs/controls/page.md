@@ -9,32 +9,14 @@ It is is automatically added when a new page is created or app session started.
 
 Page control has a reserved `page` control ID. You cannot add Page control, however you can change its properties. Technically, the Page is a vertical [Stack](stack) control, so it has similar behavior and shares some properties.
 
-## Properties
-
-| Name              | Type      | Default       | Description |
-| ----------------- | --------- | ------------- | ----------- |
-| `title`           | string    | `{page_name} - pglet`          | A title of browser window.            |
-| `verticalFill`    | bool      | `false`       | Defines whether page contents takes 100% of the height of browser window.   |
-| `horizontalAlign` | string    | `start`         | Defines how to align page children horizontally: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly`, `baseline` or `stretch`. |
-| `verticalAlign`   | string    |               | Defines how to align page children vertically: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly`, `baseline` or `stretch`.    |
-| `width`           | string    | `100%`          | The width of a page container.            |
-| `padding`           | string    | `10px`          | The padding of a page container.            |
-| `gap`           | string    | `10`          | A gap between page child controls.            |
-
 ## Examples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
+<Tabs groupId="languages">
+  <TabItem value="python" label="Python" default>
+    
 Creating a new page with a random name and connecting to it:
 
 ```python
@@ -58,31 +40,25 @@ To update page title:
 ```python
 page.update(Page(title="My App!"))
 ```
-
-</TabItem>
-
-<TabItem value="bash">
-
-```bash
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="powershell">
+    
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
 
 ```powershell
-# TODO
+Import-Module pglet
 ```
 
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
+  </TabItem>
 </Tabs>
+
+## Properties
+
+| Name              | Type      | Default       | Description |
+| ----------------- | --------- | ------------- | ----------- |
+| `title`           | string    | `{page_name} - pglet`          | A title of browser window.            |
+| `verticalFill`    | bool      | `false`       | Defines whether page contents takes 100% of the height of browser window.   |
+| `horizontalAlign` | string    | `start`         | Defines how to align page children horizontally: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly`, `baseline` or `stretch`. |
+| `verticalAlign`   | string    |               | Defines how to align page children vertically: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly`, `baseline` or `stretch`.    |
+| `width`           | string    | `100%`          | The width of a page container.            |
+| `padding`           | string    | `10px`          | The padding of a page container.            |
+| `gap`           | string    | `10`          | A gap between page child controls.            |

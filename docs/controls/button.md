@@ -4,14 +4,42 @@ sidebar_label: Button
 slug: button
 ---
 
-import { CodeSample } from '@site/src/components/code-sample';
-
 ## Examples
 
-<CodeSample src="https://python-button-example.pgletio.repl.co" height="940px"
-    python="https://github.com/pglet/examples/blob/main/python/controls/button_control.py"
-    bash="https://github.com/pglet/examples/blob/main/bash/controls/button.sh"
-    />
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+  <TabItem value="python" label="Python" default>
+
+[Live demo](https://python-button-example.pgletio.repl.co)
+
+## Regular buttons
+
+```python
+page.add(
+    Button("Standard"),
+    Button("Standard disabled", disabled=True))
+```
+
+## Compound buttons
+
+```python
+page.add(
+    Button("Compound", secondary_text='This is a secondary text', compound=True),
+    Button("Primary compound", secondary_text='This is a secondary text', compound=True, primary=True)
+)
+```
+    
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+Import-Module pglet
+```
+
+  </TabItem>
+</Tabs>
 
 ## Properties
 
