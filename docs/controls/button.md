@@ -14,6 +14,15 @@ import TabItem from '@theme/TabItem';
 
 [Live demo](https://python-button-example.pgletio.repl.co)
 
+To run the examples below use the following wrapper:
+
+```python
+import pglet
+from pglet import Button
+with pglet.page("myapp"):
+    # insert example code here
+```
+
 ## Regular buttons
 
 ```python
