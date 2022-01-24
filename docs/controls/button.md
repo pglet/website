@@ -9,7 +9,7 @@ slug: button
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs groupId="languages">
+<Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 [Live demo](https://python-button-example.pgletio.repl.co)
@@ -18,33 +18,271 @@ To run the examples below use the following wrapper:
 
 ```python
 import pglet
-from pglet import Button
-with pglet.page("myapp"):
-    # insert example code here
+from pglet import Button, Text, Stack
+with pglet.page("myapp") as page:
+  page.clean()
+  # insert example code here
 ```
 
-## Regular buttons
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+### Regular buttons
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
 
 ```python
 page.add(
     Button("Standard"),
     Button("Standard disabled", disabled=True))
+    Button("Primary", primary=True),
+    Button("Primary disabled", primary=True, disabled=True))
 ```
-
-## Compound buttons
-
-```python
-page.add(
-    Button("Compound", secondary_text='This is a secondary text', compound=True),
-    Button("Primary compound", secondary_text='This is a secondary text', compound=True, primary=True)
-)
-```
-    
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
 
 ```powershell
-Import-Module pglet
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+### Button with on_click event
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+def button_clicked(e):
+  b.data += 1
+  t.value = f"Button clicked {b.data} time(s)"
+  page.update()
+
+b = Button('Button with on_click event', on_click=button_clicked, title='Click me!', data=0)
+t = Text()
+page.add(b, t)
+input()
+```
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+### Compound buttons
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+page.add(
+  Button("Compound", secondary_text='This is a secondary text', compound=True),
+  Button("Primary compound", secondary_text='This is a secondary text', compound=True, primary=True))
+)
+```
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+### Buttons with icons
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+page.add(
+  Button("Create account", icon='AddFriend', primary=True),
+  Button("New item", icon='Add'),
+  Button("Delete", icon='Delete'))
+```
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+### Icon only buttons
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+page.add(
+  Button(icon='Emoji2', title='Emoji!'),
+  Button(icon='Calendar', title='Calendar!'))
+```
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+### Toolbar buttons
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+page.add(Stack(horizontal=True, controls=[
+  Button(text="New item", toolbar=True, icon='Add'),
+  Button(text="Send", toolbar=True, icon='Mail'),
+  Button(text="Show example", toolbar=True, icon='ChevronDown'),
+  Button(text="Delete", toolbar=True, icon_color='red', icon='Delete')
+  ]))
+```
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+### Link buttons
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+page.add(
+  Button(action=True, icon='Globe', text='Pglet website',url='https://pglet.io', new_window=True),
+  Button(icon='MyMoviesTV', text='Go to Disney', url='https://disney.com', new_window=True))
+```
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+### Context menu buttons
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+from pglet import button
+page.add(Stack(horizontal=True, controls=[
+  Button(icon='Add', text='New item', menu_items=[
+    button.MenuItem(text='Email message', icon='Mail'),
+    button.MenuItem(text='Calendar event', icon='Calendar')
+    ]),
+  Button(text='Button with sub-menus', menu_items=[
+    button.MenuItem(text='New', icon='Add', sub_menu_items=[
+      button.MenuItem(text='Email message', icon='Mail'),
+      button.MenuItem(text='Calendar event', icon='Calendar')
+    ]),
+    button.MenuItem(text='Share', icon='Share', split=True, sub_menu_items=[
+      button.MenuItem(text='Share to Twitter'),
+      button.MenuItem(text='Share to Facebook'),
+      button.MenuItem('Share to Somewhere'),
+      button.MenuItem('Share to email', sub_menu_items=[
+        button.MenuItem('Share to Outlook'),
+        button.MenuItem('Share to Gmail')
+      ])
+    ]),
+    button.MenuItem(divider=True),
+    button.MenuItem(text='To Pglet', icon='Globe', icon_color='green', url='https://pglet.io', new_window=True, secondary_text='New Window')
+  ]),
+]))
+```
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+### Split buttons
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+from pglet import button
+page.add(Stack(horizontal=True, controls=[
+  Button(split=True, text='Standard', menu_items=[
+    button.MenuItem('Email message', icon='Mail'),
+    button.MenuItem('Calendar event', icon='Calendar')
+  ]),
+  Button(split=True, primary=True, text='Primary', menu_items=[
+    button.MenuItem('Email message', icon='Mail'),
+    button.MenuItem('Calendar event', icon='Calendar')
+  ])
+]))
+```
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+### Action buttons
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+page.add(Stack(horizontal=True, controls=[
+  Button(action=True, text='<'),
+  Button(action=True, text='<<'),
+  Button(action=True, text='>'),
+  Button(action=True, text='>>'),
+]))
+```
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
 ```
 
   </TabItem>
