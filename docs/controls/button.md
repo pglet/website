@@ -56,6 +56,8 @@ page.add(
   </TabItem>
 </Tabs>
 
+<img src="/img/docs/controls/regular-buttons.png" width="25%" />
+
 ### Button with on_click event
 
 <Tabs groupId="language">
@@ -83,6 +85,8 @@ input()
   </TabItem>
 </Tabs>
 
+<img src="/img/docs/controls/button-with-onclick-event.gif" width="50%" />
+
 ### Compound buttons
 
 <Tabs groupId="language">
@@ -104,6 +108,8 @@ page.add(
 
   </TabItem>
 </Tabs>
+
+<img src="/img/docs/controls/compound-buttons.png" width="25%" />
 
 ### Buttons with icons
 
@@ -127,6 +133,8 @@ page.add(
   </TabItem>
 </Tabs>
 
+<img src="/img/docs/controls/buttons-with-icons.png" width="25%" />
+
 ### Icon only buttons
 
 <Tabs groupId="language">
@@ -147,6 +155,8 @@ page.add(
 
   </TabItem>
 </Tabs>
+
+<img src="/img/docs/controls/icon-only-buttons.png" width="5%" />
 
 ### Toolbar buttons
 
@@ -193,6 +203,8 @@ page.add(
   </TabItem>
 </Tabs>
 
+<img src="/img/docs/controls/link-buttons.png" width="25%" />
+
 ### Context menu buttons
 
 <Tabs groupId="language">
@@ -234,6 +246,8 @@ page.add(Stack(horizontal=True, controls=[
 
   </TabItem>
 </Tabs>
+
+<img src="/img/docs/controls/context-menu-buttons.png" width="75%" />
 
 ### Split buttons
 
@@ -287,6 +301,8 @@ page.add(Stack(horizontal=True, controls=[
 
   </TabItem>
 </Tabs>
+
+<img src="/img/docs/controls/action-buttons.png" width="25%" />
 
 ## Properties
 
