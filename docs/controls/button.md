@@ -56,7 +56,7 @@ page.add(
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/regular-buttons.png" width="25%" />
+<img src="/img/docs/controls/button/regular-buttons.png" width="25%" />
 
 ### Button with on_click event
 
@@ -85,7 +85,7 @@ input()
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/button-with-onclick-event.gif" width="50%" />
+<img src="/img/docs/controls/button/button-with-onclick-event.gif" width="50%" />
 
 ### Compound buttons
 
@@ -109,7 +109,7 @@ page.add(
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/compound-buttons.png" width="25%" />
+<img src="/img/docs/controls/button/compound-buttons.png" width="25%" />
 
 ### Buttons with icons
 
@@ -133,7 +133,7 @@ page.add(
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/buttons-with-icons.png" width="25%" />
+<img src="/img/docs/controls/button/buttons-with-icons.png" width="25%" />
 
 ### Icon only buttons
 
@@ -156,7 +156,7 @@ page.add(
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/icon-only-buttons.png" width="5%" />
+<img src="/img/docs/controls/button/icon-only-buttons.png" width="5%" />
 
 ### Toolbar buttons
 
@@ -182,7 +182,7 @@ page.add(Stack(horizontal=True, controls=[
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/toolbar-buttons.png" width="50%" />
+<img src="/img/docs/controls/button/toolbar-buttons.png" width="50%" />
 
 ### Link buttons
 
@@ -205,7 +205,7 @@ page.add(
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/link-buttons.png" width="25%" />
+<img src="/img/docs/controls/button/link-buttons.png" width="25%" />
 
 ### Context menu buttons
 
@@ -249,7 +249,7 @@ page.add(Stack(horizontal=True, controls=[
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/context-menu-buttons.png" width="75%" />
+<img src="/img/docs/controls/button/context-menu-buttons.png" width="75%" />
 
 ### Split buttons
 
@@ -280,7 +280,7 @@ page.add(Stack(horizontal=True, controls=[
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/split-buttons.png" width="30%" />
+<img src="/img/docs/controls/button/split-buttons.png" width="30%" />
 
 ### Action buttons
 
@@ -306,7 +306,7 @@ page.add(Stack(horizontal=True, controls=[
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/action-buttons.png" width="25%" />
+<img src="/img/docs/controls/button/action-buttons.png" width="25%" />
 
 ## Properties
 

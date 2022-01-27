@@ -6,14 +6,87 @@ slug: checkbox
 
 Checkbox allows to select one or more items from a group, or switch between two mutually exclusive options (checked or unchecked, on or off).
 
-import { CodeSample } from '@site/src/components/code-sample';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## Examples
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
 
-<CodeSample src="https://python-checkbox-example.pgletio.repl.co" height="300px"
-    python="https://github.com/pglet/examples/blob/main/python/controls/checkbox_control.py"
-    bash="https://github.com/pglet/examples/blob/main/bash/controls/checkbox.sh"
-    />
+[Live demo](https://python-checkbox-example.pgletio.repl.co)
+
+To run the examples below use the following wrapper:
+
+```python
+import pglet
+from pglet import Checkbox
+with pglet.page("myapp") as page:
+  page.clean()
+  # insert example code here
+```
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+### Checkboxes with different properties
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+page.add(
+  Checkbox(label='Unchecked checkbox', value=False),
+  Checkbox(label='Checked checkbox', value=True),
+  Checkbox(label='Disabled checkbox', disabled=True),
+  Checkbox(label="Checkbox with rendered box_side='End'", box_side='End'))
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/checkbox/checkboxes.png" width="35%" />
+
+### Checkbox with on_change event
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+from pglet import Text
+def checkbox_changed(e):
+    t.value = f"Checkbox value changed to {c.value}" 
+    t.update()
+
+c = Checkbox('Checkbox with on_change event', on_change=checkbox_changed)
+t = Text()
+
+page.add(c, t)
+
+input()
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/checkbox/checkbox-with-onchange-event.gif" width="40%" />
 
 ## Properties
 
