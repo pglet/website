@@ -182,6 +182,8 @@ page.add(Stack(horizontal=True, controls=[
   </TabItem>
 </Tabs>
 
+<img src="/img/docs/controls/toolbar-buttons.png" width="50%" />
+
 ### Link buttons
 
 <Tabs groupId="language">
@@ -277,6 +279,8 @@ page.add(Stack(horizontal=True, controls=[
 
   </TabItem>
 </Tabs>
+
+<img src="/img/docs/controls/split-buttons.png" width="30%" />
 
 ### Action buttons
 
