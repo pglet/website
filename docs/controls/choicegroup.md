@@ -115,9 +115,40 @@ page.add(ChoiceGroup(label='Pick one icon', options=[
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/choicegroup/choicegroup-with-onchange-event.gif" width="25%" />
+<img src="/img/docs/controls/choicegroup/choicegroup-with-onchange-event.gif" width="35%" />
 
 ### Change items in ChoiceGroup options
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+from pglet import Textbox, Button, Stack
+def add_clicked(e):
+  cg.options.append(choicegroup.Option(new_option.value))
+  new_option.value = ''
+  stack.update()
+
+cg = ChoiceGroup()
+new_option = Textbox(placeholder='Enter new item name')
+add = Button("Add", on_click=add_clicked)
+stack = Stack(controls = [cg, Stack(horizontal=True, controls=[new_option, add])])
+
+page.add(stack)
+
+input()
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/choicegroup/change-choicegroup-options.gif" width="35%" />
 
 ## Properties
 
