@@ -6,15 +6,6 @@ slug: choicegroup
 
 Radio buttons let people select a single option from two or more choices.
 
-import { CodeSample } from '@site/src/components/code-sample';
-
-## Examples
-
-<!-- <CodeSample src="https://python-choicegroup-example.pgletio.repl.co" height="700px"
-    python="https://github.com/pglet/examples/blob/main/python/controls/choicegroup_control.py"
-    bash="https://github.com/pglet/examples/blob/main/bash/controls/choicegroup.sh"
-    /> -->
-
 ## Examples
 
 import Tabs from '@theme/Tabs';
@@ -52,10 +43,20 @@ with pglet.page("myapp") as page:
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(ChoiceGroup(label='Select color', options=[
+from pglet import Button, Text
+def button_clicked(e):
+  t.value = f"ChoiceGroup value is:  {cg.value}"
+  page.update()
+
+t = Text()
+b = Button(text='Submit', on_click=button_clicked)
+cg = ChoiceGroup(label='Select color', options=[
   choicegroup.Option('Red'),
   choicegroup.Option('Green'),
-  choicegroup.Option('Blue')]))
+  choicegroup.Option('Blue')])
+  
+page.add(cg, b, t)
+input()
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
@@ -67,7 +68,7 @@ page.add(ChoiceGroup(label='Select color', options=[
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/choicegroup/basic-choicegroup.png" width="15%" />
+<img src="/img/docs/controls/choicegroup/basic-choicegroup.gif" width="25%" />
 
 ### ChoiceGroup with icons
 
@@ -99,11 +100,22 @@ page.add(ChoiceGroup(label='Pick one icon', options=[
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(ChoiceGroup(label='Pick one icon', options=[
-  choicegroup.Option(key='day', text='Day', icon='CalendarDay'),
-  choicegroup.Option(key='week', text='Week', icon='CalendarWeek'),
-  choicegroup.Option(key='month', text='Month', icon='Calendar')
-  ]))
+from pglet import Text
+def choicegroup_changed(e):
+  t.value = f"ChoiceGroup value changed to {cg.value}" 
+  t.update()
+
+cg = ChoiceGroup(label='Select color', on_change=choicegroup_changed, options=[
+  choicegroup.Option('Red'),
+  choicegroup.Option('Green'),
+  choicegroup.Option('Blue')
+])
+
+t = Text()
+
+page.add(cg, t)
+
+input()
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">

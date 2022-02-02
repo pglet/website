@@ -6,14 +6,59 @@ slug: datepicker
 
 A date picker (DatePicker) offers a drop-down control that’s optimized for picking a single date from a calendar view where contextual information like the day of the week or fullness of the calendar is important.
 
-import { CodeSample } from '@site/src/components/code-sample';
-
 ## Examples
 
-<CodeSample src="https://python-datepicker-example.pgletio.repl.co" height="450px"
-    python="https://github.com/pglet/examples/blob/main/python/controls/datepicker_control.py"
-    bash="https://github.com/pglet/examples/blob/main/bash/controls/datepicker.sh"
-    />
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+[Live demo](https://python-datepicker-example.pgletio.repl.co)
+
+To run the examples below use the following wrapper:
+
+```python
+from datetime import datetime
+import pglet
+from pglet import DatePicker
+with pglet.page("myapp") as page:
+  page.clean()
+  # insert example code here
+```
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+### Basic DatePicker
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+now = datetime.now()
+page.add(
+  DatePicker(label="Start date", value=now, width=150),
+  DatePicker(label="End date", width=150))
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/datepicker/basic-datepicker.png" width="15%" />
 
 ## Properties
 
