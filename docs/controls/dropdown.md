@@ -43,11 +43,21 @@ with pglet.page("myapp") as page:
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(Dropdown(width=100, options=[
-  dropdown.Option('Red'),
-  dropdown.Option('Green'),
-  dropdown.Option('Blue')
-]))
+  from pglet import Button, Text
+  def button_clicked(e):
+    t.value = f"Dropdown value is:  {dd.value}"
+    page.update()
+  
+  t = Text()
+  b = Button(text='Submit', on_click=button_clicked)
+  dd = Dropdown(width=100, options=[
+    dropdown.Option('Red'),
+    dropdown.Option('Green'),
+    dropdown.Option('Blue')
+  ])
+  page.add(dd, b, t)
+
+  input()
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
@@ -59,7 +69,7 @@ page.add(Dropdown(width=100, options=[
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/dropdown/basic-dropdown.png" width="25%" />
+<img src="/img/docs/controls/dropdown/basic-dropdown.gif" width="40%" />
 
 ### Dropdown with label and placeholder
 
@@ -127,22 +137,39 @@ input()
   <TabItem value="python" label="Python" default>
 
 ```python
-from pglet import Textbox, Button, Stack
+  from pglet import Textbox, Button, Stack
 
-def add_clicked(e):
-  d.options.append(dropdown.Option(new_option.value))
-  d.value = new_option.value
-  new_option.value = ''
-  page.update()
+  def find_option(option_name):
+    for option in d.options:
+        if option_name == option.key:
+          return option          
+    return None
 
-d = Dropdown()
-new_option = Textbox(placeholder='Enter new item name')
-add = Button("Add", on_click=add_clicked)
-stack = Stack(controls = [d, Stack(horizontal=True, controls=[new_option, add])])
+  def add_clicked(e):
+    d.options.append(dropdown.Option(option_textbox.value))
+    d.value = option_textbox.value
+    option_textbox.value = ''
+    page.update()
 
-page.add(stack)
+  def delete_clicked(e):
+    option = find_option(option_textbox.value)
+    if option !=None:
+      d.options.remove(option)    
+    else:
+      option_textbox.error_message = 'Option not found.'
+    
+    option_textbox.value = ''
+    page.update()
 
-input()
+  d = Dropdown()
+  option_textbox = Textbox(placeholder='Enter item name')
+  add = Button("Add", on_click=add_clicked)
+  delete = Button("Delete", on_click=delete_clicked)
+  stack = Stack(controls = [d, Stack(horizontal=True, controls=[option_textbox, add, delete])])
+
+  page.add(stack)
+
+  input()
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">

@@ -135,20 +135,39 @@ input()
   <TabItem value="python" label="Python" default>
 
 ```python
-from pglet import Textbox, Button, Stack
-def add_clicked(e):
-  cg.options.append(choicegroup.Option(new_option.value))
-  new_option.value = ''
-  stack.update()
+  from pglet import Textbox, Button, Stack
 
-cg = ChoiceGroup()
-new_option = Textbox(placeholder='Enter new item name')
-add = Button("Add", on_click=add_clicked)
-stack = Stack(controls = [cg, Stack(horizontal=True, controls=[new_option, add])])
+  def find_option(option_name):
+    for option in cg.options:
+        if option_name == option.key:
+          return option          
+    return None
 
-page.add(stack)
+  def add_clicked(e):
+    cg.options.append(choicegroup.Option(option_textbox.value))
+    option_textbox.value = ''
+    page.update()
 
-input()
+  def delete_clicked(e):
+    option = find_option(option_textbox.value)
+    if option !=None:
+      cg.options.remove(option)    
+    else:
+      option_textbox.error_message = 'Option not found.'
+    
+    option_textbox.value = ''
+    page.update()
+
+  cg = ChoiceGroup()
+  option_textbox = Textbox(placeholder='Enter item name')
+  
+  add = Button("Add", on_click=add_clicked)
+  delete = Button("Delete", on_click=delete_clicked)
+  stack = Stack(controls = [cg, Stack(horizontal=True, controls=[option_textbox, add, delete])])
+
+  page.add(stack)
+
+  input()
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
@@ -160,7 +179,7 @@ input()
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/choicegroup/change-choicegroup-options.gif" width="35%" />
+<img src="/img/docs/controls/choicegroup/change-choicegroup-options.gif" width="50%" />
 
 ## Properties
 
