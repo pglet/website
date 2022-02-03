@@ -3,38 +3,14 @@ title: Link
 sidebar_label: Link
 slug: link
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 Link navigates to an external web page or initiate command within the app.
 
 ## Examples
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
 [Live demo](https://python-link-example.pgletio.repl.co)
-
-To run the examples below use the following wrapper:
-
-```python
-import pglet
-from pglet import Link
-with pglet.page("myapp") as page:
-  page.clean()
-  # insert example code here
-```
-
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
 
 ### Basic links
 
@@ -42,10 +18,13 @@ with pglet.page("myapp") as page:
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(
-  Link(url='http://google.com', value='Visit Google', new_window=True),
-  Link(value='Link without URL', size='large'),
-  Link(url='http://google.com', value='Disabled link', disabled=True))
+import pglet
+from pglet import Link
+with pglet.page("basic-links") as page:
+    page.add(
+        Link(url='http://google.com', value='Visit Google', new_window=True),
+        Link(value='Link without URL', size='large'),
+        Link(url='http://google.com', value='Disabled link', disabled=True))
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
@@ -59,23 +38,26 @@ page.add(
 
 <img src="/img/docs/controls/link/basic-links.png" width="25%" />
 
-### Link with onclick event
+### Link with `click` event
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
-from pglet import Text
-def link_clicked(e):
-  l.data += 1
-  t.value = f"Link clicked {l.data} time(s)"
-  page.update()
+import pglet
+from pglet import Link, Text
+with pglet.page("link-with-click-event") as page:
 
-l = Link(value='Link with onclick event', on_click=link_clicked, title='Click me!', data=0)
-t = Text()
+  def link_clicked(e):
+    l.data += 1
+    t.value = f"Link clicked {l.data} time(s)"
+    page.update()
+
+  l = Link(value="Link with 'click' event", on_click=link_clicked, title='Click me!', data=0)
+  t = Text()
   
-page.add(l, t)
-input()
+  page.add(l, t)
+  input()
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
@@ -87,7 +69,7 @@ input()
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/link/link-with-onclick-event.gif" width="40%" />
+<img src="/img/docs/controls/link/link-with-click-event.gif" width="40%" />
 
 ### Link with child controls
 
@@ -95,13 +77,17 @@ input()
   <TabItem value="python" label="Python" default>
 
 ```python
-from pglet import Text, Icon, Button
-page.add(
-  Link(url='http://google.com', controls=[
+import pglet
+from pglet import Link, Text, Icon, Button
+with pglet.page("link-with-child-controls") as page:
+
+    from pglet import Text, Icon, Button
+    page.add(
+        Link(url='http://google.com', controls=[
         Icon('Globe'),
         Button('Action Button', action = True),
         Text(' Link with child controls')
-        ]))
+    ]))
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
