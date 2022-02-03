@@ -3,38 +3,14 @@ title: Message
 sidebar_label: Message
 slug: message
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 A banner displays errors, warnings, or important information about an open app or file. For example, if a file failed to upload an error message bar should appear.
 
 ## Examples
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
 [Live demo](https://python-message-example.pgletio.repl.co)
-
-To run the examples below use the following wrapper:
-
-```python
-import pglet
-from pglet import Message
-with pglet.page("myapp") as page:
-    page.clean()
-  # insert example code here
-```
-
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
 
 ### Basic messages
 
@@ -42,10 +18,13 @@ with pglet.page("myapp") as page:
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(
-  Message(value='This is just a message.'),
-  Message(value='Success message with dismiss button', dismiss=True, type='success'),
-  Message(value='Error message with dismiss button', dismiss=True, type='error'))
+import pglet
+from pglet import Message
+with pglet.page("basic-messages") as page:
+  page.add(
+    Message(value='This is just a message.'),
+    Message(value='Success message with dismiss button', dismiss=True, type='success'),
+    Message(value='Error message with dismiss button', dismiss=True, type='error'))
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
@@ -65,8 +44,11 @@ page.add(
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(
-      Message(type='blocked', truncated=True, dismiss=True, value='Blocked Message - single line, with dismiss button and truncated text. Truncation is not available if you use action buttons or multiline and should be used sparingly. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus, purus a lobortis tristique, odio augue pharetra metus, ac placerat nunc mi nec dui. Vestibulum aliquam et nunc semper scelerisque. Curabitur vitae orci nec quam condimentum porttitor et sed lacus. Vivamus ac efficitur leo. Cras faucibus mauris libero, ac placerat erat euismod et. Donec pulvinar commodo odio sit amet faucibus. In hac habitasse platea dictumst. Duis eu ante commodo, condimentum nibh pellentesque, laoreet enim. Fusce massa lorem, ultrices eu mi a, fermentum suscipit magna. Integer porta purus pulvinar, hendrerit felis eget, condimentum mauris. You\'ve been warned!'))
+import pglet
+from pglet import Message
+with pglet.page("truncated-message") as page:
+  page.add(
+    Message(type='blocked', truncated=True, dismiss=True, value='Blocked Message - single line, with dismiss button and truncated text. Truncation is not available if you use action buttons or multiline and should be used sparingly. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus, purus a lobortis tristique, odio augue pharetra metus, ac placerat nunc mi nec dui. Vestibulum aliquam et nunc semper scelerisque. Curabitur vitae orci nec quam condimentum porttitor et sed lacus. Vivamus ac efficitur leo. Cras faucibus mauris libero, ac placerat erat euismod et. Donec pulvinar commodo odio sit amet faucibus. In hac habitasse platea dictumst. Duis eu ante commodo, condimentum nibh pellentesque, laoreet enim. Fusce massa lorem, ultrices eu mi a, fermentum suscipit magna. Integer porta purus pulvinar, hendrerit felis eget, condimentum mauris. You\'ve been warned!'))
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
@@ -86,16 +68,19 @@ page.add(
   <TabItem value="python" label="Python" default>
 
 ```python
-from pglet import MessageButton
-  page.add(
-    Message(type='warning', dismiss=True, value='Warning message with buttons', buttons=[
-      MessageButton(text='Yes', action='yes'),
-      MessageButton(text='No', action='no')
-    ]),
-    Message(type='severeWarning', multiline=True, value='SevereWarning defaults to multiline. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus, purus a lobortis tristique, odio augue pharetra metus, ac placerat nunc mi nec dui. Vestibulum aliquam et nunc semper scelerisque. Curabitur vitae orci nec quam condimentum porttitor et sed lacus. Vivamus ac efficitur leo. Cras faucibus mauris libero, ac placerat erat euismod et. Donec pulvinar commodo odio sit amet faucibus. In hac habitasse platea dictumst. Duis eu ante commodo, condimentum nibh pellentesque, laoreet enim. Fusce massa lorem, ultrices eu mi a, fermentum suscipit magna. Integer porta purus pulvinar, hendrerit felis eget, condimentum mauris.', buttons=[
-      MessageButton('OK'),
-      MessageButton('Cancel')
-    ]))
+import pglet
+from pglet import Message, MessageButton
+with pglet.page("myapp") as page:
+
+    page.add(
+      Message(type='warning', dismiss=True, value='Warning message with buttons', buttons=[
+        MessageButton(text='Yes', action='yes'),
+        MessageButton(text='No', action='no')
+      ]),
+      Message(type='severeWarning', multiline=True, value='SevereWarning defaults to multiline. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus, purus a lobortis tristique, odio augue pharetra metus, ac placerat nunc mi nec dui. Vestibulum aliquam et nunc semper scelerisque. Curabitur vitae orci nec quam condimentum porttitor et sed lacus. Vivamus ac efficitur leo. Cras faucibus mauris libero, ac placerat erat euismod et. Donec pulvinar commodo odio sit amet faucibus. In hac habitasse platea dictumst. Duis eu ante commodo, condimentum nibh pellentesque, laoreet enim. Fusce massa lorem, ultrices eu mi a, fermentum suscipit magna. Integer porta purus pulvinar, hendrerit felis eget, condimentum mauris.', buttons=[
+        MessageButton('OK'),
+        MessageButton('Cancel')
+      ]))
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
@@ -115,16 +100,19 @@ from pglet import MessageButton
   <TabItem value="python" label="Python" default>
 
 ```python
-from pglet import Text
-def message_dismissed(e):
-  t.value = "Message dismissed!"
-  page.update()
+import pglet
+from pglet import Message, Text
+with pglet.page("message-with-dismiss-event") as page:
+    
+  def message_dismissed(e):
+    t.value = "Message dismissed!"
+    page.update()
 
-m = Message(value='Message with dismiss event', dismiss=True, on_dismiss=message_dismissed)
-t = Text()
+  m = Message(value="Message with 'dismiss' event", dismiss=True, on_dismiss=message_dismissed)
+  t = Text()
   
-page.add(m, t)
-input()
+  page.add(m, t)
+  input()
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
@@ -144,20 +132,22 @@ input()
   <TabItem value="python" label="Python" default>
 
 ```python
-from pglet import Text, MessageButton
-def message_dismissed(e):
-  t.value = f"Message dismissed with {e.data} action"
-  page.update()
-
-m = Message(value='Message with dismiss event and buttons', dismiss=True, on_dismiss=message_dismissed,    buttons=[
-  MessageButton('OK'),
-  MessageButton('Cancel')
-])
-    
-t = Text()
+import pglet
+from pglet import Message, MessageButton, Text
+with pglet.page("message-with-dismiss-event-and-buttons") as page:
   
-page.add(m, t)
-input()
+  def message_dismissed(e):
+    t.value = f"Message dismissed with {e.data} action"
+    page.update()
+
+  m = Message(value="Message with 'dismiss' event and buttons", dismiss=True, on_dismiss=message_dismissed, buttons=[
+      MessageButton('OK'),
+      MessageButton('Cancel')
+  ])
+  t = Text()
+  
+  page.add(m, t)
+  input()
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
