@@ -44,7 +44,7 @@ with pglet.page("myapp") as page:
 ```python
 from pglet import Button, Text
 def button_clicked(e):
-  t.value = f"Checkboxes value are:  {c1.value} {c2.value} {c3.value} {c4.value}"
+  t.value = f"Checkboxes value are:  {c1.value}, {c2.value}, {c3.value}, {c4.value}."
   page.update()
 
 t = Text()
