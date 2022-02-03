@@ -295,12 +295,9 @@ with pglet.page("split-buttons") as page:
 ```python
 import pglet
 from pglet import Button, Stack
-with pglet.page("action-buttons") as page:
+with pglet.page("action-button") as page:
   page.add(Stack(horizontal=True, controls=[
-    Button(action=True, text='<'),
-    Button(action=True, text='<<'),
-    Button(action=True, text='>'),
-    Button(action=True, text='>>'),
+    Button(action=True, icon='AddFriend', text='Create account')
   ]))
 ```
 
@@ -314,7 +311,7 @@ with pglet.page("action-buttons") as page:
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/button/action-buttons.png" width="25%" />
+<img src="/img/docs/controls/button/action-button.png" width="25%" />
 
 ## Properties
 
