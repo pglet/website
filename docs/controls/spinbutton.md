@@ -22,6 +22,7 @@ import { CodeSample } from '@site/src/components/code-sample';
 | --------- | ------- | ------- | ----------- |
 | `value`   | number  |         | Current value of the SpinButton. |
 | `label`   | string  |         | Descriptive label for the control. |
+| `labelPosition`   | string  |  `left`  | Label position: `left` (default), `top`, `right`, `bottom`. |
 | `min`     | number  |         | The min value of the SpinButton. |
 | `max`     | number  |         | The max value of the SpinButton. |
 | `step`    | number  |         | The difference between the two adjacent values of the SpinButton. |

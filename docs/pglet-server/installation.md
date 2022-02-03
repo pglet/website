@@ -56,13 +56,35 @@ host_clients_auth_token: <token>
 The rest of supported extra settings in the configuration file:
 
 ```yaml
+# application base URL
+app_url: http://localhost:8080
+
 # force redirecting to HTTPS protocol
 force_ssl: false
 
-# shared page lifetime since the last time it was updated, default is 1440
+# a master secret key to encrypt sensitive data at rest
+master_secret_key: your_master_secret!
+
+# a secret used to sign cookies
+cookie_secret: your_secret!
+
+# GitHub OAuth integration
+github_client_id: 
+github_client_secret:
+
+# Azure OAuth integration
+azure_client_id:
+azure_client_secret:
+azure_tenant: common
+
+# Google OAuth integration
+google_client_id: 
+google_client_secret:
+
+# shared page lifetime since the last time it was updated
 page_lifetime_minutes: 1440
 
-# app page lifetime since the last time any app session was updated, default is 60
+# app page lifetime since the last time any app session was updated
 app_lifetime_minutes: 60
 
 # ensure unath client has access to the page created from its IP
@@ -90,6 +112,7 @@ redis:
 
 ### Environment variables
 
+* `PGLET_APP_URL`: http://localhost:8080
 * `PGLET_SERVER_PORT`: 5000
 * `PGLET_FORCE_SSL`: false
 * `PGLET_ALLOW_REMOTE_HOST_CLIENTS`: false
@@ -105,6 +128,15 @@ redis:
 * `PGLET_REDIS_PASSWORD`:
 * `PGLET_REDIS_MAX_IDLE`: 5
 * `PGLET_REDIS_MAX_ACTIVE`: 10
+* `PGLET_MASTER_SECRET_KEY`: `<secret>`
+* `PGLET_COOKIE_SECRET`: `<secret>`
+* `PGLET_GITHUB_CLIENT_ID`: `OAuth-app-client-id`
+* `PGLET_GITHUB_CLIENT_SECRET`: `OAuth-app-client-secret`
+* `PGLET_AZURE_CLIENT_ID`: `Azure-oauth-app-client-id`
+* `PGLET_AZURE_CLIENT_SECRET`: `Azure-oauth-app-client-secret`
+* `PGLET_AZURE_TENANT`: `common`
+* `PGLET_GOOGLE_CLIENT_ID`: `OAuth-app-client-id`
+* `PGLET_GOOGLE_CLIENT_SECRET`: `OAuth-app-client-secret`
 
 ## Docker container
 
@@ -117,3 +149,26 @@ For example, to run Pglet Server on port 80 and map it to the host:
 ```bash
 docker run --env PGLET_SERVER_PORT=80 -p 80:80 pglet/server 
 ```
+
+## Configuring Google OAuth
+
+The following settings must be configured to make "Sign in with Google" work:
+
+```yaml
+# application base URL
+app_url: http://localhost:8080
+
+# a master secret key to encrypt sensitive data at rest
+master_secret_key: your_master_secret!
+
+# a secret used to sign cookies
+cookie_secret: your_secret!
+
+# Google OAuth integration
+google_client_id: <google-oauth-app-client-id>
+google_client_secret: <google-oauth-app-client-secret>
+```
+
+Instead of configuration file you can put those settings in corresponding environment variables. Environment variables override config file settings.
+
+"Authorized redirect URI" for Google OAuth app: `{app_url}/api/oauth/google`.
