@@ -152,7 +152,7 @@ docker run --env PGLET_SERVER_PORT=80 -p 80:80 pglet/server
 
 ## Configuring Google OAuth
 
-The following settings must be configured to make "Sign in with Google" work:
+The following settings (in addition to "Minimal configuration" above) must be configured to make "Sign in with Google" work:
 
 ```yaml
 # application base URL
