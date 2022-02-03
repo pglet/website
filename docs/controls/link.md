@@ -6,14 +6,35 @@ slug: link
 
 Link navigates to an external web page or initiate command within the app.
 
-import { CodeSample } from '@site/src/components/code-sample';
-
 ## Examples
 
-<CodeSample src="https://python-link-example.pgletio.repl.co" height="250px"
-    python="https://github.com/pglet/examples/blob/main/python/controls/link_control.py"
-    bash="https://github.com/pglet/examples/blob/main/bash/controls/link.sh"
-    />
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+[Live demo](https://python-link-example.pgletio.repl.co)
+
+To run the examples below use the following wrapper:
+
+```python
+import pglet
+from pglet import Link
+with pglet.page("myapp") as page:
+  page.clean()
+  # insert example code here
+```
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
 
 ## Properties
 
