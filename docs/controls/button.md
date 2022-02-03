@@ -4,45 +4,25 @@ sidebar_label: Button
 slug: button
 ---
 
-## Examples
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
+## Examples
 
 [Live demo](https://python-button-example.pgletio.repl.co)
 
-To run the examples below use the following wrapper:
-
-```python
-import pglet
-from pglet import Button, Text, Stack
-with pglet.page("myapp") as page:
-  page.clean()
-  # insert example code here
-```
-
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
-
-### Regular buttons
+### Basic buttons
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(
+import pglet
+from pglet import Button
+with pglet.page("basic-buttons") as page:
+  page.add(
     Button("Standard"),
-    Button("Standard disabled", disabled=True))
+    Button("Standard disabled", disabled=True),
     Button("Primary", primary=True),
     Button("Primary disabled", primary=True, disabled=True))
 ```
@@ -56,23 +36,30 @@ page.add(
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/button/regular-buttons.png" width="25%" />
+<img src="/img/docs/controls/button/basic-buttons.png" width="25%" />
 
-### Button with on_click event
+### Button with `click` event
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
-def button_clicked(e):
-  b.data += 1
-  t.value = f"Button clicked {b.data} time(s)"
-  page.update()
+import pglet
+from pglet import Button, Text
 
-b = Button('Button with on_click event', on_click=button_clicked, title='Click me!', data=0)
-t = Text()
-page.add(b, t)
-input()
+with pglet.page("button-with-click-event") as page:
+   
+    def button_clicked(e):
+        b.data += 1
+        t.value = f"Button clicked {b.data} time(s)"
+        page.update()
+
+    b = Button("Button with 'click' event", on_click=button_clicked, title='Click me!', data=0)
+    t = Text()
+
+    page.add(b, t)
+
+    input()
 ```
 
   </TabItem>
@@ -85,7 +72,7 @@ input()
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/button/button-with-onclick-event.gif" width="50%" />
+<img src="/img/docs/controls/button/button-with-click-event.gif" width="50%" />
 
 ### Compound buttons
 
@@ -93,10 +80,12 @@ input()
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(
-  Button("Compound", secondary_text='This is a secondary text', compound=True),
-  Button("Primary compound", secondary_text='This is a secondary text', compound=True, primary=True))
-)
+import pglet
+from pglet import Button
+with pglet.page("compound-buttons") as page:
+    page.add(
+      Button("Compound", secondary_text='This is a secondary text', compound=True),
+      Button("Primary compound", secondary_text='This is a secondary text', compound=True, primary=True))
 ```
 
   </TabItem>
@@ -117,10 +106,13 @@ page.add(
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(
-  Button("Create account", icon='AddFriend', primary=True),
-  Button("New item", icon='Add'),
-  Button("Delete", icon='Delete'))
+import pglet
+from pglet import Button
+with pglet.page("buttons-with-icons") as page:
+    page.add(
+      Button("Create account", icon='AddFriend', primary=True),
+      Button("New item", icon='Add'),
+      Button("Delete", icon='Delete'))
 ```
 
   </TabItem>
@@ -141,9 +133,12 @@ page.add(
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(
-  Button(icon='Emoji2', title='Emoji!'),
-  Button(icon='Calendar', title='Calendar!'))
+import pglet
+from pglet import Button
+with pglet.page("icon-only-buttons") as page:
+  page.add(
+    Button(icon='Emoji2', title='Emoji!'),
+    Button(icon='Calendar', title='Calendar!'))
 ```
 
   </TabItem>
@@ -164,12 +159,15 @@ page.add(
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(Stack(horizontal=True, controls=[
-  Button(text="New item", toolbar=True, icon='Add'),
-  Button(text="Send", toolbar=True, icon='Mail'),
-  Button(text="Show example", toolbar=True, icon='ChevronDown'),
-  Button(text="Delete", toolbar=True, icon_color='red', icon='Delete')
-  ]))
+import pglet
+from pglet import Button, Stack
+with pglet.page("toolbar-buttons") as page:
+    page.add(Stack(horizontal=True, controls=[
+      Button(text="New item", toolbar=True, icon='Add'),
+      Button(text="Send", toolbar=True, icon='Mail'),
+      Button(text="Show example", toolbar=True, icon='ChevronDown'),
+      Button(text="Delete", toolbar=True, icon_color='red', icon='Delete')
+    ]))
 ```
 
   </TabItem>
@@ -190,9 +188,12 @@ page.add(Stack(horizontal=True, controls=[
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(
-  Button(action=True, icon='Globe', text='Pglet website',url='https://pglet.io', new_window=True),
-  Button(icon='MyMoviesTV', text='Go to Disney', url='https://disney.com', new_window=True))
+import pglet
+from pglet import Button
+with pglet.page("link-buttons") as page:
+  page.add(
+    Button(action=True, icon='Globe', text='Pglet website',url='https://pglet.io', new_window=True),
+    Button(icon='MyMoviesTV', text='Go to Disney', url='https://disney.com', new_window=True))
 ```
 
   </TabItem>
@@ -213,30 +214,32 @@ page.add(
   <TabItem value="python" label="Python" default>
 
 ```python
-from pglet import button
-page.add(Stack(horizontal=True, controls=[
-  Button(icon='Add', text='New item', menu_items=[
-    button.MenuItem(text='Email message', icon='Mail'),
-    button.MenuItem(text='Calendar event', icon='Calendar')
-    ]),
-  Button(text='Button with sub-menus', menu_items=[
-    button.MenuItem(text='New', icon='Add', sub_menu_items=[
+import pglet
+from pglet import Button, Stack, button
+with pglet.page("context-menu-buttons") as page:
+  page.add(Stack(horizontal=True, controls=[
+    Button(icon='Add', text='New item', menu_items=[
       button.MenuItem(text='Email message', icon='Mail'),
       button.MenuItem(text='Calendar event', icon='Calendar')
     ]),
-    button.MenuItem(text='Share', icon='Share', split=True, sub_menu_items=[
-      button.MenuItem(text='Share to Twitter'),
-      button.MenuItem(text='Share to Facebook'),
-      button.MenuItem('Share to Somewhere'),
-      button.MenuItem('Share to email', sub_menu_items=[
-        button.MenuItem('Share to Outlook'),
-        button.MenuItem('Share to Gmail')
-      ])
+    Button(text='Button with sub-menus', menu_items=[
+      button.MenuItem(text='New', icon='Add', sub_menu_items=[
+      button.MenuItem(text='Email message', icon='Mail'),
+      button.MenuItem(text='Calendar event', icon='Calendar')
     ]),
-    button.MenuItem(divider=True),
-    button.MenuItem(text='To Pglet', icon='Globe', icon_color='green', url='https://pglet.io', new_window=True, secondary_text='New Window')
-  ]),
-]))
+      button.MenuItem(text='Share', icon='Share', split=True, sub_menu_items=[
+        button.MenuItem(text='Share to Twitter'),
+        button.MenuItem(text='Share to Facebook'),
+        button.MenuItem('Share to Somewhere'),
+        button.MenuItem('Share to email', sub_menu_items=[
+          button.MenuItem('Share to Outlook'),
+          button.MenuItem('Share to Gmail')
+        ])
+      ]),
+      button.MenuItem(divider=True),
+      button.MenuItem(text='To Pglet', icon='Globe', icon_color='green', url='https://pglet.io', new_window=True, secondary_text='New Window')
+    ]),
+  ]))
 ```
 
   </TabItem>
@@ -257,17 +260,19 @@ page.add(Stack(horizontal=True, controls=[
   <TabItem value="python" label="Python" default>
 
 ```python
-from pglet import button
-page.add(Stack(horizontal=True, controls=[
-  Button(split=True, text='Standard', menu_items=[
-    button.MenuItem('Email message', icon='Mail'),
-    button.MenuItem('Calendar event', icon='Calendar')
-  ]),
-  Button(split=True, primary=True, text='Primary', menu_items=[
-    button.MenuItem('Email message', icon='Mail'),
-    button.MenuItem('Calendar event', icon='Calendar')
-  ])
-]))
+import pglet
+from pglet import Button, Stack, button
+with pglet.page("split-buttons") as page:
+  page.add(Stack(horizontal=True, controls=[
+    Button(split=True, text='Standard', menu_items=[
+      button.MenuItem('Email message', icon='Mail'),
+      button.MenuItem('Calendar event', icon='Calendar')
+    ]),
+    Button(split=True, primary=True, text='Primary', menu_items=[
+      button.MenuItem('Email message', icon='Mail'),
+      button.MenuItem('Calendar event', icon='Calendar')
+    ])
+  ]))
 ```
 
   </TabItem>
@@ -288,12 +293,15 @@ page.add(Stack(horizontal=True, controls=[
   <TabItem value="python" label="Python" default>
 
 ```python
-page.add(Stack(horizontal=True, controls=[
-  Button(action=True, text='<'),
-  Button(action=True, text='<<'),
-  Button(action=True, text='>'),
-  Button(action=True, text='>>'),
-]))
+import pglet
+from pglet import Button, Stack
+with pglet.page("action-buttons") as page:
+  page.add(Stack(horizontal=True, controls=[
+    Button(action=True, text='<'),
+    Button(action=True, text='<<'),
+    Button(action=True, text='>'),
+    Button(action=True, text='>>'),
+  ]))
 ```
 
   </TabItem>
