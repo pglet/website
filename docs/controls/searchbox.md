@@ -3,17 +3,115 @@ title: SearchBox
 sidebar_label: SearchBox
 slug: searchbox
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 A search box provides an input field for searching content within a site or app to find specific items.
 
-import { CodeSample } from '@site/src/components/code-sample';
-
 ## Examples
 
-<CodeSample src="https://python-searchbox-example.pgletio.repl.co" height="450px"
-    python="https://github.com/pglet/examples/blob/main/python/controls/searchbox_control.py"
-    bash="https://github.com/pglet/examples/blob/main/bash/controls/searchbox.sh"
-    />
+[Live demo](https://python-searchbox-example.pgletio.repl.co)
+
+### Basic searchboxes
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import SearchBox
+with pglet.page("basic-searchboxes") as page:
+  page.add(
+    SearchBox(),
+    SearchBox(underlined=True, placeholder='Underlined SearchBox'),
+    SearchBox(disabled=True, placeholder='Disabled SearchBox'),
+    SearchBox(placeholder='SearchBox with icon', icon='Filter', icon_color='red'))
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/searchbox/basic-searchboxes.png" width="25%" />
+
+### SearchBox with `search`, `clear` and `escape` events
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import SearchBox, Stack, Text
+
+with pglet.page("searchbox-with-search-clear-and-escape-events") as page:
+   
+  def enter_clicked(e):
+    messages.controls.append(Text(f'You have searched for {sb.value}.'))
+    sb.value = ''
+    page.update()
+
+  def clear_or_esc_clicked(e):
+    sb.value = ''
+    messages.controls.append(Text('You have cleared the box.'))
+    page.update()
+
+  sb = SearchBox(width=300, placeholder='Search something and click Enter, X or Esc', on_search=enter_clicked, on_clear=clear_or_esc_clicked)
+  messages = Stack()
+
+  page.add(sb, messages)
+
+  input()
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/searchbox/searchbox-with-search-clear-and-escape-events.gif" width="50%" />
+
+### SearchBox with `change` event
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import SearchBox, Text
+
+with pglet.page("searchbox-with-change-event") as page:
+   
+  def searchbox_changed(e):
+    t.value = f'You have searched for {sb.value}.'
+    page.update()
+
+  sb = SearchBox(placeholder='Search something...', on_change=searchbox_changed)
+  t = Text()
+
+  page.add(sb, t)
+
+  input()
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/searchbox/searchbox-with-change-event.gif" width="50%" />
 
 ## Properties
 
