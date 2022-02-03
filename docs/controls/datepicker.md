@@ -4,38 +4,14 @@ sidebar_label: DatePicker
 slug: datepicker
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 A date picker (DatePicker) offers a drop-down control that’s optimized for picking a single date from a calendar view where contextual information like the day of the week or fullness of the calendar is important.
 
 ## Examples
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
 [Live demo](https://python-datepicker-example.pgletio.repl.co)
-
-To run the examples below use the following wrapper:
-
-```python
-from datetime import datetime
-import pglet
-from pglet import DatePicker
-with pglet.page("myapp") as page:
-  page.clean()
-  # insert example code here
-```
-
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
 
 ### Basic DatePicker
 
@@ -43,19 +19,22 @@ with pglet.page("myapp") as page:
   <TabItem value="python" label="Python" default>
 
 ```python
-from pglet import Button, Text
-def button_clicked(e):
-  t.value = f"DatePickers values are:  {dp1.value}, {dp2.value}."
-  page.update()
+from datetime import datetime
+import pglet
+from pglet import DatePicker, Button, Text
+with pglet.page("basic-datepicker") as page:
+  def button_clicked(e):
+    t.value = f"DatePickers values are:  {dp1.value}, {dp2.value}."
+    page.update()
 
-now = datetime.now()
-t = Text()
-b = Button(text='Submit', on_click=button_clicked)
-dp1 = DatePicker(label="Start date", value=now, width=150)
-dp2 = DatePicker(label="End date", width=150)
+  now = datetime.now()
+  t = Text()
+  b = Button(text='Submit', on_click=button_clicked)
+  dp1 = DatePicker(label="Start date", value=now, width=150)
+  dp2 = DatePicker(label="End date", width=150)
   
-page.add(dp1, dp2, b, t)
-input()
+  page.add(dp1, dp2, b, t)
+  input()
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
@@ -75,11 +54,15 @@ input()
   <TabItem value="python" label="Python" default>
 
 ```python
-now = datetime.now()
-page.add(
-  DatePicker(width=150, label="Allow text input", allow_text_input=True),
-  DatePicker(label="Allow text input with placeholder", placeholder='Select date...', allow_text_input=True, width='50%'),
-  DatePicker(value=now, label="Required", required=True, allow_text_input=True))
+from datetime import datetime
+import pglet
+from pglet import DatePicker
+with pglet.page("datepicker-allow-text-input") as page:
+  now = datetime.now()
+  page.add(
+    DatePicker(width=150, label="Allow text input", allow_text_input=True),
+    DatePicker(label="Allow text input with placeholder", placeholder='Select date...', allow_text_input=True, width='25%'),
+    DatePicker(value=now, label="Required", required=True, allow_text_input=True))
 ```
   </TabItem>
   <TabItem value="powershell" label="PowerShell">
@@ -93,13 +76,16 @@ page.add(
 
 <img src="/img/docs/controls/datepicker/datepicker-allow-text-input.gif" width="60%" />
 
-### DatePicker with on_change event
+### DatePicker with `change` event
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
-  from pglet import Text
+from datetime import datetime
+import pglet
+from pglet import DatePicker, Text
+with pglet.page("datepicker-with-change-event") as page:
   def datepicker_changed(e):
         t.value = f"DatePicker value changed to {dp.value}" 
         t.update()
@@ -121,7 +107,7 @@ page.add(
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/datepicker/datepicker-with-onchange.gif" width="40%" />
+<img src="/img/docs/controls/datepicker/datepicker-with-change-event.gif" width="40%" />
 
 ## Properties
 
