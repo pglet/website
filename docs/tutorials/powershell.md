@@ -117,14 +117,14 @@ try {
 
   $page2.Clean()
   $page2.Add((Text -Value "Hello, page 2!"))
-} catch {
+} finally {
   $page1.Close()
   $page2.Close()
 }
 ```
 
 :::note
-All code examples below will be assuming that you put them into `try...catch` wrapper:
+All code examples below will be assuming that you put them into `try...finally` wrapper:
 
 ```powershell
 Import-Module pglet
@@ -135,7 +135,7 @@ try {
 
   # Insert example code here
 
-} catch {
+} finally {
   $page.Close()
 }
 ```
