@@ -3,17 +3,193 @@ title: Text
 sidebar_label: Text
 slug: text
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 Text is a control for displaying text.
 
-import { CodeSample } from '@site/src/components/code-sample';
-
 ## Examples
 
-<CodeSample src="https://python-text-example.pgletio.repl.co" height="1050px"
-    python="https://github.com/pglet/examples/blob/main/python/controls/text_control.py"
-    bash="https://github.com/pglet/examples/blob/main/bash/controls/text.sh"
-    />
+[Live demo](https://python-text-example.pgletio.repl.co)
+
+### Size
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import Text
+with pglet.page("text-size") as page:
+  
+  page.add(
+    Text('tiny', size='tiny'),
+    Text('xSmall', size='xSmall'),
+    Text('small', size='small'),
+    Text('smallPlus', size='smallPlus'),
+    Text('medium', size='medium'),
+    Text('mediumPlus', size='mediumPlus'),
+    Text('large', size='large'),
+    Text('xLarge', size='xLarge'),
+    Text('xxLarge', size='xxLarge'),
+    Text('superLarge', size='superLarge'),
+    Text('mega', size='mega'))
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/text/text-size.png" width="50%" />
+
+### Font styles
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import Text
+with pglet.page("text-with-different-font-styles") as page:
+  
+  page.add(
+    Text('Bold', bold=True),
+    Text('Italic', italic=True),
+    Text('Preformatted text in monospace font', pre=True))
+  
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/text/text-font-styles.png" width="50%" />
+
+### Horizontal and vertical alignments
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import Text, Stack
+with pglet.page("text-alignments") as page:
+  
+  page.add(
+    Stack(horizontal=True, controls=[
+            Text('left top', align='left', vertical_align='top', width=100, height=100, bgcolor='salmon', color='white', padding=5),
+            Text('center top', align='center', vertical_align='top', width=100, height=100, bgcolor='salmon', color='white', padding=5, size='large', border='1px solid #555'),
+            Text('right top', align='right', vertical_align='top', width=100, height=100, bgcolor='salmon', color='white', padding=5, border='2px solid #555')
+        ]),
+        Stack(horizontal=True, controls=[
+            Text('left center', align='left', vertical_align='center', width=100, height=100, bgcolor='PaleGoldenrod', padding=5),
+            Text('center center', align='center', vertical_align='center', width=100, height=100, bgcolor='PaleGoldenrod', padding=5, size='large', border='1px solid #555'),
+            Text('right center', align='right', vertical_align='center', width=100, height=100, bgcolor='PaleGoldenrod', padding=5, border='2px solid #555')
+        ]),
+        Stack(horizontal=True, controls=[
+            Text('left bottom', align='left', vertical_align='bottom', width=100, height=100, bgcolor='PaleGreen', padding=5),
+            Text('center bottom', align='center', vertical_align='bottom', width=100, height=100, bgcolor='PaleGreen', padding=5, size='large', border='1px solid #555'),
+            Text('right bottom', align='right', vertical_align='bottom', width=100, height=100, bgcolor='PaleGreen', padding=5, border='2px solid #555')
+        ]))
+  
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/text/text-alignments.png" width="50%" />
+
+### Border with rounded corners
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import Text, Stack
+with pglet.page("text-rounded-corners") as page:
+  
+  page.add(Stack(horizontal=True, controls=[
+    Text('Border radius 10% of width/height', align='center', vertical_align='center', width=100, height=100, border_radius=10, bgcolor='salmon'),
+    Text('Border radius 25% of width/height', align='center', vertical_align='center', width=100, height=100, border_radius=25, bgcolor='PaleGoldenrod', border='1px solid #555'),
+    Text('Border radius 50% of width/height', align='center', vertical_align='center', width=100, height=100, border_radius=50, bgcolor='PaleGreen', border='2px solid #555')
+    ])
+  )
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/text/text-rounded-corners.png" width="50%" />
+
+### Markdown
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+````python
+import pglet
+from pglet import Text
+with pglet.page("text-markdown") as page:
+  
+  page.add(Text('''
+# Heading1
+
+## Autolink literals
+
+www.example.com, https://example.com, and contact@example.com.
+
+## Strikethrough
+
+~one~ or ~~two~~ tildes.
+
+### Code sample
+
+```
+import pglet
+page = page.page()
+```
+
+## Table
+
+| a | b  |  c |  d  |
+| - | :- | -: | :-: |
+
+        ''', markdown=True))
+````
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/text/text-markdown.png" width="50%" />
 
 ## Properties
 
