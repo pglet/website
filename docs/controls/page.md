@@ -13,13 +13,31 @@ Page control has a reserved `page` control ID. You cannot add Page control, howe
 
 | Name              | Type      | Default       | Description |
 | ----------------- | --------- | ------------- | ----------- |
-| `title`           | string    | `{page_name} - pglet`          | A title of browser window.            |
+| `title`           | string    | `{page_name} - Pglet`          | A title of browser window.            |
 | `verticalFill`    | bool      | `false`       | Defines whether page contents takes 100% of the height of browser window.   |
 | `horizontalAlign` | string    | `start`         | Defines how to align page children horizontally: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly`, `baseline` or `stretch`. |
 | `verticalAlign`   | string    |               | Defines how to align page children vertically: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly`, `baseline` or `stretch`.    |
-| `width`           | string    | `100%`          | The width of a page container.            |
-| `padding`           | string    | `10px`          | The padding of a page container.            |
-| `gap`           | string    | `10`          | A gap between page child controls.            |
+| `width`           | string    | `100%`        | The width of a page container.            |
+| `padding`         | string    | `10px`        | The padding of a page container.            |
+| `gap`             | string    | `10`          | A gap between page child controls.            |
+| `bgcolor`         | string    |               | Page background color.            |
+| `hash`            | string    |           | Read-only window's width. Updated for multi-user apps only when browser window is 
+| `winWidth`        | number    |           | Read-only window's width. Updated for multi-user apps only when browser window is resized.      |
+| `winHeight`       | number    |           | Read-only window's height. Updated for multi-user apps only when browser window is resized.      |
+| `theme`                | string    |  `light`  | Page's theme: `light` or `dark`.  |
+| `themePrimaryColor`    | string    |           | Theme primary color. Use [Fluent UI Theme Designer](https://fabricweb.z5.web.core.windows.net/pr-deploy-site/refs/heads/master/theming-designer/) to build a custom theme. |
+| `themeTextColor`       | string    |           | Theme text color. Use [Fluent UI Theme Designer](https://fabricweb.z5.web.core.windows.net/pr-deploy-site/refs/heads/master/theming-designer/) to build a custom theme. |
+| `themeBackgroundColor` | string    |           | Theme background color. Use [Fluent UI Theme Designer](https://fabricweb.z5.web.core.windows.net/pr-deploy-site/refs/heads/master/theming-designer/) to build a custom theme. |
+| `signin`             | string    |           | Displays Sign In dialog with selected auth methods. |
+| `signinAllowDismiss` | bool      |           | Enables user to dismiss Sign In dialog. |
+| `signinGroups`       | bool      |           | Enables Pglet OAuth app to ask for teams/groups read permission during OAuth authorization flow. |
+| `userAuthProvider`| string    |           | Authentication method used by a user to sign in: `github`, `google` or `azure` (Microsoft Account). Read-only, multi-user apps only. |
+| `userId`          | string    |           | ID of the signed in user. For GitHub auth method it's GitHub's user ID (number), for Google - email address and for Microsoft Account - user's GUID. Read-only, multi-user apps only. |
+| `userLogin`       | string    |           | For GitHub auth method it's GitHub's username, for Google and Microsoft Account - email address. Read-only, multi-user apps only. |
+| `userName`        | string    |           | Display name of the signed in user. Read-only, multi-user apps only. |
+| `userEmail`       | string    |           | Email address of the signed in user. Read-only, multi-user apps only. |
+| `userClientIP`    | string    |           | IP address of the signed in user. Read-only, multi-user apps only. |
+
 
 ## Examples
 
