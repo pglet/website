@@ -45,6 +45,7 @@ import { CodeSample } from '@site/src/components/code-sample';
 | `borderBottom` | string  |         | Border of the bottom side of stack in `<width> <style> <color>` format, e.g. `1px solid #550000` |
 | `scrollx`         | bool      | `false` | Enable horizontal scrolling if stack contents doesn't fit into stack boundaries. |
 | `scrolly`         | bool      | `false` | Enable vertical scrolling if stack contents doesn't fit into stack boundaries. |
+| `autoscroll`      | bool      | `false` | Automatically scrolls to the bottom when Stack contents is changed. `scrolly` must be set to `true` to make autoscroll work. |
 
 ### Child controls
 
