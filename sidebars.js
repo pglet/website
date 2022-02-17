@@ -21,6 +21,8 @@ module.exports = {
             'controls/text',
             'controls/icon',
             'controls/image',
+            'controls/iframe',
+            'controls/html',
           ]
         },
         {

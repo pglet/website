@@ -27,6 +27,7 @@ import { CodeSample } from '@site/src/components/code-sample';
 | `showValue`   | bool    | `false` | Whether to show the value on the right of the slider. |
 | `valueFormat` | string  | `{value}` | Optional format string for the slider value, for example `{value}%`. |
 | `vertical`    | bool    | `false` | Optional flag to render the slider vertically. Defaults to rendering horizontal. |
+| `focused`     | bool    | `false` | When set to `true` the focus is set on the control when it's shown on the page or page opened. |
 | `data`     | string  |         | Additional data attached to the control. The value is passed in `change` event data along with a slider value. |
 
 ## Events
@@ -34,3 +35,5 @@ import { CodeSample } from '@site/src/components/code-sample';
 | Name      | Description |
 | --------- | ----------- |
 | `change`  | Fires when the value of a slider has been changed. |
+| `focus`   | Fires when the control has received focus. |
+| `blur`    | Fires when the control has lost focus. |
