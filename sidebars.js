@@ -32,6 +32,7 @@ module.exports = {
             'controls/checkbox',
             'controls/choicegroup',
             'controls/dropdown',
+            'controls/combobox',
             'controls/datepicker',
             'controls/link',
             'controls/message',
