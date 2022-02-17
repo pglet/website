@@ -20,7 +20,7 @@ import { CodeSample } from '@site/src/components/code-sample';
 | Name           | Type     | Default  | Description |
 | -------------- | -------- | -------- | ----------- |
 | `src`          | string    |          | Image source URL. |
-| `alt`          | string    |          | Image alternative text. |
+| `alt`          | string    |          | The `imageAlt` attribute holds a text description of the image, which isn't mandatory but is incredibly useful for accessibility — screen readers read this description out to their users so they know what the image means. Alt text is also displayed on the page if the image can't be loaded for some reason: for example, network errors, content blocking, or linkrot. |
 | `title`        | string    |          | Popup hint. |
 | `fit`          | string    |          | Used to determine how the image is scaled and cropped to fit the frame. Allowed values: `none`, `contain`, `cover`, `center`, `centerContain`, `centerCover` |
 | `maximizeFrame` | boolean | `false`  | If `true`, the image frame will expand to fill its parent container. |
