@@ -19,24 +19,17 @@ module.exports = {
             'controls/page',
             'controls/stack',
             'controls/splitstack',
-            'controls/text',
-            'controls/icon',
-            'controls/image',
-            'controls/persona',
-            'controls/iframe',
-            'controls/html',
           ]
         },
         {
-          'Basic inputs': [
+          'Basic input': [
             'controls/button',
             'controls/checkbox',
             'controls/choicegroup',
             'controls/dropdown',
             'controls/combobox',
-            'controls/datepicker',
+            'controls/datepicker',          
             'controls/link',
-            'controls/message',
             'controls/searchbox',
             'controls/slider',
             'controls/spinbutton',
@@ -45,25 +38,36 @@ module.exports = {
           ]
         },
         {
-          'Commands & Navs': [
-            'controls/nav',
-            'controls/toolbar',
-            'controls/tabs',
-          ]
-        },
-        {
-          'Lists & Grids': [
+          'Collections': [
             'controls/grid',
           ]
         },
         {
-          'Progress': [
-            'controls/progress',
-            'controls/spinner',
+          'Media': [
+            'controls/icon',
+            'controls/image',          
+          ]
+        },        
+        {
+          'Navigation': [
+            'controls/nav',
+            'controls/tabs',
           ]
         },
         {
-          'Surfaces': [
+          'Status and Info': [
+            'controls/message',
+            'controls/progress',
+            'controls/spinner',
+          ]
+        },        
+        {
+          'Toolbars': [
+            'controls/toolbar',
+          ]
+        },
+        {
+          'Dialogs and Flyouts': [
             'controls/callout',
             'controls/dialog',
             'controls/panel',
@@ -77,6 +81,14 @@ module.exports = {
             'controls/bar-chart',
           ]
         },
+        {
+          'Utilities': [
+            'controls/html',
+            'controls/iframe',            
+            'controls/persona',                          
+            'controls/text',
+          ]
+        },        
       ],
       'Guides': [
         'hot-reload',
