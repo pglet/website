@@ -24,6 +24,7 @@ import { CodeSample } from '@site/src/components/code-sample';
 | `inline`   | bool    | `false` | Whether the label (not the onText/offText) should be positioned inline with the toggle control. |
 | `onText`   | string  |         | Text to display when toggle is ON. Caution: when not providing on/off text user may get confused in differentiating the on/off states of the toggle. |
 | `offText`  | string  |         | Text to display when toggle is OFF. Caution: when not providing on/off text user may get confused in differentiating the on/off states of the toggle. |
+| `focused`  | bool    | `false` | When set to `true` the focus is set on the control when it's shown on the page or page opened. |
 | `data`     | string  |         | Additional data attached to the control. The value is passed in `change` event data along with a toggle state. |
 
 ## Events
@@ -31,3 +32,5 @@ import { CodeSample } from '@site/src/components/code-sample';
 | Name      | Description |
 | --------- | ----------- |
 | `change`  | Fires when the state of toggle is changed. |
+| `focus`   | Fires when the control has received focus. |
+| `blur`    | Fires when the control has lost focus. |

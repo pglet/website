@@ -27,6 +27,8 @@ import { CodeSample } from '@site/src/components/code-sample';
 | `max`     | number  |         | The max value of the SpinButton. |
 | `step`    | number  |         | The difference between the two adjacent values of the SpinButton. |
 | `icon`    | string  |         | Icon to display alongside the control's label. |
+| `focused` | bool    | `false` | When set to `true` the focus is set on the control when it's shown on the page or page opened. |
+
 | `data`    | string  |         | Additional data attached to the control. The value is passed in `change` event data along with the SpinButton value. |
 
 ## Events
@@ -34,3 +36,5 @@ import { CodeSample } from '@site/src/components/code-sample';
 | Name      | Description |
 | --------- | ----------- |
 | `change`  | Fires when the value of the SpinButton has been changed. |
+| `focus`   | Fires when the control has received focus. |
+| `blur`    | Fires when the control has lost focus. |

@@ -24,7 +24,7 @@ To start Pglet Server:
 
 ### Configuration
 
-By default Pglet Server is listening on port 5000, but this and other server settings can be configured via environment variables or in configuration file.
+By default Pglet Server is listening on port 8550, but this and other server settings can be configured via environment variables or in configuration file.
 
 ### `config.yml` file
 
@@ -43,7 +43,7 @@ Configuration file location on Windows:
 Minimal configuration for self-hosted Pglet Server:
 
 ```yaml
-# server listening port, default is 5000
+# server listening port, default is 8550
 server_port: 8080
 
 # allow connections from remote scripts/programs, default is 'false'
@@ -112,8 +112,7 @@ redis:
 
 ### Environment variables
 
-* `PGLET_APP_URL`: http://localhost:8080
-* `PGLET_SERVER_PORT`: 5000
+* `PGLET_SERVER_PORT`: 8550
 * `PGLET_FORCE_SSL`: false
 * `PGLET_ALLOW_REMOTE_HOST_CLIENTS`: false
 * `PGLET_PAGE_LIFETIME_MINUTES`: 1440
