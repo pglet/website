@@ -28,6 +28,9 @@ import { CodeSample } from '@site/src/components/code-sample';
 | `icon`         | string |         | Icon shown in the textbox. |
 | `iconColor`    | string |         | Icon color. |
 | `multiline`    | bool   | `false` | Whether or not the textbox is a multiline text field. |
+| `rows`         | number | `3`     | Initial size in rows of `multiline` TextBox. |
+| `shiftEnter`   | bool   | `false` | Blocks `Enter` button in `multiline` TextBox, but pops up the event, so `Stack.submit` could be triggered. New line could still be entered with `Shift`+`Enter`. |
+| `resizable`    | bool   | `true`  | Controls whether `multiline` TextBox is resizable by the user. Default is `true`. `autoAdjustHeight` is still respected even if `resizable` is `false`. |
 | `required`     | bool   | `false` | Display textbox as required. |
 | `readOnly`     | bool   | `false` | If true, the textbox is readonly. |
 | `autoAdjustHeight`     | bool   | `false` | For multiline textboxes, whether or not to auto adjust textbox height. |
@@ -35,6 +38,7 @@ import { CodeSample } from '@site/src/components/code-sample';
 | `underlined`   | bool   | `false` | Whether or not the textbox is underlined. |
 | `align`        | string | `left`  | Text alignment within textbox: `left` or `right`. |
 | `password`     | bool   | `false` | Whether the textbox is a masked field for entering password. |
+| `focused`      | bool   | `false` | When set to `true` the focus is set on the control when it's shown on the page or page opened. |
 | `onChange`     | bool   | `false` | Whether `change` event should be fired while text is typed into the Textbox. This property is used by command-based client libraries only like Bash. |
 
 ## Events
@@ -42,3 +46,5 @@ import { CodeSample } from '@site/src/components/code-sample';
 | Name      | Description |
 | --------- | ----------- |
 | `change`  | Fires when the typed input for the Textbox has changed. For performance optimization this event is disabled unless `onChange` property set to `true`. |
+| `focus`   | Fires when the control has received focus. |
+| `blur`    | Fires when the control has lost focus. |

@@ -26,10 +26,12 @@ import { CodeSample } from '@site/src/components/code-sample';
 | `allowTextInput` | bool   | `false` | Whether the DatePicker allows input a date string directly or not. |
 | `borderless`   | bool   | `false` | Whether or not the DatePicker is borderless. |
 | `underlined`   | bool   | `false` | Whether or not the DatePicker is underlined. |
+| `focused`      | bool   | `false` | When set to `true` the focus is set on the control when it's shown on the page or page opened. |
 
 ## Events
 
 | Name      | Description |
 | --------- | ----------- |
 | `change`  | Fires when the selected date is changed (either selected from dropdown or entered if `allowTextInput` is enabled.) |
-
+| `focus`   | Fires when the control has received focus. |
+| `blur`    | Fires when the control has lost focus. |

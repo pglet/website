@@ -39,13 +39,6 @@
   height: 30px;
 }
 
-.navbar__title {
-  color: #333;
-  font-size: 18px;
-  font-weight: 700;
-  padding-bottom: 2px;
-}
-
 .docusaurus-highlight-code-line {
   background-color: rgb(234, 236, 238);
   display: block;

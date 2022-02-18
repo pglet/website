@@ -37,14 +37,19 @@ import { CodeSample } from '@site/src/components/code-sample';
 | `gap`             | string    |         | A gap between stack child controls. |
 | `wrap`            | bool      | `false` | Defines whether Stack children should wrap onto multiple rows or columns when they are about to overflow the size of the Stack. |
 | `bgcolor` | string  |         | Stack background color. |
-| `border`  | string  |         | Border around stack in `<width> <style> <color>` format, e.g. `1px solid #550000` |
-| `borderRadius` | string  |         | Border radius. |
-| `borderLeft`   | string  |         | Border of the left side of stack in `<width> <style> <color>` format, e.g. `1px solid #550000` |
-| `borderRight`  | string  |         | Border of the right side of stack in `<width> <style> <color>` format, e.g. `1px solid #550000` |
-| `borderTop`    | string  |         | Border of the top side of stack in `<width> <style> <color>` format, e.g. `1px solid #550000` |
-| `borderBottom` | string  |         | Border of the bottom side of stack in `<width> <style> <color>` format, e.g. `1px solid #550000` |
+| `borderWidth`  | string  |         | Border width in pixels around control, e.g. `1`. Multiple values separated with spaces can be provided to set border width for each of the sides: `top right bottom left`, e.g. `2 0 2 0`. |
+| `borderColor`  | string  |         | Border color around control. Multiple values separated with spaces can be provided to set border color for each of the sides: `top right bottom left`, e.g. `yellow green blue gray`. |
+| `borderStyle`  | string  |         | Border style around control: `none` (default), `dotted`, `dashed`, `solid`, `double`, `groove`, `ridge`, `inset`, `outset`. Multiple values separated with spaces can be provided to set border style for each of the sides: `top right bottom left`, e.g. `solid none none none`. |
+| `borderRadius` | string  |         | Border radius in pixels, e.g. `5`. Multiple values separated with spaces can be provided to set border style for each of the sides: `top right bottom left`, e.g. `10 10 0 0`. |
 | `scrollx`         | bool      | `false` | Enable horizontal scrolling if stack contents doesn't fit into stack boundaries. |
 | `scrolly`         | bool      | `false` | Enable vertical scrolling if stack contents doesn't fit into stack boundaries. |
+| `autoscroll`      | bool      | `false` | Automatically scrolls to the bottom when Stack contents is changed. `scrolly` must be set to `true` to make autoscroll work. |
+
+## Events
+
+| Name      | Description |
+| --------- | ----------- |
+| `submit`  | Fires when `Enter` button is pressed in any input control inside the stack. |
 
 ### Child controls
 

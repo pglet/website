@@ -22,6 +22,7 @@ import { CodeSample } from '@site/src/components/code-sample';
 | `action`       | bool   | `false` | Render button as a link without a border. |
 | `toolbar`      | bool   | `false` | Render toolbar-like button. |
 | `split`        | bool   | `false` | If set to `true`, and if menu items are provided, the button will render as a SplitButton. |
+| `focused`      | bool   | `false` | When set to `true` the focus is set on the control when it's shown on the page or page opened. |
 | `text`         | string |         | The text displayed on a button. |
 | `secondaryText` | string |        | Description of the action this button takes. Only used for compound buttons. |
 | `url`          | string |         | If provided, the button will be rendered as a link. |
@@ -36,6 +37,8 @@ import { CodeSample } from '@site/src/components/code-sample';
 | Name      | Description |
 | --------- | ----------- |
 | `click`   | Fires when a user clicks the button.  |
+| `focus`   | Fires when the control has received focus. |
+| `blur`    | Fires when the control has lost focus. |
 
 ## Child controls
 
