@@ -8,9 +8,29 @@ IFrame control allows embedding an HTML page into the current one.
 
 ## Examples
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import IFrame
+
+page = pglet.page()
+page.add(IFrame(src="https://pglet.io"))
 ```
-[TBD]
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
 ```
+
+  </TabItem>
+</Tabs>
 
 ## Properties
 

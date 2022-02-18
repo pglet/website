@@ -8,9 +8,73 @@ A ComboBox combines a text field and a dropdown giving people a way to select an
 
 ## Examples
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import ComboBox, combobox
+
+page = pglet.page("combobox-test")
+page.horizontal_align = "stretch"
+page.add(
+    ComboBox(
+        label="Your favorite car makers",
+        multi_select=True,
+        value=["BMW, Volkswagen"],
+        width="50%",
+        on_change=lambda e: print("selected cars:", e.control.value),
+        options=[
+            combobox.Option("Select all", item_type="select_all"),
+            combobox.Option("div1", item_type="divider"),
+            combobox.Option("BMW"),
+            combobox.Option("Toyota"),
+            combobox.Option("Volkswagen"),
+            combobox.Option("Mercedes-Benz"),
+        ],
+    ),
+    ComboBox(
+        label="Allows free form",
+        multi_select=False,
+        width="50%",
+        allow_free_form=True,
+        on_focus=lambda e: print("on_focus!"),
+        on_blur=lambda e: print("on_blur!"),
+        options=[
+            combobox.Option("One"),
+            combobox.Option("Two"),
+            combobox.Option("Five"),
+        ],
+    ),
+    ComboBox(
+        label="Allows free form with multi-select and error message",
+        multi_select=True,
+        width="50%",
+        allow_free_form=True,
+        error_message="This field cannot be left blank!",
+        options=[
+            combobox.Option("Red"),
+            combobox.Option("Green"),
+            combobox.Option("Blue"),
+        ],
+    ),
+)
+
+input()
 ```
-[TBD]
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
 ```
+
+  </TabItem>
+</Tabs>
 
 ## Properties
 

@@ -8,9 +8,29 @@ slug: html
 
 ## Examples
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import Html
+
+page = pglet.page()
+page.add(Html("<b>This is bold text!</b>"))
 ```
-[TBD]
+
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
 ```
+
+  </TabItem>
+</Tabs>
 
 ## Properties
 
