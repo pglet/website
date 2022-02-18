@@ -18,6 +18,7 @@ module.exports = {
           'Layout': [
             'controls/page',
             'controls/stack',
+            'controls/splitstack',
             'controls/text',
             'controls/icon',
             'controls/image',
