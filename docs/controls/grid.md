@@ -21,7 +21,7 @@ import { CodeSample } from '@site/src/components/code-sample';
 | --------------- | ------ | ------- | ----------- |
 | `selection`     | string | `none`  | Items selection mode: `none`, `single` or `multiple`. |
 | `compact`       | bool   | `false` | Whether to render Grid in a compact form. |
-| `headerVisible` | bool   | `false` | Whether Grid header is visible. |
+| `headerVisible` | bool   | `true`  | Whether Grid header is visible. |
 | `preserveSelection` | bool   | `false` | By default, selection is cleared when clicking on an empty (non-focusable) section of the screen. Setting this value to true overrides that behavior and maintains selection. |
 | `shimmerLines`  | int    | 0       | Whether to display shimmer lines if `items` collection is empty. `0` - do not display shimmer. |
 
