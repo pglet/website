@@ -103,7 +103,7 @@ page.update()
   <TabItem value="powershell" label="PowerShell">
 
 ```powershell
-# TODO
+Import-Module pglet
 ```
 
   </TabItem>

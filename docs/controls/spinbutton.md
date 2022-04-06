@@ -3,18 +3,77 @@ title: SpinButton
 sidebar_label: SpinButton
 slug: spinbutton
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 A spin button allows someone to incrementally adjust a value in small steps. It’s mainly used for numeric values, but other values are supported too.
 
-import { CodeSample } from '@site/src/components/code-sample';
-
 ## Examples
 
-<CodeSample src="https://python-spinbutton-example.pgletio.repl.co" height="100px"
-    python="https://github.com/pglet/examples/blob/main/python/controls/spinbutton_control.py"
-    bash="https://github.com/pglet/examples/blob/main/bash/controls/spinbutton.sh"
-    />
+[Live demo](https://python-spinbutton-example.pgletio.repl.co)
 
+### Basic SpinButton
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import SpinButton, Button, Text
+with pglet.page("basic-spinbutton") as page:
+  def button_clicked(e):
+        t.value = f"Spinbutton value is:  {sb.value}."
+        page.update()
+
+  t = Text()
+  sb = SpinButton(width='50%', label='Default SpinButton')
+  b = Button(text='Submit', on_click=button_clicked)
+  page.add(sb, b, t)
+
+  input()
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/spinbutton/basic-spinbutton.gif" width="75%" />
+
+### SpinButton with `change` event
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import SpinButton, Text
+with pglet.page("spinbutton-with-change-event") as page:
+  def spinbutton_changed(e):
+    t.value = f"SpinButton value changed to {sb.value}" 
+    page.update()
+
+  t = Text()
+  sb = SpinButton(width='50%', label='Default SpinButton', on_change=spinbutton_changed)
+  page.add(sb, t)
+
+  input()
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/spinbutton/spinbutton-with-change-event.gif" width="75%" />
 
 ## Properties
 
