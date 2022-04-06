@@ -3,6 +3,8 @@ title: Callout
 sidebar_label: Callout
 slug: callout
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 A callout is an anchored tip that can be used to teach people or guide them through the app without blocking them.
 
@@ -23,6 +25,151 @@ Callout can be "attached" to the following controls:
 * SpinButton
 * Textbox
 * Toogle
+
+## Examples
+
+[Live demo - TBD](https://python-callout-example.pgletio.repl.co)
+
+### Basic callout
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import Callout, Button, Text, Stack
+with pglet.page("basic-callout") as page:
+      
+  def button_clicked(e):
+        c.visible = True
+        page.update()
+
+
+  b = Button(text='Show callout', on_click=button_clicked)
+  page.add(b)
+
+  c = Callout(target=b.uid, width=200, height=100, visible = False, controls=[
+        Stack(controls=[
+          Text(size='large', align='center', value='Callout title'),
+          Text(size='small', align='center', value='This is a basic callout')
+      ])
+  ])
+  
+  page.add(c)
+
+  input()
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/callout/basic-callout.gif" width="50%" />
+
+### Callout with directional hint
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import Callout, Button, Text, Stack, Toggle, Slider, Dropdown, dropdown
+with pglet.page("callout-with-directional-hint") as page:
+      
+  def button_clicked(e):
+        c.beak = beak.value
+        c.gap = int(gap_space.value)
+        c.beak_width = int(beak_width.value)
+        c.position = position.value
+        c.visible = True
+        page.update()
+
+
+  beak = Toggle(label='Show beak', value=True)
+  gap_space = Slider(width='50%', label='Gap space', show_value=True, min=0, max=30, step=1, value=0)
+  beak_width = Slider(width='50%', label='Beak width', show_value=True, min=10, max=50, step=1, value=16)
+  show_callout = Button(text='Show callout', on_click=button_clicked)
+  position = Dropdown(width=100, label='Position', value='bottomLeft', options=[
+    dropdown.Option('topLeft'),
+    dropdown.Option('topCenter'),
+    dropdown.Option('topRight'),
+    dropdown.Option('bottomLeft'),
+    dropdown.Option('bottomCenter'),
+    dropdown.Option('bottomRight')
+  ])
+
+  stack = Stack(horizontal_align='center', width='50%', controls=[show_callout])
+
+  page.add(beak, gap_space, beak_width, position, stack)
+
+  c = Callout(target=show_callout.uid, width=200, height=100, visible = False, controls=[
+        Stack(controls=[
+          Text(size='large', align='center', value='Callout title'),
+          Text(size='small', align='center', value='This is a basic callout')
+      ])
+  ])
+  
+  page.add(c)
+
+  input()
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/callout/callout-with-directional-hint.gif" width="70%" />
+
+### Callout that covers target
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import pglet
+from pglet import Callout, Button, Text, Stack
+with pglet.page("callout-cover-target") as page:
+      
+  def button_clicked(e):
+        c.visible = True
+        page.update()
+
+
+  b = Button(text='Show callout', on_click=button_clicked)
+  page.add(b)
+
+  c = Callout(target=b.uid, width=200, height=100, visible = False, cover=True, controls=[
+        Stack(controls=[
+          Text(size='large', align='center', value='Callout title'),
+          Text(size='small', align='center', value='This callout covers target')
+      ])
+  ])
+  
+  page.add(c)
+
+  input()
+```
+  </TabItem>
+  <TabItem value="powershell" label="PowerShell">
+
+```powershell
+# TODO
+```
+
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/callout/callout-cover-target.gif" width="50%" />
 
 ## Properties
 
@@ -48,46 +195,3 @@ Callout can be "attached" to the following controls:
 
 * Any control - will be rendered in the body of the callout.
 
-## Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'Bash', value: 'bash', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
-
-```python
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="bash">
-
-[Callout control live demo in Bash](https://repl.it/@pglet/bash-callout-example)
-
-</TabItem>
-
-<TabItem value="powershell">
-
-```powershell
-# TODO
-```
-
-</TabItem>
-
-<TabItem value="node">
-
-```javascript
-// TODO
-```
-
-</TabItem>
-
-</Tabs>

@@ -3,17 +3,14 @@ title: Image
 sidebar_label: Image
 slug: image
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 An image is a graphic representation of something (e.g photo or illustration).
 
-import { CodeSample } from '@site/src/components/code-sample';
-
 ## Examples
 
-<CodeSample src="https://python-image-example.pgletio.repl.co" height="700px"
-    python="https://github.com/pglet/examples/blob/main/python/controls/image_control.py"
-    bash="https://github.com/pglet/examples/blob/main/bash/controls/image.sh"
-    />
+[Live demo](https://python-image-example.pgletio.repl.co)
 
 ## Properties
 
