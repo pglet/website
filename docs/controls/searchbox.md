@@ -122,13 +122,16 @@ with pglet.page("searchbox-with-change-event") as page:
 | `underlined`   | bool   | `false` | Whether or not the SearchBox is underlined. |
 | `icon`         | string |         | Replace "search" icon with a custom one. |
 | `iconColor`    | string |         | Icon color. |
+| `focused`      | bool   | `false` | When set to `true` the focus is set on the control when it's shown on the page or page opened. |
 | `data`         | string |         | Additional data attached to the control. The value is passed in event data. |
-| `onChange`     | bool   | `false` | Whether `change` event should be fired while text is typed into the SearchBox. This property is used by command-based client libraries only like Bash. |
+| `onChange`     | bool   | `false` | Whether `change` event should be fired while text is typed into the SearchBox. This property is used by command-based client libraries only, e.g. Bash. |
 
 ## Events
 
 | Name      | Description |
 | --------- | ----------- |
 | `search`  | Fires when the user presses Enter in the search box. |
-| `clear`  | Fires when the user clears the search box by either clicking 'X' or hitting escape. |
+| `clear`   | Fires when the user clears the search box by either clicking 'X' or hitting escape. |
 | `change`  | Fires when the typed input for the SearchBox has changed. For performance optimization this event is disabled unless `onChange` property set to `true`. |
+| `focus`   | Fires when the control has received focus. |
+| `blur`    | Fires when the control has lost focus. |

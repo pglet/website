@@ -86,8 +86,9 @@ with pglet.page("checkbox-with-change-event") as page:
 | --------- | ------- | ------- | ----------- |
 | `value`   | bool    | `false` | Current value of the checkbox. |
 | `label`   | string  |         | Label to display next to the checkbox. |
-| `boxSide`   | string  | `start` | Allows you to set the checkbox to be at the before (start) or after (end) the label. |
-| `data`     | string  |         | Additional data attached to the control. The value is passed in `change` event data along with a checkbox state. |
+| `boxSide` | string  | `start` | Allows you to set the checkbox to be at the before (start) or after (end) the label. |
+| `focused` | bool   | `false` | When set to `true` the focus is set on the control when it's shown on the page or page opened. |
+| `data`    | string  |         | Additional data attached to the control. The value is passed in `change` event data along with a checkbox state. |
 
 ## Events
 

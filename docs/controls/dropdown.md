@@ -174,6 +174,7 @@ with pglet.page("change-dropdown-options") as page:
 | `label`        | string  |         | Label to display above the control. |
 | `placeholder`  | string  |         | The short hint displayed in the dropdown before the user selects a value. |
 | `errorMessage` | string  |         | Static error message displayed below the dropdown. |
+| `focused`      | bool    | `false` | When set to `true` the focus is set on the control when it's shown on the page or page opened. |
 | `data`         | string  |         | Additional data attached to the control. The value is passed in `change` event data along with a dropdown selected value. |
 
 ## Events
@@ -181,6 +182,8 @@ with pglet.page("change-dropdown-options") as page:
 | Name      | Description |
 | --------- | ----------- |
 | `change`  | Fires when the value of dropdown is changed. |
+| `focus`   | Fires when the control has received focus. |
+| `blur`    | Fires when the control has lost focus. |
 
 ## Child controls
 
@@ -190,7 +193,9 @@ with pglet.page("change-dropdown-options") as page:
 
 `Option` represents an item within dropdown list.
 
-| Name           | Type    | Default | Description |
-| -------------- | ------- | ------- | ----------- |
-| `key`          | string  |         | Option's key. `text` value will be used instead if `key` is not specified. |
-| `text`         | string  |         | Option's display text. `key` value will be used instead if `text` is not specified. |
+| Name           | Type    | Default  | Description |
+| -------------- | ------- | -------- | ----------- |
+| `key`          | string  |          | Option's key. `text` value will be used instead if `key` is not specified. |
+| `text`         | string  |          | Option's display text. `key` value will be used instead if `text` is not specified. |
+| `itemType`     | string  | `normal` | Option type: `normal` (default), `divider`, `header`. |
+| `disabled`     | bool    | `false`  | Defines whether an item in a dropdown is selectable or not. |

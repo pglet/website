@@ -207,13 +207,7 @@ page = page.page()
 | `block`   | bool    | `false` | Whether the text is displayed as a block element. |
 | `color`   | string  |         | Font color. |
 | `bgcolor` | string  |         | Text background color. |
-| `border`  | string  |         | Border around text in `<width> <style> <color>` format, e.g. `1px solid #550000` |
-| `borderStyle` | string  |         | Border style: `dotted`, `dashed`, `solid`, `double`, `groove`, `ridge`, `inset`, `outset` |
-| `borderWidth` | string  |         | Border width, e.g. `1`. |
-| `borderColor` | string  |         | Border color. |
-| `borderRadius` | string  |         | Border radius. |
-| `borderLeft`   | string  |         | Border of the left side of text in `<width> <style> <color>` format, e.g. `1px solid #550000` |
-| `borderRight`  | string  |         | Border of the right side of text in `<width> <style> <color>` format, e.g. `1px solid #550000` |
-| `borderTop`    | string  |         | Border of the top side of text in `<width> <style> <color>` format, e.g. `1px solid #550000` |
-| `borderBottom` | string  |         | Border of the bottom side of text in `<width> <style> <color>` format, e.g. `1px solid #550000` |
-
+| `borderWidth`  | string   |          | Border width in pixels around control, e.g. `1`. Multiple values separated with spaces can be provided to set border width for each of the sides: `top right bottom left`, e.g. `2 0 2 0`. |
+| `borderColor`  | string   |          | Border color around control. Multiple values separated with spaces can be provided to set border color for each of the sides: `top right bottom left`, e.g. `yellow green blue gray`. |
+| `borderStyle`  | string   |          | Border style around control: `none` (default), `dotted`, `dashed`, `solid`, `double`, `groove`, `ridge`, `inset`, `outset`. Multiple values separated with spaces can be provided to set border style for each of the sides: `top right bottom left`, e.g. `solid none none none`. |
+| `borderRadius` | string   |          | Border radius in pixels around control, e.g. `5`. Multiple values separated with spaces can be provided to set border style for each of the sides: `top right bottom left`, e.g. `10 10 0 0`. |

@@ -169,13 +169,15 @@ with pglet.page("change-choicegroup-options") as page:
 | -------------- | ------- | ------- | ----------- |
 | `value`        | string  |         | `key` value of the selected option. |
 | `label`        | string  |         | Descriptive label for the choice group. |
-| `data`         | string  |         | Additional data attached to the control. The value is passed in `change` event data along with a ChoiceGroup selected value. |
+| `focused`      | bool    | `false` | When set to `true` the focus is set on the control when it's shown on the page or page opened. || `data`         | string  |         | Additional data attached to the control. The value is passed in `change` event data along with a ChoiceGroup selected value. |
 
 ## Events
 
 | Name      | Description |
 | --------- | ----------- |
 | `change`  | Fires when the choice has been changed. |
+| `focus`   | Fires when the control has received focus. |
+| `blur`    | Fires when the control has lost focus. |
 
 ## Child controls
 
