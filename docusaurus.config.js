@@ -20,10 +20,10 @@ module.exports = {
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
-    // announcementBar: {
-    //   id: 'announcementBar-2', // Increment on change
-    //   content: `⭐️ If you like Pglet, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/pglet/pglet">GitHub</a> and follow us on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/pgletio" >Twitter</a> ${TwitterSvg}`,
-    // },    
+    announcementBar: {
+      id: 'announcementBar-2', // Increment on change
+      content: `📣 Pglet was superseded by <a target="_blank" rel="noopener noreferrer" href="https://flet.dev/">Flet</a> project with Flutter UI that works on web, mobile and desktop platforms. 📣`,
+    },
     navbar: {
       hideOnScroll: true,
       title: 'pglet',
