@@ -62,7 +62,7 @@ function Home() {
       title={`${siteConfig.customFields.heroTitle}`}
       description={`${siteConfig.tagline}`}>
       <div className="container">
-        <header className={clsx('pglet-hero',styles.heroBanner)}>
+        <header className={clsx('pglet-hero', styles.heroBanner)}>
           <div className="row">
             <div className="col col--6">
               <div className={styles.bkg}></div>
@@ -84,7 +84,6 @@ function Home() {
         </header>
       </div>
       <main>
-        <SignupForm/>
         {features && features.length > 0 && (
           <section className={styles.features}>
             <div className="container">
