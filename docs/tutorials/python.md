@@ -535,4 +535,4 @@ In this tutorial you have learned how to:
 
 For further reading you can explore [controls](/docs/controls) and [examples repository](https://github.com/pglet/examples/tree/main/python).
 
-We would love to hear your feedback! Please drop us an [email](mailto:hello@pglet.io), join the discussion on [Discord](https://discord.gg/rWjf7xx), follow on [Twitter](https://twitter.com/pgletio).
+We would love to hear your feedback! Please drop us an [email](mailto:hello@pglet.io), follow on [Twitter](https://twitter.com/pgletio).
