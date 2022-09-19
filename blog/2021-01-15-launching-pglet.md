@@ -47,6 +47,5 @@ At this stage we are actively looking for any feedback to understand if the proj
 Feel free to [give Pglet a try](/docs/) and let us know what you think! There are multiple feedback channels available:
 
 * [Submit an issue in Pglet repository](https://github.com/pglet/pglet/issues)
-* [Joing a chat in our Discord channel](https://discord.gg/rWjf7xx)
 * [Follow us on Twitter](https://twitter.com/pgletio)
 * [Drop us email](mailto:hello@pglet.io)

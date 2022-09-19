@@ -12,14 +12,14 @@ module.exports = {
   customFields: {
     heroTitle: 'Build internal web apps quickly in the language you already know',
     heroSubTitle: 'Build secure dashboards and interactive web apps in Python, Bash, PowerShell, C# or Node.js. No web dev experience required.',
-  },  
+  },
   themeConfig: {
     hideableSidebar: true,
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
       respectPrefersColorScheme: true,
-    },    
+    },
     // announcementBar: {
     //   id: 'announcementBar-2', // Increment on change
     //   content: `⭐️ If you like Pglet, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/pglet/pglet">GitHub</a> and follow us on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/pgletio" >Twitter</a> ${TwitterSvg}`,
@@ -55,7 +55,7 @@ module.exports = {
       theme: require('prism-react-renderer/themes/github'),
       darkTheme: require('prism-react-renderer/themes/dracula'),
       additionalLanguages: ['powershell', 'yaml'],
-    },    
+    },
     footer: {
       style: 'light',
       links: [
@@ -73,16 +73,12 @@ module.exports = {
             {
               label: 'Controls reference',
               to: 'docs/controls/',
-            }            
+            }
           ],
         },
         {
           title: 'Community',
           items: [
-            {
-              label: 'Discord',
-              href: 'https://discord.gg/rWjf7xx',
-            },
             {
               label: 'Twitter',
               href: 'https://twitter.com/pgletio',
@@ -114,7 +110,7 @@ module.exports = {
               to: 'privacy-policy',
             },
           ],
-        },        
+        },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Appveyor Systems Inc. Built with Docusaurus.`,
     }
