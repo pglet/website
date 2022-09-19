@@ -44,11 +44,6 @@ module.exports = {
           label: 'Blog',
           position: 'left'
         },
-        {
-          href: 'https://github.com/pglet/pglet',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     prism: {
