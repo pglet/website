@@ -22,7 +22,7 @@ module.exports = {
     },
     announcementBar: {
       id: 'announcementBar-2', // Increment on change
-      content: `📣 Pglet was superseded by <a target="_blank" rel="noopener noreferrer" href="https://flet.dev/">Flet</a> project with Flutter UI that works on web, mobile and desktop platforms. 📣`,
+      content: `📣 Pglet was superseded by <a target="_blank" rel="noopener noreferrer" href="https://flet.dev/">Flet</a> project with Flutter UI that works on web, mobile and desktop platforms. Give it a spin and join our active and growing community on <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/dzWXP8SHG8">Discord</a>.📣`,
     },
     navbar: {
       hideOnScroll: true,
